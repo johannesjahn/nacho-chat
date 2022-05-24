@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:nacho_chat/pages/chat.dart';
 
 import '../model/chat.dart';
 import '../service/app.dart';
@@ -22,8 +22,9 @@ class ConversationList extends StatelessWidget {
                   ChatService.instance.currentChat.value = value[index];
                   ChatService.instance
                       .getMessages(conversationId: value[index].id);
-                  if (!AppService.instance.isTablet)
-                    Navigator.pushNamed(context, "/chat");
+                  if (!AppService.instance.isTablet) {
+                    Navigator.push(context, DefaultRoute(const ChatPage()));
+                  }
                 },
                 child: Builder(builder: (context) {
                   final chatTitle = value[index]

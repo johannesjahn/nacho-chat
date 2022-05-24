@@ -7,6 +7,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nacho_chat/firebase_options.dart';
 import 'package:nacho_chat/service/interceptors/authInterceptor.dart';
 
+export 'utils.dart';
+
 class AppService {
   static final instance = AppService._();
 
@@ -16,10 +18,10 @@ class AppService {
     await Hive.initFlutter();
     hive = await Hive.openBox<String>("default");
 
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
-    final token = await FirebaseMessaging.instance.getToken();
-    print(token);
+    // await Firebase.initializeApp(
+    //     options: DefaultFirebaseOptions.currentPlatform);
+    // final token = await FirebaseMessaging.instance.getToken();
+    // print(token);
   }
 
   AppService._() {

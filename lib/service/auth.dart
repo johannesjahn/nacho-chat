@@ -12,21 +12,25 @@ class AuthService {
 
   var _isActive = false;
 
-  Future<void> login(
+  Future<bool> login(
       {required String username, required String password}) async {
-    if (_isActive) return;
+    if (_isActive) return false;
     _isActive = true;
-    final response = await appService.client.post(Urls.login, data: {
-      "username": username,
-      "password": password,
-    });
+    try {
+      final response = await appService.client.post(Urls.login, data: {
+        "username": username,
+        "password": password,
+      });
 
-    final data = LoginResponse.fromJson(response.data);
-    final jwt = Jwt.parseJwt(data.access_token);
+      final data = LoginResponse.fromJson(response.data);
+      final jwt = Jwt.parseJwt(data.access_token);
 
-    appService.hive.put('access_token', data.access_token);
-    appService.hive.put('username', jwt["username"]);
-    _isActive = false;
+      appService.hive.put('access_token', data.access_token);
+      appService.hive.put('username', jwt["username"]);
+    } finally {
+      _isActive = false;
+    }
+    return true;
   }
 
   Future<void> register(

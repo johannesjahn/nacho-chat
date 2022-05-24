@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nacho_chat/pages/home.dart';
 import 'package:nacho_chat/service/auth.dart';
+import 'package:nacho_chat/service/utils.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm({Key? key}) : super(key: key);
@@ -10,13 +12,25 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  login() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      final success = await AuthService.instance.login(
+          username: usernameController.text, password: passwordController.text);
+
+      if (success) {
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(context, DefaultRoute(const HomePage()));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
-    final usernameController = TextEditingController();
-    final passwordController = TextEditingController();
 
     return Form(
       key: _formKey,
@@ -59,6 +73,9 @@ class _LoginFormState extends State<LoginForm> {
                 keyboardType: TextInputType.visiblePassword,
                 controller: passwordController,
                 obscureText: true,
+                onFieldSubmitted: (value) {
+                  login();
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter some text';
@@ -80,7 +97,9 @@ class _LoginFormState extends State<LoginForm> {
                             username: usernameController.text,
                             password: passwordController.text);
 
-                        Navigator.of(context).pushReplacementNamed('/');
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushReplacement(
+                            context, DefaultRoute(const HomePage()));
                       }
                     },
                   ),
@@ -89,14 +108,8 @@ class _LoginFormState extends State<LoginForm> {
                       "Login",
                       style: theme.textTheme.labelLarge,
                     ),
-                    onPressed: () async {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        await AuthService.instance.login(
-                            username: usernameController.text,
-                            password: passwordController.text);
-
-                        Navigator.of(context).pushReplacementNamed('/');
-                      }
+                    onPressed: () {
+                      login();
                     },
                   ),
                 ],

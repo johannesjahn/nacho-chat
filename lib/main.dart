@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'pages/home.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await AppService.instance.init();
 
   runApp(const NachoChat());
@@ -19,38 +20,17 @@ class NachoChat extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final initialRoute =
-        AppService.instance.hive.get("access_token") == null ? "/login" : "/";
+    final initialRoute = AppService.instance.hive.get("access_token") == null
+        ? LoginPage()
+        : HomePage();
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Nacho Chat',
       theme: ThemeData(
           colorSchemeSeed: const Color.fromARGB(100, 11, 11, 200),
           brightness: Brightness.dark,
           useMaterial3: true),
-      initialRoute: initialRoute,
-      onGenerateRoute: (settings) {
-        Widget page;
-        switch (settings.name) {
-          case '/':
-            page = const MyHomePage(
-              title: "asdf",
-            );
-            break;
-          case '/login':
-            page = LoginPage();
-            break;
-          case '/chat':
-            page = ChatPage();
-            break;
-          default:
-            page = const MyHomePage(title: 'Flutter Demo Home Page');
-            break;
-        }
-
-        return MaterialPageRoute(
-            builder: (context) => page, settings: settings);
-      },
+      home: initialRoute,
     );
   }
 }

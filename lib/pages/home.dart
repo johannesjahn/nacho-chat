@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/components/chat_view.dart';
 import 'package:nacho_chat/components/conversation_list.dart';
+import 'package:nacho_chat/pages/login.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:nacho_chat/service/user.dart';
 
 import '../components/add_user_dialog.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
@@ -43,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
               onPressed: () {
                 AppService.instance.hive.delete("access_token");
-                Navigator.pushReplacementNamed(context, "/login");
+                Navigator.push(context, DefaultRoute(LoginPage()));
               },
               icon: const Icon(Icons.logout))
         ],

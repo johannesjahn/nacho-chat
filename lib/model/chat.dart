@@ -47,6 +47,15 @@ class Message {
         createdAt: DateTime.parse(json["createdAt"]),
         author: MessageAuthor.fromJson(json['author']));
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "content": content,
+      "createdAt": createdAt.toIso8601String(),
+      "author": author.toJson(),
+    };
+  }
 }
 
 class MessageAuthor {
@@ -60,5 +69,12 @@ class MessageAuthor {
       id: json["id"],
       username: json["username"],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "username": username,
+    };
   }
 }

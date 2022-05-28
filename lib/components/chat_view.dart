@@ -29,10 +29,10 @@ class _ChatViewState extends State<ChatView> {
         return Column(
           children: [
             Expanded(
-              child: Container(
-                child: ValueListenableBuilder<List<Message>>(
-                    valueListenable: ChatService.instance.messagesNotifier,
-                    builder: (context, value, widget) => ListView.builder(
+              child: ValueListenableBuilder<List<Message>>(
+                  valueListenable: ChatService.instance.messagesNotifier,
+                  builder: (context, value, widget) {
+                    return ListView.builder(
                         itemCount: value.length,
                         reverse: true,
                         itemBuilder: (context, index) {
@@ -49,8 +49,8 @@ class _ChatViewState extends State<ChatView> {
                                       child: Text(message.content)))
                             ],
                           );
-                        })),
-              ),
+                        });
+                  }),
             ),
             Container(
               child: Card(

@@ -12,5 +12,6 @@ jobs:
           flutter-version: '3.0.0'
           channel: 'stable'
       - run: flutter pub get
+      - run: flutter pub run build_runner build
       - run: flutter test
       - run: flutter build web

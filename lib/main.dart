@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nacho_chat/pages/chat.dart';
 import 'package:nacho_chat/pages/login.dart';
 import 'package:nacho_chat/service/app.dart';
-import 'package:nacho_chat/service/auth.dart';
-import 'package:provider/provider.dart';
 
 import 'pages/home.dart';
 

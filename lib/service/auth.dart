@@ -1,8 +1,7 @@
 import 'package:jwt_decode/jwt_decode.dart';
-import 'package:nacho_chat/model/auth.dart';
+import 'package:openapi/openapi.dart';
 
 import 'app.dart';
-import 'constants.dart';
 
 class AuthService {
   static final instance = AuthService._();
@@ -17,15 +16,18 @@ class AuthService {
     if (_isActive) return false;
     _isActive = true;
     try {
-      final response = await appService.client.post(Urls.login, data: {
-        "username": username,
-        "password": password,
-      });
+      final loginDTO = LoginDTOBuilder()
+        ..username = username
+        ..password = password;
+      final response = await appService.api
+          .getAuthApi()
+          .authControllerLogin(loginDTO: loginDTO.build());
 
-      final data = LoginResponse.fromJson(response.data);
-      final jwt = Jwt.parseJwt(data.access_token);
-
-      appService.hive.put('access_token', data.access_token);
+      if (response.data?.accessToken == null) {
+        throw Exception("No access token");
+      }
+      final jwt = Jwt.parseJwt(response.data!.accessToken);
+      appService.hive.put('access_token', response.data!.accessToken);
       appService.hive.put('username', jwt["username"]);
     } finally {
       _isActive = false;
@@ -37,10 +39,12 @@ class AuthService {
       {required String username, required String password}) async {
     if (_isActive) return;
     _isActive = true;
-    final response = await appService.client.post(Urls.register, data: {
-      "username": username,
-      "password": password,
-    });
+    final registerDTO = RegisterDTOBuilder()
+      ..username = username
+      ..password = password;
+    await appService.api
+        .getAuthApi()
+        .authControllerRegister(registerDTO: registerDTO.build());
     _isActive = false;
 
     await login(username: username, password: password);

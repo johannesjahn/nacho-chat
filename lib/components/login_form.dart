@@ -22,6 +22,11 @@ class _LoginFormState extends State<LoginForm> {
 
       if (success) {
         // ignore: use_build_context_synchronously
+        while (Navigator.canPop(context)) {
+          // ignore: use_build_context_synchronously
+          Navigator.pop(context);
+        }
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(context, DefaultRoute(const HomePage()));
       }
     }

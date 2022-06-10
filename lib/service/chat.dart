@@ -92,8 +92,6 @@ class ChatService {
               .toList() ??
           [];
 
-      print("new messages: ${newMessages.length}");
-
       if (messages.isEmpty) {
         messages = newMessages.reversed.toList();
       } else {

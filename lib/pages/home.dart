@@ -40,8 +40,8 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(Icons.add)),
           IconButton(
-              onPressed: () {
-                AppService.instance.hive.delete("access_token");
+              onPressed: () async {
+                await AppService.instance.logout();
                 Navigator.push(context, DefaultRoute(LoginPage()));
               },
               icon: const Icon(Icons.logout))

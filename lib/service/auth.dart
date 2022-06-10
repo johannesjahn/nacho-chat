@@ -49,9 +49,4 @@ class AuthService {
 
     await login(username: username, password: password);
   }
-
-  Future<void> logout() async {
-    await appService.hive.delete('access_token');
-    await appService.hive.delete('username');
-  }
 }

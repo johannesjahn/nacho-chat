@@ -1,11 +1,11 @@
-import 'dart:developer';
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/model/chat.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/constants.dart';
-import 'dart:convert';
+import 'package:openapi/openapi.dart';
 
 class ChatService {
   static final instance = ChatService._();
@@ -21,13 +21,22 @@ class ChatService {
 
   Future<void> getConversations() async {
     try {
-      final response = await appService.client.get(Urls.getConversations);
+      final response =
+          await appService.api.getChatApi().chatControllerGetConversations();
 
-      conversations = (response.data as List)
-          .map((json) => Conversation.fromJson(json))
-          .toList();
+      conversations = response.data
+              ?.map((conversationDTO) => Conversation(
+                  id: int.parse(conversationDTO.id.toString()),
+                  participants: conversationDTO.participants
+                      .map((participant) => ConversationParticipant(
+                          id: int.parse(participant.id.toString()),
+                          username: participant.username))
+                      .toList()))
+              .toList() ??
+          [];
 
-      appService.hive.put("conversations", jsonEncode(response.data));
+      appService.hive.put("conversations",
+          jsonEncode(conversations.map((e) => e.toJson()).toList()));
       filteredConversations.value = conversations;
     } catch (e) {
       final conversationsString = appService.hive.get("conversations");
@@ -41,17 +50,21 @@ class ChatService {
   }
 
   Future<void> createConversation({required int partnerId}) async {
-    final response = await appService.client
-        .post(Urls.createConversation, data: {"partnerId": partnerId});
+    final dto = CreateConversationRequestDTOBuilder()..partnerId = partnerId;
+    await appService.api.getChatApi().chatControllerCreateConversation(
+        createConversationRequestDTO: dto.build());
 
-    final conversation = Conversation.fromJson(response.data);
     await getConversations();
   }
 
   Future<void> sendMessage(
       {required int conversationId, required String message}) async {
-    final response = await appService.client.post(Urls.sendMessage,
-        data: {"conversationId": conversationId, "content": message});
+    final dto = CreateMessageDTOBuilder()
+      ..conversationId = conversationId
+      ..content = message;
+    await appService.api
+        .getChatApi()
+        .chatControllerSendMessage(createMessageDTO: dto.build());
 
     await getMessages(conversationId: conversationId);
   }
@@ -66,31 +79,26 @@ class ChatService {
     }
     List<Message> messages = cachedMessages;
     try {
-      Response response;
-
-      if (cachedMessages.isEmpty) {
-        response = await appService.client
-            .post(Urls.getMessages, data: {"conversationId": conversationId});
-      } else {
-        response = await appService.client.post(Urls.getMessages, data: {
-          "conversationId": conversationId,
-          "lastMessage": cachedMessages.first.id
-        });
+      final dto = GetMessagesDTOBuilder()..conversationId = conversationId;
+      if (cachedMessages.isNotEmpty) {
+        dto.lastMessage = cachedMessages.first.id;
       }
+      final response = await appService.api
+          .getChatApi()
+          .chatControllerGetMessages(getMessagesDTO: dto.build());
+
+      final newMessages = response.data?.messages
+              .map((message) => Message.fromResponseDTO(message))
+              .toList() ??
+          [];
+
+      print("new messages: ${newMessages.length}");
 
       if (messages.isEmpty) {
-        messages = (response.data["messages"] as List)
-            .map((e) => Message.fromJson(e))
-            .toList()
-            .reversed
-            .toList();
+        messages = newMessages.reversed.toList();
       } else {
-        final responseMessages = (response.data["messages"] as List)
-            .map((e) => Message.fromJson(e))
-            .toList();
-
-        if (responseMessages.isNotEmpty) {
-          for (var message in responseMessages) {
+        if (newMessages.isNotEmpty) {
+          for (var message in newMessages) {
             if (!messages.any((m) => m.id == message.id)) {
               messages.add(message);
             }

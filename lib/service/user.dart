@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nacho_chat/model/user.dart';
 
 import 'app.dart';
-import 'constants.dart';
 
 class UserService {
   UserService._();
@@ -13,10 +12,16 @@ class UserService {
   final filteredUserList = ValueNotifier<List<User>>([]);
 
   Future<void> getUserList() async {
-    final response = UserListResponse.fromJson(
-        (await appService.client.get(Urls.userList)).data);
+    final response =
+        await appService.api.getUserApi().usersControllerGetUsers();
 
-    userList = User.fromResponseList(response.users);
+    userList = response.data
+            ?.map((userDTO) => User(
+                id: int.parse(userDTO.id.toString()),
+                username: userDTO.username))
+            .toList() ??
+        [];
+
     filteredUserList.value = userList;
   }
 }

@@ -27,7 +27,7 @@ class PostList extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(5),
                       child: Card(
-                        child: PostText(text: posts[index].content),
+                        child: PostText(post: posts[index]),
                       ),
                     ),
                   ),

@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **createdAt** | [**DateTime**](DateTime.md) |  | 
 **updatedAt** | [**DateTime**](DateTime.md) |  | 
 **content** | **String** |  | 
-**author** | [**UserResponseDTO**](UserResponseDTO.md) |  | 
-**comments** | **BuiltList&lt;String&gt;** |  | 
+**author** | [**ReplyResponseDTOAuthor**](ReplyResponseDTOAuthor.md) |  | 
+**comments** | [**BuiltList&lt;CommentResponseDTO&gt;**](CommentResponseDTO.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

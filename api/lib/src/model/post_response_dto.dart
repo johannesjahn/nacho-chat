@@ -2,8 +2,9 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
+import 'package:openapi/src/model/comment_response_dto.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/user_response_dto.dart';
+import 'package:openapi/src/model/reply_response_dto_author.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -32,10 +33,10 @@ abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTO
     String get content;
 
     @BuiltValueField(wireName: r'author')
-    UserResponseDTO get author;
+    ReplyResponseDTOAuthor? get author;
 
     @BuiltValueField(wireName: r'comments')
-    BuiltList<String> get comments;
+    BuiltList<CommentResponseDTO> get comments;
 
     PostResponseDTO._();
 
@@ -77,12 +78,12 @@ class _$PostResponseDTOSerializer implements StructuredSerializer<PostResponseDT
                 specifiedType: const FullType(String)));
         result
             ..add(r'author')
-            ..add(serializers.serialize(object.author,
-                specifiedType: const FullType(UserResponseDTO)));
+            ..add(object.author == null ? null : serializers.serialize(object.author,
+                specifiedType: const FullType.nullable(ReplyResponseDTOAuthor)));
         result
             ..add(r'comments')
             ..add(serializers.serialize(object.comments,
-                specifiedType: const FullType(BuiltList, [FullType(String)])));
+                specifiedType: const FullType(BuiltList, [FullType(CommentResponseDTO)])));
         return result;
     }
 
@@ -120,12 +121,13 @@ class _$PostResponseDTOSerializer implements StructuredSerializer<PostResponseDT
                     break;
                 case r'author':
                     final valueDes = serializers.deserialize(value,
-                        specifiedType: const FullType(UserResponseDTO)) as UserResponseDTO;
+                        specifiedType: const FullType.nullable(ReplyResponseDTOAuthor)) as ReplyResponseDTOAuthor?;
+                    if (valueDes == null) continue;
                     result.author.replace(valueDes);
                     break;
                 case r'comments':
                     final valueDes = serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(String)])) as BuiltList<String>;
+                        specifiedType: const FullType(BuiltList, [FullType(CommentResponseDTO)])) as BuiltList<CommentResponseDTO>;
                     result.comments.replace(valueDes);
                     break;
             }

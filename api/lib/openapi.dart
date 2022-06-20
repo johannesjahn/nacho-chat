@@ -34,6 +34,7 @@ export 'package:openapi/src/model/message_response_dto.dart';
 export 'package:openapi/src/model/post_response_dto.dart';
 export 'package:openapi/src/model/register_dto.dart';
 export 'package:openapi/src/model/reply_response_dto.dart';
+export 'package:openapi/src/model/reply_response_dto_author.dart';
 export 'package:openapi/src/model/update_comment_dto.dart';
 export 'package:openapi/src/model/update_post_dto.dart';
 export 'package:openapi/src/model/update_reply_dto.dart';

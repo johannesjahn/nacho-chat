@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
  - [PostResponseDTO](doc/PostResponseDTO.md)
  - [RegisterDTO](doc/RegisterDTO.md)
  - [ReplyResponseDTO](doc/ReplyResponseDTO.md)
+ - [ReplyResponseDTOAuthor](doc/ReplyResponseDTOAuthor.md)
  - [UpdateCommentDTO](doc/UpdateCommentDTO.md)
  - [UpdatePostDTO](doc/UpdatePostDTO.md)
  - [UpdateReplyDTO](doc/UpdateReplyDTO.md)

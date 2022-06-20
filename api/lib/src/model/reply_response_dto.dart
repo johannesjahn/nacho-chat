@@ -2,7 +2,7 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import 'package:openapi/src/model/user_response_dto.dart';
+import 'package:openapi/src/model/reply_response_dto_author.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -30,7 +30,7 @@ abstract class ReplyResponseDTO implements Built<ReplyResponseDTO, ReplyResponse
     String get content;
 
     @BuiltValueField(wireName: r'author')
-    UserResponseDTO get author;
+    ReplyResponseDTOAuthor? get author;
 
     ReplyResponseDTO._();
 
@@ -72,8 +72,8 @@ class _$ReplyResponseDTOSerializer implements StructuredSerializer<ReplyResponse
                 specifiedType: const FullType(String)));
         result
             ..add(r'author')
-            ..add(serializers.serialize(object.author,
-                specifiedType: const FullType(UserResponseDTO)));
+            ..add(object.author == null ? null : serializers.serialize(object.author,
+                specifiedType: const FullType.nullable(ReplyResponseDTOAuthor)));
         return result;
     }
 
@@ -111,7 +111,8 @@ class _$ReplyResponseDTOSerializer implements StructuredSerializer<ReplyResponse
                     break;
                 case r'author':
                     final valueDes = serializers.deserialize(value,
-                        specifiedType: const FullType(UserResponseDTO)) as UserResponseDTO;
+                        specifiedType: const FullType.nullable(ReplyResponseDTOAuthor)) as ReplyResponseDTOAuthor?;
+                    if (valueDes == null) continue;
                     result.author.replace(valueDes);
                     break;
             }

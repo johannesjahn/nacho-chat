@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.bug_report),
             onPressed: () async {
-              PostService.instance.getPosts();
+              PostService.instance.createReply();
             },
           ),
           IconButton(

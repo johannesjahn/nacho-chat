@@ -2,31 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/components/chat_view.dart';
 import 'package:nacho_chat/components/conversation_list.dart';
-import 'package:nacho_chat/components/post_list.dart';
-import 'package:nacho_chat/pages/chat_list.dart';
 import 'package:nacho_chat/pages/login.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:nacho_chat/service/user.dart';
-import 'package:openapi/openapi.dart';
 
 import '../components/add_user_dialog.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ChatListPage extends StatefulWidget {
+  const ChatListPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ChatListPage> createState() => _ChatListPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ChatListPageState extends State<ChatListPage> {
   @override
   void initState() {
     super.initState();
     UserService.instance.getUserList();
     ChatService.instance.getConversations();
-    PostService.instance.getPosts();
   }
 
   @override
@@ -38,10 +34,18 @@ class _HomePageState extends State<HomePage> {
             Text("Hello " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
           IconButton(
+            icon: Icon(Icons.bug_report),
+            onPressed: () async {
+              PostService.instance.createReply();
+            },
+          ),
+          IconButton(
               onPressed: () {
-                Navigator.of(context).push(DefaultRoute(const ChatListPage()));
+                showDialog(
+                    context: context,
+                    builder: (context) => const AddUserDialog());
               },
-              icon: const Icon(Icons.chat)),
+              icon: const Icon(Icons.add)),
           IconButton(
               onPressed: () async {
                 await AppService.instance.logout();
@@ -50,10 +54,22 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: ValueListenableBuilder<List<PostResponseDTO>>(
-        valueListenable: PostService.instance.posts,
-        builder: (context, value, widget) => PostList(posts: value),
-      ),
+      body: Builder(builder: (context) {
+        final width = MediaQuery.of(context).size.width;
+
+        if (width < 750) {
+          AppService.instance.isTablet = false;
+          return const ConversationList();
+        }
+
+        AppService.instance.isTablet = true;
+        return Row(
+          children: [
+            Container(width: 300, child: const ConversationList()),
+            Container(width: width - 300, child: const ChatView())
+          ],
+        );
+      }),
     );
   }
 }

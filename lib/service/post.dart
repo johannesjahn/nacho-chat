@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 
 import 'app.dart';
@@ -9,8 +10,12 @@ class PostService {
 
   final appService = AppService.instance;
 
+  final posts = ValueNotifier<List<PostResponseDTO>>([]);
+
   Future<List<PostResponseDTO>> getPosts() async {
     final response = await appService.api.getPostApi().postControllerGetPosts();
+
+    posts.value = response.data?.toList() ?? [];
 
     return response.data?.toList() ?? [];
   }

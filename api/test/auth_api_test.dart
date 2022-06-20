@@ -12,7 +12,7 @@ void main() {
       // TODO
     });
 
-    //Future authControllerRegister(RegisterDTO registerDTO) async
+    //Future<UserResponseDTO> authControllerRegister(RegisterDTO registerDTO) async
     test('test authControllerRegister', () async {
       // TODO
     });

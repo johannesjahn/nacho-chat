@@ -7,17 +7,17 @@ void main() {
   final instance = Openapi().getPostApi();
 
   group(PostApi, () {
-    //Future postControllerCreateComment(CreateCommentDTO createCommentDTO) async
+    //Future<CommentResponseDTO> postControllerCreateComment(CreateCommentDTO createCommentDTO) async
     test('test postControllerCreateComment', () async {
       // TODO
     });
 
-    //Future postControllerCreatePost(CreatePostDTO createPostDTO) async
+    //Future<PostResponseDTO> postControllerCreatePost(CreatePostDTO createPostDTO) async
     test('test postControllerCreatePost', () async {
       // TODO
     });
 
-    //Future postControllerCreateReply(CreateReplyDTO createReplyDTO) async
+    //Future<ReplyResponseDTO> postControllerCreateReply(CreateReplyDTO createReplyDTO) async
     test('test postControllerCreateReply', () async {
       // TODO
     });
@@ -37,32 +37,32 @@ void main() {
       // TODO
     });
 
-    //Future postControllerGetComments(GetCommentsDTO getCommentsDTO) async
+    //Future<BuiltList<CommentResponseDTO>> postControllerGetComments(GetCommentsDTO getCommentsDTO) async
     test('test postControllerGetComments', () async {
       // TODO
     });
 
-    //Future postControllerGetPosts() async
+    //Future<BuiltList<PostResponseDTO>> postControllerGetPosts() async
     test('test postControllerGetPosts', () async {
       // TODO
     });
 
-    //Future postControllerGetReplies(GetRepliesDTO getRepliesDTO) async
+    //Future<BuiltList<ReplyResponseDTO>> postControllerGetReplies(GetRepliesDTO getRepliesDTO) async
     test('test postControllerGetReplies', () async {
       // TODO
     });
 
-    //Future postControllerUpdateComment(UpdateCommentDTO updateCommentDTO) async
+    //Future<CommentResponseDTO> postControllerUpdateComment(UpdateCommentDTO updateCommentDTO) async
     test('test postControllerUpdateComment', () async {
       // TODO
     });
 
-    //Future postControllerUpdatePost(UpdatePostDTO updatePostDTO) async
+    //Future<PostResponseDTO> postControllerUpdatePost(UpdatePostDTO updatePostDTO) async
     test('test postControllerUpdatePost', () async {
       // TODO
     });
 
-    //Future postControllerUpdateReply(UpdateReplyDTO updateReplyDTO) async
+    //Future<ReplyResponseDTO> postControllerUpdateReply(UpdateReplyDTO updateReplyDTO) async
     test('test postControllerUpdateReply', () async {
       // TODO
     });

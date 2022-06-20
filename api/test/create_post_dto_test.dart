@@ -7,6 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreatePostDTO, () {
+    // The content of a post
     // String content
     test('to test the property `content`', () async {
       // TODO

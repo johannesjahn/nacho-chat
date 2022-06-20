@@ -5,6 +5,7 @@ import 'package:nacho_chat/components/conversation_list.dart';
 import 'package:nacho_chat/pages/login.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/chat.dart';
+import 'package:nacho_chat/service/post.dart';
 import 'package:nacho_chat/service/user.dart';
 
 import '../components/add_user_dialog.dart';
@@ -32,6 +33,12 @@ class _HomePageState extends State<HomePage> {
             // ignore: prefer_interpolation_to_compose_strings
             Text("Hello " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
+          IconButton(
+            icon: Icon(Icons.bug_report),
+            onPressed: () async {
+              PostService.instance.getPosts();
+            },
+          ),
           IconButton(
               onPressed: () {
                 showDialog(

@@ -8,3 +8,13 @@ Screenshots from MacOS client.
 <image src="./screenshots/messenger_tablet.png" style="max-width:49%; max-height:300px">
 <image src="./screenshots/list_small.png" style="max-width:50%; max-height:300px">
 <image src="./screenshots/chat_small.png" style="max-width:50%; max-height:300px">
+
+To run the code generation run:
+```shell
+flutter pub run build_runner build
+```
+
+To create the openapi scaffold run:
+```shell
+openapi-generator generate -i ./api.json -g dart-dio -o ./api
+```

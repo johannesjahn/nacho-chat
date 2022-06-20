@@ -7,6 +7,8 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
+import 'package:openapi/src/model/comment_response_dto.dart';
 import 'package:openapi/src/model/create_comment_dto.dart';
 import 'package:openapi/src/model/create_post_dto.dart';
 import 'package:openapi/src/model/create_reply_dto.dart';
@@ -15,6 +17,8 @@ import 'package:openapi/src/model/delete_post_dto.dart';
 import 'package:openapi/src/model/delete_reply_dto.dart';
 import 'package:openapi/src/model/get_comments_dto.dart';
 import 'package:openapi/src/model/get_replies_dto.dart';
+import 'package:openapi/src/model/post_response_dto.dart';
+import 'package:openapi/src/model/reply_response_dto.dart';
 import 'package:openapi/src/model/update_comment_dto.dart';
 import 'package:openapi/src/model/update_post_dto.dart';
 import 'package:openapi/src/model/update_reply_dto.dart';
@@ -39,9 +43,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CommentResponseDTO] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerCreateComment({ 
+  Future<Response<CommentResponseDTO>> postControllerCreateComment({ 
     required CreateCommentDTO createCommentDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -96,7 +100,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CommentResponseDTO _responseData;
+
+    try {
+      const _responseType = FullType(CommentResponseDTO);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as CommentResponseDTO;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<CommentResponseDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// postControllerCreatePost
@@ -111,9 +142,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PostResponseDTO] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerCreatePost({ 
+  Future<Response<PostResponseDTO>> postControllerCreatePost({ 
     required CreatePostDTO createPostDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -168,7 +199,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PostResponseDTO _responseData;
+
+    try {
+      const _responseType = FullType(PostResponseDTO);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as PostResponseDTO;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<PostResponseDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// postControllerCreateReply
@@ -183,9 +241,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ReplyResponseDTO] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerCreateReply({ 
+  Future<Response<ReplyResponseDTO>> postControllerCreateReply({ 
     required CreateReplyDTO createReplyDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -240,7 +298,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ReplyResponseDTO _responseData;
+
+    try {
+      const _responseType = FullType(ReplyResponseDTO);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as ReplyResponseDTO;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<ReplyResponseDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// postControllerDeleteComment
@@ -471,9 +556,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<CommentResponseDTO>] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerGetComments({ 
+  Future<Response<BuiltList<CommentResponseDTO>>> postControllerGetComments({ 
     required GetCommentsDTO getCommentsDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -522,7 +607,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<CommentResponseDTO> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(CommentResponseDTO)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<CommentResponseDTO>;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<BuiltList<CommentResponseDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// postControllerGetPosts
@@ -536,9 +648,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<PostResponseDTO>] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerGetPosts({ 
+  Future<Response<BuiltList<PostResponseDTO>>> postControllerGetPosts({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -567,7 +679,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<PostResponseDTO> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(PostResponseDTO)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<PostResponseDTO>;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<BuiltList<PostResponseDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// postControllerGetReplies
@@ -582,9 +721,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<ReplyResponseDTO>] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerGetReplies({ 
+  Future<Response<BuiltList<ReplyResponseDTO>>> postControllerGetReplies({ 
     required GetRepliesDTO getRepliesDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -633,7 +772,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<ReplyResponseDTO> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(ReplyResponseDTO)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<ReplyResponseDTO>;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<BuiltList<ReplyResponseDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// postControllerUpdateComment
@@ -648,9 +814,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [CommentResponseDTO] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerUpdateComment({ 
+  Future<Response<CommentResponseDTO>> postControllerUpdateComment({ 
     required UpdateCommentDTO updateCommentDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -705,7 +871,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    CommentResponseDTO _responseData;
+
+    try {
+      const _responseType = FullType(CommentResponseDTO);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as CommentResponseDTO;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<CommentResponseDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// postControllerUpdatePost
@@ -720,9 +913,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PostResponseDTO] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerUpdatePost({ 
+  Future<Response<PostResponseDTO>> postControllerUpdatePost({ 
     required UpdatePostDTO updatePostDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -777,7 +970,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PostResponseDTO _responseData;
+
+    try {
+      const _responseType = FullType(PostResponseDTO);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as PostResponseDTO;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<PostResponseDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// postControllerUpdateReply
@@ -792,9 +1012,9 @@ class PostApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ReplyResponseDTO] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> postControllerUpdateReply({ 
+  Future<Response<ReplyResponseDTO>> postControllerUpdateReply({ 
     required UpdateReplyDTO updateReplyDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -849,7 +1069,34 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ReplyResponseDTO _responseData;
+
+    try {
+      const _responseType = FullType(ReplyResponseDTO);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as ReplyResponseDTO;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<ReplyResponseDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

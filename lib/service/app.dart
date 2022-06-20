@@ -19,7 +19,7 @@ class AppService {
   AppService._();
 
   final api = Openapi(
-      basePathOverride: "https://chat.johannes-jahn.com",
+      basePathOverride: "http://localhost:3000/",
       interceptors: [AuthInterceptor()]);
   late Box<String> hive;
 

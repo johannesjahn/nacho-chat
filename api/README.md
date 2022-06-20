@@ -89,6 +89,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [CommentResponseDTO](doc/CommentResponseDTO.md)
  - [ConversationResponseDTO](doc/ConversationResponseDTO.md)
  - [CreateCommentDTO](doc/CreateCommentDTO.md)
  - [CreateConversationRequestDTO](doc/CreateConversationRequestDTO.md)
@@ -104,7 +105,9 @@ Class | Method | HTTP request | Description
  - [LoginDTO](doc/LoginDTO.md)
  - [LoginResponseDTO](doc/LoginResponseDTO.md)
  - [MessageResponseDTO](doc/MessageResponseDTO.md)
+ - [PostResponseDTO](doc/PostResponseDTO.md)
  - [RegisterDTO](doc/RegisterDTO.md)
+ - [ReplyResponseDTO](doc/ReplyResponseDTO.md)
  - [UpdateCommentDTO](doc/UpdateCommentDTO.md)
  - [UpdatePostDTO](doc/UpdatePostDTO.md)
  - [UpdateReplyDTO](doc/UpdateReplyDTO.md)

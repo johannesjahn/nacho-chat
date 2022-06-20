@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 
 # **postControllerCreateComment**
-> postControllerCreateComment(createCommentDTO)
+> CommentResponseDTO postControllerCreateComment(createCommentDTO)
 
 
 
@@ -39,7 +39,8 @@ final api = Openapi().getPostApi();
 final CreateCommentDTO createCommentDTO = ; // CreateCommentDTO | 
 
 try {
-    api.postControllerCreateComment(createCommentDTO);
+    final response = api.postControllerCreateComment(createCommentDTO);
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerCreateComment: $e\n');
 }
@@ -53,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CommentResponseDTO**](CommentResponseDTO.md)
 
 ### Authorization
 
@@ -62,12 +63,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerCreatePost**
-> postControllerCreatePost(createPostDTO)
+> PostResponseDTO postControllerCreatePost(createPostDTO)
 
 
 
@@ -82,7 +83,8 @@ final api = Openapi().getPostApi();
 final CreatePostDTO createPostDTO = ; // CreatePostDTO | 
 
 try {
-    api.postControllerCreatePost(createPostDTO);
+    final response = api.postControllerCreatePost(createPostDTO);
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerCreatePost: $e\n');
 }
@@ -96,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PostResponseDTO**](PostResponseDTO.md)
 
 ### Authorization
 
@@ -105,12 +107,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerCreateReply**
-> postControllerCreateReply(createReplyDTO)
+> ReplyResponseDTO postControllerCreateReply(createReplyDTO)
 
 
 
@@ -125,7 +127,8 @@ final api = Openapi().getPostApi();
 final CreateReplyDTO createReplyDTO = ; // CreateReplyDTO | 
 
 try {
-    api.postControllerCreateReply(createReplyDTO);
+    final response = api.postControllerCreateReply(createReplyDTO);
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerCreateReply: $e\n');
 }
@@ -139,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ReplyResponseDTO**](ReplyResponseDTO.md)
 
 ### Authorization
 
@@ -148,7 +151,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -282,7 +285,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerGetComments**
-> postControllerGetComments(getCommentsDTO)
+> BuiltList<CommentResponseDTO> postControllerGetComments(getCommentsDTO)
 
 
 
@@ -294,7 +297,8 @@ final api = Openapi().getPostApi();
 final GetCommentsDTO getCommentsDTO = ; // GetCommentsDTO | 
 
 try {
-    api.postControllerGetComments(getCommentsDTO);
+    final response = api.postControllerGetComments(getCommentsDTO);
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerGetComments: $e\n');
 }
@@ -308,7 +312,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;CommentResponseDTO&gt;**](CommentResponseDTO.md)
 
 ### Authorization
 
@@ -317,12 +321,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerGetPosts**
-> postControllerGetPosts()
+> BuiltList<PostResponseDTO> postControllerGetPosts()
 
 
 
@@ -333,7 +337,8 @@ import 'package:openapi/api.dart';
 final api = Openapi().getPostApi();
 
 try {
-    api.postControllerGetPosts();
+    final response = api.postControllerGetPosts();
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerGetPosts: $e\n');
 }
@@ -344,7 +349,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;PostResponseDTO&gt;**](PostResponseDTO.md)
 
 ### Authorization
 
@@ -353,12 +358,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerGetReplies**
-> postControllerGetReplies(getRepliesDTO)
+> BuiltList<ReplyResponseDTO> postControllerGetReplies(getRepliesDTO)
 
 
 
@@ -370,7 +375,8 @@ final api = Openapi().getPostApi();
 final GetRepliesDTO getRepliesDTO = ; // GetRepliesDTO | 
 
 try {
-    api.postControllerGetReplies(getRepliesDTO);
+    final response = api.postControllerGetReplies(getRepliesDTO);
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerGetReplies: $e\n');
 }
@@ -384,7 +390,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;ReplyResponseDTO&gt;**](ReplyResponseDTO.md)
 
 ### Authorization
 
@@ -393,12 +399,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerUpdateComment**
-> postControllerUpdateComment(updateCommentDTO)
+> CommentResponseDTO postControllerUpdateComment(updateCommentDTO)
 
 
 
@@ -413,7 +419,8 @@ final api = Openapi().getPostApi();
 final UpdateCommentDTO updateCommentDTO = ; // UpdateCommentDTO | 
 
 try {
-    api.postControllerUpdateComment(updateCommentDTO);
+    final response = api.postControllerUpdateComment(updateCommentDTO);
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerUpdateComment: $e\n');
 }
@@ -427,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CommentResponseDTO**](CommentResponseDTO.md)
 
 ### Authorization
 
@@ -436,12 +443,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerUpdatePost**
-> postControllerUpdatePost(updatePostDTO)
+> PostResponseDTO postControllerUpdatePost(updatePostDTO)
 
 
 
@@ -456,7 +463,8 @@ final api = Openapi().getPostApi();
 final UpdatePostDTO updatePostDTO = ; // UpdatePostDTO | 
 
 try {
-    api.postControllerUpdatePost(updatePostDTO);
+    final response = api.postControllerUpdatePost(updatePostDTO);
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerUpdatePost: $e\n');
 }
@@ -470,7 +478,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PostResponseDTO**](PostResponseDTO.md)
 
 ### Authorization
 
@@ -479,12 +487,12 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerUpdateReply**
-> postControllerUpdateReply(updateReplyDTO)
+> ReplyResponseDTO postControllerUpdateReply(updateReplyDTO)
 
 
 
@@ -499,7 +507,8 @@ final api = Openapi().getPostApi();
 final UpdateReplyDTO updateReplyDTO = ; // UpdateReplyDTO | 
 
 try {
-    api.postControllerUpdateReply(updateReplyDTO);
+    final response = api.postControllerUpdateReply(updateReplyDTO);
+    print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerUpdateReply: $e\n');
 }
@@ -513,7 +522,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ReplyResponseDTO**](ReplyResponseDTO.md)
 
 ### Authorization
 
@@ -522,7 +531,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:openapi/src/model/login_dto.dart';
 import 'package:openapi/src/model/login_response_dto.dart';
 import 'package:openapi/src/model/register_dto.dart';
+import 'package:openapi/src/model/user_response_dto.dart';
 
 class AuthApi {
 
@@ -124,9 +125,9 @@ class AuthApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [UserResponseDTO] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<void>> authControllerRegister({ 
+  Future<Response<UserResponseDTO>> authControllerRegister({ 
     required RegisterDTO registerDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -175,7 +176,34 @@ class AuthApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    UserResponseDTO _responseData;
+
+    try {
+      const _responseType = FullType(UserResponseDTO);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as UserResponseDTO;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+
+    return Response<UserResponseDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

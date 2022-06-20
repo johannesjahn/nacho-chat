@@ -12,6 +12,7 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
+import 'package:openapi/src/model/comment_response_dto.dart';
 import 'package:openapi/src/model/conversation_response_dto.dart';
 import 'package:openapi/src/model/create_comment_dto.dart';
 import 'package:openapi/src/model/create_conversation_request_dto.dart';
@@ -27,7 +28,9 @@ import 'package:openapi/src/model/get_replies_dto.dart';
 import 'package:openapi/src/model/login_dto.dart';
 import 'package:openapi/src/model/login_response_dto.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
+import 'package:openapi/src/model/post_response_dto.dart';
 import 'package:openapi/src/model/register_dto.dart';
+import 'package:openapi/src/model/reply_response_dto.dart';
 import 'package:openapi/src/model/update_comment_dto.dart';
 import 'package:openapi/src/model/update_post_dto.dart';
 import 'package:openapi/src/model/update_reply_dto.dart';
@@ -36,6 +39,7 @@ import 'package:openapi/src/model/user_response_dto.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
+  CommentResponseDTO,
   ConversationResponseDTO,
   CreateCommentDTO,
   CreateConversationRequestDTO,
@@ -51,7 +55,9 @@ part 'serializers.g.dart';
   LoginDTO,
   LoginResponseDTO,
   MessageResponseDTO,
+  PostResponseDTO,
   RegisterDTO,
+  ReplyResponseDTO,
   UpdateCommentDTO,
   UpdatePostDTO,
   UpdateReplyDTO,
@@ -61,6 +67,18 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(UserResponseDTO)]),
         () => ListBuilder<UserResponseDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CommentResponseDTO)]),
+        () => ListBuilder<CommentResponseDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ReplyResponseDTO)]),
+        () => ListBuilder<ReplyResponseDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PostResponseDTO)]),
+        () => ListBuilder<PostResponseDTO>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ConversationResponseDTO)]),

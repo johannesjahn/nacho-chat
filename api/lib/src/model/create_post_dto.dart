@@ -10,8 +10,9 @@ part 'create_post_dto.g.dart';
 /// CreatePostDTO
 ///
 /// Properties:
-/// * [content] 
+/// * [content] - The content of a post
 abstract class CreatePostDTO implements Built<CreatePostDTO, CreatePostDTOBuilder> {
+    /// The content of a post
     @BuiltValueField(wireName: r'content')
     String get content;
 

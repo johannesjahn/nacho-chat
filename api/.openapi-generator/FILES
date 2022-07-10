@@ -71,4 +71,3 @@ lib/src/model/update_reply_dto.dart
 lib/src/model/user_response_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
-test/reply_response_dto_author_test.dart

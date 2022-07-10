@@ -12,12 +12,16 @@ part 'create_message_dto.g.dart';
 /// Properties:
 /// * [conversationId] 
 /// * [content] 
+/// * [contentType] 
 abstract class CreateMessageDTO implements Built<CreateMessageDTO, CreateMessageDTOBuilder> {
     @BuiltValueField(wireName: r'conversationId')
     num get conversationId;
 
     @BuiltValueField(wireName: r'content')
     String get content;
+
+    @BuiltValueField(wireName: r'contentType')
+    String get contentType;
 
     CreateMessageDTO._();
 
@@ -49,6 +53,10 @@ class _$CreateMessageDTOSerializer implements StructuredSerializer<CreateMessage
             ..add(r'content')
             ..add(serializers.serialize(object.content,
                 specifiedType: const FullType(String)));
+        result
+            ..add(r'contentType')
+            ..add(serializers.serialize(object.contentType,
+                specifiedType: const FullType(String)));
         return result;
     }
 
@@ -73,6 +81,11 @@ class _$CreateMessageDTOSerializer implements StructuredSerializer<CreateMessage
                     final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     result.content = valueDes;
+                    break;
+                case r'contentType':
+                    final valueDes = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    result.contentType = valueDes;
                     break;
             }
         }

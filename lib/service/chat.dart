@@ -58,10 +58,13 @@ class ChatService {
   }
 
   Future<void> sendMessage(
-      {required int conversationId, required String message}) async {
+      {required int conversationId,
+      required String message,
+      String contentType = 'TEXT'}) async {
     final dto = CreateMessageDTOBuilder()
       ..conversationId = conversationId
-      ..content = message;
+      ..content = message
+      ..contentType = contentType;
     await appService.api
         .getChatApi()
         .chatControllerSendMessage(createMessageDTO: dto.build());

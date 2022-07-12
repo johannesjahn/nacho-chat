@@ -43,10 +43,25 @@ class _ChatViewState extends State<ChatView> {
                                 ? MainAxisAlignment.end
                                 : MainAxisAlignment.start,
                             children: [
-                              Card(
-                                  child: Container(
+                              Card(child: Builder(builder: (context) {
+                                if (message.contentType == 'IMAGE_URL') {
+                                  return ConstrainedBox(
+                                    constraints:
+                                        BoxConstraints.tight(Size(200, 200)),
+                                    child: Container(
+                                        padding: const EdgeInsets.all(16),
+                                        child: Image.network(message.content)),
+                                  );
+                                } else if (message.contentType == 'TEXT') {
+                                  return Container(
                                       padding: const EdgeInsets.all(16),
-                                      child: Text(message.content)))
+                                      child: Text(message.content));
+                                } else {
+                                  return Container(
+                                      padding: const EdgeInsets.all(16),
+                                      child: Text('Unknown content type'));
+                                }
+                              }))
                             ],
                           );
                         });
@@ -77,8 +92,18 @@ class _ChatViewState extends State<ChatView> {
                     IconButton(
                         onPressed: () async {
                           await ChatService.instance.sendMessage(
+                              conversationId: value.id.toInt(),
+                              message: inputController.text,
+                              contentType: 'IMAGE_URL');
+                          inputController.clear();
+                        },
+                        icon: Icon(Icons.image)),
+                    IconButton(
+                        onPressed: () async {
+                          await ChatService.instance.sendMessage(
                             conversationId: value.id.toInt(),
                             message: inputController.text,
+                            contentType: 'TEXT',
                           );
                           inputController.clear();
                         },

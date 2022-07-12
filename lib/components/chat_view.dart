@@ -18,7 +18,9 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
 
     return ValueListenableBuilder<ConversationResponseDTO?>(
       valueListenable: ChatService.instance.currentChat,
@@ -46,8 +48,8 @@ class _ChatViewState extends State<ChatView> {
                               Card(child: Builder(builder: (context) {
                                 if (message.contentType == 'IMAGE_URL') {
                                   return ConstrainedBox(
-                                    constraints:
-                                        BoxConstraints.tight(Size(200, 200)),
+                                    constraints: BoxConstraints.loose(
+                                        Size(width / 2.5, height / 3)),
                                     child: Container(
                                         padding: const EdgeInsets.all(16),
                                         child: Image.network(message.content)),

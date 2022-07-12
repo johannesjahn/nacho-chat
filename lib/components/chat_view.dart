@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:openapi/openapi.dart';
+import 'dart:io' show Platform;
 
 import '../service/app.dart';
 
@@ -52,7 +53,21 @@ class _ChatViewState extends State<ChatView> {
                                         Size(width / 2.5, height / 3)),
                                     child: Container(
                                         padding: const EdgeInsets.all(16),
-                                        child: Image.network(message.content)),
+                                        child: Builder(builder: (context) {
+                                          try {
+                                            if (Platform.isAndroid ||
+                                                Platform.isIOS) {
+                                              return CachedNetworkImage(
+                                                  imageUrl: message.content);
+                                            } else {
+                                              return Image.network(
+                                                  message.content);
+                                            }
+                                          } catch (e) {
+                                            return Image.network(
+                                                message.content);
+                                          }
+                                        })),
                                   );
                                 } else if (message.contentType == 'TEXT') {
                                   return Container(
@@ -69,61 +84,59 @@ class _ChatViewState extends State<ChatView> {
                         });
                   }),
             ),
-            Container(
-              child: Card(
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller: inputController,
-                        focusNode: focusNode,
-                        onFieldSubmitted: (text) async {
-                          if (text.isEmpty) {
-                            showEmptySnackbar();
-                            return;
-                          }
-                          inputController.clear();
-                          await ChatService.instance.sendMessage(
-                            conversationId: value.id.toInt(),
-                            message: text,
-                          );
-                          focusNode.requestFocus();
-                        },
-                        decoration: const InputDecoration(
-                          labelText: 'Message',
-                        ),
+            Card(
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                child: Row(children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: inputController,
+                      focusNode: focusNode,
+                      onFieldSubmitted: (text) async {
+                        if (text.isEmpty) {
+                          showEmptySnackbar();
+                          return;
+                        }
+                        inputController.clear();
+                        await ChatService.instance.sendMessage(
+                          conversationId: value.id.toInt(),
+                          message: text,
+                        );
+                        focusNode.requestFocus();
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'Message',
                       ),
                     ),
-                    IconButton(
-                        onPressed: () async {
-                          if (inputController.text.isEmpty) {
-                            showEmptySnackbar();
-                            return;
-                          }
-                          await ChatService.instance.sendMessage(
-                              conversationId: value.id.toInt(),
-                              message: inputController.text,
-                              contentType: 'IMAGE_URL');
-                          inputController.clear();
-                        },
-                        icon: Icon(Icons.image)),
-                    IconButton(
-                        onPressed: () async {
-                          if (inputController.text.isEmpty) {
-                            showEmptySnackbar();
-                            return;
-                          }
-                          await ChatService.instance.sendMessage(
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        if (inputController.text.isEmpty) {
+                          showEmptySnackbar();
+                          return;
+                        }
+                        await ChatService.instance.sendMessage(
                             conversationId: value.id.toInt(),
                             message: inputController.text,
-                            contentType: 'TEXT',
-                          );
-                          inputController.clear();
-                        },
-                        icon: const Icon(Icons.send))
-                  ]),
-                ),
+                            contentType: 'IMAGE_URL');
+                        inputController.clear();
+                      },
+                      icon: Icon(Icons.image)),
+                  IconButton(
+                      onPressed: () async {
+                        if (inputController.text.isEmpty) {
+                          showEmptySnackbar();
+                          return;
+                        }
+                        await ChatService.instance.sendMessage(
+                          conversationId: value.id.toInt(),
+                          message: inputController.text,
+                          contentType: 'TEXT',
+                        );
+                        inputController.clear();
+                      },
+                      icon: const Icon(Icons.send))
+                ]),
               ),
             ),
           ],

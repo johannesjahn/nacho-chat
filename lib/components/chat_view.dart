@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nacho_chat/model/chat.dart';
 import 'package:nacho_chat/service/chat.dart';
+import 'package:openapi/openapi.dart';
 
 import '../service/app.dart';
 
@@ -20,7 +20,7 @@ class _ChatViewState extends State<ChatView> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
 
-    return ValueListenableBuilder<Conversation?>(
+    return ValueListenableBuilder<ConversationResponseDTO?>(
       valueListenable: ChatService.instance.currentChat,
       builder: (context, value, widget) {
         if (value == null) {
@@ -29,7 +29,7 @@ class _ChatViewState extends State<ChatView> {
         return Column(
           children: [
             Expanded(
-              child: ValueListenableBuilder<List<Message>>(
+              child: ValueListenableBuilder<List<MessageResponseDTO>>(
                   valueListenable: ChatService.instance.messagesNotifier,
                   builder: (context, value, widget) {
                     return ListView.builder(
@@ -64,7 +64,7 @@ class _ChatViewState extends State<ChatView> {
                         onFieldSubmitted: (text) async {
                           inputController.clear();
                           await ChatService.instance.sendMessage(
-                            conversationId: value.id,
+                            conversationId: value.id.toInt(),
                             message: text,
                           );
                           focusNode.requestFocus();
@@ -77,7 +77,7 @@ class _ChatViewState extends State<ChatView> {
                     IconButton(
                         onPressed: () async {
                           await ChatService.instance.sendMessage(
-                            conversationId: value.id,
+                            conversationId: value.id.toInt(),
                             message: inputController.text,
                           );
                           inputController.clear();

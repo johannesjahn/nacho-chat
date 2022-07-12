@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/pages/chat.dart';
+import 'package:openapi/openapi.dart';
 
-import '../model/chat.dart';
 import '../service/app.dart';
 import '../service/chat.dart';
 
@@ -10,7 +10,7 @@ class ConversationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<List<Conversation>>(
+    return ValueListenableBuilder<List<ConversationResponseDTO>>(
       valueListenable: ChatService.instance.filteredConversations,
       builder: (context, value, widget) => ListView.builder(
           itemCount: value.length,
@@ -21,7 +21,7 @@ class ConversationList extends StatelessWidget {
                 onTap: () {
                   ChatService.instance.currentChat.value = value[index];
                   ChatService.instance
-                      .getMessages(conversationId: value[index].id);
+                      .getMessages(conversationId: value[index].id.toInt());
                   if (!AppService.instance.isTablet) {
                     Navigator.push(context, DefaultRoute(const ChatPage()));
                   }

@@ -79,6 +79,10 @@ class _ChatViewState extends State<ChatView> {
                         controller: inputController,
                         focusNode: focusNode,
                         onFieldSubmitted: (text) async {
+                          if (text.isEmpty) {
+                            showEmptySnackbar();
+                            return;
+                          }
                           inputController.clear();
                           await ChatService.instance.sendMessage(
                             conversationId: value.id.toInt(),
@@ -93,6 +97,10 @@ class _ChatViewState extends State<ChatView> {
                     ),
                     IconButton(
                         onPressed: () async {
+                          if (inputController.text.isEmpty) {
+                            showEmptySnackbar();
+                            return;
+                          }
                           await ChatService.instance.sendMessage(
                               conversationId: value.id.toInt(),
                               message: inputController.text,
@@ -102,6 +110,10 @@ class _ChatViewState extends State<ChatView> {
                         icon: Icon(Icons.image)),
                     IconButton(
                         onPressed: () async {
+                          if (inputController.text.isEmpty) {
+                            showEmptySnackbar();
+                            return;
+                          }
                           await ChatService.instance.sendMessage(
                             conversationId: value.id.toInt(),
                             message: inputController.text,
@@ -118,5 +130,10 @@ class _ChatViewState extends State<ChatView> {
         );
       },
     );
+  }
+
+  void showEmptySnackbar() {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('Cannot send empty message')));
   }
 }

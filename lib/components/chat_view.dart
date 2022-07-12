@@ -76,7 +76,8 @@ class _ChatViewState extends State<ChatView> {
                                 } else {
                                   return Container(
                                       padding: const EdgeInsets.all(16),
-                                      child: Text('Unknown content type'));
+                                      child:
+                                          const Text('Unknown content type'));
                                 }
                               }))
                             ],

@@ -12,6 +12,7 @@ import 'package:nacho_chat/service/user.dart';
 import 'package:openapi/openapi.dart';
 
 import '../components/add_user_dialog.dart';
+import '../components/create_post.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -53,6 +54,12 @@ class _HomePageState extends State<HomePage> {
       body: ValueListenableBuilder<List<PostResponseDTO>>(
         valueListenable: PostService.instance.posts,
         builder: (context, value, widget) => PostList(posts: value),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(DefaultRoute(const CreatePostWidget()));
+        },
       ),
     );
   }

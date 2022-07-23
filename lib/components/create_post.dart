@@ -16,7 +16,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,10 +36,11 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                         keyboardType: TextInputType.multiline,
                         maxLines: null,
                         maxLength: 500,
-                        decoration: InputDecoration(label: Text("Content")),
+                        decoration:
+                            const InputDecoration(label: Text("Content")),
                       ),
                       ElevatedButton(
-                        child: Text("Create"),
+                        child: const Text("Create"),
                         onPressed: () async {
                           if (textController.value.text.isEmpty) return;
                           await PostService.instance

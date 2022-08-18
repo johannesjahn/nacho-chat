@@ -44,6 +44,5 @@ jobs:
           host: chat.johannes-jahn.com
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: ls
           script: cd dev/chat-api && mv build.zip tmp && mv tmp/build.zip build.zip && rm -rf tmp && unzip build.zip && rm -rf static/* && mv build/web/* static/ && rm -rf build && rm build.zip
           

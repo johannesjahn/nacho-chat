@@ -12,10 +12,10 @@ jobs:
           flutter-version: '3.0.5'
           channel: 'stable'
       - run: flutter pub get
+      - run: flutter pub run build_runner build
       - run: cd api
       - run: flutter pub run build_runner build
       - run: cd ..
-      - run: flutter pub run build_runner build
       - run: flutter build web
       - uses: montudor/action-zip@v1
         with:

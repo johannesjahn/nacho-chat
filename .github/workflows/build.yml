@@ -1,0 +1,26 @@
+name: Run Tests
+
+on: push
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.0.5'
+          channel: 'stable'
+      - run: flutter pub get
+      - run: cd api
+      - run: flutter pub run build_runner build
+      - run: cd ..
+      - run: flutter pub run build_runner build
+      - run: flutter build web
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r build.zip build/web
+      - uses: actions/upload-artifact@master
+        with:
+          name: build
+          path: build.zip

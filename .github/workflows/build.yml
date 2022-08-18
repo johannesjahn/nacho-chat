@@ -3,7 +3,7 @@ name: Run Tests
 on: push
 
 jobs:
-  run_tests:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,3 +23,26 @@ jobs:
         with:
           name: build
           path: build.zip
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build.zip
+      - uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SOURCE: "build.zip"
+          REMOTE_HOST: "chat.johannes-jahn.com"
+          REMOTE_USER: "ubuntu"
+          TARGET: "dev/chat-api/"
+      - uses: appleboy/ssh-action@master
+        with:
+          host: chat.johannes-jahn.com
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: cd dev/chat-api && mv build.zip tmp && mv tmp/build.zip build.zip && rm -rf build && unzip build.zip && rm -rf static/* && mv build/* static/ && rm -rf build
+          

@@ -14,6 +14,7 @@ jobs:
       - run: flutter pub get
       - run: flutter pub run build_runner build
       - run: cd api
+      - run: flutter pub get
       - run: flutter pub run build_runner build
       - run: cd ..
       - run: flutter build web

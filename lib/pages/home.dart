@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title:
             // ignore: prefer_interpolation_to_compose_strings
-            Text("Hi " + (AppService.instance.hive.get("username") ?? "")),
+            Text("Hello " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
           IconButton(
               onPressed: () {

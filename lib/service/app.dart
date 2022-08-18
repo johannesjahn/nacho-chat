@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nacho_chat/service/chat.dart';
+import 'package:nacho_chat/service/constants.dart';
 import 'package:nacho_chat/service/interceptors/authInterceptor.dart';
 import 'package:openapi/openapi.dart';
 
@@ -18,9 +19,8 @@ class AppService {
 
   AppService._();
 
-  final api = Openapi(
-      basePathOverride: "http://localhost:3000/",
-      interceptors: [AuthInterceptor()]);
+  final api =
+      Openapi(basePathOverride: Urls.url, interceptors: [AuthInterceptor()]);
   late Box<String> hive;
 
   logout() async {

@@ -34,12 +34,14 @@ class _ChatListPageState extends State<ChatListPage> {
             Text("Hello " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
           IconButton(
+            padding: const EdgeInsets.all(10),
             icon: Icon(Icons.bug_report),
             onPressed: () async {
               PostService.instance.createReply();
             },
           ),
           IconButton(
+              padding: const EdgeInsets.all(10),
               onPressed: () {
                 showDialog(
                     context: context,
@@ -47,6 +49,7 @@ class _ChatListPageState extends State<ChatListPage> {
               },
               icon: const Icon(Icons.add)),
           IconButton(
+              padding: const EdgeInsets.all(10),
               onPressed: () async {
                 await AppService.instance.logout();
                 Navigator.push(context, DefaultRoute(LoginPage()));

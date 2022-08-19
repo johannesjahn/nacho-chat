@@ -50,5 +50,6 @@ app.*.map.json
 *.g.dart
 
 lib/firebase_options.dart
+lib/firebase_options.dart.old
 
 deploy.sh

@@ -39,11 +39,13 @@ class _HomePageState extends State<HomePage> {
             Text("Hi " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
           IconButton(
+              padding: const EdgeInsets.all(10),
               onPressed: () {
                 Navigator.of(context).push(DefaultRoute(const ChatListPage()));
               },
               icon: const Icon(Icons.chat)),
           IconButton(
+              padding: const EdgeInsets.all(10),
               onPressed: () async {
                 await AppService.instance.logout();
                 Navigator.push(context, DefaultRoute(LoginPage()));

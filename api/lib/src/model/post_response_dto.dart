@@ -17,6 +17,7 @@ part 'post_response_dto.g.dart';
 /// * [createdAt] 
 /// * [updatedAt] 
 /// * [content] 
+/// * [contentType] 
 /// * [author] 
 /// * [comments] 
 abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTOBuilder> {
@@ -31,6 +32,9 @@ abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTO
 
     @BuiltValueField(wireName: r'content')
     String get content;
+
+    @BuiltValueField(wireName: r'contentType')
+    String get contentType;
 
     @BuiltValueField(wireName: r'author')
     ReplyResponseDTOAuthor? get author;
@@ -77,6 +81,10 @@ class _$PostResponseDTOSerializer implements StructuredSerializer<PostResponseDT
             ..add(serializers.serialize(object.content,
                 specifiedType: const FullType(String)));
         result
+            ..add(r'contentType')
+            ..add(serializers.serialize(object.contentType,
+                specifiedType: const FullType(String)));
+        result
             ..add(r'author')
             ..add(object.author == null ? null : serializers.serialize(object.author,
                 specifiedType: const FullType.nullable(ReplyResponseDTOAuthor)));
@@ -118,6 +126,11 @@ class _$PostResponseDTOSerializer implements StructuredSerializer<PostResponseDT
                     final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     result.content = valueDes;
+                    break;
+                case r'contentType':
+                    final valueDes = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    result.contentType = valueDes;
                     break;
                 case r'author':
                     final valueDes = serializers.deserialize(value,

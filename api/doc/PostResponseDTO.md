@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **createdAt** | [**DateTime**](DateTime.md) |  | 
 **updatedAt** | [**DateTime**](DateTime.md) |  | 
 **content** | **String** |  | 
+**contentType** | **String** |  | 
 **author** | [**ReplyResponseDTOAuthor**](ReplyResponseDTOAuthor.md) |  | 
 **comments** | [**BuiltList&lt;CommentResponseDTO&gt;**](CommentResponseDTO.md) |  | 
 

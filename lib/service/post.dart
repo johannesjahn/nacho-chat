@@ -20,8 +20,11 @@ class PostService {
     return response.data?.toList() ?? [];
   }
 
-  Future<PostResponseDTO?> createPost({required String content}) async {
-    final dto = CreatePostDTOBuilder()..content = content;
+  Future<PostResponseDTO?> createPost(
+      {required String content, String contentType = "TEXT"}) async {
+    final dto = CreatePostDTOBuilder()
+      ..content = content
+      ..contentType = contentType;
 
     final response = await appService.api
         .getPostApi()

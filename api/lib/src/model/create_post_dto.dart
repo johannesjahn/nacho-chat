@@ -11,10 +11,14 @@ part 'create_post_dto.g.dart';
 ///
 /// Properties:
 /// * [content] - The content of a post
+/// * [contentType] 
 abstract class CreatePostDTO implements Built<CreatePostDTO, CreatePostDTOBuilder> {
     /// The content of a post
     @BuiltValueField(wireName: r'content')
     String get content;
+
+    @BuiltValueField(wireName: r'contentType')
+    String get contentType;
 
     CreatePostDTO._();
 
@@ -42,6 +46,10 @@ class _$CreatePostDTOSerializer implements StructuredSerializer<CreatePostDTO> {
             ..add(r'content')
             ..add(serializers.serialize(object.content,
                 specifiedType: const FullType(String)));
+        result
+            ..add(r'contentType')
+            ..add(serializers.serialize(object.contentType,
+                specifiedType: const FullType(String)));
         return result;
     }
 
@@ -61,6 +69,11 @@ class _$CreatePostDTOSerializer implements StructuredSerializer<CreatePostDTO> {
                     final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     result.content = valueDes;
+                    break;
+                case r'contentType':
+                    final valueDes = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    result.contentType = valueDes;
                     break;
             }
         }

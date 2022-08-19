@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/service/utils.dart';
@@ -10,11 +13,33 @@ class PostText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+    var height = size.height;
+
     return Column(
       children: [
         Expanded(
           child: Center(
-            child: Text(post.content),
+            child: post.contentType == "TEXT"
+                ? Text(post.content)
+                : ConstrainedBox(
+                    constraints:
+                        BoxConstraints.loose(Size(width / 2.5, height / 3)),
+                    child: Container(
+                        padding: const EdgeInsets.all(16),
+                        child: Builder(builder: (context) {
+                          try {
+                            if (Platform.isAndroid || Platform.isIOS) {
+                              return CachedNetworkImage(imageUrl: post.content);
+                            } else {
+                              return Image.network(post.content);
+                            }
+                          } catch (e) {
+                            return Image.network(post.content);
+                          }
+                        })),
+                  ),
           ),
         ),
         Container(

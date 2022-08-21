@@ -116,6 +116,14 @@ class _ChatViewState extends State<ChatView> {
                           showEmptySnackbar();
                           return;
                         }
+                        var isValidUrl =
+                            Uri.tryParse(inputController.value.text)
+                                    ?.hasAbsolutePath ??
+                                false;
+                        if (!isValidUrl) {
+                          showInvalidUrlSnackbar();
+                          return;
+                        }
                         await ChatService.instance.sendMessage(
                             conversationId: value.id.toInt(),
                             message: inputController.text,
@@ -149,5 +157,10 @@ class _ChatViewState extends State<ChatView> {
   void showEmptySnackbar() {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text('Cannot send empty message')));
+  }
+
+  void showInvalidUrlSnackbar() {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('Invalid URL')));
   }
 }

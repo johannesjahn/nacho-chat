@@ -15,8 +15,6 @@ import 'package:openapi/src/model/create_reply_dto.dart';
 import 'package:openapi/src/model/delete_comment_dto.dart';
 import 'package:openapi/src/model/delete_post_dto.dart';
 import 'package:openapi/src/model/delete_reply_dto.dart';
-import 'package:openapi/src/model/get_comments_dto.dart';
-import 'package:openapi/src/model/get_replies_dto.dart';
 import 'package:openapi/src/model/post_response_dto.dart';
 import 'package:openapi/src/model/reply_response_dto.dart';
 import 'package:openapi/src/model/update_comment_dto.dart';
@@ -548,7 +546,7 @@ class PostApi {
   /// 
   ///
   /// Parameters:
-  /// * [getCommentsDTO] 
+  /// * [postId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -559,7 +557,7 @@ class PostApi {
   /// Returns a [Future] containing a [Response] with a [BuiltList<CommentResponseDTO>] as data
   /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<CommentResponseDTO>>> postControllerGetComments({ 
-    required GetCommentsDTO getCommentsDTO,
+    required num postId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -567,7 +565,7 @@ class PostApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/app/post/comment';
+    final _path = r'/app/post/comment/{postId}'.replaceAll('{' r'postId' '}', postId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -577,30 +575,11 @@ class PostApi {
         'secure': <Map<String, String>>[],
         ...?extra,
       },
-      contentType: 'application/json',
       validateStatus: validateStatus,
     );
 
-    dynamic _bodyData;
-
-    try {
-      const _type = FullType(GetCommentsDTO);
-      _bodyData = _serializers.serialize(getCommentsDTO, specifiedType: _type);
-
-    } catch(error, stackTrace) {
-      throw DioError(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
-        type: DioErrorType.other,
-        error: error,
-      )..stackTrace = stackTrace;
-    }
-
     final _response = await _dio.request<Object>(
       _path,
-      data: _bodyData,
       options: _options,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -713,7 +692,7 @@ class PostApi {
   /// 
   ///
   /// Parameters:
-  /// * [getRepliesDTO] 
+  /// * [commentId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -724,7 +703,7 @@ class PostApi {
   /// Returns a [Future] containing a [Response] with a [BuiltList<ReplyResponseDTO>] as data
   /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<ReplyResponseDTO>>> postControllerGetReplies({ 
-    required GetRepliesDTO getRepliesDTO,
+    required num commentId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -732,7 +711,7 @@ class PostApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/app/post/reply';
+    final _path = r'/app/post/reply/{commentId}'.replaceAll('{' r'commentId' '}', commentId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -742,30 +721,11 @@ class PostApi {
         'secure': <Map<String, String>>[],
         ...?extra,
       },
-      contentType: 'application/json',
       validateStatus: validateStatus,
     );
 
-    dynamic _bodyData;
-
-    try {
-      const _type = FullType(GetRepliesDTO);
-      _bodyData = _serializers.serialize(getRepliesDTO, specifiedType: _type);
-
-    } catch(error, stackTrace) {
-      throw DioError(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
-        type: DioErrorType.other,
-        error: error,
-      )..stackTrace = stackTrace;
-    }
-
     final _response = await _dio.request<Object>(
       _path,
-      data: _bodyData,
       options: _options,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,

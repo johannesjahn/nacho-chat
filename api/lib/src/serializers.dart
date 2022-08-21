@@ -22,9 +22,7 @@ import 'package:openapi/src/model/create_reply_dto.dart';
 import 'package:openapi/src/model/delete_comment_dto.dart';
 import 'package:openapi/src/model/delete_post_dto.dart';
 import 'package:openapi/src/model/delete_reply_dto.dart';
-import 'package:openapi/src/model/get_comments_dto.dart';
 import 'package:openapi/src/model/get_messages_dto.dart';
-import 'package:openapi/src/model/get_replies_dto.dart';
 import 'package:openapi/src/model/login_dto.dart';
 import 'package:openapi/src/model/login_response_dto.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
@@ -50,9 +48,7 @@ part 'serializers.g.dart';
   DeleteCommentDTO,
   DeletePostDTO,
   DeleteReplyDTO,
-  GetCommentsDTO,
   GetMessagesDTO,
-  GetRepliesDTO,
   LoginDTO,
   LoginResponseDTO,
   MessageResponseDTO,

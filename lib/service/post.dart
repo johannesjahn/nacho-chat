@@ -36,11 +36,9 @@ class PostService {
   }
 
   Future<void> getComments() async {
-    final dto = GetCommentsDTOBuilder()..postId = selectedPost.value?.id;
-
     final response = await appService.api
         .getPostApi()
-        .postControllerGetComments(getCommentsDTO: dto.build());
+        .postControllerGetComments(postId: selectedPost.value!.id);
 
     comments.value = response.data?.toList() ?? [];
   }

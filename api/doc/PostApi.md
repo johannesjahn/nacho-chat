@@ -15,9 +15,9 @@ Method | HTTP request | Description
 [**postControllerDeleteComment**](PostApi.md#postcontrollerdeletecomment) | **DELETE** /app/post/comment | 
 [**postControllerDeletePost**](PostApi.md#postcontrollerdeletepost) | **DELETE** /app/post | 
 [**postControllerDeleteReply**](PostApi.md#postcontrollerdeletereply) | **DELETE** /app/post/reply | 
-[**postControllerGetComments**](PostApi.md#postcontrollergetcomments) | **GET** /app/post/comment | 
+[**postControllerGetComments**](PostApi.md#postcontrollergetcomments) | **GET** /app/post/comment/{postId} | 
 [**postControllerGetPosts**](PostApi.md#postcontrollergetposts) | **GET** /app/post | 
-[**postControllerGetReplies**](PostApi.md#postcontrollergetreplies) | **GET** /app/post/reply | 
+[**postControllerGetReplies**](PostApi.md#postcontrollergetreplies) | **GET** /app/post/reply/{commentId} | 
 [**postControllerUpdateComment**](PostApi.md#postcontrollerupdatecomment) | **PUT** /app/post/comment | 
 [**postControllerUpdatePost**](PostApi.md#postcontrollerupdatepost) | **PUT** /app/post | 
 [**postControllerUpdateReply**](PostApi.md#postcontrollerupdatereply) | **PUT** /app/post/reply | 
@@ -285,7 +285,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerGetComments**
-> BuiltList<CommentResponseDTO> postControllerGetComments(getCommentsDTO)
+> BuiltList<CommentResponseDTO> postControllerGetComments(postId)
 
 
 
@@ -294,10 +294,10 @@ void (empty response body)
 import 'package:openapi/api.dart';
 
 final api = Openapi().getPostApi();
-final GetCommentsDTO getCommentsDTO = ; // GetCommentsDTO | 
+final num postId = 8.14; // num | 
 
 try {
-    final response = api.postControllerGetComments(getCommentsDTO);
+    final response = api.postControllerGetComments(postId);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerGetComments: $e\n');
@@ -308,7 +308,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **getCommentsDTO** | [**GetCommentsDTO**](GetCommentsDTO.md)|  | 
+ **postId** | **num**|  | 
 
 ### Return type
 
@@ -320,7 +320,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -363,7 +363,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postControllerGetReplies**
-> BuiltList<ReplyResponseDTO> postControllerGetReplies(getRepliesDTO)
+> BuiltList<ReplyResponseDTO> postControllerGetReplies(commentId)
 
 
 
@@ -372,10 +372,10 @@ No authorization required
 import 'package:openapi/api.dart';
 
 final api = Openapi().getPostApi();
-final GetRepliesDTO getRepliesDTO = ; // GetRepliesDTO | 
+final num commentId = 8.14; // num | 
 
 try {
-    final response = api.postControllerGetReplies(getRepliesDTO);
+    final response = api.postControllerGetReplies(commentId);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling PostApi->postControllerGetReplies: $e\n');
@@ -386,7 +386,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **getRepliesDTO** | [**GetRepliesDTO**](GetRepliesDTO.md)|  | 
+ **commentId** | **num**|  | 
 
 ### Return type
 
@@ -398,7 +398,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -11,7 +11,6 @@ export 'package:openapi/src/model/date.dart';
 
 export 'package:openapi/src/api/auth_api.dart';
 export 'package:openapi/src/api/chat_api.dart';
-export 'package:openapi/src/api/default_api.dart';
 export 'package:openapi/src/api/post_api.dart';
 export 'package:openapi/src/api/user_api.dart';
 
@@ -25,9 +24,7 @@ export 'package:openapi/src/model/create_reply_dto.dart';
 export 'package:openapi/src/model/delete_comment_dto.dart';
 export 'package:openapi/src/model/delete_post_dto.dart';
 export 'package:openapi/src/model/delete_reply_dto.dart';
-export 'package:openapi/src/model/get_comments_dto.dart';
 export 'package:openapi/src/model/get_messages_dto.dart';
-export 'package:openapi/src/model/get_replies_dto.dart';
 export 'package:openapi/src/model/login_dto.dart';
 export 'package:openapi/src/model/login_response_dto.dart';
 export 'package:openapi/src/model/message_response_dto.dart';

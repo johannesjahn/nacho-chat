@@ -10,13 +10,10 @@ doc/CreateConversationRequestDTO.md
 doc/CreateMessageDTO.md
 doc/CreatePostDTO.md
 doc/CreateReplyDTO.md
-doc/DefaultApi.md
 doc/DeleteCommentDTO.md
 doc/DeletePostDTO.md
 doc/DeleteReplyDTO.md
-doc/GetCommentsDTO.md
 doc/GetMessagesDTO.md
-doc/GetRepliesDTO.md
 doc/LoginDTO.md
 doc/LoginResponseDTO.md
 doc/MessageResponseDTO.md
@@ -34,7 +31,6 @@ lib/openapi.dart
 lib/src/api.dart
 lib/src/api/auth_api.dart
 lib/src/api/chat_api.dart
-lib/src/api/default_api.dart
 lib/src/api/post_api.dart
 lib/src/api/user_api.dart
 lib/src/api_util.dart
@@ -55,9 +51,7 @@ lib/src/model/date.dart
 lib/src/model/delete_comment_dto.dart
 lib/src/model/delete_post_dto.dart
 lib/src/model/delete_reply_dto.dart
-lib/src/model/get_comments_dto.dart
 lib/src/model/get_messages_dto.dart
-lib/src/model/get_replies_dto.dart
 lib/src/model/login_dto.dart
 lib/src/model/login_response_dto.dart
 lib/src/model/message_response_dto.dart

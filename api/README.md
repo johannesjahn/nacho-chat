@@ -70,17 +70,15 @@ Class | Method | HTTP request | Description
 [*ChatApi*](doc/ChatApi.md) | [**chatControllerGetConversations**](doc/ChatApi.md#chatcontrollergetconversations) | **GET** /app/chat/get-conversations | 
 [*ChatApi*](doc/ChatApi.md) | [**chatControllerGetMessages**](doc/ChatApi.md#chatcontrollergetmessages) | **POST** /app/chat/get-messages | 
 [*ChatApi*](doc/ChatApi.md) | [**chatControllerSendMessage**](doc/ChatApi.md#chatcontrollersendmessage) | **POST** /app/chat/send-message | 
-[*DefaultApi*](doc/DefaultApi.md) | [**appControllerGetAnyUser**](doc/DefaultApi.md#appcontrollergetanyuser) | **GET** /app/test | 
-[*DefaultApi*](doc/DefaultApi.md) | [**appControllerGetHello**](doc/DefaultApi.md#appcontrollergethello) | **GET** /app | 
 [*PostApi*](doc/PostApi.md) | [**postControllerCreateComment**](doc/PostApi.md#postcontrollercreatecomment) | **POST** /app/post/comment | 
 [*PostApi*](doc/PostApi.md) | [**postControllerCreatePost**](doc/PostApi.md#postcontrollercreatepost) | **POST** /app/post | 
 [*PostApi*](doc/PostApi.md) | [**postControllerCreateReply**](doc/PostApi.md#postcontrollercreatereply) | **POST** /app/post/reply | 
 [*PostApi*](doc/PostApi.md) | [**postControllerDeleteComment**](doc/PostApi.md#postcontrollerdeletecomment) | **DELETE** /app/post/comment | 
 [*PostApi*](doc/PostApi.md) | [**postControllerDeletePost**](doc/PostApi.md#postcontrollerdeletepost) | **DELETE** /app/post | 
 [*PostApi*](doc/PostApi.md) | [**postControllerDeleteReply**](doc/PostApi.md#postcontrollerdeletereply) | **DELETE** /app/post/reply | 
-[*PostApi*](doc/PostApi.md) | [**postControllerGetComments**](doc/PostApi.md#postcontrollergetcomments) | **GET** /app/post/comment | 
+[*PostApi*](doc/PostApi.md) | [**postControllerGetComments**](doc/PostApi.md#postcontrollergetcomments) | **GET** /app/post/comment/{postId} | 
 [*PostApi*](doc/PostApi.md) | [**postControllerGetPosts**](doc/PostApi.md#postcontrollergetposts) | **GET** /app/post | 
-[*PostApi*](doc/PostApi.md) | [**postControllerGetReplies**](doc/PostApi.md#postcontrollergetreplies) | **GET** /app/post/reply | 
+[*PostApi*](doc/PostApi.md) | [**postControllerGetReplies**](doc/PostApi.md#postcontrollergetreplies) | **GET** /app/post/reply/{commentId} | 
 [*PostApi*](doc/PostApi.md) | [**postControllerUpdateComment**](doc/PostApi.md#postcontrollerupdatecomment) | **PUT** /app/post/comment | 
 [*PostApi*](doc/PostApi.md) | [**postControllerUpdatePost**](doc/PostApi.md#postcontrollerupdatepost) | **PUT** /app/post | 
 [*PostApi*](doc/PostApi.md) | [**postControllerUpdateReply**](doc/PostApi.md#postcontrollerupdatereply) | **PUT** /app/post/reply | 
@@ -99,9 +97,7 @@ Class | Method | HTTP request | Description
  - [DeleteCommentDTO](doc/DeleteCommentDTO.md)
  - [DeletePostDTO](doc/DeletePostDTO.md)
  - [DeleteReplyDTO](doc/DeleteReplyDTO.md)
- - [GetCommentsDTO](doc/GetCommentsDTO.md)
  - [GetMessagesDTO](doc/GetMessagesDTO.md)
- - [GetRepliesDTO](doc/GetRepliesDTO.md)
  - [LoginDTO](doc/LoginDTO.md)
  - [LoginResponseDTO](doc/LoginResponseDTO.md)
  - [MessageResponseDTO](doc/MessageResponseDTO.md)

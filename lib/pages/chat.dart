@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/components/chat_view.dart';
 
 class ChatPage extends StatelessWidget {
@@ -11,7 +10,7 @@ class ChatPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Chat"),
       ),
-      body: ChatView(),
+      body: const ChatView(),
     );
   }
 }

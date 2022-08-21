@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/components/post_view.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:openapi/openapi.dart';
@@ -7,7 +6,7 @@ import 'package:openapi/openapi.dart';
 import '../service/utils.dart';
 
 class PostDetail extends StatefulWidget {
-  PostDetail({Key? key}) : super(key: key);
+  const PostDetail({Key? key}) : super(key: key);
 
   @override
   State<PostDetail> createState() => _PostDetailState();
@@ -37,7 +36,7 @@ class _PostDetailState extends State<PostDetail> {
                     ConstrainedBox(
                       constraints:
                           const BoxConstraints(minWidth: 300, maxWidth: 500),
-                      child: Container(
+                      child: SizedBox(
                         width: width * 0.5,
                         child: AspectRatio(
                           aspectRatio: 1,
@@ -66,7 +65,7 @@ class _PostDetailState extends State<PostDetail> {
                           return ConstrainedBox(
                             constraints: const BoxConstraints(
                                 minWidth: 300, maxWidth: 500),
-                            child: Container(
+                            child: SizedBox(
                               width: width * 0.5,
                               child: Column(children: [
                                 ...comments.map((comment) => Padding(
@@ -109,7 +108,7 @@ class _PostDetailState extends State<PostDetail> {
                     ConstrainedBox(
                       constraints:
                           const BoxConstraints(minWidth: 300, maxWidth: 500),
-                      child: Container(
+                      child: SizedBox(
                         width: width * 0.5,
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
@@ -123,7 +122,7 @@ class _PostDetailState extends State<PostDetail> {
                                     maxLines: 3,
                                     minLines: 1,
                                     maxLength: 100,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                         label: Text("Type a comment…")),
                                   ),
                                   Container(
@@ -131,7 +130,7 @@ class _PostDetailState extends State<PostDetail> {
                                     child: isSubmitting
                                         ? const CircularProgressIndicator()
                                         : ElevatedButton(
-                                            child: Text("Submit"),
+                                            child: const Text("Submit"),
                                             onPressed: () async {
                                               if (textController
                                                   .value.text.isEmpty) {

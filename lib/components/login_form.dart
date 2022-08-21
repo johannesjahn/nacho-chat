@@ -37,92 +37,101 @@ class _LoginFormState extends State<LoginForm> {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
 
-    return Form(
-      key: _formKey,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxHeight: 224,
-          minHeight: 224,
-          minWidth: 200,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Text("Nacho Chat", style: theme.textTheme.headline1),
         ),
-        child: Container(
-          width: width * 0.5,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: theme.hintColor,
-              width: 2,
+        Form(
+          key: _formKey,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxHeight: 224,
+              minHeight: 224,
+              minWidth: 200,
             ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextFormField(
-                controller: usernameController,
-                decoration: const InputDecoration(
-                  labelText: 'Username',
+            child: Container(
+              width: width * 0.5,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: theme.hintColor,
+                  width: 2,
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
+                borderRadius: BorderRadius.circular(10),
               ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                ),
-                keyboardType: TextInputType.visiblePassword,
-                controller: passwordController,
-                obscureText: true,
-                onFieldSubmitted: (value) {
-                  login();
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MaterialButton(
-                    child: Text(
-                      "Register",
-                      style: theme.textTheme.labelLarge,
+                  TextFormField(
+                    controller: usernameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Username',
                     ),
-                    onPressed: () async {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        await AuthService.instance.register(
-                            username: usernameController.text,
-                            password: passwordController.text);
-
-                        // ignore: use_build_context_synchronously
-                        Navigator.pushReplacement(
-                            context, DefaultRoute(const HomePage()));
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
                       }
+                      return null;
                     },
                   ),
-                  MaterialButton(
-                    child: Text(
-                      "Login",
-                      style: theme.textTheme.labelLarge,
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Password',
                     ),
-                    onPressed: () {
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: passwordController,
+                    obscureText: true,
+                    onFieldSubmitted: (value) {
                       login();
                     },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MaterialButton(
+                        child: Text(
+                          "Register",
+                          style: theme.textTheme.labelLarge,
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            await AuthService.instance.register(
+                                username: usernameController.text,
+                                password: passwordController.text);
+
+                            // ignore: use_build_context_synchronously
+                            Navigator.pushReplacement(
+                                context, DefaultRoute(const HomePage()));
+                          }
+                        },
+                      ),
+                      MaterialButton(
+                        child: Text(
+                          "Login",
+                          style: theme.textTheme.labelLarge,
+                        ),
+                        onPressed: () {
+                          login();
+                        },
+                      ),
+                    ],
+                  )
                 ],
-              )
-            ],
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -37,7 +37,9 @@ class _ChatListPageState extends State<ChatListPage> {
             padding: const EdgeInsets.all(10),
             icon: Icon(Icons.bug_report),
             onPressed: () async {
-              PostService.instance.createReply();
+              // create a snackbar
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Bugs Bugs Bugs everywhere 🐛🐛🐛')));
             },
           ),
           IconButton(

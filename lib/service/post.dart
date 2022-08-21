@@ -11,6 +11,8 @@ class PostService {
   final appService = AppService.instance;
 
   final posts = ValueNotifier<List<PostResponseDTO>>([]);
+  final comments = ValueNotifier<List<CommentResponseDTO>>([]);
+  final selectedPost = ValueNotifier<PostResponseDTO?>(null);
 
   Future<List<PostResponseDTO>> getPosts() async {
     final response = await appService.api.getPostApi().postControllerGetPosts();
@@ -33,10 +35,21 @@ class PostService {
     return response.data;
   }
 
-  Future<CommentResponseDTO?> createComment() async {
+  Future<void> getComments() async {
+    final dto = GetCommentsDTOBuilder()..postId = selectedPost.value?.id;
+
+    final response = await appService.api
+        .getPostApi()
+        .postControllerGetComments(getCommentsDTO: dto.build());
+
+    comments.value = response.data?.toList() ?? [];
+  }
+
+  Future<CommentResponseDTO?> createComment(
+      {required num postId, required String content}) async {
     final dto = CreateCommentDTOBuilder()
-      ..content = 'test'
-      ..postId = 25;
+      ..content = content
+      ..postId = postId;
 
     final response = await appService.api
         .getPostApi()

@@ -6,10 +6,12 @@ import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/service/utils.dart';
 import 'package:openapi/openapi.dart';
 
-class PostText extends StatelessWidget {
+class PostView extends StatelessWidget {
   final PostResponseDTO post;
+  final bool isInList;
 
-  const PostText({Key? key, required this.post}) : super(key: key);
+  const PostView({Key? key, required this.post, this.isInList = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

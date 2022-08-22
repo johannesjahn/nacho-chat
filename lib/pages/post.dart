@@ -3,6 +3,7 @@ import 'package:nacho_chat/components/post_view.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:openapi/openapi.dart';
 
+import '../components/comments_list.dart';
 import '../service/utils.dart';
 
 class PostDetail extends StatefulWidget {
@@ -62,40 +63,9 @@ class _PostDetailState extends State<PostDetail> {
                     ValueListenableBuilder<List<CommentResponseDTO>>(
                         valueListenable: postService.comments,
                         builder: (context, comments, child) {
-                          return ConstrainedBox(
-                            constraints: const BoxConstraints(
-                                minWidth: 300, maxWidth: 500),
-                            child: SizedBox(
-                              width: width * 0.5,
-                              child: Column(children: [
-                                ...comments.map((comment) => Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Card(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(comment.content),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                      "${comment.author?.username ?? ""}, ${formatPostedDate(comment.createdAt)}",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .labelSmall),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ))
-                              ]),
-                            ),
+                          return CommentsList(
+                            width: width,
+                            comments: comments,
                           );
                         }),
                     Padding(

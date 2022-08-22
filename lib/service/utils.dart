@@ -7,11 +7,23 @@ String formatPostedDate(DateTime date) {
   final now = DateTime.now();
   final diff = now.difference(date);
   if (diff.inDays > 0) {
-    return diff.inDays.toString() + " days ago";
+    if (diff.inDays == 1) {
+      return '1 day ago';
+    } else {
+      return "${diff.inDays} days ago";
+    }
   } else if (diff.inHours > 0) {
-    return diff.inHours.toString() + " hours ago";
+    if (diff.inHours == 1) {
+      return "1 hour ago";
+    } else {
+      return "${diff.inHours} hours ago";
+    }
   } else if (diff.inMinutes > 0) {
-    return diff.inMinutes.toString() + " minutes ago";
+    if (diff.inMinutes == 1) {
+      return "1 minute ago";
+    } else {
+      return "${diff.inMinutes} minutes ago";
+    }
   } else {
     return "just now";
   }

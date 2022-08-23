@@ -89,8 +89,8 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                 content: textController.value.text,
                                 contentType: "TEXT");
                           }
-                          Navigator.pop(context);
                           PostService.instance.getPosts();
+                          Navigator.pop(context);
                         },
                       ),
                     ],

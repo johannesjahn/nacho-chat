@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 final DefaultRoute =
     (Widget widget) => MaterialPageRoute(builder: (context) => widget);
+
+final logger = Logger();
 
 String formatPostedDate(DateTime date) {
   final now = DateTime.now();

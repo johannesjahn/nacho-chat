@@ -1,7 +1,7 @@
 name: nacho_chat
 description: A frontend for the chat-api
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -27,6 +27,10 @@ dependencies:
   openapi:
     path: ./api
   cached_network_image: ^3.2.1
+  socket_io_client: ^2.0.0
+  logger: ^1.1.0
+  built_value: ">=8.1.0 <9.0.0"
+  built_collection: ">=5.1.0 <6.0.0"
 
 dev_dependencies:
   flutter_test:

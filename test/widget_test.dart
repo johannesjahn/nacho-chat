@@ -8,14 +8,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:nacho_chat/main.dart';
 import 'package:nacho_chat/pages/login.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MediaQuery(
-        data: new MediaQueryData(), child: MaterialApp(home: LoginPage())));
+        data: MediaQueryData(), child: MaterialApp(home: LoginPage())));
 
     // Verify that our counter starts at 0.
     expect(find.text('Login'), findsOneWidget);

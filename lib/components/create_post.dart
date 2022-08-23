@@ -23,7 +23,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ConstrainedBox(
-                constraints: BoxConstraints.tight(Size(500, 300)),
+                constraints: BoxConstraints.tight(const Size(500, 300)),
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -37,7 +37,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Image?"),
+                            const Text("Image?"),
                             Switch(
                                 value: isImage,
                                 onChanged: (v) {
@@ -49,7 +49,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         height: 150,
                         child: isImage
                             ? TextFormField(

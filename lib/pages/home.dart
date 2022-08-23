@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:nacho_chat/components/chat_view.dart';
-import 'package:nacho_chat/components/conversation_list.dart';
 import 'package:nacho_chat/components/post_list.dart';
 import 'package:nacho_chat/pages/chat_list.dart';
 import 'package:nacho_chat/pages/login.dart';
@@ -11,7 +8,6 @@ import 'package:nacho_chat/service/post.dart';
 import 'package:nacho_chat/service/user.dart';
 import 'package:openapi/openapi.dart';
 
-import '../components/add_user_dialog.dart';
 import '../components/create_post.dart';
 
 class HomePage extends StatefulWidget {

@@ -130,7 +130,7 @@ class _ChatViewState extends State<ChatView> {
                             contentType: 'IMAGE_URL');
                         inputController.clear();
                       },
-                      icon: Icon(Icons.image)),
+                      icon: const Icon(Icons.image)),
                   IconButton(
                       onPressed: () async {
                         if (inputController.text.isEmpty) {
@@ -155,12 +155,12 @@ class _ChatViewState extends State<ChatView> {
   }
 
   void showEmptySnackbar() {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('Cannot send empty message')));
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Cannot send empty message')));
   }
 
   void showInvalidUrlSnackbar() {
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('Invalid URL')));
+        .showSnackBar(const SnackBar(content: Text('Invalid URL')));
   }
 }

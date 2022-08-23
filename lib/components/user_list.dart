@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/service/chat.dart';
 
 import '../model/user.dart';
@@ -12,7 +11,7 @@ class UserList extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Container(
+    return SizedBox(
       height: size.height / 2,
       width: size.width / 3,
       child: ValueListenableBuilder<List<User>>(

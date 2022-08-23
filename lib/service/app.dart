@@ -33,14 +33,18 @@ class AppService {
 
   initWebsocket() async {
     IO.Socket socket;
-    if (Platform.isAndroid ||
-        Platform.isIOS ||
-        Platform.isMacOS ||
-        Platform.isLinux ||
-        Platform.isWindows) {
-      socket = IO.io(
-          Urls.url, IO.OptionBuilder().setTransports(['websocket']).build());
-    } else {
+    try {
+      if (Platform.isAndroid ||
+          Platform.isIOS ||
+          Platform.isMacOS ||
+          Platform.isLinux ||
+          Platform.isWindows) {
+        socket = IO.io(
+            Urls.url, IO.OptionBuilder().setTransports(['websocket']).build());
+      } else {
+        socket = IO.io(Urls.url, IO.OptionBuilder().build());
+      }
+    } catch (e) {
       socket = IO.io(Urls.url, IO.OptionBuilder().build());
     }
 

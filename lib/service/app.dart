@@ -62,8 +62,8 @@ class AppService {
       }
     });
 
-    socket.onConnectError((data) => print(data));
-    socket.onConnectTimeout((data) => print(data));
+    socket.onConnectError((data) => logger.e(data));
+    socket.onConnectTimeout((data) => logger.e(data));
   }
 
   logout() async {

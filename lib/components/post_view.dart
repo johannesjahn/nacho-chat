@@ -23,7 +23,10 @@ class PostView extends StatelessWidget {
         Expanded(
           child: Center(
             child: post.contentType == "TEXT"
-                ? Text(post.content)
+                ? Text(
+                    post.content,
+                    textAlign: TextAlign.center,
+                  )
                 : ConstrainedBox(
                     constraints:
                         BoxConstraints.loose(Size(width / 2.5, height / 3)),

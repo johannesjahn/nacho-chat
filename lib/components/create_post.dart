@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nacho_chat/components/post_view.dart';
 import 'package:nacho_chat/service/post.dart';
+import 'package:openapi/openapi.dart';
+
+import '../service/app.dart';
 
 class CreatePostWidget extends StatefulWidget {
   const CreatePostWidget({Key? key}) : super(key: key);
@@ -11,9 +15,24 @@ class CreatePostWidget extends StatefulWidget {
 class _CreatePostWidgetState extends State<CreatePostWidget> {
   final textController = TextEditingController();
   var isImage = false;
+  PostResponseDTO? preview;
+
+  PostResponseDTOBuilder mockPostBuilder() {
+    final authorBuilder = ReplyResponseDTOAuthorBuilder()
+      ..id = 1337
+      ..username = AppService.instance.hive.get("username") ?? "";
+
+    return PostResponseDTOBuilder()
+      ..id = 1337
+      ..author = authorBuilder
+      ..createdAt = DateTime.now()
+      ..updatedAt = DateTime.now();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -22,79 +41,137 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ConstrainedBox(
-                constraints: BoxConstraints.tight(const Size(500, 300)),
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Create Post",
-                        style: Theme.of(context).textTheme.titleLarge,
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    Text(
+                      "Create Post",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Image?"),
+                          Switch(
+                              value: isImage,
+                              onChanged: (v) {
+                                setState(() {
+                                  textController.clear();
+                                  isImage = v;
+                                  preview = null;
+                                });
+                              }),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Image?"),
-                            Switch(
-                                value: isImage,
-                                onChanged: (v) {
+                    ),
+                    SizedBox(
+                      height: 150,
+                      width: 300,
+                      child: isImage
+                          ? TextFormField(
+                              controller: textController,
+                              keyboardType: TextInputType.url,
+                              onChanged: (value) {
+                                if (value.isEmpty) {
                                   setState(() {
-                                    textController.clear();
-                                    isImage = v;
+                                    preview = null;
                                   });
-                                }),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 150,
-                        child: isImage
-                            ? TextFormField(
-                                controller: textController,
-                                keyboardType: TextInputType.url,
-                                maxLines: 1,
-                                decoration: const InputDecoration(
-                                    label: Text("Image URL")),
-                              )
-                            : TextFormField(
-                                controller: textController,
-                                keyboardType: TextInputType.multiline,
-                                maxLines: null,
-                                maxLength: 500,
-                                decoration: const InputDecoration(
-                                    label: Text("Content")),
+                                  return;
+                                }
+                                var isValidUrl =
+                                    Uri.tryParse(textController.value.text)
+                                            ?.hasAbsolutePath ??
+                                        false;
+                                if (!isValidUrl) {
+                                  setState(() {
+                                    preview = null;
+                                  });
+                                  return;
+                                }
+                                final builder = mockPostBuilder()
+                                  ..contentType = "IMG_URL"
+                                  ..content = value;
+                                setState(() {
+                                  preview = builder.build();
+                                });
+                              },
+                              maxLines: 1,
+                              decoration: const InputDecoration(
+                                  label: Text("Image URL")),
+                            )
+                          : TextFormField(
+                              controller: textController,
+                              keyboardType: TextInputType.multiline,
+                              onChanged: ((value) {
+                                if (value.isEmpty) {
+                                  setState(() {
+                                    preview = null;
+                                  });
+                                  return;
+                                }
+                                final builder = mockPostBuilder()
+                                  ..contentType = "TEXT"
+                                  ..content = value;
+                                setState(() {
+                                  preview = builder.build();
+                                });
+                              }),
+                              maxLines: null,
+                              maxLength: 500,
+                              decoration:
+                                  const InputDecoration(label: Text("Content")),
+                            ),
+                    ),
+                    preview != null
+                        ? ConstrainedBox(
+                            constraints: const BoxConstraints(
+                                minWidth: 300, maxWidth: 500),
+                            child: SizedBox(
+                              width: width * 0.5,
+                              child: AspectRatio(
+                                aspectRatio: 1,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Card(
+                                    child: PostView(
+                                      post: preview!,
+                                      isInList: false,
+                                    ),
+                                  ),
+                                ),
                               ),
-                      ),
-                      ElevatedButton(
-                        child: const Text("Create"),
-                        onPressed: () async {
-                          if (textController.value.text.isEmpty) return;
-                          if (isImage) {
-                            var isValidUrl =
-                                Uri.tryParse(textController.value.text)
-                                        ?.hasAbsolutePath ??
-                                    false;
-                            if (!isValidUrl) {
-                              return;
-                            } else {
-                              await PostService.instance.createPost(
-                                  content: textController.value.text,
-                                  contentType: "IMAGE_URL");
-                            }
+                            ),
+                          )
+                        : SizedBox(),
+                    ElevatedButton(
+                      child: const Text("Create"),
+                      onPressed: () async {
+                        if (textController.value.text.isEmpty) return;
+                        if (isImage) {
+                          var isValidUrl =
+                              Uri.tryParse(textController.value.text)
+                                      ?.hasAbsolutePath ??
+                                  false;
+                          if (!isValidUrl) {
+                            return;
                           } else {
                             await PostService.instance.createPost(
                                 content: textController.value.text,
-                                contentType: "TEXT");
+                                contentType: "IMAGE_URL");
                           }
-                          PostService.instance.getPosts();
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ],
-                  ),
+                        } else {
+                          await PostService.instance.createPost(
+                              content: textController.value.text,
+                              contentType: "TEXT");
+                        }
+                        PostService.instance.getPosts();
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
                 ),
               ),
             ],

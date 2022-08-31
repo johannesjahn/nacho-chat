@@ -34,19 +34,22 @@ class _PostDetailState extends State<PostDetail> {
                 width: width,
                 child: Column(
                   children: [
-                    ConstrainedBox(
-                      constraints:
-                          const BoxConstraints(minWidth: 300, maxWidth: 500),
-                      child: SizedBox(
-                        width: width * 0.5,
-                        child: AspectRatio(
-                          aspectRatio: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Card(
-                              child: PostView(
-                                post: post,
-                                isInList: false,
+                    Hero(
+                      tag: post.id,
+                      child: ConstrainedBox(
+                        constraints:
+                            const BoxConstraints(minWidth: 300, maxWidth: 500),
+                        child: SizedBox(
+                          width: width * 0.5,
+                          child: AspectRatio(
+                            aspectRatio: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Card(
+                                child: PostView(
+                                  post: post,
+                                  isInList: false,
+                                ),
                               ),
                             ),
                           ),

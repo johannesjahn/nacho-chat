@@ -18,34 +18,38 @@ class PostList extends StatelessWidget {
     return ListView.builder(
         itemCount: posts.length,
         itemBuilder: (context, index) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(minWidth: 300, maxWidth: 500),
-                child: Container(
-                  width: width * 0.5,
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      child: GestureDetector(
-                        onTap: () {
-                          PostService.instance.selectedPost.value =
-                              posts[index];
-                          PostService.instance.getComments();
-                          Navigator.of(context)
-                              .push(DefaultRoute(PostDetail()));
-                        },
-                        child: Card(
-                          child: PostView(post: posts[index]),
+          return Hero(
+            tag: posts[index].id,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(minWidth: 300, maxWidth: 500),
+                  child: Container(
+                    width: width * 0.5,
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        child: GestureDetector(
+                          onTap: () {
+                            PostService.instance.selectedPost.value =
+                                posts[index];
+                            PostService.instance.getComments();
+                            Navigator.of(context)
+                                .push(DefaultRoute(PostDetail()));
+                          },
+                          child: Card(
+                            child: PostView(post: posts[index]),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         });
   }

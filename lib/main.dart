@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:nacho_chat/pages/login.dart';
 import 'package:nacho_chat/service/app.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'pages/home.dart';
 
@@ -27,6 +29,13 @@ class NachoChat extends StatelessWidget {
           colorSchemeSeed: const Color.fromARGB(100, 11, 11, 200),
           brightness: Brightness.dark,
           useMaterial3: true),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: const [Locale('en', ''), Locale('de', '')],
       home: initialRoute,
     );
   }

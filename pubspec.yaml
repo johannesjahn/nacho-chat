@@ -31,6 +31,9 @@ dependencies:
   logger: ^1.1.0
   built_value: ">=8.1.0 <9.0.0"
   built_collection: ">=5.1.0 <6.0.0"
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +44,7 @@ dev_dependencies:
   json_serializable: ^6.2.0
 
 flutter:
+  generate: true
   uses-material-design: true
 
 dependency_overrides:

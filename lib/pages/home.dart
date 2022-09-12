@@ -7,6 +7,7 @@ import 'package:nacho_chat/service/chat.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:nacho_chat/service/user.dart';
 import 'package:openapi/openapi.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../components/create_post.dart';
 
@@ -28,11 +29,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         title:
             // ignore: prefer_interpolation_to_compose_strings
-            Text("Hi " + (AppService.instance.hive.get("username") ?? "")),
+            Text(l10n.hello +
+                " " +
+                (AppService.instance.hive.get("username") ?? "")),
         actions: [
           IconButton(
               padding: const EdgeInsets.all(10),

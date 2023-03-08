@@ -33,15 +33,17 @@ class _ChatListPageState extends State<ChatListPage> {
             // ignore: prefer_interpolation_to_compose_strings
             Text("Hello " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
-          IconButton(
-            padding: const EdgeInsets.all(10),
-            icon: Icon(Icons.bug_report),
-            onPressed: () async {
-              // create a snackbar
-              ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Bugs Bugs Bugs everywhere 🐛🐛🐛')));
-            },
-          ),
+          true
+              ? SizedBox()
+              : IconButton(
+                  padding: const EdgeInsets.all(10),
+                  icon: Icon(Icons.bug_report),
+                  onPressed: () async {
+                    // create a snackbar
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Bugs Bugs Bugs everywhere 🐛🐛🐛')));
+                  },
+                ),
           IconButton(
               padding: const EdgeInsets.all(10),
               onPressed: () {

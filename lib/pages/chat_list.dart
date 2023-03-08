@@ -31,7 +31,7 @@ class _ChatListPageState extends State<ChatListPage> {
       appBar: AppBar(
         title:
             // ignore: prefer_interpolation_to_compose_strings
-            Text("Hello " + (AppService.instance.hive.get("username") ?? "")),
+            Text("Hello, " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
           true
               ? SizedBox()

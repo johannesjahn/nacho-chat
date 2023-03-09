@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         title:
             // ignore: prefer_interpolation_to_compose_strings
             Text(l10n.hello +
-                " " +
+                ", " +
                 (AppService.instance.hive.get("username") ?? "")),
         actions: [
           IconButton(

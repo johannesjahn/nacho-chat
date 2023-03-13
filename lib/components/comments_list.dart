@@ -33,7 +33,7 @@ class CommentsList extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            NachoAvatar(userId: comment.author?.id, radius: 10),
+                            NachoAvatar(userId: comment.author?.id, radius: 20),
                             Text(
                                 "${comment.author?.username ?? ""}, ${formatPostedDate(comment.createdAt)}",
                                 style: Theme.of(context).textTheme.labelSmall),

@@ -21,10 +21,11 @@ class NachoAvatar extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: EdgeInsets.all(radius / 5),
       child: CircleAvatar(
           radius: radius,
-          child: Image.network(Urls.avatar + userId.toString() + size)),
+          backgroundImage:
+              NetworkImage(Urls.avatar + userId.toString() + size)),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nacho_chat/components/avatar.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:openapi/openapi.dart';
 import 'dart:io' show Platform;
@@ -40,12 +41,16 @@ class _ChatViewState extends State<ChatView> {
                         reverse: true,
                         itemBuilder: (context, index) {
                           final message = value[index];
+                          final isAuthor = message.author.username ==
+                              AppService.instance.hive.get("username");
                           return Row(
-                            mainAxisAlignment: message.author.username ==
-                                    AppService.instance.hive.get("username")
+                            mainAxisAlignment: isAuthor
                                 ? MainAxisAlignment.end
                                 : MainAxisAlignment.start,
                             children: [
+                              !isAuthor
+                                  ? NachoAvatar(userId: message.author.id)
+                                  : const SizedBox(),
                               Card(child: Builder(builder: (context) {
                                 if (message.contentType == 'IMAGE_URL') {
                                   return ConstrainedBox(
@@ -79,7 +84,13 @@ class _ChatViewState extends State<ChatView> {
                                       child:
                                           const Text('Unknown content type'));
                                 }
-                              }))
+                              })),
+                              isAuthor
+                                  ? NachoAvatar(
+                                      userId: message.author.id,
+                                      radius: 20,
+                                    )
+                                  : const SizedBox()
                             ],
                           );
                         });

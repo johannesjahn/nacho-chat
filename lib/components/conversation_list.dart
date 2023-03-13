@@ -4,6 +4,7 @@ import 'package:openapi/openapi.dart';
 
 import '../service/app.dart';
 import '../service/chat.dart';
+import 'avatar.dart';
 
 class ConversationList extends StatelessWidget {
   const ConversationList({Key? key}) : super(key: key);
@@ -37,7 +38,14 @@ class ConversationList extends StatelessWidget {
 
                   return Container(
                       padding: const EdgeInsets.all(16),
-                      child: Text(chatTitle));
+                      child: Row(
+                        children: [
+                          NachoAvatar(
+                              userId: value[index].participants.first.id,
+                              radius: 10),
+                          Text(chatTitle),
+                        ],
+                      ));
                 }),
               ),
             );

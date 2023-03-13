@@ -4,6 +4,8 @@ class Urls {
   static const url = "https://chat.johannes-jahn.com/";
   // static const url = "http://localhost:3000/";
 
+  static const avatar = "${url}app/user/avatar/";
+
   static const register = "${url}app/auth/register";
   static const login = "${url}app/auth/login";
 

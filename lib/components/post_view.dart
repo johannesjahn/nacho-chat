@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nacho_chat/components/avatar.dart';
 import 'package:nacho_chat/service/utils.dart';
 import 'package:openapi/openapi.dart';
 
@@ -51,6 +52,7 @@ class PostView extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              NachoAvatar(userId: post.author?.id, radius: 10),
               Text(
                   "${post.author?.username ?? ""}, ${formatPostedDate(post.createdAt)}",
                   style: Theme.of(context).textTheme.labelSmall),

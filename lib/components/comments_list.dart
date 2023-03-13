@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 
 import '../service/utils.dart';
+import 'avatar.dart';
 
 class CommentsList extends StatelessWidget {
   const CommentsList({
@@ -32,6 +33,7 @@ class CommentsList extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
+                            NachoAvatar(userId: comment.author?.id, radius: 10),
                             Text(
                                 "${comment.author?.username ?? ""}, ${formatPostedDate(comment.createdAt)}",
                                 style: Theme.of(context).textTheme.labelSmall),

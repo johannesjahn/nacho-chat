@@ -6,61 +6,52 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'update_post_dto.g.dart';
+part 'change_password_dto.g.dart';
 
-/// UpdatePostDTO
+/// ChangePasswordDTO
 ///
 /// Properties:
-/// * [id] 
-/// * [content] 
-/// * [contentType] 
+/// * [password] 
+/// * [passwordConfirm] 
 @BuiltValue()
-abstract class UpdatePostDTO implements Built<UpdatePostDTO, UpdatePostDTOBuilder> {
-  @BuiltValueField(wireName: r'id')
-  num get id;
+abstract class ChangePasswordDTO implements Built<ChangePasswordDTO, ChangePasswordDTOBuilder> {
+  @BuiltValueField(wireName: r'password')
+  String get password;
 
-  @BuiltValueField(wireName: r'content')
-  String get content;
+  @BuiltValueField(wireName: r'passwordConfirm')
+  String get passwordConfirm;
 
-  @BuiltValueField(wireName: r'contentType')
-  String get contentType;
+  ChangePasswordDTO._();
 
-  UpdatePostDTO._();
-
-  factory UpdatePostDTO([void updates(UpdatePostDTOBuilder b)]) = _$UpdatePostDTO;
+  factory ChangePasswordDTO([void updates(ChangePasswordDTOBuilder b)]) = _$ChangePasswordDTO;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(UpdatePostDTOBuilder b) => b;
+  static void _defaults(ChangePasswordDTOBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<UpdatePostDTO> get serializer => _$UpdatePostDTOSerializer();
+  static Serializer<ChangePasswordDTO> get serializer => _$ChangePasswordDTOSerializer();
 }
 
-class _$UpdatePostDTOSerializer implements PrimitiveSerializer<UpdatePostDTO> {
+class _$ChangePasswordDTOSerializer implements PrimitiveSerializer<ChangePasswordDTO> {
   @override
-  final Iterable<Type> types = const [UpdatePostDTO, _$UpdatePostDTO];
+  final Iterable<Type> types = const [ChangePasswordDTO, _$ChangePasswordDTO];
 
   @override
-  final String wireName = r'UpdatePostDTO';
+  final String wireName = r'ChangePasswordDTO';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    UpdatePostDTO object, {
+    ChangePasswordDTO object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'id';
+    yield r'password';
     yield serializers.serialize(
-      object.id,
-      specifiedType: const FullType(num),
-    );
-    yield r'content';
-    yield serializers.serialize(
-      object.content,
+      object.password,
       specifiedType: const FullType(String),
     );
-    yield r'contentType';
+    yield r'passwordConfirm';
     yield serializers.serialize(
-      object.contentType,
+      object.passwordConfirm,
       specifiedType: const FullType(String),
     );
   }
@@ -68,7 +59,7 @@ class _$UpdatePostDTOSerializer implements PrimitiveSerializer<UpdatePostDTO> {
   @override
   Object serialize(
     Serializers serializers,
-    UpdatePostDTO object, {
+    ChangePasswordDTO object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -79,33 +70,26 @@ class _$UpdatePostDTOSerializer implements PrimitiveSerializer<UpdatePostDTO> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required UpdatePostDTOBuilder result,
+    required ChangePasswordDTOBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.id = valueDes;
-          break;
-        case r'content':
+        case r'password':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.content = valueDes;
+          result.password = valueDes;
           break;
-        case r'contentType':
+        case r'passwordConfirm':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.contentType = valueDes;
+          result.passwordConfirm = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -116,12 +100,12 @@ class _$UpdatePostDTOSerializer implements PrimitiveSerializer<UpdatePostDTO> {
   }
 
   @override
-  UpdatePostDTO deserialize(
+  ChangePasswordDTO deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = UpdatePostDTOBuilder();
+    final result = ChangePasswordDTOBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **updatedAt** | [**DateTime**](DateTime.md) |  | 
 **content** | **String** |  | 
 **contentType** | **String** |  | 
-**author** | [**ReplyResponseDTOAuthor**](ReplyResponseDTOAuthor.md) |  | 
+**author** | [**UserResponseDTO**](UserResponseDTO.md) |  | 
 **comments** | [**BuiltList&lt;CommentResponseDTO&gt;**](CommentResponseDTO.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

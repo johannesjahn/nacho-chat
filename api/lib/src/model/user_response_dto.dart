@@ -2,6 +2,7 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
+// ignore_for_file: unused_element
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,71 +13,110 @@ part 'user_response_dto.g.dart';
 /// Properties:
 /// * [id] 
 /// * [username] 
+@BuiltValue()
 abstract class UserResponseDTO implements Built<UserResponseDTO, UserResponseDTOBuilder> {
-    @BuiltValueField(wireName: r'id')
-    num get id;
+  @BuiltValueField(wireName: r'id')
+  num get id;
 
-    @BuiltValueField(wireName: r'username')
-    String get username;
+  @BuiltValueField(wireName: r'username')
+  String get username;
 
-    UserResponseDTO._();
+  UserResponseDTO._();
 
-    @BuiltValueHook(initializeBuilder: true)
-    static void _defaults(UserResponseDTOBuilder b) => b;
+  factory UserResponseDTO([void updates(UserResponseDTOBuilder b)]) = _$UserResponseDTO;
 
-    factory UserResponseDTO([void updates(UserResponseDTOBuilder b)]) = _$UserResponseDTO;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(UserResponseDTOBuilder b) => b;
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<UserResponseDTO> get serializer => _$UserResponseDTOSerializer();
+  @BuiltValueSerializer(custom: true)
+  static Serializer<UserResponseDTO> get serializer => _$UserResponseDTOSerializer();
 }
 
-class _$UserResponseDTOSerializer implements StructuredSerializer<UserResponseDTO> {
-    @override
-    final Iterable<Type> types = const [UserResponseDTO, _$UserResponseDTO];
+class _$UserResponseDTOSerializer implements PrimitiveSerializer<UserResponseDTO> {
+  @override
+  final Iterable<Type> types = const [UserResponseDTO, _$UserResponseDTO];
 
-    @override
-    final String wireName = r'UserResponseDTO';
+  @override
+  final String wireName = r'UserResponseDTO';
 
-    @override
-    Iterable<Object?> serialize(Serializers serializers, UserResponseDTO object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object?>[];
-        result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(num)));
-        result
-            ..add(r'username')
-            ..add(serializers.serialize(object.username,
-                specifiedType: const FullType(String)));
-        return result;
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    UserResponseDTO object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(num),
+    );
+    yield r'username';
+    yield serializers.serialize(
+      object.username,
+      specifiedType: const FullType(String),
+    );
+  }
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    UserResponseDTO object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required UserResponseDTOBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.id = valueDes;
+          break;
+        case r'username':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.username = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
     }
+  }
 
-    @override
-    UserResponseDTO deserialize(Serializers serializers, Iterable<Object?> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = UserResponseDTOBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final Object? value = iterator.current;
-            
-            switch (key) {
-                case r'id':
-                    final valueDes = serializers.deserialize(value,
-                        specifiedType: const FullType(num)) as num;
-                    result.id = valueDes;
-                    break;
-                case r'username':
-                    final valueDes = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    result.username = valueDes;
-                    break;
-            }
-        }
-        return result.build();
-    }
+  @override
+  UserResponseDTO deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = UserResponseDTOBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

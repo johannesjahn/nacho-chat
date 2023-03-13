@@ -11,6 +11,7 @@ import 'package:openapi/src/auth/bearer_auth.dart';
 import 'package:openapi/src/auth/oauth.dart';
 import 'package:openapi/src/api/auth_api.dart';
 import 'package:openapi/src/api/chat_api.dart';
+import 'package:openapi/src/api/default_api.dart';
 import 'package:openapi/src/api/post_api.dart';
 import 'package:openapi/src/api/user_api.dart';
 
@@ -29,8 +30,8 @@ class Openapi {
         this.dio = dio ??
             Dio(BaseOptions(
               baseUrl: basePathOverride ?? basePath,
-              connectTimeout: 5000,
-              receiveTimeout: 3000,
+              connectTimeout: const Duration(milliseconds: 5000),
+              receiveTimeout: const Duration(milliseconds: 3000),
             )) {
     if (interceptors == null) {
       this.dio.interceptors.addAll([
@@ -78,6 +79,12 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   ChatApi getChatApi() {
     return ChatApi(dio, serializers);
+  }
+
+  /// Get DefaultApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  DefaultApi getDefaultApi() {
+    return DefaultApi(dio, serializers);
   }
 
   /// Get PostApi instance, base route and serializer can be overridden by a given but be careful,

@@ -6,7 +6,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.19.4 <3.0.0"
 
 dependencies:
   flutter:
@@ -14,12 +14,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.2
   freezed_annotation: ^2.0.3
-  hive: 2.2.1
-  hive_flutter:
-    git:
-      url: https://github.com/hivedb/hive.git
-      path: hive_flutter
-      ref: master
+  hive: ^3.0.0-dev
+  hive_flutter: ^2.0.0-dev
   path_provider: ^2.0.10
   mutex: ^3.0.0
   jwt_decode: ^0.3.1
@@ -38,14 +34,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  build_runner: ^2.1.11
-  freezed: ^2.0.3+1
-  json_serializable: ^6.2.0
+  flutter_lints: ^2.0.1
+  build_runner: ^2.3.3
+  freezed: ^2.3.2
+  json_serializable: ^6.6.1
 
 flutter:
   generate: true
   uses-material-design: true
-
-dependency_overrides:
-  path: 1.8.2

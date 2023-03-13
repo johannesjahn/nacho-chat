@@ -9,12 +9,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**appControllerGetAnyUser**](DefaultApi.md#appcontrollergetanyuser) | **GET** /app/test | 
-[**appControllerGetHello**](DefaultApi.md#appcontrollergethello) | **GET** /app | 
+[**appControllerGetDebug**](DefaultApi.md#appcontrollergetdebug) | **GET** /app/debug | 
 
 
-# **appControllerGetAnyUser**
-> UserResponseDTO appControllerGetAnyUser()
+# **appControllerGetDebug**
+> appControllerGetDebug()
 
 
 
@@ -28,46 +27,9 @@ import 'package:openapi/api.dart';
 final api = Openapi().getDefaultApi();
 
 try {
-    final response = api.appControllerGetAnyUser();
-    print(response);
+    api.appControllerGetDebug();
 } catch on DioError (e) {
-    print('Exception when calling DefaultApi->appControllerGetAnyUser: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**UserResponseDTO**](UserResponseDTO.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **appControllerGetHello**
-> appControllerGetHello()
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getDefaultApi();
-
-try {
-    api.appControllerGetHello();
-} catch on DioError (e) {
-    print('Exception when calling DefaultApi->appControllerGetHello: $e\n');
+    print('Exception when calling DefaultApi->appControllerGetDebug: $e\n');
 }
 ```
 
@@ -80,7 +42,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 

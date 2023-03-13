@@ -11,9 +11,11 @@ export 'package:openapi/src/model/date.dart';
 
 export 'package:openapi/src/api/auth_api.dart';
 export 'package:openapi/src/api/chat_api.dart';
+export 'package:openapi/src/api/default_api.dart';
 export 'package:openapi/src/api/post_api.dart';
 export 'package:openapi/src/api/user_api.dart';
 
+export 'package:openapi/src/model/change_password_dto.dart';
 export 'package:openapi/src/model/comment_response_dto.dart';
 export 'package:openapi/src/model/conversation_response_dto.dart';
 export 'package:openapi/src/model/create_comment_dto.dart';
@@ -31,7 +33,6 @@ export 'package:openapi/src/model/message_response_dto.dart';
 export 'package:openapi/src/model/post_response_dto.dart';
 export 'package:openapi/src/model/register_dto.dart';
 export 'package:openapi/src/model/reply_response_dto.dart';
-export 'package:openapi/src/model/reply_response_dto_author.dart';
 export 'package:openapi/src/model/update_comment_dto.dart';
 export 'package:openapi/src/model/update_post_dto.dart';
 export 'package:openapi/src/model/update_reply_dto.dart';

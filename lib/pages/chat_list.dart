@@ -33,13 +33,14 @@ class _ChatListPageState extends State<ChatListPage> {
             // ignore: prefer_interpolation_to_compose_strings
             Text("Hello, " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
-          true
+          false
               ? SizedBox()
               : IconButton(
                   padding: const EdgeInsets.all(10),
                   icon: Icon(Icons.bug_report),
                   onPressed: () async {
                     // create a snackbar
+                    await UserService.instance.uploadAvatar();
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text('Bugs Bugs Bugs everywhere 🐛🐛🐛')));
                   },

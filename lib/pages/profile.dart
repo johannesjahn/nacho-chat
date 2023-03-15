@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/components/avatar.dart';
-import 'package:nacho_chat/model/user.dart';
 import 'package:openapi/openapi.dart';
 
 import '../service/app.dart';

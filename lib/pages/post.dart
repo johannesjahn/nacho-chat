@@ -4,7 +4,6 @@ import 'package:nacho_chat/service/post.dart';
 import 'package:openapi/openapi.dart';
 
 import '../components/comments_list.dart';
-import '../service/utils.dart';
 
 class PostDetail extends StatefulWidget {
   const PostDetail({Key? key}) : super(key: key);

@@ -1,7 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:nacho_chat/model/user.dart';
-import 'package:dio/dio.dart';
 import 'package:openapi/openapi.dart';
 
 import 'app.dart';
@@ -12,8 +11,8 @@ class UserService {
   final appService = AppService.instance;
 
   final me = ValueNotifier<UserResponseDTO?>(null);
-  var userList = <User>[];
-  final filteredUserList = ValueNotifier<List<User>>([]);
+  var userList = <UserResponseDTO>[];
+  final filteredUserList = ValueNotifier<List<UserResponseDTO>>([]);
 
   Future<void> getMe() async {
     final response = await appService.api.getUserApi().usersControllerGetMe();
@@ -25,12 +24,7 @@ class UserService {
     final response =
         await appService.api.getUserApi().usersControllerGetUsers();
 
-    userList = response.data
-            ?.map((userDTO) => User(
-                id: int.parse(userDTO.id.toString()),
-                username: userDTO.username))
-            .toList() ??
-        [];
+    userList = response.data?.toList() ?? [];
 
     filteredUserList.value = userList;
   }

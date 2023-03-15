@@ -25,7 +25,7 @@ class ChatService {
     filteredConversations.value = conversations;
   }
 
-  Future<void> createConversation({required int partnerId}) async {
+  Future<void> createConversation({required num partnerId}) async {
     final dto = CreateConversationRequestDTOBuilder()..partnerId = partnerId;
     await appService.api.getChatApi().chatControllerCreateConversation(
         createConversationRequestDTO: dto.build());

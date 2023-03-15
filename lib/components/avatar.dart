@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 
-import '../model/user.dart';
 import '../pages/profile.dart';
 import '../service/constants.dart';
 import '../service/utils.dart';

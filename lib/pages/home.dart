@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nacho_chat/components/post_list.dart';
 import 'package:nacho_chat/pages/chat_list.dart';
 import 'package:nacho_chat/pages/login.dart';
+import 'package:nacho_chat/pages/profile.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:nacho_chat/service/post.dart';
@@ -45,6 +46,12 @@ class _HomePageState extends State<HomePage> {
                 Navigator.of(context).push(DefaultRoute(const ChatListPage()));
               },
               icon: const Icon(Icons.chat)),
+          IconButton(
+              padding: const EdgeInsets.all(10),
+              onPressed: () {
+                Navigator.of(context).push(DefaultRoute(const ProfilePage()));
+              },
+              icon: const Icon(Icons.person)),
           IconButton(
               padding: const EdgeInsets.all(10),
               onPressed: () async {

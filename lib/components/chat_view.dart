@@ -49,7 +49,7 @@ class _ChatViewState extends State<ChatView> {
                                 : MainAxisAlignment.start,
                             children: [
                               !isAuthor
-                                  ? NachoAvatar(userId: message.author.id)
+                                  ? NachoAvatar(user: message.author)
                                   : const SizedBox(),
                               Card(child: Builder(builder: (context) {
                                 if (message.contentType == 'IMAGE_URL') {
@@ -87,7 +87,7 @@ class _ChatViewState extends State<ChatView> {
                               })),
                               isAuthor
                                   ? NachoAvatar(
-                                      userId: message.author.id,
+                                      user: message.author,
                                       radius: 20,
                                     )
                                   : const SizedBox()

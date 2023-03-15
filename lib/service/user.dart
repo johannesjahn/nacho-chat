@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/model/user.dart';
 import 'package:dio/dio.dart';
+import 'package:openapi/openapi.dart';
 
 import 'app.dart';
 
@@ -10,16 +11,14 @@ class UserService {
   static final instance = UserService._();
   final appService = AppService.instance;
 
-  final me = ValueNotifier<User?>(null);
+  final me = ValueNotifier<UserResponseDTO?>(null);
   var userList = <User>[];
   final filteredUserList = ValueNotifier<List<User>>([]);
 
   Future<void> getMe() async {
     final response = await appService.api.getUserApi().usersControllerGetMe();
 
-    me.value = User(
-        id: int.parse(response.data!.id.toString()),
-        username: response.data!.username);
+    me.value = response.data!;
   }
 
   Future<void> getUserList() async {

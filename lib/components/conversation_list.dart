@@ -42,7 +42,7 @@ class ConversationList extends StatelessWidget {
                       child: Row(
                         children: [
                           NachoAvatar(
-                              userId: nonSelfParticipants.first.id, radius: 15),
+                              user: nonSelfParticipants.first, radius: 15),
                           Text(chatTitle),
                         ],
                       ));

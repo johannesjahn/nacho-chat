@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:openapi/openapi.dart';
 
+import '../model/user.dart';
+import '../pages/profile.dart';
 import '../service/constants.dart';
+import '../service/utils.dart';
 
 class NachoAvatar extends StatelessWidget {
-  final num? userId;
+  final UserResponseDTO? user;
   final double radius;
+  final Function? onClick;
 
-  const NachoAvatar({required this.userId, this.radius = 10, Key? key})
+  const NachoAvatar(
+      {required this.user, this.radius = 10, this.onClick, Key? key})
       : super(key: key);
 
   @override
@@ -22,10 +28,24 @@ class NachoAvatar extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.all(radius / 5),
-      child: CircleAvatar(
-          radius: radius,
-          backgroundImage:
-              NetworkImage(Urls.avatar + userId.toString() + size)),
+      child: GestureDetector(
+        onTap: () {
+          if (onClick != null) {
+            onClick!();
+            return;
+          }
+          if (user != null) {
+            Navigator.of(context).push(DefaultRoute(ProfilePage(
+              user: user,
+            )));
+            return;
+          }
+        },
+        child: CircleAvatar(
+            radius: radius,
+            backgroundImage: NetworkImage(
+                Urls.avatar + (user?.id.toString() ?? "-1") + size)),
+      ),
     );
   }
 }

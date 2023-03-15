@@ -65,13 +65,11 @@ class AppService {
   }
 
   logout() async {
-    await hive.deleteFromDisk();
-    await Hive.initFlutter();
+    await hive.deleteAll(hive.keys.toList());
     UserService.instance.me.value = null;
     ChatService.instance.currentChat.value = null;
     ChatService.instance.conversations = [];
     ChatService.instance.filteredConversations.value = [];
     ChatService.instance.messagesNotifier.value = [];
-    hive = await Hive.openBox<String>("default");
   }
 }

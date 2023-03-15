@@ -28,21 +28,21 @@ class ConversationList extends StatelessWidget {
                   }
                 },
                 child: Builder(builder: (context) {
-                  final chatTitle = value[index]
+                  final nonSelfParticipants = value[index]
                       .participants
                       .where((participant) =>
                           participant.username !=
                           AppService.instance.hive.get("username"))
-                      .map((participant) => participant.username)
-                      .join(", ");
+                      .toList();
+                  final chatTitle =
+                      nonSelfParticipants.map((u) => u.username).join(", ");
 
                   return Container(
                       padding: const EdgeInsets.all(16),
                       child: Row(
                         children: [
                           NachoAvatar(
-                              userId: value[index].participants.first.id,
-                              radius: 10),
+                              userId: nonSelfParticipants.first.id, radius: 15),
                           Text(chatTitle),
                         ],
                       ));

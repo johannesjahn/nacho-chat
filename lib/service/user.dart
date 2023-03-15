@@ -10,8 +10,17 @@ class UserService {
   static final instance = UserService._();
   final appService = AppService.instance;
 
+  final me = ValueNotifier<User?>(null);
   var userList = <User>[];
   final filteredUserList = ValueNotifier<List<User>>([]);
+
+  Future<void> getMe() async {
+    final response = await appService.api.getUserApi().usersControllerGetMe();
+
+    me.value = User(
+        id: int.parse(response.data!.id.toString()),
+        username: response.data!.username);
+  }
 
   Future<void> getUserList() async {
     final response =

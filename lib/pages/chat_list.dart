@@ -33,7 +33,7 @@ class _ChatListPageState extends State<ChatListPage> {
             // ignore: prefer_interpolation_to_compose_strings
             Text("Hello, " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
-          false
+          true
               ? SizedBox()
               : IconButton(
                   padding: const EdgeInsets.all(10),

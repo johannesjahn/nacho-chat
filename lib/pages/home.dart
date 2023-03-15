@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     UserService.instance.getUserList();
+    UserService.instance.getMe();
     ChatService.instance.getConversations();
     PostService.instance.getPosts();
   }

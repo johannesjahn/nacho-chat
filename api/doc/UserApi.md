@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**usersControllerGetAvatar**](UserApi.md#userscontrollergetavatar) | **GET** /app/user/avatar/{userId} | 
+[**usersControllerGetMe**](UserApi.md#userscontrollergetme) | **GET** /app/user/me | 
 [**usersControllerGetUsers**](UserApi.md#userscontrollergetusers) | **GET** /app/user | 
 [**usersControllerUploadAvatar**](UserApi.md#userscontrolleruploadavatar) | **POST** /app/user/upload-avatar | 
 
@@ -46,6 +47,46 @@ void (empty response body)
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **usersControllerGetMe**
+> UserResponseDTO usersControllerGetMe()
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+// TODO Configure HTTP basic authorization: bearer
+//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
+
+final api = Openapi().getUserApi();
+
+try {
+    final response = api.usersControllerGetMe();
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling UserApi->usersControllerGetMe: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserResponseDTO**](UserResponseDTO.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 

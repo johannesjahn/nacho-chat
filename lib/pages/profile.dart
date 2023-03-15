@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nacho_chat/components/avatar.dart';
 
 import '../service/app.dart';
 import '../service/user.dart';
@@ -21,6 +22,35 @@ class _ProfilePageState extends State<ProfilePage> {
                   "Hello, " + (AppService.instance.hive.get("username") ?? "")),
           actions: [],
         ),
-        body: Container());
+        body: ValueListenableBuilder(
+          valueListenable: UserService.instance.me,
+          builder: (context, value, child) {
+            if (value == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            final width = MediaQuery.of(context).size.width;
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () async {
+                        await UserService.instance.uploadAvatar();
+                      },
+                      child: NachoAvatar(
+                        userId: value.id,
+                        radius: width / 6,
+                      ),
+                    ),
+                    Text(value.username,
+                        style: Theme.of(context).textTheme.headlineLarge),
+                  ],
+                ),
+              ],
+            );
+          },
+        ));
   }
 }

@@ -51,40 +51,58 @@ class _ChatViewState extends State<ChatView> {
                               !isAuthor
                                   ? NachoAvatar(user: message.author)
                                   : const SizedBox(),
-                              Card(child: Builder(builder: (context) {
-                                if (message.contentType == 'IMAGE_URL') {
-                                  return ConstrainedBox(
-                                    constraints: BoxConstraints.loose(
-                                        Size(width / 2.5, height / 3)),
-                                    child: Container(
-                                        padding: const EdgeInsets.all(16),
-                                        child: Builder(builder: (context) {
-                                          try {
-                                            if (Platform.isAndroid ||
-                                                Platform.isIOS) {
-                                              return CachedNetworkImage(
-                                                  imageUrl: message.content);
-                                            } else {
+                              GestureDetector(
+                                onTap: () {
+                                  if (message.contentType == 'IMAGE_URL') {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return Dialog(
+                                            child: Container(
+                                              width: width,
+                                              height: height,
+                                              child: CachedNetworkImage(
+                                                  imageUrl: message.content),
+                                            ),
+                                          );
+                                        });
+                                  }
+                                },
+                                child: Card(child: Builder(builder: (context) {
+                                  if (message.contentType == 'IMAGE_URL') {
+                                    return ConstrainedBox(
+                                      constraints: BoxConstraints.loose(
+                                          Size(width / 2.5, height / 3)),
+                                      child: Container(
+                                          padding: const EdgeInsets.all(16),
+                                          child: Builder(builder: (context) {
+                                            try {
+                                              if (Platform.isAndroid ||
+                                                  Platform.isIOS) {
+                                                return CachedNetworkImage(
+                                                    imageUrl: message.content);
+                                              } else {
+                                                return Image.network(
+                                                    message.content);
+                                              }
+                                            } catch (e) {
                                               return Image.network(
                                                   message.content);
                                             }
-                                          } catch (e) {
-                                            return Image.network(
-                                                message.content);
-                                          }
-                                        })),
-                                  );
-                                } else if (message.contentType == 'TEXT') {
-                                  return Container(
-                                      padding: const EdgeInsets.all(16),
-                                      child: Text(message.content));
-                                } else {
-                                  return Container(
-                                      padding: const EdgeInsets.all(16),
-                                      child:
-                                          const Text('Unknown content type'));
-                                }
-                              })),
+                                          })),
+                                    );
+                                  } else if (message.contentType == 'TEXT') {
+                                    return Container(
+                                        padding: const EdgeInsets.all(16),
+                                        child: Text(message.content));
+                                  } else {
+                                    return Container(
+                                        padding: const EdgeInsets.all(16),
+                                        child:
+                                            const Text('Unknown content type'));
+                                  }
+                                })),
+                              ),
                               isAuthor
                                   ? NachoAvatar(
                                       user: message.author,

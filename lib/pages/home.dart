@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(Icons.chat)),
           IconButton(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(12),
               onPressed: () {
                 Navigator.of(context).push(DefaultRoute(ProfilePage()));
               },

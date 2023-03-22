@@ -39,8 +39,10 @@ class _HomePageState extends State<HomePage> {
       bottomSheet: FutureBuilder(
           future: PackageInfo.fromPlatform(),
           builder: (ctx, snapshot) {
-            if (snapshot.hasData) return Text(snapshot.data!.version);
-            return Text("Nacho Chat");
+            if (snapshot.hasData)
+              return Text(
+                  "${snapshot.data!.version}+${snapshot.data!.buildNumber}");
+            return const Text("Nacho Chat");
           }),
       appBar: AppBar(
         title:

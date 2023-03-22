@@ -9,6 +9,7 @@ import 'package:nacho_chat/service/chat.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:nacho_chat/service/user.dart';
 import 'package:openapi/openapi.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../components/create_post.dart';
 
@@ -34,6 +35,13 @@ class _HomePageState extends State<HomePage> {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
+      // version number
+      bottomSheet: FutureBuilder(
+          future: PackageInfo.fromPlatform(),
+          builder: (ctx, snapshot) {
+            if (snapshot.hasData) return Text(snapshot.data!.version);
+            return Text("Nacho Chat");
+          }),
       appBar: AppBar(
         title:
             // ignore: prefer_interpolation_to_compose_strings

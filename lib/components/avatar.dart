@@ -40,10 +40,14 @@ class NachoAvatar extends StatelessWidget {
             return;
           }
         },
-        child: CircleAvatar(
-            radius: radius,
-            backgroundImage: NetworkImage(
-                Urls.avatar + (user?.id.toString() ?? "-1") + size)),
+        child: SizedBox(
+          height: radius * 2,
+          width: radius * 2,
+          child: CircleAvatar(
+              radius: radius,
+              backgroundImage: NetworkImage(
+                  Urls.avatar + (user?.id.toString() ?? "-1") + size)),
+        ),
       ),
     );
   }

@@ -56,6 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         NachoAvatar(
                           user: value,
                           radius: width / 6,
+                          onClick: () {},
                         ),
                         if (AppService.instance.hive.get("username") ==
                             value.username)

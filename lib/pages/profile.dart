@@ -18,6 +18,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   ValueNotifier<UserResponseDTO?> user = ValueNotifier(null);
 
+  var showAvatarEdit = false;
+
   @override
   void initState() {
     if (widget.user != null) {
@@ -49,15 +51,49 @@ class _ProfilePageState extends State<ProfilePage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    NachoAvatar(
-                      user: value,
-                      radius: width / 6,
-                      onClick: () {
+                    Stack(
+                      children: [
+                        NachoAvatar(
+                          user: value,
+                          radius: width / 6,
+                        ),
                         if (AppService.instance.hive.get("username") ==
-                            value.username) {
-                          UserService.instance.uploadAvatar();
-                        }
-                      },
+                            value.username)
+                          MouseRegion(
+                            onEnter: (event) {
+                              setState(() {
+                                showAvatarEdit = true;
+                              });
+                            },
+                            onExit: (event) {
+                              setState(() {
+                                showAvatarEdit = false;
+                              });
+                            },
+                            child: GestureDetector(
+                              onTap: () {
+                                UserService.instance.uploadAvatar();
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.all(width / (6 * 5)),
+                                child: AnimatedOpacity(
+                                  opacity: showAvatarEdit ? 1 : 0.3,
+                                  duration: const Duration(milliseconds: 200),
+                                  child: SizedBox(
+                                      height: width / 3,
+                                      width: width / 3,
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.black38,
+                                        child: Icon(
+                                          Icons.edit,
+                                          color: Colors.white,
+                                        ),
+                                      )),
+                                ),
+                              ),
+                            ),
+                          )
+                      ],
                     ),
                     Text(value.username,
                         style: Theme.of(context).textTheme.headlineLarge),

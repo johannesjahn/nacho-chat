@@ -28,6 +28,8 @@ class NachoAvatar extends StatelessWidget {
       size = "?size=800&profileHash=";
     }
 
+    final backgroundColor = Theme.of(context).colorScheme.background;
+
     return Padding(
       padding: EdgeInsets.all(radius / 5),
       child: GestureDetector(
@@ -48,6 +50,7 @@ class NachoAvatar extends StatelessWidget {
           width: radius * 2,
           child: CircleAvatar(
               radius: radius,
+              backgroundColor: backgroundColor,
               backgroundImage: NetworkImage(Urls.avatar +
                   (user?.id.toString() ?? "-1") +
                   size +

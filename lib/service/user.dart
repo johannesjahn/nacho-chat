@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'app.dart';
 
@@ -36,7 +37,8 @@ class UserService {
 
     if (result != null) {
       var bytes = result.files.first.bytes;
-      if (result.files.first.path != null) {
+
+      if (!kIsWeb && result.files.first.path != null) {
         bytes ??= await File(result.files.first.path!).readAsBytes();
       }
       if (bytes == null) {

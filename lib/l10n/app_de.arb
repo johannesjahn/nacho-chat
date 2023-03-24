@@ -1,5 +1,6 @@
 {
     "helloWorld": "Hello World!",
     "hello":"Hallo",
-    "error_uploading_avatar": "Fehler beim Hochladen des Avatars"
+    "error_uploading_avatar": "Fehler beim Hochladen des Avatars",
+    "profile": "Profil"
 }

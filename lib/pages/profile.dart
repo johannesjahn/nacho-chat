@@ -35,9 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
-          title:
-              // ignore: prefer_interpolation_to_compose_strings
-              const Text("Profile"),
+          title: Text(l10n.profile),
         ),
         body: ValueListenableBuilder(
           valueListenable: user,

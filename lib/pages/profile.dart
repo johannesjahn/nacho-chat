@@ -90,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   child: SizedBox(
                                       height: width / 3,
                                       width: width / 3,
-                                      child: CircleAvatar(
+                                      child: const CircleAvatar(
                                         backgroundColor: Colors.black38,
                                         child: Icon(
                                           Icons.edit,

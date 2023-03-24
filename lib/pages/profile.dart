@@ -73,6 +73,10 @@ class _ProfilePageState extends State<ProfilePage> {
                               onTap: () async {
                                 try {
                                   await UserService.instance.uploadAvatar();
+                                  NachoAvatar.profileHash = DateTime.now()
+                                      .millisecondsSinceEpoch
+                                      .toString();
+                                  setState(() {});
                                 } catch (e) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(

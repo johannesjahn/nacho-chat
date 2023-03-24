@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 
@@ -9,6 +11,7 @@ class NachoAvatar extends StatelessWidget {
   final UserResponseDTO? user;
   final double radius;
   final Function? onClick;
+  static var profileHash = DateTime.now().millisecondsSinceEpoch.toString();
 
   const NachoAvatar(
       {required this.user, this.radius = 10, this.onClick, Key? key})
@@ -16,13 +19,13 @@ class NachoAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = "";
+    var size = "?profileHash=";
     if (radius < 50) {
-      size = "?size=200";
+      size = "?size=200&profileHash=";
     } else if (radius < 100) {
-      size = "?size=400";
+      size = "?size=400&profileHash=";
     } else {
-      size = "?size=800";
+      size = "?size=800&profileHash=";
     }
 
     return Padding(
@@ -45,8 +48,10 @@ class NachoAvatar extends StatelessWidget {
           width: radius * 2,
           child: CircleAvatar(
               radius: radius,
-              backgroundImage: NetworkImage(
-                  Urls.avatar + (user?.id.toString() ?? "-1") + size)),
+              backgroundImage: NetworkImage(Urls.avatar +
+                  (user?.id.toString() ?? "-1") +
+                  size +
+                  profileHash)),
         ),
       ),
     );

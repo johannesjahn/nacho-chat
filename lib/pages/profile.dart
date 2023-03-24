@@ -19,6 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
   ValueNotifier<UserResponseDTO?> user = ValueNotifier(null);
 
   var showAvatarEdit = false;
+  var uploadingAvatar = false;
 
   @override
   void initState() {
@@ -72,6 +73,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: GestureDetector(
                               onTap: () async {
                                 try {
+                                  setState(() {
+                                    uploadingAvatar = true;
+                                  });
                                   await UserService.instance.uploadAvatar();
                                   NachoAvatar.profileHash = DateTime.now()
                                       .millisecondsSinceEpoch
@@ -82,22 +86,32 @@ class _ProfilePageState extends State<ProfilePage> {
                                       SnackBar(
                                           content: Text(
                                               l10n.error_uploading_avatar)));
+                                } finally {
+                                  setState(() {
+                                    uploadingAvatar = false;
+                                  });
                                 }
                               },
                               child: Padding(
                                 padding: EdgeInsets.all(width / (6 * 5)),
                                 child: AnimatedOpacity(
-                                  opacity: showAvatarEdit ? 1 : 0.3,
+                                  opacity: uploadingAvatar
+                                      ? 1
+                                      : showAvatarEdit
+                                          ? 1
+                                          : 0.3,
                                   duration: const Duration(milliseconds: 200),
                                   child: SizedBox(
                                       height: width / 3,
                                       width: width / 3,
-                                      child: const CircleAvatar(
+                                      child: CircleAvatar(
                                         backgroundColor: Colors.black38,
-                                        child: Icon(
-                                          Icons.edit,
-                                          color: Colors.white,
-                                        ),
+                                        child: uploadingAvatar
+                                            ? const CircularProgressIndicator()
+                                            : const Icon(
+                                                Icons.edit,
+                                                color: Colors.white,
+                                              ),
                                       )),
                                 ),
                               ),

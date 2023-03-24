@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +35,15 @@ class UserService {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
-      final response = await appService.api
-          .getUserApi()
-          .usersControllerUploadAvatar(
-              file: MultipartFile.fromBytes(result.files[0].bytes!,
-                  filename: result.files[0].name));
+      var bytes = result.files.first.bytes;
+      if (result.files.first.path != null) {
+        bytes ??= await File(result.files.first.path!).readAsBytes();
+      }
+      if (bytes == null) {
+        throw Exception("No bytes found");
+      }
+      await appService.api.getUserApi().usersControllerUploadAvatar(
+          file: MultipartFile.fromBytes(bytes, filename: result.files[0].name));
     } else {
       // User canceled the picker
     }

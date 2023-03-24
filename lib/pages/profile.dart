@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/components/avatar.dart';
 import 'package:openapi/openapi.dart';
 
@@ -32,6 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
           title:
@@ -71,8 +72,15 @@ class _ProfilePageState extends State<ProfilePage> {
                               });
                             },
                             child: GestureDetector(
-                              onTap: () {
-                                UserService.instance.uploadAvatar();
+                              onTap: () async {
+                                try {
+                                  await UserService.instance.uploadAvatar();
+                                } catch (e) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                              l10n.error_uploading_avatar)));
+                                }
                               },
                               child: Padding(
                                 padding: EdgeInsets.all(width / (6 * 5)),

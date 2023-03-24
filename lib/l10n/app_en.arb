@@ -1,4 +1,5 @@
 {
     "helloWorld": "Hello World!",
-    "hello":"Hello"
+    "hello":"Hello",
+    "error_uploading_avatar":"Error uploading avatar"
 }

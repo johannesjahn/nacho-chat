@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nacho_chat/components/post_view.dart';
 import 'package:nacho_chat/pages/post.dart';
 import 'package:nacho_chat/service/post.dart';
@@ -26,7 +25,7 @@ class PostList extends StatelessWidget {
                 ConstrainedBox(
                   constraints:
                       const BoxConstraints(minWidth: 300, maxWidth: 500),
-                  child: Container(
+                  child: SizedBox(
                     width: width * 0.5,
                     child: AspectRatio(
                       aspectRatio: 1,
@@ -38,7 +37,7 @@ class PostList extends StatelessWidget {
                                 posts[index];
                             PostService.instance.getComments();
                             Navigator.of(context)
-                                .push(DefaultRoute(PostDetail()));
+                                .push(DefaultRoute(const PostDetail()));
                           },
                           child: Card(
                             child: PostView(post: posts[index]),

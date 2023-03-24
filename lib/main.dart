@@ -19,7 +19,7 @@ class NachoChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final initialRoute = AppService.instance.hive.get("access_token") == null
-        ? LoginPage()
+        ? const LoginPage()
         : const HomePage();
 
     return MaterialApp(

@@ -32,7 +32,7 @@ class _ChatListPageState extends State<ChatListPage> {
             Text("Hello, " + (AppService.instance.hive.get("username") ?? "")),
         actions: [
           true
-              ? SizedBox()
+              ? const SizedBox()
               : IconButton(
                   padding: const EdgeInsets.all(10),
                   icon: Icon(Icons.bug_report),
@@ -71,8 +71,8 @@ class _ChatListPageState extends State<ChatListPage> {
         AppService.instance.isTablet = true;
         return Row(
           children: [
-            Container(width: 300, child: const ConversationList()),
-            Container(width: width - 300, child: const ChatView())
+            const SizedBox(width: 300, child: ConversationList()),
+            SizedBox(width: width - 300, child: const ChatView())
           ],
         );
       }),

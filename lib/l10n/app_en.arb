@@ -2,5 +2,12 @@
     "helloWorld": "Hello World!",
     "hello":"Hello",
     "error_uploading_avatar":"Error uploading avatar",
-    "profile":"Profile"
+    "profile":"Profile",
+    "comments":"Comments",
+    "new_comment":"New Comment",
+    "type_a_comment":"Type a comment…",
+    "cannot_send_empty_comment":"Cannot send empty comment",
+    "new_reply":"New Reply",
+    "type_a_reply":"Type a reply…",
+    "submit":"Submit"
 }

@@ -2,5 +2,12 @@
     "helloWorld": "Hello World!",
     "hello":"Hallo",
     "error_uploading_avatar": "Fehler beim Hochladen des Avatars",
-    "profile": "Profil"
+    "profile": "Profil",
+    "comments":"Kommentare",
+    "new_comment":"Neuer Kommentar",
+    "type_a_comment":"Tippe einen Kommentar…",
+    "cannot_send_empty_comment":"Du kannst keine leere Nachricht versenden.",
+    "new_reply":"Neue Antwort",
+    "type_a_reply":"Tippe eine Antwort…",
+    "submit":"Absenden"
 }

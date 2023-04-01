@@ -56,10 +56,11 @@ class PostService {
     return response.data;
   }
 
-  Future<ReplyResponseDTO?> createReply() async {
+  Future<ReplyResponseDTO?> createReply(
+      {required num commentId, required String content}) async {
     final dto = CreateReplyDTOBuilder()
-      ..content = 'test'
-      ..commentId = 9;
+      ..content = content
+      ..commentId = commentId;
 
     final response = await appService.api
         .getPostApi()

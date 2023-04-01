@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/components/post_view.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:openapi/openapi.dart';
@@ -20,6 +21,7 @@ class _PostDetailState extends State<PostDetail> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(),
       body: ValueListenableBuilder<PostResponseDTO?>(
@@ -58,7 +60,7 @@ class _PostDetailState extends State<PostDetail> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Comments",
+                        l10n.comments,
                         style: Theme.of(context).textTheme.headline4,
                       ),
                     ),
@@ -73,7 +75,7 @@ class _PostDetailState extends State<PostDetail> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "New Comment",
+                        l10n.new_comment,
                         style: Theme.of(context).textTheme.headline4,
                       ),
                     ),
@@ -94,23 +96,22 @@ class _PostDetailState extends State<PostDetail> {
                                     maxLines: 3,
                                     minLines: 1,
                                     maxLength: 100,
-                                    decoration: const InputDecoration(
-                                        label: Text("Type a comment…")),
+                                    decoration: InputDecoration(
+                                        label: Text(l10n.type_a_comment)),
                                   ),
                                   Container(
                                     margin: const EdgeInsets.only(top: 10),
                                     child: isSubmitting
                                         ? const CircularProgressIndicator()
                                         : ElevatedButton(
-                                            child: const Text("Submit"),
+                                            child: Text(l10n.submit),
                                             onPressed: () async {
                                               if (textController
                                                   .value.text.isEmpty) {
                                                 ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                        const SnackBar(
-                                                  content: Text(
-                                                      "Cannot send an empty comment"),
+                                                    .showSnackBar(SnackBar(
+                                                  content: Text(l10n
+                                                      .cannot_send_empty_comment),
                                                 ));
                                                 return;
                                               }

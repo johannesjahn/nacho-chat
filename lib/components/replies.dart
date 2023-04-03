@@ -9,7 +9,7 @@ import 'avatar.dart';
 class Replies extends StatefulWidget {
   final CommentResponseDTO comment;
 
-  Replies({Key? key, required this.comment}) : super(key: key);
+  const Replies({Key? key, required this.comment}) : super(key: key);
 
   @override
   State<Replies> createState() => _RepliesState();

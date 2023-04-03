@@ -6,7 +6,7 @@
     "comments":"Kommentare",
     "new_comment":"Neuer Kommentar",
     "type_a_comment":"Tippe einen Kommentar…",
-    "cannot_send_empty_comment":"Du kannst keine leere Nachricht versenden.",
+    "cannot_send_empty_comment":"Du kannst keinen leeren Kommentar versenden.",
     "new_reply":"Neue Antwort",
     "type_a_reply":"Tippe eine Antwort…",
     "submit":"Absenden"

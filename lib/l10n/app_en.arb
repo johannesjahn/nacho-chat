@@ -7,6 +7,7 @@
     "new_comment":"New Comment",
     "type_a_comment":"Type a comment…",
     "cannot_send_empty_comment":"Cannot send empty comment",
+    "replies":"Replies",
     "new_reply":"New Reply",
     "type_a_reply":"Type a reply…",
     "submit":"Submit"

@@ -60,7 +60,7 @@ class _CommentsListState extends State<CommentsList> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text("Replies",
+                                    Text(l10n.replies,
                                         style: theme.textTheme.headlineSmall),
                                   ],
                                 ))

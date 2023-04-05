@@ -4,6 +4,7 @@ import 'package:nacho_chat/components/avatar.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:openapi/openapi.dart';
 import 'dart:io' show Platform;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../service/app.dart';
 
@@ -23,12 +24,13 @@ class _ChatViewState extends State<ChatView> {
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
+    final l10n = AppLocalizations.of(context)!;
 
     return ValueListenableBuilder<ConversationResponseDTO?>(
       valueListenable: ChatService.instance.currentChat,
       builder: (context, value, widget) {
         if (value == null) {
-          return const Center(child: Text("Select a conversation"));
+          return Center(child: Text(l10n.select_a_conversation));
         }
         return Column(
           children: [

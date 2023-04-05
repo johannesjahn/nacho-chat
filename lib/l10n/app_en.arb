@@ -10,5 +10,6 @@
     "replies":"Replies",
     "new_reply":"New Reply",
     "type_a_reply":"Type a reply…",
-    "submit":"Submit"
+    "submit":"Submit",
+    "select_a_conversation": "Select a conversation"
 }

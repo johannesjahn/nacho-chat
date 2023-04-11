@@ -23,7 +23,9 @@ class _ReplyDisplayState extends State<ReplyDisplay> {
 
   @override
   void initState() {
-    hasOverflow = '\n'.allMatches(widget.reply.content).length > 3;
+    setState(() {
+      hasOverflow = '\n'.allMatches(widget.reply.content).length > 3;
+    });
     super.initState();
   }
 

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:openapi/openapi.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/components/reply_display.dart';
+import 'package:openapi/openapi.dart';
 
 import '../service/post.dart';
-import '../service/utils.dart';
-import 'avatar.dart';
 
 class Replies extends StatefulWidget {
   final CommentResponseDTO comment;
@@ -38,29 +37,8 @@ class _RepliesState extends State<Replies> {
                   ],
                 ))
             : const SizedBox(),
-        ...widget.comment.replies.map((reply) => Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Card(
-                color: theme.colorScheme.secondaryContainer,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(reply.content),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          NachoAvatar(user: reply.author!, radius: 20),
-                          Text(
-                              "${reply.author?.username ?? ""}, ${formatPostedDate(reply.createdAt)}",
-                              style: Theme.of(context).textTheme.labelSmall),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+        ...widget.comment.replies.map((reply) => ReplyDisplay(
+              reply: reply,
             )),
         SizedBox(
           width: width,

@@ -13,5 +13,6 @@
     "submit":"Absenden",
     "select_a_conversation": "Wähle eine Unterhaltung",
     "show_more": "Mehr anzeigen",
-    "show_less": "Weniger anzeigen"
+    "show_less": "Weniger anzeigen",
+    "chat": "Chat"
 }

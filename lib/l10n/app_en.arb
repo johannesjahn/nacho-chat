@@ -11,5 +11,7 @@
     "new_reply":"New Reply",
     "type_a_reply":"Type a reply…",
     "submit":"Submit",
-    "select_a_conversation": "Select a conversation"
+    "select_a_conversation": "Select a conversation",
+    "show_more": "Show more",
+    "show_less": "Show less"
 }

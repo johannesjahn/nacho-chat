@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:openapi/openapi.dart';
 
 import '../service/utils.dart';
@@ -33,6 +34,7 @@ class _ReplyDisplayState extends State<ReplyDisplay> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -69,7 +71,7 @@ class _ReplyDisplayState extends State<ReplyDisplay> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(extended ? "Show less" : "Show more"),
+                            Text(extended ? l10n.show_less : l10n.show_more),
                             AnimatedRotation(
                               turns: extended ? 0.5 : 0,
                               duration: const Duration(milliseconds: 300),

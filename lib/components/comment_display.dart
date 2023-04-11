@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/components/replies.dart';
 import 'package:openapi/openapi.dart';
 
@@ -27,6 +28,7 @@ class _CommentDisplayState extends State<CommentDisplay> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -66,7 +68,7 @@ class _CommentDisplayState extends State<CommentDisplay> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(extended ? "Show less" : "Show more"),
+                            Text(extended ? l10n.show_less : l10n.show_more),
                             AnimatedRotation(
                               turns: extended ? 0.5 : 0,
                               duration: const Duration(milliseconds: 300),

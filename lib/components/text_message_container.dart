@@ -51,7 +51,17 @@ class _TextMessageContainerState extends State<TextMessageContainer> {
                         maxLines = isExpanded ? null : 3;
                       });
                     },
-                    child: Text(isExpanded ? l10n.show_less : l10n.show_more)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(isExpanded ? l10n.show_less : l10n.show_more),
+                        AnimatedRotation(
+                          turns: isExpanded ? 0.5 : 0,
+                          duration: const Duration(milliseconds: 300),
+                          child: const Icon(Icons.arrow_drop_down),
+                        )
+                      ],
+                    )),
               )
           ],
         ));

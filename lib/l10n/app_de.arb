@@ -16,5 +16,6 @@
     "show_less": "Weniger anzeigen",
     "chat": "Chat",
     "cannot_send_empty_message": "Du kannst keine leere Nachricht versenden.",
-    "invalid_url": "Ungültige URL"
+    "invalid_url": "Ungültige URL",
+    "add_user": "Benutzer hinzufügen"
 }

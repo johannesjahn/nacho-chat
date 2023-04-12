@@ -16,5 +16,6 @@
     "show_less": "Show less",
     "chat": "Chat",
     "cannot_send_empty_message": "Cannot send empty message",
-    "invalid_url": "Invalid URL"
+    "invalid_url": "Invalid URL",
+    "add_user": "Add user"
 }

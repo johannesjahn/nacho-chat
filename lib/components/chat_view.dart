@@ -94,12 +94,15 @@ class _ChatViewState extends State<ChatView> {
                                           })),
                                     );
                                   } else if (message.contentType == 'TEXT') {
-                                    return Container(
-                                        padding: const EdgeInsets.all(16),
-                                        child: Text(
-                                          message.content,
-                                          softWrap: true,
-                                        ));
+                                    return ConstrainedBox(
+                                      constraints: BoxConstraints.loose(
+                                          Size(width / 2.5, double.infinity)),
+                                      child: Container(
+                                          padding: const EdgeInsets.all(16),
+                                          child: Text(
+                                            message.content,
+                                          )),
+                                    );
                                   } else {
                                     return Container(
                                         padding: const EdgeInsets.all(16),

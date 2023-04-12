@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/components/avatar.dart';
+import 'package:nacho_chat/components/text_message_container.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:openapi/openapi.dart';
 import 'dart:io' show Platform;
@@ -97,11 +98,8 @@ class _ChatViewState extends State<ChatView> {
                                     return ConstrainedBox(
                                       constraints: BoxConstraints.loose(
                                           Size(width / 2.5, double.infinity)),
-                                      child: Container(
-                                          padding: const EdgeInsets.all(16),
-                                          child: Text(
-                                            message.content,
-                                          )),
+                                      child: TextMessageContainer(
+                                          message: message),
                                     );
                                   } else {
                                     return Container(

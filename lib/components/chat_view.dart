@@ -96,7 +96,10 @@ class _ChatViewState extends State<ChatView> {
                                   } else if (message.contentType == 'TEXT') {
                                     return Container(
                                         padding: const EdgeInsets.all(16),
-                                        child: Text(message.content));
+                                        child: Text(
+                                          message.content,
+                                          softWrap: true,
+                                        ));
                                   } else {
                                     return Container(
                                         padding: const EdgeInsets.all(16),

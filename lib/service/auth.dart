@@ -29,6 +29,7 @@ class AuthService {
       final jwt = Jwt.parseJwt(response.data!.accessToken);
       appService.hive.put('access_token', response.data!.accessToken);
       appService.hive.put('username', jwt["username"]);
+      appService.initWebsocket();
     } finally {
       _isActive = false;
     }

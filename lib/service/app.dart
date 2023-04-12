@@ -20,7 +20,9 @@ class AppService {
   Future<void> init() async {
     await Hive.initFlutter();
     hive = await Hive.openBox<String>("default");
-    initWebsocket();
+    if (hive.get("access_token") != null) {
+      initWebsocket();
+    }
   }
 
   AppService._();
@@ -29,37 +31,43 @@ class AppService {
       Openapi(basePathOverride: Urls.url, interceptors: [AuthInterceptor()]);
   late Box<String> hive;
 
+  IO.Socket? socket;
   initWebsocket() async {
-    IO.Socket socket;
     try {
+      final token = hive.get("access_token")!;
       if (Platform.isAndroid ||
           Platform.isIOS ||
           Platform.isMacOS ||
           Platform.isLinux ||
           Platform.isWindows) {
         socket = IO.io(
-            Urls.url, IO.OptionBuilder().setTransports(['websocket']).build());
+            Urls.url,
+            IO.OptionBuilder().setAuth({"token": token}).setTransports(
+                ['websocket']).build());
       } else {
-        socket = IO.io(Urls.url, IO.OptionBuilder().build());
+        socket = IO.io(
+            Urls.url, IO.OptionBuilder().setAuth({"token": token}).build());
       }
     } catch (e) {
-      socket = IO.io(Urls.url, IO.OptionBuilder().build());
+      final token = hive.get("access_token")!;
+      socket =
+          IO.io(Urls.url, IO.OptionBuilder().setAuth({"token": token}).build());
     }
 
-    socket.onConnect((data) {
+    socket!.onConnect((data) {
       logger.i("Connected to websocket");
     });
-    socket.on('post', (data) {
+    socket!.on('post', (data) {
       logger.i('New Post');
       PostService.instance.getPosts();
     });
-    socket.on('post/comment', (postId) {
+    socket!.on('post/comment', (postId) {
       logger.i('New Comment');
       if (PostService.instance.selectedPost.value?.id == postId) {
         PostService.instance.getComments();
       }
     });
-    socket.on('post/comment/reply', (commentId) {
+    socket!.on('post/comment/reply', (commentId) {
       logger.i('New Reply');
       if (PostService.instance.selectedPost.value?.comments
               .any((comment) => comment.id == commentId) ??
@@ -67,9 +75,17 @@ class AppService {
         PostService.instance.getComments();
       }
     });
+    socket!.on("message", (data) async {
+      logger.i("New Message");
+      await ChatService.instance.getConversations();
+      if (ChatService.instance.currentChat.value != null) {
+        await ChatService.instance.getMessages(
+            conversationId: ChatService.instance.currentChat.value!.id as int);
+      }
+    });
 
-    socket.onConnectError((data) => logger.e(data));
-    socket.onConnectTimeout((data) => logger.e(data));
+    socket!.onConnectError((data) => logger.e(data));
+    socket!.onConnectTimeout((data) => logger.e(data));
   }
 
   logout() async {
@@ -79,5 +95,6 @@ class AppService {
     ChatService.instance.conversations = [];
     ChatService.instance.filteredConversations.value = [];
     ChatService.instance.messagesNotifier.value = [];
+    socket?.disconnect();
   }
 }

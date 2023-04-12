@@ -59,6 +59,14 @@ class AppService {
         PostService.instance.getComments();
       }
     });
+    socket.on('post/comment/reply', (commentId) {
+      logger.i('New Reply');
+      if (PostService.instance.selectedPost.value?.comments
+              .any((comment) => comment.id == commentId) ??
+          false) {
+        PostService.instance.getComments();
+      }
+    });
 
     socket.onConnectError((data) => logger.e(data));
     socket.onConnectTimeout((data) => logger.e(data));

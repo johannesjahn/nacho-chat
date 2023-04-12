@@ -14,5 +14,7 @@
     "select_a_conversation": "Wähle eine Unterhaltung",
     "show_more": "Mehr anzeigen",
     "show_less": "Weniger anzeigen",
-    "chat": "Chat"
+    "chat": "Chat",
+    "cannot_send_empty_message": "Du kannst keine leere Nachricht versenden.",
+    "invalid_url": "Ungültige URL"
 }

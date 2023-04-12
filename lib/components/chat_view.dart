@@ -190,12 +190,14 @@ class _ChatViewState extends State<ChatView> {
   }
 
   void showEmptySnackbar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Cannot send empty message')));
+    final l10n = AppLocalizations.of(context)!;
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(l10n.cannot_send_empty_message)));
   }
 
   void showInvalidUrlSnackbar() {
+    final l10n = AppLocalizations.of(context)!;
     ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Invalid URL')));
+        .showSnackBar(SnackBar(content: Text(l10n.invalid_url)));
   }
 }

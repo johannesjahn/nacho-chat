@@ -49,16 +49,8 @@ class ChatService {
   }
 
   Future<void> getMessages({required int conversationId}) async {
-    List<MessageResponseDTO> cachedMessages = [];
-    final cachedMessagesString = appService.hive.get(conversationId.toString());
-    // messagesNotifier.value = []; better loading performance
-    await appService.hive.delete("$conversationId");
-
     try {
       final dto = GetMessagesDTOBuilder()..conversationId = conversationId;
-      if (cachedMessages.isNotEmpty) {
-        //dto.lastMessage = cachedMessages.first.id;
-      }
       final response = await appService.api
           .getChatApi()
           .chatControllerGetMessages(getMessagesDTO: dto.build());

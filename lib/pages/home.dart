@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                 builder: (ctx, snapshot) {
                   if (snapshot.hasData) {
                     return Text(
-                        "Web: ${snapshot.data!.version}+${snapshot.data!.buildNumber}");
+                        "Frontend: ${snapshot.data!.version}+${snapshot.data!.buildNumber}");
                   }
                   return const SizedBox();
                 }),

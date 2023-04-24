@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,11 +12,11 @@ part 'create_conversation_request_dto.g.dart';
 /// CreateConversationRequestDTO
 ///
 /// Properties:
-/// * [partnerId] 
+/// * [partnerIds] 
 @BuiltValue()
 abstract class CreateConversationRequestDTO implements Built<CreateConversationRequestDTO, CreateConversationRequestDTOBuilder> {
-  @BuiltValueField(wireName: r'partnerId')
-  num get partnerId;
+  @BuiltValueField(wireName: r'partnerIds')
+  BuiltList<String> get partnerIds;
 
   CreateConversationRequestDTO._();
 
@@ -40,10 +41,10 @@ class _$CreateConversationRequestDTOSerializer implements PrimitiveSerializer<Cr
     CreateConversationRequestDTO object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'partnerId';
+    yield r'partnerIds';
     yield serializers.serialize(
-      object.partnerId,
-      specifiedType: const FullType(num),
+      object.partnerIds,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
     );
   }
 
@@ -68,12 +69,12 @@ class _$CreateConversationRequestDTOSerializer implements PrimitiveSerializer<Cr
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'partnerId':
+        case r'partnerIds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.partnerId = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.partnerIds.replace(valueDes);
           break;
         default:
           unhandled.add(key);

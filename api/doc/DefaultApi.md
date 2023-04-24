@@ -10,6 +10,8 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**appControllerGetDebug**](DefaultApi.md#appcontrollergetdebug) | **GET** /app/debug | 
+[**statusMonitorControllerGetData**](DefaultApi.md#statusmonitorcontrollergetdata) | **GET** /app/status/data | 
+[**statusMonitorControllerRoot**](DefaultApi.md#statusmonitorcontrollerroot) | **GET** /app/status | 
 
 
 # **appControllerGetDebug**
@@ -20,9 +22,6 @@ Method | HTTP request | Description
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getDefaultApi();
 
@@ -42,7 +41,79 @@ void (empty response body)
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **statusMonitorControllerGetData**
+> statusMonitorControllerGetData()
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+
+try {
+    api.statusMonitorControllerGetData();
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->statusMonitorControllerGetData: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **statusMonitorControllerRoot**
+> statusMonitorControllerRoot()
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+
+try {
+    api.statusMonitorControllerRoot();
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->statusMonitorControllerRoot: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

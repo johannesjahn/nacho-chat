@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:openapi/openapi.dart';
@@ -25,8 +26,9 @@ class ChatService {
     filteredConversations.value = conversations;
   }
 
-  Future<void> createConversation({required num partnerId}) async {
-    final dto = CreateConversationRequestDTOBuilder()..partnerId = partnerId;
+  Future<void> createConversation({required List<num> partnerIds}) async {
+    final dto = CreateConversationRequestDTOBuilder()
+      ..partnerIds = ListBuilder(partnerIds.map((e) => e.toString()));
     await appService.api.getChatApi().chatControllerCreateConversation(
         createConversationRequestDTO: dto.build());
 

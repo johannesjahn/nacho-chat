@@ -97,4 +97,9 @@ class AppService {
     ChatService.instance.messagesNotifier.value = [];
     socket?.disconnect();
   }
+
+  Future<VersionDTO> getBackendVersion() async {
+    final response = await api.getDefaultApi().appControllerGetVersion();
+    return response.data!;
+  }
 }

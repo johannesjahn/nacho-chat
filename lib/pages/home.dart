@@ -36,14 +36,31 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       // version number
-      bottomSheet: FutureBuilder(
-          future: PackageInfo.fromPlatform(),
-          builder: (ctx, snapshot) {
-            if (snapshot.hasData)
-              return Text(
-                  "${snapshot.data!.version}+${snapshot.data!.buildNumber}");
-            return const Text("Nacho Chat");
-          }),
+      bottomSheet: Container(
+        color: Theme.of(context).primaryColor,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FutureBuilder(
+                future: PackageInfo.fromPlatform(),
+                builder: (ctx, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(
+                        "Web: ${snapshot.data!.version}+${snapshot.data!.buildNumber}");
+                  }
+                  return const SizedBox();
+                }),
+            FutureBuilder(
+                future: AppService.instance.getBackendVersion(),
+                builder: (ctx, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text("Backend: ${snapshot.data!.version}");
+                  }
+                  return const SizedBox();
+                })
+          ],
+        ),
+      ),
       appBar: AppBar(
         title:
             // ignore: prefer_interpolation_to_compose_strings

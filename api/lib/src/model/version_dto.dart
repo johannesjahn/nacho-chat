@@ -3,55 +3,54 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'create_conversation_request_dto.g.dart';
+part 'version_dto.g.dart';
 
-/// CreateConversationRequestDTO
+/// VersionDTO
 ///
 /// Properties:
-/// * [partnerIds] 
+/// * [version] 
 @BuiltValue()
-abstract class CreateConversationRequestDTO implements Built<CreateConversationRequestDTO, CreateConversationRequestDTOBuilder> {
-  @BuiltValueField(wireName: r'partnerIds')
-  BuiltList<num> get partnerIds;
+abstract class VersionDTO implements Built<VersionDTO, VersionDTOBuilder> {
+  @BuiltValueField(wireName: r'version')
+  String get version;
 
-  CreateConversationRequestDTO._();
+  VersionDTO._();
 
-  factory CreateConversationRequestDTO([void updates(CreateConversationRequestDTOBuilder b)]) = _$CreateConversationRequestDTO;
+  factory VersionDTO([void updates(VersionDTOBuilder b)]) = _$VersionDTO;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CreateConversationRequestDTOBuilder b) => b;
+  static void _defaults(VersionDTOBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<CreateConversationRequestDTO> get serializer => _$CreateConversationRequestDTOSerializer();
+  static Serializer<VersionDTO> get serializer => _$VersionDTOSerializer();
 }
 
-class _$CreateConversationRequestDTOSerializer implements PrimitiveSerializer<CreateConversationRequestDTO> {
+class _$VersionDTOSerializer implements PrimitiveSerializer<VersionDTO> {
   @override
-  final Iterable<Type> types = const [CreateConversationRequestDTO, _$CreateConversationRequestDTO];
+  final Iterable<Type> types = const [VersionDTO, _$VersionDTO];
 
   @override
-  final String wireName = r'CreateConversationRequestDTO';
+  final String wireName = r'VersionDTO';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    CreateConversationRequestDTO object, {
+    VersionDTO object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'partnerIds';
+    yield r'version';
     yield serializers.serialize(
-      object.partnerIds,
-      specifiedType: const FullType(BuiltList, [FullType(num)]),
+      object.version,
+      specifiedType: const FullType(String),
     );
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    CreateConversationRequestDTO object, {
+    VersionDTO object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -62,19 +61,19 @@ class _$CreateConversationRequestDTOSerializer implements PrimitiveSerializer<Cr
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required CreateConversationRequestDTOBuilder result,
+    required VersionDTOBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'partnerIds':
+        case r'version':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(num)]),
-          ) as BuiltList<num>;
-          result.partnerIds.replace(valueDes);
+            specifiedType: const FullType(String),
+          ) as String;
+          result.version = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -85,12 +84,12 @@ class _$CreateConversationRequestDTOSerializer implements PrimitiveSerializer<Cr
   }
 
   @override
-  CreateConversationRequestDTO deserialize(
+  VersionDTO deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = CreateConversationRequestDTOBuilder();
+    final result = VersionDTOBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

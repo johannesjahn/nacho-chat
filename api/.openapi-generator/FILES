@@ -28,6 +28,7 @@ doc/UpdatePostDTO.md
 doc/UpdateReplyDTO.md
 doc/UserApi.md
 doc/UserResponseDTO.md
+doc/VersionDTO.md
 lib/openapi.dart
 lib/src/api.dart
 lib/src/api/auth_api.dart
@@ -65,5 +66,7 @@ lib/src/model/update_comment_dto.dart
 lib/src/model/update_post_dto.dart
 lib/src/model/update_reply_dto.dart
 lib/src/model/user_response_dto.dart
+lib/src/model/version_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/version_dto_test.dart

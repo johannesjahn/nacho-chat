@@ -36,6 +36,7 @@ import 'package:openapi/src/model/update_comment_dto.dart';
 import 'package:openapi/src/model/update_post_dto.dart';
 import 'package:openapi/src/model/update_reply_dto.dart';
 import 'package:openapi/src/model/user_response_dto.dart';
+import 'package:openapi/src/model/version_dto.dart';
 
 part 'serializers.g.dart';
 
@@ -62,6 +63,7 @@ part 'serializers.g.dart';
   UpdatePostDTO,
   UpdateReplyDTO,
   UserResponseDTO,
+  VersionDTO,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(

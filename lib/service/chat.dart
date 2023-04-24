@@ -47,7 +47,10 @@ class ChatService {
         .getChatApi()
         .chatControllerSendMessage(createMessageDTO: dto.build());
 
-    await getMessages(conversationId: conversationId);
+    await Future.wait([
+      getMessages(conversationId: conversationId),
+      getConversations(),
+    ]);
   }
 
   Future<void> getMessages({required int conversationId}) async {

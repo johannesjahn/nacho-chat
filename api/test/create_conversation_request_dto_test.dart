@@ -7,8 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateConversationRequestDTO, () {
-    // num partnerId
-    test('to test the property `partnerId`', () async {
+    // BuiltList<num> partnerIds
+    test('to test the property `partnerIds`', () async {
       // TODO
     });
 

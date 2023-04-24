@@ -17,5 +17,10 @@ void main() {
       // TODO
     });
 
+    // String contentType
+    test('to test the property `contentType`', () async {
+      // TODO
+    });
+
   });
 }

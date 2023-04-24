@@ -7,13 +7,23 @@ void main() {
   final instance = Openapi().getDefaultApi();
 
   group(DefaultApi, () {
-    //Future<UserResponseDTO> appControllerGetAnyUser() async
-    test('test appControllerGetAnyUser', () async {
+    //Future appControllerGetDebug() async
+    test('test appControllerGetDebug', () async {
       // TODO
     });
 
-    //Future appControllerGetHello() async
-    test('test appControllerGetHello', () async {
+    //Future<VersionDTO> appControllerGetVersion() async
+    test('test appControllerGetVersion', () async {
+      // TODO
+    });
+
+    //Future statusMonitorControllerGetData() async
+    test('test statusMonitorControllerGetData', () async {
+      // TODO
+    });
+
+    //Future statusMonitorControllerRoot() async
+    test('test statusMonitorControllerRoot', () async {
       // TODO
     });
 

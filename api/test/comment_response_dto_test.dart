@@ -32,7 +32,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<String> replies
+    // BuiltList<ReplyResponseDTO> replies
     test('to test the property `replies`', () async {
       // TODO
     });

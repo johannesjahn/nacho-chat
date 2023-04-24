@@ -37,7 +37,7 @@ void main() {
       // TODO
     });
 
-    //Future<BuiltList<CommentResponseDTO>> postControllerGetComments(GetCommentsDTO getCommentsDTO) async
+    //Future<BuiltList<CommentResponseDTO>> postControllerGetComments(num postId) async
     test('test postControllerGetComments', () async {
       // TODO
     });
@@ -47,7 +47,7 @@ void main() {
       // TODO
     });
 
-    //Future<BuiltList<ReplyResponseDTO>> postControllerGetReplies(GetRepliesDTO getRepliesDTO) async
+    //Future<BuiltList<ReplyResponseDTO>> postControllerGetReplies(num commentId) async
     test('test postControllerGetReplies', () async {
       // TODO
     });

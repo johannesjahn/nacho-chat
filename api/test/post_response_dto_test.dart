@@ -27,12 +27,17 @@ void main() {
       // TODO
     });
 
+    // String contentType
+    test('to test the property `contentType`', () async {
+      // TODO
+    });
+
     // UserResponseDTO author
     test('to test the property `author`', () async {
       // TODO
     });
 
-    // BuiltList<String> comments
+    // BuiltList<CommentResponseDTO> comments
     test('to test the property `comments`', () async {
       // TODO
     });

@@ -849,6 +849,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  version_bmp:
+    dependency: "direct dev"
+    description:
+      name: version_bmp
+      sha256: "5c905a7ccacd280803a1b5776f0c506f00458ca75e28721c9692ea1045dda9f4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   watcher:
     dependency: transitive
     description:
@@ -890,5 +898,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.4 <3.0.0"
+  dart: ">=2.19.6 <3.0.0"
   flutter: ">=3.3.0"

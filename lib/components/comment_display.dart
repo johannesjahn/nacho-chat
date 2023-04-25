@@ -85,7 +85,7 @@ class _CommentDisplayState extends State<CommentDisplay> {
                 children: [
                   NachoAvatar(user: widget.comment.author!, radius: 20),
                   Text(
-                      "${widget.comment.author?.username ?? ""}, ${formatPostedDate(widget.comment.createdAt)}",
+                      "${widget.comment.author?.username ?? ""}, ${formatPostedDate(widget.comment.createdAt, context)}",
                       style: Theme.of(context).textTheme.labelSmall),
                 ],
               ),

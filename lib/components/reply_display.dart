@@ -88,7 +88,7 @@ class _ReplyDisplayState extends State<ReplyDisplay> {
                 children: [
                   NachoAvatar(user: widget.reply.author!, radius: 20),
                   Text(
-                      "${widget.reply.author?.username ?? ""}, ${formatPostedDate(widget.reply.createdAt)}",
+                      "${widget.reply.author?.username ?? ""}, ${formatPostedDate(widget.reply.createdAt, context)}",
                       style: Theme.of(context).textTheme.labelSmall),
                 ],
               ),

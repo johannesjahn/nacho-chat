@@ -54,7 +54,7 @@ class PostView extends StatelessWidget {
             children: [
               NachoAvatar(user: post.author, radius: 20),
               Text(
-                  "${post.author?.username ?? ""}, ${formatPostedDate(post.createdAt)}",
+                  "${post.author?.username ?? ""}, ${formatPostedDate(post.createdAt, context)}",
                   style: Theme.of(context).textTheme.labelSmall),
             ],
           ),

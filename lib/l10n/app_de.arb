@@ -19,5 +19,34 @@
     "invalid_url": "Ungültige URL",
     "add_user": "Benutzer hinzufügen",
     "create_conversation": "Unterhaltung erstellen",
-    "media_message": "Medien-Nachricht"
+    "media_message": "Medien-Nachricht",
+    "one_day_ago": "vor 1 Tag",
+    "days_ago": "vor {days} Tagen",
+    "@days_ago": {
+        "placeholder": {
+            "days": {
+                "type": "int"
+            }
+        }
+    },
+    "one_hour_ago": "vor 1 Stunde",
+    "hours_ago": "vor {hours} Stunden",
+    "@hours_ago": {
+        "placeholder": {
+            "hours": {
+                "type": "int"
+            }
+        }
+    },
+    "one_minute_ago": "vor 1 Minute",
+    "minutes_ago": "vor {minutes} Minuten",
+    "@minutes_ago": {
+        "placeholder": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "minutes_ago": "vor Minuten",
+    "just_now": "gerade eben"
 }

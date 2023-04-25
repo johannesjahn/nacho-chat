@@ -18,5 +18,6 @@
     "cannot_send_empty_message": "Cannot send empty message",
     "invalid_url": "Invalid URL",
     "add_user": "Add user",
-    "create_conversation": "Create conversation"
+    "create_conversation": "Create conversation",
+    "media_message": "Media message"
 }

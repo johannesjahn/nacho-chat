@@ -19,6 +19,7 @@ part 'conversation_response_dto.g.dart';
 /// * [updatedAt] 
 /// * [participants] 
 /// * [messages] 
+/// * [lastMessage] 
 @BuiltValue()
 abstract class ConversationResponseDTO implements Built<ConversationResponseDTO, ConversationResponseDTOBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -35,6 +36,9 @@ abstract class ConversationResponseDTO implements Built<ConversationResponseDTO,
 
   @BuiltValueField(wireName: r'messages')
   BuiltList<MessageResponseDTO> get messages;
+
+  @BuiltValueField(wireName: r'lastMessage')
+  MessageResponseDTO? get lastMessage;
 
   ConversationResponseDTO._();
 
@@ -83,6 +87,11 @@ class _$ConversationResponseDTOSerializer implements PrimitiveSerializer<Convers
     yield serializers.serialize(
       object.messages,
       specifiedType: const FullType(BuiltList, [FullType(MessageResponseDTO)]),
+    );
+    yield r'lastMessage';
+    yield object.lastMessage == null ? null : serializers.serialize(
+      object.lastMessage,
+      specifiedType: const FullType.nullable(MessageResponseDTO),
     );
   }
 
@@ -141,6 +150,14 @@ class _$ConversationResponseDTOSerializer implements PrimitiveSerializer<Convers
             specifiedType: const FullType(BuiltList, [FullType(MessageResponseDTO)]),
           ) as BuiltList<MessageResponseDTO>;
           result.messages.replace(valueDes);
+          break;
+        case r'lastMessage':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(MessageResponseDTO),
+          ) as MessageResponseDTO?;
+          if (valueDes == null) continue;
+          result.lastMessage.replace(valueDes);
           break;
         default:
           unhandled.add(key);

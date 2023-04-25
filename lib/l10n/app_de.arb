@@ -18,5 +18,6 @@
     "cannot_send_empty_message": "Du kannst keine leere Nachricht versenden.",
     "invalid_url": "Ungültige URL",
     "add_user": "Benutzer hinzufügen",
-    "create_conversation": "Unterhaltung erstellen"
+    "create_conversation": "Unterhaltung erstellen",
+    "media_message": "Medien-Nachricht"
 }

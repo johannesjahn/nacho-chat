@@ -31,3 +31,17 @@ String formatPostedDate(DateTime date) {
     return "just now";
   }
 }
+
+String shortFormatPostedDate(DateTime date) {
+  final now = DateTime.now();
+  final diff = now.difference(date);
+  if (diff.inDays > 0) {
+    return "${diff.inDays}d";
+  } else if (diff.inHours > 0) {
+    return "${diff.inHours}h";
+  } else if (diff.inMinutes > 0) {
+    return "${diff.inMinutes}m";
+  } else {
+    return "now";
+  }
+}

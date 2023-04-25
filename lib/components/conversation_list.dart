@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/pages/chat.dart';
 import 'package:openapi/openapi.dart';
 
@@ -37,13 +38,69 @@ class ConversationList extends StatelessWidget {
                   final chatTitle =
                       nonSelfParticipants.map((u) => u.username).join(", ");
 
+                  final lastMessage = value[index].lastMessage;
+                  String? messagePreview;
+
+                  final l10n = AppLocalizations.of(context)!;
+
+                  if (lastMessage != null) {
+                    if (lastMessage.contentType == 'TEXT') {
+                      messagePreview =
+                          "${lastMessage.author.username}: ${lastMessage.content}";
+                    } else {
+                      messagePreview =
+                          "${lastMessage.author.username}: ${l10n.media_message}";
+                    }
+                  }
+
+                  final preferredWidth = AppService.instance.isTablet
+                      ? 200.0
+                      : MediaQuery.of(context).size.width - 100;
+
                   return Container(
                       padding: const EdgeInsets.all(16),
                       child: Row(
                         children: [
                           NachoAvatar(
                               user: nonSelfParticipants.first, radius: 15),
-                          Text(chatTitle),
+                          Container(
+                            margin: const EdgeInsets.only(left: 16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: preferredWidth,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(chatTitle),
+                                      if (lastMessage != null)
+                                        Text(
+                                          shortFormatPostedDate(
+                                              lastMessage.createdAt),
+                                          style: TextStyle(
+                                              color:
+                                                  Theme.of(context).hintColor),
+                                        )
+                                    ],
+                                  ),
+                                ),
+                                if (messagePreview != null)
+                                  Container(
+                                    constraints: BoxConstraints(
+                                        minWidth: 0, maxWidth: preferredWidth),
+                                    child: Text(
+                                      messagePreview,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
+                                  )
+                              ],
+                            ),
+                          ),
                         ],
                       ));
                 }),

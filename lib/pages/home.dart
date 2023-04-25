@@ -40,13 +40,16 @@ class _HomePageState extends State<HomePage> {
         color: Theme.of(context).primaryColor,
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FutureBuilder(
                 future: PackageInfo.fromPlatform(),
                 builder: (ctx, snapshot) {
                   if (snapshot.hasData) {
                     return Text(
-                        "Frontend: ${snapshot.data!.version}+${snapshot.data!.buildNumber}");
+                      "Frontend: ${snapshot.data!.version}+${snapshot.data!.buildNumber}",
+                      style: const TextStyle(fontSize: 10),
+                    );
                   }
                   return const SizedBox();
                 }),
@@ -54,7 +57,10 @@ class _HomePageState extends State<HomePage> {
                 future: AppService.instance.getBackendVersion(),
                 builder: (ctx, snapshot) {
                   if (snapshot.hasData) {
-                    return Text("Backend: ${snapshot.data!.version}");
+                    return Text(
+                      "Backend: ${snapshot.data!.version}",
+                      style: const TextStyle(fontSize: 10),
+                    );
                   }
                   return const SizedBox();
                 })

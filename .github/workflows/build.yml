@@ -38,9 +38,10 @@ jobs:
           flutter-version: "3.7.12"
           channel: "stable"
       - run: |
+          flutter pub get
+          flutter pub run version_bmp
           git config --global user.name 'Johannes Jahn'
           git config --global user.email 'johannes.jahn@outlook.com'
-          flutter pub run version_bmp
           git add .
           git commit -m "[RELEASE]"
           git push

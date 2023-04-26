@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nacho_chat/components/post_view.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:openapi/openapi.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../service/app.dart';
 
@@ -32,6 +33,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(),
@@ -99,8 +101,8 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                 });
                               },
                               maxLines: 1,
-                              decoration: const InputDecoration(
-                                  label: Text("Image URL")),
+                              decoration:
+                                  InputDecoration(label: Text(l10n.image_url)),
                             )
                           : TextFormField(
                               controller: textController,

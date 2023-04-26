@@ -17,6 +17,7 @@
     "chat": "Chat",
     "cannot_send_empty_message": "Cannot send empty message",
     "invalid_url": "Invalid URL",
+    "image_url": "image URL",
     "add_user": "Add user",
     "create_conversation": "Create conversation",
     "media_message": "Media message",

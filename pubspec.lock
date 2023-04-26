@@ -317,6 +317,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  git:
+    dependency: transitive
+    description:
+      name: git
+      sha256: "840c57646dd22c63b3305a8ef962215f0e9e9a9ba2876e6632083026b8c65f43"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   glob:
     dependency: transitive
     description:
@@ -853,10 +861,10 @@ packages:
     dependency: "direct dev"
     description:
       name: version_bmp
-      sha256: "70b262d07faaa1ecf3652da62ae93fd8b8a3064ee9ee3b839bde0d3c1eed44a4"
+      sha256: "71adac641308ceed011cb842dfc053332a7c6f44bff67884474b617c45e8d526"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.2.0"
   watcher:
     dependency: transitive
     description:

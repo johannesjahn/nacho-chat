@@ -39,12 +39,11 @@ jobs:
           channel: "stable"
       - run: |
           flutter pub get
-          flutter pub run version_bmp
           git config --global user.name 'Johannes Jahn'
           git config --global user.email 'johannes.jahn@outlook.com'
-          git add .
-          git commit -m "[RELEASE]"
+          flutter pub run version_bmp -g
           git push
+          git push --tags
 
   deploy:
     if: "startsWith(github.event.head_commit.message, '[RELEASE]')"

@@ -147,9 +147,9 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                               ),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     ElevatedButton(
-                      child: const Text("Create"),
+                      child: Text(l10n.create),
                       onPressed: () async {
                         if (textController.value.text.isEmpty) return;
                         if (isImage) {

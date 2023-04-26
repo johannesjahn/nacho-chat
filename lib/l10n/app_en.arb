@@ -15,6 +15,7 @@
     "show_more": "Show more",
     "show_less": "Show less",
     "chat": "Chat",
+    "create": "Create",
     "cannot_send_empty_message": "Cannot send empty message",
     "invalid_url": "Invalid URL",
     "image_url": "image URL",

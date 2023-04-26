@@ -124,7 +124,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                               maxLines: null,
                               maxLength: 500,
                               decoration:
-                                  const InputDecoration(label: Text("Content")),
+                                  InputDecoration(label: Text(l10n.content)),
                             ),
                     ),
                     preview != null

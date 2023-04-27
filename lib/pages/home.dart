@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
               padding: const EdgeInsets.all(12),
               onPressed: () {
-                Navigator.of(context).push(DefaultRoute(ProfilePage()));
+                Navigator.of(context).push(DefaultRoute(const ProfilePage()));
               },
               icon: const Icon(Icons.person)),
           IconButton(

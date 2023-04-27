@@ -9,6 +9,7 @@ import 'package:nacho_chat/service/chat.dart';
 import 'package:openapi/openapi.dart';
 
 import '../service/app.dart';
+import 'image_message_container.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({Key? key}) : super(key: key);
@@ -62,7 +63,7 @@ class _ChatViewState extends State<ChatView> {
                                         context: context,
                                         builder: (context) {
                                           return Dialog(
-                                            child: Container(
+                                            child: SizedBox(
                                               width: width,
                                               height: height,
                                               child: CachedNetworkImage(
@@ -77,23 +78,8 @@ class _ChatViewState extends State<ChatView> {
                                     return ConstrainedBox(
                                       constraints: BoxConstraints.loose(
                                           Size(width / 2.5, height / 3)),
-                                      child: Container(
-                                          padding: const EdgeInsets.all(16),
-                                          child: Builder(builder: (context) {
-                                            try {
-                                              if (Platform.isAndroid ||
-                                                  Platform.isIOS) {
-                                                return CachedNetworkImage(
-                                                    imageUrl: message.content);
-                                              } else {
-                                                return Image.network(
-                                                    message.content);
-                                              }
-                                            } catch (e) {
-                                              return Image.network(
-                                                  message.content);
-                                            }
-                                          })),
+                                      child: ImageMessageContainer(
+                                          message: message),
                                     );
                                   } else if (message.contentType == 'TEXT') {
                                     return ConstrainedBox(
@@ -104,7 +90,7 @@ class _ChatViewState extends State<ChatView> {
                                     );
                                   } else {
                                     return Container(
-                                        padding: const EdgeInsets.all(16),
+                                        padding: const EdgeInsets.all(8),
                                         child:
                                             const Text('Unknown content type'));
                                   }
@@ -123,7 +109,7 @@ class _ChatViewState extends State<ChatView> {
             ),
             Card(
               child: Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(8),
                 child: Row(children: [
                   Expanded(
                     child: TextFormField(

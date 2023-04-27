@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/service/app.dart';
 import 'package:openapi/openapi.dart';
 
 class TextMessageContainer extends StatefulWidget {
@@ -30,16 +31,35 @@ class _TextMessageContainerState extends State<TextMessageContainer> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final isAuthor = widget.message.author.username ==
+        AppService.instance.hive.get("username");
+    final theme = Theme.of(context);
     return Container(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            AnimatedSize(
-              duration: const Duration(milliseconds: 300),
-              child: Text(
-                widget.message.content,
-                maxLines: maxLines,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (!isAuthor)
+                  Text(widget.message.author.username,
+                      style: TextStyle(color: theme.hintColor, fontSize: 9)),
+                AnimatedSize(
+                  duration: const Duration(milliseconds: 300),
+                  child: Text(
+                    widget.message.content,
+                    maxLines: maxLines,
+                  ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Spacer(),
+                    Text(formatPostedDate(widget.message.createdAt, context),
+                        style: TextStyle(color: theme.hintColor, fontSize: 9))
+                  ],
+                )
+              ],
             ),
             if (hasOverflow)
               Container(

@@ -59,14 +59,8 @@ class ImageMessageContainer extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(top: 4),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Spacer(),
-                  Text(formatPostedDate(message.createdAt, context),
-                      style: TextStyle(color: theme.hintColor, fontSize: 9))
-                ],
-              ),
+              child: Text(formatPostedDate(message.createdAt, context),
+                  style: TextStyle(color: theme.hintColor, fontSize: 9)),
             )
           ],
         ));

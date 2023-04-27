@@ -51,14 +51,8 @@ class _TextMessageContainerState extends State<TextMessageContainer> {
                     maxLines: maxLines,
                   ),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Spacer(),
-                    Text(formatPostedDate(widget.message.createdAt, context),
-                        style: TextStyle(color: theme.hintColor, fontSize: 9))
-                  ],
-                )
+                Text(formatPostedDate(widget.message.createdAt, context),
+                    style: TextStyle(color: theme.hintColor, fontSize: 9))
               ],
             ),
             if (hasOverflow)

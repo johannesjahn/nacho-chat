@@ -54,7 +54,10 @@ class _ChatViewState extends State<ChatView> {
                                 : MainAxisAlignment.start,
                             children: [
                               !isAuthor
-                                  ? NachoAvatar(user: message.author)
+                                  ? NachoAvatar(
+                                      user: message.author,
+                                      radius: 25,
+                                    )
                                   : const SizedBox(),
                               GestureDetector(
                                 onTap: () {
@@ -99,7 +102,7 @@ class _ChatViewState extends State<ChatView> {
                               isAuthor
                                   ? NachoAvatar(
                                       user: message.author,
-                                      radius: 20,
+                                      radius: 25,
                                     )
                                   : const SizedBox()
                             ],

@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context, value, widget) => PostList(posts: value),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.of(context).push(DefaultRoute(const CreatePostWidget()));
         },

@@ -2,10 +2,6 @@ import 'dart:io' show Platform;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:nacho_chat/components/avatar.dart';
-import 'package:nacho_chat/components/text_message_container.dart';
-import 'package:nacho_chat/service/chat.dart';
 import 'package:openapi/openapi.dart';
 
 import '../service/app.dart';

@@ -46,8 +46,10 @@ class _ChatViewState extends State<ChatView> {
                         reverse: true,
                         itemBuilder: (context, index) {
                           final message = value[index];
-                          final isAuthor = message.author.username ==
-                              AppService.instance.hive.get("username");
+                          final isAuthor = message.author.id ==
+                              num.parse(
+                                  AppService.instance.hive.get("user_id") ??
+                                      "-1");
                           return Row(
                             mainAxisAlignment: isAuthor
                                 ? MainAxisAlignment.end

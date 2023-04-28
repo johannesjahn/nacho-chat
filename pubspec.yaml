@@ -3,7 +3,7 @@ description: A frontend for the chat-api
 
 publish_to: "none"
 
-version: 1.0.64+65
+version: 1.0.65+66
 
 environment:
   sdk: ">=2.19.4 <3.0.0"

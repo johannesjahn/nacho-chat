@@ -33,25 +33,20 @@ class ImageMessageContainer extends StatelessWidget {
                 child: Text(message.author.username,
                     style: TextStyle(color: theme.hintColor, fontSize: 9)),
               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ConstrainedBox(
-                  constraints: BoxConstraints.loose(
-                      Size(width / 2.5, (height / 3) - 66)),
-                  child: Builder(builder: (context) {
-                    try {
-                      if (Platform.isAndroid || Platform.isIOS) {
-                        return CachedNetworkImage(imageUrl: message.content);
-                      } else {
-                        return Image.network(message.content);
-                      }
-                    } catch (e) {
-                      return Image.network(message.content);
-                    }
-                  }),
-                ),
-              ],
+            ConstrainedBox(
+              constraints:
+                  BoxConstraints.loose(Size(width / 2.5, (height / 3) - 66)),
+              child: Builder(builder: (context) {
+                try {
+                  if (Platform.isAndroid || Platform.isIOS) {
+                    return CachedNetworkImage(imageUrl: message.content);
+                  } else {
+                    return Image.network(message.content);
+                  }
+                } catch (e) {
+                  return Image.network(message.content);
+                }
+              }),
             ),
             Container(
               margin: const EdgeInsets.only(top: 4),

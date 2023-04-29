@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   if (snapshot.hasData) {
                     return Text(
                       "Frontend: ${snapshot.data!.version}+${snapshot.data!.buildNumber}",
-                      style: const TextStyle(fontSize: 10),
+                      style: const TextStyle(fontSize: 9),
                     );
                   }
                   return const SizedBox();
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                   if (snapshot.hasData) {
                     return Text(
                       "Backend: ${snapshot.data!.version}",
-                      style: const TextStyle(fontSize: 10),
+                      style: const TextStyle(fontSize: 9),
                     );
                   }
                   return const SizedBox();

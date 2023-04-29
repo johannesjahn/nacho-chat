@@ -58,8 +58,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           radius: width / 6,
                           onClick: () {},
                         ),
-                        if (AppService.instance.hive.get("username") ==
-                            value.username)
+                        if (num.parse(AppService.instance.hive.get("user_id") ??
+                                "-1") ==
+                            value.id)
                           MouseRegion(
                             onEnter: (event) {
                               setState(() {

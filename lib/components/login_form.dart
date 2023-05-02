@@ -92,7 +92,7 @@ class _LoginFormState extends State<LoginForm> {
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        return l10n.please_enter_your_password;
                       }
                       return null;
                     },

@@ -4,6 +4,7 @@
     "username":"Benutzer",
     "password":"Passwort",
     "please_enter_your_username":"Bitte gib deinen Benutzernamen ein",
+    "please_enter_your_password":"Bitte gib dein Passwort ein",
     "error_uploading_avatar": "Fehler beim Hochladen des Avatars",
     "profile": "Profil",
     "comments":"Kommentare",

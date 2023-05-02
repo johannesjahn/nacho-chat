@@ -4,6 +4,7 @@
     "username":"Username",
     "password":"Password",
     "please_enter_your_username":"Please enter your username",
+    "please_enter_your_password":"Please enter your password",
     "error_uploading_avatar":"Error uploading avatar",
     "profile":"Profile",
     "comments":"Comments",

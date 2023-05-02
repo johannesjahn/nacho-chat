@@ -34,6 +34,7 @@ class AppService {
   IO.Socket? socket;
   initWebsocket() async {
     try {
+      // authenticate websocket with access token from API
       final token = hive.get("access_token")!;
       if (Platform.isAndroid ||
           Platform.isIOS ||

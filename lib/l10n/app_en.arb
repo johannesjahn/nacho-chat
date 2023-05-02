@@ -3,6 +3,7 @@
     "hello":"Hello",
     "username":"Username",
     "password":"Password",
+    "please_enter_your_username":"Please enter your username",
     "error_uploading_avatar":"Error uploading avatar",
     "profile":"Profile",
     "comments":"Comments",

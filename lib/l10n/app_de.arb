@@ -3,6 +3,7 @@
     "hello":"Hallo",
     "username":"Benutzer",
     "password":"Passwort",
+    "please_enter_your_username":"Bitte gib deinen Benutzernamen ein",
     "error_uploading_avatar": "Fehler beim Hochladen des Avatars",
     "profile": "Profil",
     "comments":"Kommentare",

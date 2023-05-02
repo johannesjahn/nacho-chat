@@ -1,6 +1,8 @@
 {
     "helloWorld": "Hello World!",
     "hello":"Hello",
+    "username":"Username",
+    "password":"Password",
     "error_uploading_avatar":"Error uploading avatar",
     "profile":"Profile",
     "comments":"Comments",

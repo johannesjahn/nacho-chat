@@ -13,7 +13,7 @@ import 'package:nacho_chat/pages/login.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MediaQuery(
+    await tester.pumpWidget(const MediaQuery(
         data: MediaQueryData(), child: MaterialApp(home: LoginPage())));
 
     // Verify that our counter starts at 0.

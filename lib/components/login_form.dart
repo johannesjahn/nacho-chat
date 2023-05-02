@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nacho_chat/pages/home.dart';
 import 'package:nacho_chat/service/auth.dart';
 import 'package:nacho_chat/service/utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm({Key? key}) : super(key: key);
@@ -36,6 +37,7 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
+    final l10n = AppLocalizations.of(context)!;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -68,8 +70,8 @@ class _LoginFormState extends State<LoginForm> {
                 children: [
                   TextFormField(
                     controller: usernameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Username',
+                    decoration: InputDecoration(
+                      labelText: l10n.username,
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -79,8 +81,8 @@ class _LoginFormState extends State<LoginForm> {
                     },
                   ),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Password',
+                    decoration: InputDecoration(
+                      labelText: l10n.password,
                     ),
                     keyboardType: TextInputType.visiblePassword,
                     controller: passwordController,

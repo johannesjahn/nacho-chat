@@ -7,16 +7,30 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:nacho_chat/pages/login.dart';
+
+Widget makeTestableWidget({required Widget child}) {
+  return MediaQuery(
+    data: const MediaQueryData(),
+    child: MaterialApp(
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+      ],
+      home: child,
+    ),
+  );
+}
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MediaQuery(
-        data: MediaQueryData(), child: MaterialApp(home: LoginPage())));
+    await tester.pumpWidget(makeTestableWidget(child: LoginPage()));
+    await tester.pumpAndSettle();
 
     // Verify that our counter starts at 0.
     expect(find.text('Login'), findsOneWidget);
+    expect(find.text('Username'), findsOneWidget);
   });
 }

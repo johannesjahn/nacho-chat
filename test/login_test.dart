@@ -33,5 +33,13 @@ void main() {
     expect(find.text('Login'), findsOneWidget);
     expect(find.text('Username'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);
+
+    final loginButton = find
+        .widgetWithText(MaterialButton, 'Login')
+        .evaluate()
+        .first
+        .widget as MaterialButton;
+
+    loginButton.onPressed!();
   });
 }

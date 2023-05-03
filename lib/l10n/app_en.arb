@@ -1,6 +1,8 @@
 {
     "helloWorld": "Hello World!",
     "hello":"Hello",
+    "register":"Register",
+    "login":"Login",
     "username":"Username",
     "password":"Password",
     "please_enter_your_username":"Please enter your username",

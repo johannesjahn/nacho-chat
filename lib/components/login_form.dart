@@ -102,7 +102,7 @@ class _LoginFormState extends State<LoginForm> {
                     children: [
                       MaterialButton(
                         child: Text(
-                          "Register",
+                          l10n.register,
                           style: theme.textTheme.labelLarge,
                         ),
                         onPressed: () async {
@@ -119,7 +119,7 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       MaterialButton(
                         child: Text(
-                          "Login",
+                          l10n.login,
                           style: theme.textTheme.labelLarge,
                         ),
                         onPressed: () {

@@ -5,7 +5,7 @@ import 'package:nacho_chat/service/utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginForm extends StatefulWidget {
-  LoginForm({Key? key}) : super(key: key);
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   State<LoginForm> createState() => _LoginFormState();

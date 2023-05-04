@@ -9,9 +9,9 @@ import 'package:nacho_chat/service/chat.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:nacho_chat/service/user.dart';
 import 'package:openapi/openapi.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 import '../components/create_post.dart';
+import '../components/version_display.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,37 +36,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       // version number
-      bottomSheet: Container(
-        color: Theme.of(context).primaryColor,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FutureBuilder(
-                future: PackageInfo.fromPlatform(),
-                builder: (ctx, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(
-                      "Frontend: ${snapshot.data!.version}+${snapshot.data!.buildNumber}",
-                      style: const TextStyle(fontSize: 10),
-                    );
-                  }
-                  return const SizedBox();
-                }),
-            FutureBuilder(
-                future: AppService.instance.getBackendVersion(),
-                builder: (ctx, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(
-                      "Backend: ${snapshot.data!.version}",
-                      style: const TextStyle(fontSize: 10),
-                    );
-                  }
-                  return const SizedBox();
-                })
-          ],
-        ),
-      ),
+      bottomSheet: const VersionDisplay(),
       appBar: AppBar(
         title:
             // ignore: prefer_interpolation_to_compose_strings

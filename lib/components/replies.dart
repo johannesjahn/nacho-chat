@@ -76,7 +76,7 @@ class _RepliesState extends State<Replies> {
                 children: [
                   TextField(
                     controller: textController,
-                    maxLines: 3,
+                    maxLines: 2,
                     minLines: 1,
                     maxLength: 100,
                     decoration: InputDecoration(label: Text(l10n.type_a_reply)),

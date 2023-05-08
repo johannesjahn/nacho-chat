@@ -89,6 +89,9 @@ class AppService {
     socket!.onConnectTimeout((data) => logger.e(data));
   }
 
+/**
+ * Logs out the user by deleting all data from the local storage and disconnecting from the websocket
+ */
   logout() async {
     await hive.deleteAll(hive.keys.toList());
     UserService.instance.me.value = null;

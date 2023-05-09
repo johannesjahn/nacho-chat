@@ -21,7 +21,6 @@ class CommentsList extends StatefulWidget {
 class _CommentsListState extends State<CommentsList> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
     final l10n = AppLocalizations.of(context)!;
 

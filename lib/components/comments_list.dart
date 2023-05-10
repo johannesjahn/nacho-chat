@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:openapi/openapi.dart';
 
 import 'comment_display.dart';
@@ -22,7 +21,6 @@ class _CommentsListState extends State<CommentsList> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final l10n = AppLocalizations.of(context)!;
 
     return ConstrainedBox(
       constraints: const BoxConstraints(minWidth: 300, maxWidth: 500),

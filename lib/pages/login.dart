@@ -12,8 +12,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomSheet: const VersionDisplay(),
+    return const Scaffold(
+      bottomSheet: VersionDisplay(),
       body: Center(
         child: LoginForm(),
       ),

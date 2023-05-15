@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(10),
               onPressed: () async {
                 await AppService.instance.logout();
-                Navigator.push(context, DefaultRoute(LoginPage()));
+                Navigator.push(context, DefaultRoute(const LoginPage()));
               },
               icon: const Icon(Icons.logout))
         ],

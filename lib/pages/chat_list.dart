@@ -39,8 +39,10 @@ class _ChatListPageState extends State<ChatListPage> {
                   onPressed: () async {
                     // create a snackbar
                     await UserService.instance.uploadAvatar();
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Bugs Bugs Bugs everywhere 🐛🐛🐛')));
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Bugs Bugs Bugs everywhere 🐛🐛🐛')));
+                    }
                   },
                 ),
           IconButton(
@@ -55,7 +57,9 @@ class _ChatListPageState extends State<ChatListPage> {
               padding: const EdgeInsets.all(10),
               onPressed: () async {
                 await AppService.instance.logout();
-                Navigator.push(context, DefaultRoute(LoginPage()));
+                if (context.mounted) {
+                  Navigator.push(context, DefaultRoute(const LoginPage()));
+                }
               },
               icon: const Icon(Icons.logout))
         ],

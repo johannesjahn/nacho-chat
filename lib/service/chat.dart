@@ -53,13 +53,21 @@ class ChatService {
 
   Future<void> getMessages({required int conversationId}) async {
     try {
+      List<MessageResponseDTO> messages = [];
       final dto = GetMessagesDTOBuilder()..conversationId = conversationId;
+      if (this.currentChat.value?.id == conversationId &&
+          this.messagesNotifier.value.isNotEmpty) {
+        messages = this.messagesNotifier.value;
+        dto.lastMessage = messages.first.id;
+      }
+
       final response = await appService.api
           .getChatApi()
           .chatControllerGetMessages(getMessagesDTO: dto.build());
 
-      var messages = response.data?.messages.reversed.toList() ?? [];
-      final List<MessageResponseDTO> newMessages = [];
+      var newMessages = response.data?.messages.reversed.toList() ?? [];
+
+      print(newMessages.length);
 
       if (messages.isEmpty) {
         messages = newMessages.reversed.toList();

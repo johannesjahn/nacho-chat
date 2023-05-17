@@ -6,6 +6,7 @@ import 'package:openapi/openapi.dart';
 class ChatService {
   static final instance = ChatService._();
   final appService = AppService.instance;
+  final scrollController = ScrollController();
   ChatService._();
 
   var conversations = <ConversationResponseDTO>[];
@@ -55,9 +56,9 @@ class ChatService {
     try {
       List<MessageResponseDTO> messages = [];
       final dto = GetMessagesDTOBuilder()..conversationId = conversationId;
-      if (this.currentChat.value?.id == conversationId &&
-          this.messagesNotifier.value.isNotEmpty) {
-        messages = this.messagesNotifier.value;
+      if (currentChat.value?.id == conversationId &&
+          messagesNotifier.value.isNotEmpty) {
+        messages.addAll(messagesNotifier.value);
         dto.lastMessage = messages.first.id;
       }
 
@@ -65,12 +66,10 @@ class ChatService {
           .getChatApi()
           .chatControllerGetMessages(getMessagesDTO: dto.build());
 
-      var newMessages = response.data?.messages.reversed.toList() ?? [];
-
-      print(newMessages.length);
+      var newMessages = response.data?.messages.toList() ?? [];
 
       if (messages.isEmpty) {
-        messages = newMessages.reversed.toList();
+        messages = newMessages.toList();
       } else {
         if (newMessages.isNotEmpty) {
           for (var message in newMessages) {
@@ -78,8 +77,8 @@ class ChatService {
               messages.add(message);
             }
           }
-          messages.sort((a, b) => (b.id - a.id).toInt());
         }
+        messages.sort((a, b) => (b.id - a.id).toInt());
       }
 
       messagesNotifier.value = messages;

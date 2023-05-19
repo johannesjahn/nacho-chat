@@ -13,9 +13,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      bottomSheet: VersionDisplay(),
-      body: Center(
-        child: LoginForm(),
+      body: Stack(
+        children: [
+          Center(
+            child: LoginForm(),
+          ),
+          Positioned(bottom: 5, left: 5, child: VersionDisplay())
+        ],
       ),
     );
   }

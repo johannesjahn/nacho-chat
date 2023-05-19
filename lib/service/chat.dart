@@ -78,8 +78,8 @@ class ChatService {
             }
           }
         }
-        messages.sort((a, b) => (b.id - a.id).toInt());
       }
+      messages.sort((a, b) => (b.id - a.id).toInt());
 
       messagesNotifier.value = messages;
     } finally {}

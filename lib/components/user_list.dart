@@ -82,7 +82,9 @@ class _UserListState extends State<UserList> {
                           }
                           await ChatService.instance
                               .createConversation(partnerIds: selectedUserIds);
-                          Navigator.pop(context);
+                          if (context.mounted) {
+                            Navigator.pop(context);
+                          }
                         },
                         child: Text(
                           l10n.create_conversation,

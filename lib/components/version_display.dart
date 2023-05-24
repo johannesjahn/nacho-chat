@@ -9,36 +9,33 @@ class VersionDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).primaryColor,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FutureBuilder(
-              future: PackageInfo.fromPlatform(),
-              builder: (ctx, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(
-                    "Frontend: ${snapshot.data!.version}+${snapshot.data!.buildNumber}",
-                    style: const TextStyle(fontSize: 10),
-                  );
-                }
-                return const SizedBox();
-              }),
-          FutureBuilder(
-              future: AppService.instance.getBackendVersion(),
-              builder: (ctx, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(
-                    "Backend: ${snapshot.data!.version}",
-                    style: const TextStyle(fontSize: 10),
-                  );
-                }
-                return const SizedBox();
-              })
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FutureBuilder(
+            future: PackageInfo.fromPlatform(),
+            builder: (ctx, snapshot) {
+              if (snapshot.hasData) {
+                return Text(
+                  "Frontend: ${snapshot.data!.version}+${snapshot.data!.buildNumber}",
+                  style: const TextStyle(fontSize: 10),
+                );
+              }
+              return const SizedBox();
+            }),
+        FutureBuilder(
+            future: AppService.instance.getBackendVersion(),
+            builder: (ctx, snapshot) {
+              if (snapshot.hasData) {
+                return Text(
+                  "Backend: ${snapshot.data!.version}",
+                  style: const TextStyle(fontSize: 10),
+                );
+              }
+              return const SizedBox();
+            })
+      ],
     );
   }
 }

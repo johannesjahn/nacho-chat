@@ -170,7 +170,9 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                               contentType: "TEXT");
                         }
                         PostService.instance.getPosts();
-                        Navigator.pop(context);
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                        }
                       },
                     ),
                   ],

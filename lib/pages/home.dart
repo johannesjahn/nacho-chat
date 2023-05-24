@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       // version number
-      bottomSheet: const VersionDisplay(),
       appBar: AppBar(
         title:
             // ignore: prefer_interpolation_to_compose_strings
@@ -60,14 +59,21 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(10),
               onPressed: () async {
                 await AppService.instance.logout();
-                Navigator.push(context, DefaultRoute(LoginPage()));
+                if (context.mounted) {
+                  Navigator.push(context, DefaultRoute(const LoginPage()));
+                }
               },
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: ValueListenableBuilder<List<PostResponseDTO>>(
-        valueListenable: PostService.instance.posts,
-        builder: (context, value, widget) => PostList(posts: value),
+      body: Stack(
+        children: [
+          ValueListenableBuilder<List<PostResponseDTO>>(
+            valueListenable: PostService.instance.posts,
+            builder: (context, value, widget) => PostList(posts: value),
+          ),
+          const Positioned(bottom: 5, left: 5, child: VersionDisplay())
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),

@@ -21,6 +21,10 @@ class ConversationList extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(16),
                 onTap: () {
+                  if (ChatService.instance.currentChat.value?.id !=
+                      value[index].id) {
+                    ChatService.instance.messagesNotifier.value = [];
+                  }
                   ChatService.instance.currentChat.value = value[index];
                   ChatService.instance
                       .getMessages(conversationId: value[index].id.toInt());

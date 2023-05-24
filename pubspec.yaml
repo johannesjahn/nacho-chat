@@ -3,7 +3,7 @@ description: A frontend for the chat-api
 
 publish_to: "none"
 
-version: 1.0.82+83
+version: 1.0.91+92
 
 environment:
   sdk: ">=2.19.4 <3.0.0"
@@ -28,7 +28,7 @@ dependencies:
   built_collection: ">=5.1.0 <6.0.0"
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.0
   file_picker: ^5.2.6
   package_info_plus: ^3.0.3
 

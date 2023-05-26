@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/components/chat_view.dart';
 import 'package:nacho_chat/components/conversation_list.dart';
 import 'package:nacho_chat/pages/login.dart';
@@ -25,11 +26,15 @@ class _ChatListPageState extends State<ChatListPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         title:
             // ignore: prefer_interpolation_to_compose_strings
-            Text("Hello, " + (AppService.instance.hive.get("username") ?? "")),
+            Text(l10n.hello +
+                ", " +
+                (AppService.instance.hive.get("username") ?? "")),
         actions: [
           true
               ? const SizedBox()

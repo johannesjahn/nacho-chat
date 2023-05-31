@@ -5,7 +5,7 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://chat.johannes-jahn.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -18,6 +18,8 @@ Method | HTTP request | Description
 > BuiltList<UserResponseDTO> authControllerGetUsers(changePasswordDTO)
 
 
+
+Change password
 
 ### Example
 ```dart
@@ -63,6 +65,8 @@ Name | Type | Description  | Notes
 
 
 
+Login with username and password
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -103,6 +107,8 @@ No authorization required
 > UserResponseDTO authControllerRegister(registerDTO)
 
 
+
+Register a new user
 
 ### Example
 ```dart

@@ -22,8 +22,8 @@ class AuthApi {
 
   const AuthApi(this._dio, this._serializers);
 
-  /// authControllerGetUsers
   /// 
+  /// Change password
   ///
   /// Parameters:
   /// * [changePasswordDTO] 
@@ -92,13 +92,13 @@ class AuthApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<UserResponseDTO> _responseData;
+    BuiltList<UserResponseDTO>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(UserResponseDTO)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(UserResponseDTO)]),
       ) as BuiltList<UserResponseDTO>;
 
     } catch (error, stackTrace) {
@@ -123,8 +123,8 @@ class AuthApi {
     );
   }
 
-  /// authControllerLogin
   /// 
+  /// Login with username and password
   ///
   /// Parameters:
   /// * [loginDTO] 
@@ -187,13 +187,13 @@ class AuthApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    LoginResponseDTO _responseData;
+    LoginResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(LoginResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LoginResponseDTO),
       ) as LoginResponseDTO;
 
     } catch (error, stackTrace) {
@@ -218,8 +218,8 @@ class AuthApi {
     );
   }
 
-  /// authControllerRegister
   /// 
+  /// Register a new user
   ///
   /// Parameters:
   /// * [registerDTO] 
@@ -282,13 +282,13 @@ class AuthApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    UserResponseDTO _responseData;
+    UserResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(UserResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(UserResponseDTO),
       ) as UserResponseDTO;
 
     } catch (error, stackTrace) {

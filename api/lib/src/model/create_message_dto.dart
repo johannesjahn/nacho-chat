@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -23,7 +24,8 @@ abstract class CreateMessageDTO implements Built<CreateMessageDTO, CreateMessage
   String get content;
 
   @BuiltValueField(wireName: r'contentType')
-  String get contentType;
+  CreateMessageDTOContentTypeEnum get contentType;
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
   CreateMessageDTO._();
 
@@ -61,7 +63,7 @@ class _$CreateMessageDTOSerializer implements PrimitiveSerializer<CreateMessageD
     yield r'contentType';
     yield serializers.serialize(
       object.contentType,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(CreateMessageDTOContentTypeEnum),
     );
   }
 
@@ -103,8 +105,8 @@ class _$CreateMessageDTOSerializer implements PrimitiveSerializer<CreateMessageD
         case r'contentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(CreateMessageDTOContentTypeEnum),
+          ) as CreateMessageDTOContentTypeEnum;
           result.contentType = valueDes;
           break;
         default:
@@ -134,5 +136,20 @@ class _$CreateMessageDTOSerializer implements PrimitiveSerializer<CreateMessageD
     );
     return result.build();
   }
+}
+
+class CreateMessageDTOContentTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'TEXT')
+  static const CreateMessageDTOContentTypeEnum TEXT = _$createMessageDTOContentTypeEnum_TEXT;
+  @BuiltValueEnumConst(wireName: r'IMAGE_URL')
+  static const CreateMessageDTOContentTypeEnum IMAGE_URL = _$createMessageDTOContentTypeEnum_IMAGE_URL;
+
+  static Serializer<CreateMessageDTOContentTypeEnum> get serializer => _$createMessageDTOContentTypeEnumSerializer;
+
+  const CreateMessageDTOContentTypeEnum._(String name): super(name);
+
+  static BuiltSet<CreateMessageDTOContentTypeEnum> get values => _$createMessageDTOContentTypeEnumValues;
+  static CreateMessageDTOContentTypeEnum valueOf(String name) => _$createMessageDTOContentTypeEnumValueOf(name);
 }
 

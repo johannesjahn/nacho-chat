@@ -61,7 +61,9 @@ class _ChatViewState extends State<ChatView> {
                                   : const SizedBox(),
                               GestureDetector(
                                 onTap: () {
-                                  if (message.contentType == 'IMAGE_URL') {
+                                  if (message.contentType ==
+                                      MessageResponseDTOContentTypeEnum
+                                          .IMAGE_URL) {
                                     showDialog(
                                         context: context,
                                         builder: (context) {
@@ -77,14 +79,17 @@ class _ChatViewState extends State<ChatView> {
                                   }
                                 },
                                 child: Card(child: Builder(builder: (context) {
-                                  if (message.contentType == 'IMAGE_URL') {
+                                  if (message.contentType ==
+                                      MessageResponseDTOContentTypeEnum
+                                          .IMAGE_URL) {
                                     return ConstrainedBox(
                                       constraints: BoxConstraints.loose(
                                           Size(width / 2.5, height / 3)),
                                       child: ImageMessageContainer(
                                           message: message),
                                     );
-                                  } else if (message.contentType == 'TEXT') {
+                                  } else if (message.contentType ==
+                                      MessageResponseDTOContentTypeEnum.TEXT) {
                                     return ConstrainedBox(
                                       constraints: BoxConstraints.loose(
                                           Size(width / 2.5, double.infinity)),
@@ -152,7 +157,8 @@ class _ChatViewState extends State<ChatView> {
                         await ChatService.instance.sendMessage(
                             conversationId: value.id.toInt(),
                             message: inputController.text,
-                            contentType: 'IMAGE_URL');
+                            contentType:
+                                CreateMessageDTOContentTypeEnum.IMAGE_URL);
                         inputController.clear();
                       },
                       icon: const Icon(Icons.image)),
@@ -165,7 +171,7 @@ class _ChatViewState extends State<ChatView> {
                         await ChatService.instance.sendMessage(
                           conversationId: value.id.toInt(),
                           message: inputController.text,
-                          contentType: 'TEXT',
+                          contentType: CreateMessageDTOContentTypeEnum.TEXT,
                         );
                         inputController.clear();
                       },

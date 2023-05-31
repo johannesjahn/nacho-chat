@@ -23,7 +23,7 @@ class PostView extends StatelessWidget {
       children: [
         Expanded(
           child: Center(
-            child: post.contentType == "TEXT"
+            child: post.contentType == PostResponseDTOContentTypeEnum.TEXT
                 ? Text(
                     post.content,
                     textAlign: TextAlign.center,

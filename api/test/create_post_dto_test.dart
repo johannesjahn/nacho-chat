@@ -13,6 +13,7 @@ void main() {
       // TODO
     });
 
+    // The content type of a post
     // String contentType
     test('to test the property `contentType`', () async {
       // TODO

@@ -17,8 +17,8 @@ class DefaultApi {
 
   const DefaultApi(this._dio, this._serializers);
 
-  /// appControllerGetDebug
   /// 
+  /// This is the debug endpoint. It just returns text.
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -62,8 +62,8 @@ class DefaultApi {
     return _response;
   }
 
-  /// appControllerGetVersion
   /// 
+  /// Get version of the current backend
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -104,13 +104,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    VersionDTO _responseData;
+    VersionDTO? _responseData;
 
     try {
-      const _responseType = FullType(VersionDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(VersionDTO),
       ) as VersionDTO;
 
     } catch (error, stackTrace) {

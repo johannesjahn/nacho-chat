@@ -22,8 +22,8 @@ class ChatApi {
 
   const ChatApi(this._dio, this._serializers);
 
-  /// chatControllerCreateConversation
   /// 
+  /// Endpoint to create a new conversation with two or more participants (authenticated user is automatically added to the conversation)
   ///
   /// Parameters:
   /// * [createConversationRequestDTO] 
@@ -92,13 +92,13 @@ class ChatApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ConversationResponseDTO _responseData;
+    ConversationResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(ConversationResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ConversationResponseDTO),
       ) as ConversationResponseDTO;
 
     } catch (error, stackTrace) {
@@ -123,8 +123,8 @@ class ChatApi {
     );
   }
 
-  /// chatControllerGetConversations
   /// 
+  /// Endpoint to get all conversations for the authenticated user
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -171,13 +171,13 @@ class ChatApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<ConversationResponseDTO> _responseData;
+    BuiltList<ConversationResponseDTO>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(ConversationResponseDTO)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ConversationResponseDTO)]),
       ) as BuiltList<ConversationResponseDTO>;
 
     } catch (error, stackTrace) {
@@ -202,8 +202,8 @@ class ChatApi {
     );
   }
 
-  /// chatControllerGetMessages
   /// 
+  /// Endpoint to get messages relevant for the authenticated user
   ///
   /// Parameters:
   /// * [getMessagesDTO] 
@@ -272,13 +272,13 @@ class ChatApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ConversationResponseDTO _responseData;
+    ConversationResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(ConversationResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ConversationResponseDTO),
       ) as ConversationResponseDTO;
 
     } catch (error, stackTrace) {
@@ -303,8 +303,8 @@ class ChatApi {
     );
   }
 
-  /// chatControllerSendMessage
   /// 
+  /// Send a message to a conversation
   ///
   /// Parameters:
   /// * [createMessageDTO] 
@@ -373,13 +373,13 @@ class ChatApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    MessageResponseDTO _responseData;
+    MessageResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(MessageResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(MessageResponseDTO),
       ) as MessageResponseDTO;
 
     } catch (error, stackTrace) {

@@ -94,7 +94,8 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                   return;
                                 }
                                 final builder = mockPostBuilder()
-                                  ..contentType = "IMG_URL"
+                                  ..contentType =
+                                      PostResponseDTOContentTypeEnum.IMAGE_URL
                                   ..content = value;
                                 setState(() {
                                   preview = builder.build();
@@ -115,7 +116,8 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                   return;
                                 }
                                 final builder = mockPostBuilder()
-                                  ..contentType = "TEXT"
+                                  ..contentType =
+                                      PostResponseDTOContentTypeEnum.TEXT
                                   ..content = value;
                                 setState(() {
                                   preview = builder.build();
@@ -162,12 +164,13 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                           } else {
                             await PostService.instance.createPost(
                                 content: textController.value.text,
-                                contentType: "IMAGE_URL");
+                                contentType:
+                                    CreatePostDTOContentTypeEnum.IMAGE_URL);
                           }
                         } else {
                           await PostService.instance.createPost(
                               content: textController.value.text,
-                              contentType: "TEXT");
+                              contentType: CreatePostDTOContentTypeEnum.TEXT);
                         }
                         PostService.instance.getPosts();
                         if (context.mounted) {

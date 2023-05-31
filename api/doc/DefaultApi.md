@@ -5,7 +5,7 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://chat.johannes-jahn.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,6 +19,8 @@ Method | HTTP request | Description
 > appControllerGetDebug()
 
 
+
+This is the debug endpoint. It just returns text.
 
 ### Example
 ```dart
@@ -55,6 +57,8 @@ No authorization required
 > VersionDTO appControllerGetVersion()
 
 
+
+Get version of the current backend
 
 ### Example
 ```dart

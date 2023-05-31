@@ -48,7 +48,8 @@ class ConversationList extends StatelessWidget {
                   final l10n = AppLocalizations.of(context)!;
 
                   if (lastMessage != null) {
-                    if (lastMessage.contentType == 'TEXT') {
+                    if (lastMessage.contentType ==
+                        MessageResponseDTOContentTypeEnum.TEXT) {
                       messagePreview =
                           "${lastMessage.author.username}: ${lastMessage.content}";
                     } else {

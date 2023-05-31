@@ -5,7 +5,7 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://chat.johannes-jahn.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,6 +27,8 @@ Method | HTTP request | Description
 > CommentResponseDTO postControllerCreateComment(createCommentDTO)
 
 
+
+Create comment with the authenticated user
 
 ### Example
 ```dart
@@ -72,6 +74,8 @@ Name | Type | Description  | Notes
 
 
 
+Create post with the authenticated user
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -115,6 +119,8 @@ Name | Type | Description  | Notes
 > ReplyResponseDTO postControllerCreateReply(createReplyDTO)
 
 
+
+Create reply with the authenticated user
 
 ### Example
 ```dart
@@ -160,6 +166,8 @@ Name | Type | Description  | Notes
 
 
 
+Delete a comment that belongs to the currently authenticated user
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -202,6 +210,8 @@ void (empty response body)
 > postControllerDeletePost(deletePostDTO)
 
 
+
+Delete a post that belongs to the currently authenticated user
 
 ### Example
 ```dart
@@ -246,6 +256,8 @@ void (empty response body)
 
 
 
+Delete reply with the authenticated user
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -289,6 +301,8 @@ void (empty response body)
 
 
 
+Get comments of a post
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -330,6 +344,8 @@ No authorization required
 
 
 
+Get all posts
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -366,6 +382,8 @@ No authorization required
 > BuiltList<ReplyResponseDTO> postControllerGetReplies(commentId)
 
 
+
+Get replies of a comment
 
 ### Example
 ```dart
@@ -407,6 +425,8 @@ No authorization required
 > CommentResponseDTO postControllerUpdateComment(updateCommentDTO)
 
 
+
+Update a comment that belongs to the currently authenticated user
 
 ### Example
 ```dart
@@ -452,6 +472,8 @@ Name | Type | Description  | Notes
 
 
 
+Update a post that belongs to the currently authenticated user
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -495,6 +517,8 @@ Name | Type | Description  | Notes
 > ReplyResponseDTO postControllerUpdateReply(updateReplyDTO)
 
 
+
+Update reply with the authenticated user
 
 ### Example
 ```dart

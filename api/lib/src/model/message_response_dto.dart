@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/user_response_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -33,7 +34,8 @@ abstract class MessageResponseDTO implements Built<MessageResponseDTO, MessageRe
   String get content;
 
   @BuiltValueField(wireName: r'contentType')
-  String get contentType;
+  MessageResponseDTOContentTypeEnum get contentType;
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
   @BuiltValueField(wireName: r'author')
   UserResponseDTO get author;
@@ -84,7 +86,7 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
     yield r'contentType';
     yield serializers.serialize(
       object.contentType,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(MessageResponseDTOContentTypeEnum),
     );
     yield r'author';
     yield serializers.serialize(
@@ -145,8 +147,8 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
         case r'contentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(MessageResponseDTOContentTypeEnum),
+          ) as MessageResponseDTOContentTypeEnum;
           result.contentType = valueDes;
           break;
         case r'author':
@@ -183,5 +185,20 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
     );
     return result.build();
   }
+}
+
+class MessageResponseDTOContentTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'TEXT')
+  static const MessageResponseDTOContentTypeEnum TEXT = _$messageResponseDTOContentTypeEnum_TEXT;
+  @BuiltValueEnumConst(wireName: r'IMAGE_URL')
+  static const MessageResponseDTOContentTypeEnum IMAGE_URL = _$messageResponseDTOContentTypeEnum_IMAGE_URL;
+
+  static Serializer<MessageResponseDTOContentTypeEnum> get serializer => _$messageResponseDTOContentTypeEnumSerializer;
+
+  const MessageResponseDTOContentTypeEnum._(String name): super(name);
+
+  static BuiltSet<MessageResponseDTOContentTypeEnum> get values => _$messageResponseDTOContentTypeEnumValues;
+  static MessageResponseDTOContentTypeEnum valueOf(String name) => _$messageResponseDTOContentTypeEnumValueOf(name);
 }
 

@@ -16,7 +16,7 @@ import 'package:openapi/src/api/post_api.dart';
 import 'package:openapi/src/api/user_api.dart';
 
 class Openapi {
-  static const String basePath = r'http://localhost';
+  static const String basePath = r'https://chat.johannes-jahn.com';
 
   final Dio dio;
   final Serializers serializers;

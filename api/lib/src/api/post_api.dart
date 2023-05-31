@@ -29,8 +29,8 @@ class PostApi {
 
   const PostApi(this._dio, this._serializers);
 
-  /// postControllerCreateComment
   /// 
+  /// Create comment with the authenticated user
   ///
   /// Parameters:
   /// * [createCommentDTO] 
@@ -99,13 +99,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CommentResponseDTO _responseData;
+    CommentResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(CommentResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CommentResponseDTO),
       ) as CommentResponseDTO;
 
     } catch (error, stackTrace) {
@@ -130,8 +130,8 @@ class PostApi {
     );
   }
 
-  /// postControllerCreatePost
   /// 
+  /// Create post with the authenticated user
   ///
   /// Parameters:
   /// * [createPostDTO] 
@@ -200,13 +200,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    PostResponseDTO _responseData;
+    PostResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(PostResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PostResponseDTO),
       ) as PostResponseDTO;
 
     } catch (error, stackTrace) {
@@ -231,8 +231,8 @@ class PostApi {
     );
   }
 
-  /// postControllerCreateReply
   /// 
+  /// Create reply with the authenticated user
   ///
   /// Parameters:
   /// * [createReplyDTO] 
@@ -301,13 +301,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ReplyResponseDTO _responseData;
+    ReplyResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(ReplyResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReplyResponseDTO),
       ) as ReplyResponseDTO;
 
     } catch (error, stackTrace) {
@@ -332,8 +332,8 @@ class PostApi {
     );
   }
 
-  /// postControllerDeleteComment
   /// 
+  /// Delete a comment that belongs to the currently authenticated user
   ///
   /// Parameters:
   /// * [deleteCommentDTO] 
@@ -405,8 +405,8 @@ class PostApi {
     return _response;
   }
 
-  /// postControllerDeletePost
   /// 
+  /// Delete a post that belongs to the currently authenticated user
   ///
   /// Parameters:
   /// * [deletePostDTO] 
@@ -478,8 +478,8 @@ class PostApi {
     return _response;
   }
 
-  /// postControllerDeleteReply
   /// 
+  /// Delete reply with the authenticated user
   ///
   /// Parameters:
   /// * [deleteReplyDTO] 
@@ -551,8 +551,8 @@ class PostApi {
     return _response;
   }
 
-  /// postControllerGetComments
   /// 
+  /// Get comments of a post
   ///
   /// Parameters:
   /// * [postId] 
@@ -595,13 +595,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<CommentResponseDTO> _responseData;
+    BuiltList<CommentResponseDTO>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(CommentResponseDTO)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(CommentResponseDTO)]),
       ) as BuiltList<CommentResponseDTO>;
 
     } catch (error, stackTrace) {
@@ -626,8 +626,8 @@ class PostApi {
     );
   }
 
-  /// postControllerGetPosts
   /// 
+  /// Get all posts
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -668,13 +668,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<PostResponseDTO> _responseData;
+    BuiltList<PostResponseDTO>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(PostResponseDTO)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(PostResponseDTO)]),
       ) as BuiltList<PostResponseDTO>;
 
     } catch (error, stackTrace) {
@@ -699,8 +699,8 @@ class PostApi {
     );
   }
 
-  /// postControllerGetReplies
   /// 
+  /// Get replies of a comment
   ///
   /// Parameters:
   /// * [commentId] 
@@ -743,13 +743,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<ReplyResponseDTO> _responseData;
+    BuiltList<ReplyResponseDTO>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(ReplyResponseDTO)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ReplyResponseDTO)]),
       ) as BuiltList<ReplyResponseDTO>;
 
     } catch (error, stackTrace) {
@@ -774,8 +774,8 @@ class PostApi {
     );
   }
 
-  /// postControllerUpdateComment
   /// 
+  /// Update a comment that belongs to the currently authenticated user
   ///
   /// Parameters:
   /// * [updateCommentDTO] 
@@ -844,13 +844,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    CommentResponseDTO _responseData;
+    CommentResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(CommentResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(CommentResponseDTO),
       ) as CommentResponseDTO;
 
     } catch (error, stackTrace) {
@@ -875,8 +875,8 @@ class PostApi {
     );
   }
 
-  /// postControllerUpdatePost
   /// 
+  /// Update a post that belongs to the currently authenticated user
   ///
   /// Parameters:
   /// * [updatePostDTO] 
@@ -945,13 +945,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    PostResponseDTO _responseData;
+    PostResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(PostResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PostResponseDTO),
       ) as PostResponseDTO;
 
     } catch (error, stackTrace) {
@@ -976,8 +976,8 @@ class PostApi {
     );
   }
 
-  /// postControllerUpdateReply
   /// 
+  /// Update reply with the authenticated user
   ///
   /// Parameters:
   /// * [updateReplyDTO] 
@@ -1046,13 +1046,13 @@ class PostApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    ReplyResponseDTO _responseData;
+    ReplyResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(ReplyResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ReplyResponseDTO),
       ) as ReplyResponseDTO;
 
     } catch (error, stackTrace) {

@@ -32,5 +32,10 @@ void main() {
       // TODO
     });
 
+    // MessageResponseDTO lastMessage
+    test('to test the property `lastMessage`', () async {
+      // TODO
+    });
+
   });
 }

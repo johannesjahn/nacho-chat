@@ -19,8 +19,8 @@ class UserApi {
 
   const UserApi(this._dio, this._serializers);
 
-  /// usersControllerGetAvatar
   /// 
+  /// Get avatar for a specific user
   ///
   /// Parameters:
   /// * [userId] 
@@ -66,8 +66,8 @@ class UserApi {
     return _response;
   }
 
-  /// usersControllerGetMe
   /// 
+  /// Get current authenticated user
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -114,13 +114,13 @@ class UserApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    UserResponseDTO _responseData;
+    UserResponseDTO? _responseData;
 
     try {
-      const _responseType = FullType(UserResponseDTO);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(UserResponseDTO),
       ) as UserResponseDTO;
 
     } catch (error, stackTrace) {
@@ -145,8 +145,8 @@ class UserApi {
     );
   }
 
-  /// usersControllerGetUsers
   /// 
+  /// Get all users without self
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -193,13 +193,13 @@ class UserApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<UserResponseDTO> _responseData;
+    BuiltList<UserResponseDTO>? _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(UserResponseDTO)]);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(UserResponseDTO)]),
       ) as BuiltList<UserResponseDTO>;
 
     } catch (error, stackTrace) {
@@ -224,8 +224,8 @@ class UserApi {
     );
   }
 
-  /// usersControllerUploadAvatar
   /// 
+  /// Upload avatar for current authenticated user
   ///
   /// Parameters:
   /// * [file] 

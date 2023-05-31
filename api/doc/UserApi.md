@@ -5,7 +5,7 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://chat.johannes-jahn.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,6 +19,8 @@ Method | HTTP request | Description
 > usersControllerGetAvatar(userId)
 
 
+
+Get avatar for a specific user
 
 ### Example
 ```dart
@@ -60,6 +62,8 @@ No authorization required
 
 
 
+Get current authenticated user
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -100,6 +104,8 @@ This endpoint does not need any parameter.
 
 
 
+Get all users without self
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -139,6 +145,8 @@ This endpoint does not need any parameter.
 > usersControllerUploadAvatar(file)
 
 
+
+Upload avatar for current authenticated user
 
 ### Example
 ```dart

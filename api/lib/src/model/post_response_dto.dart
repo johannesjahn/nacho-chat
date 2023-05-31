@@ -36,13 +36,14 @@ abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTO
   String get content;
 
   @BuiltValueField(wireName: r'contentType')
-  String get contentType;
+  PostResponseDTOContentTypeEnum get contentType;
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
   @BuiltValueField(wireName: r'author')
   UserResponseDTO? get author;
 
   @BuiltValueField(wireName: r'comments')
-  BuiltList<CommentResponseDTO> get comments;
+  BuiltList<CommentResponseDTO>? get comments;
 
   PostResponseDTO._();
 
@@ -90,7 +91,7 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
     yield r'contentType';
     yield serializers.serialize(
       object.contentType,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(PostResponseDTOContentTypeEnum),
     );
     yield r'author';
     yield object.author == null ? null : serializers.serialize(
@@ -98,9 +99,9 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
       specifiedType: const FullType.nullable(UserResponseDTO),
     );
     yield r'comments';
-    yield serializers.serialize(
+    yield object.comments == null ? null : serializers.serialize(
       object.comments,
-      specifiedType: const FullType(BuiltList, [FullType(CommentResponseDTO)]),
+      specifiedType: const FullType.nullable(BuiltList, [FullType(CommentResponseDTO)]),
     );
   }
 
@@ -156,8 +157,8 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
         case r'contentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(PostResponseDTOContentTypeEnum),
+          ) as PostResponseDTOContentTypeEnum;
           result.contentType = valueDes;
           break;
         case r'author':
@@ -171,8 +172,9 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
         case r'comments':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CommentResponseDTO)]),
-          ) as BuiltList<CommentResponseDTO>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CommentResponseDTO)]),
+          ) as BuiltList<CommentResponseDTO>?;
+          if (valueDes == null) continue;
           result.comments.replace(valueDes);
           break;
         default:
@@ -202,5 +204,20 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
     );
     return result.build();
   }
+}
+
+class PostResponseDTOContentTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'TEXT')
+  static const PostResponseDTOContentTypeEnum TEXT = _$postResponseDTOContentTypeEnum_TEXT;
+  @BuiltValueEnumConst(wireName: r'IMAGE_URL')
+  static const PostResponseDTOContentTypeEnum IMAGE_URL = _$postResponseDTOContentTypeEnum_IMAGE_URL;
+
+  static Serializer<PostResponseDTOContentTypeEnum> get serializer => _$postResponseDTOContentTypeEnumSerializer;
+
+  const PostResponseDTOContentTypeEnum._(String name): super(name);
+
+  static BuiltSet<PostResponseDTOContentTypeEnum> get values => _$postResponseDTOContentTypeEnumValues;
+  static PostResponseDTOContentTypeEnum valueOf(String name) => _$postResponseDTOContentTypeEnumValueOf(name);
 }
 

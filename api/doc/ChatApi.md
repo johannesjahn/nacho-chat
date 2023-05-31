@@ -5,7 +5,7 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://chat.johannes-jahn.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,6 +19,8 @@ Method | HTTP request | Description
 > ConversationResponseDTO chatControllerCreateConversation(createConversationRequestDTO)
 
 
+
+Endpoint to create a new conversation with two or more participants (authenticated user is automatically added to the conversation)
 
 ### Example
 ```dart
@@ -64,6 +66,8 @@ Name | Type | Description  | Notes
 
 
 
+Endpoint to get all conversations for the authenticated user
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -103,6 +107,8 @@ This endpoint does not need any parameter.
 > ConversationResponseDTO chatControllerGetMessages(getMessagesDTO)
 
 
+
+Endpoint to get messages relevant for the authenticated user
 
 ### Example
 ```dart
@@ -147,6 +153,8 @@ Name | Type | Description  | Notes
 > MessageResponseDTO chatControllerSendMessage(createMessageDTO)
 
 
+
+Send a message to a conversation
 
 ### Example
 ```dart

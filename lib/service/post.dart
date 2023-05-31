@@ -23,7 +23,9 @@ class PostService {
   }
 
   Future<PostResponseDTO?> createPost(
-      {required String content, String contentType = "TEXT"}) async {
+      {required String content,
+      CreatePostDTOContentTypeEnum contentType =
+          CreatePostDTOContentTypeEnum.TEXT}) async {
     final dto = CreatePostDTOBuilder()
       ..content = content
       ..contentType = contentType;

@@ -37,7 +37,8 @@ class ChatService {
   Future<void> sendMessage(
       {required int conversationId,
       required String message,
-      String contentType = 'TEXT'}) async {
+      CreateMessageDTOContentTypeEnum contentType =
+          CreateMessageDTOContentTypeEnum.TEXT}) async {
     final dto = CreateMessageDTOBuilder()
       ..conversationId = conversationId
       ..content = message

@@ -71,7 +71,7 @@ class AppService {
     socket!.on('post/comment/reply', (commentId) {
       logger.i('New Reply');
       if (PostService.instance.selectedPost.value?.comments
-              .any((comment) => comment.id == commentId) ??
+              ?.any((comment) => comment.id == commentId) ??
           false) {
         PostService.instance.getComments();
       }

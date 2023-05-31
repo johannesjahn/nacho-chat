@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,15 +13,17 @@ part 'create_post_dto.g.dart';
 ///
 /// Properties:
 /// * [content] - The content of a post
-/// * [contentType] 
+/// * [contentType] - The content type of a post
 @BuiltValue()
 abstract class CreatePostDTO implements Built<CreatePostDTO, CreatePostDTOBuilder> {
   /// The content of a post
   @BuiltValueField(wireName: r'content')
   String get content;
 
+  /// The content type of a post
   @BuiltValueField(wireName: r'contentType')
-  String get contentType;
+  CreatePostDTOContentTypeEnum get contentType;
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
   CreatePostDTO._();
 
@@ -53,7 +56,7 @@ class _$CreatePostDTOSerializer implements PrimitiveSerializer<CreatePostDTO> {
     yield r'contentType';
     yield serializers.serialize(
       object.contentType,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(CreatePostDTOContentTypeEnum),
     );
   }
 
@@ -88,8 +91,8 @@ class _$CreatePostDTOSerializer implements PrimitiveSerializer<CreatePostDTO> {
         case r'contentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(CreatePostDTOContentTypeEnum),
+          ) as CreatePostDTOContentTypeEnum;
           result.contentType = valueDes;
           break;
         default:
@@ -119,5 +122,22 @@ class _$CreatePostDTOSerializer implements PrimitiveSerializer<CreatePostDTO> {
     );
     return result.build();
   }
+}
+
+class CreatePostDTOContentTypeEnum extends EnumClass {
+
+  /// The content type of a post
+  @BuiltValueEnumConst(wireName: r'TEXT')
+  static const CreatePostDTOContentTypeEnum TEXT = _$createPostDTOContentTypeEnum_TEXT;
+  /// The content type of a post
+  @BuiltValueEnumConst(wireName: r'IMAGE_URL')
+  static const CreatePostDTOContentTypeEnum IMAGE_URL = _$createPostDTOContentTypeEnum_IMAGE_URL;
+
+  static Serializer<CreatePostDTOContentTypeEnum> get serializer => _$createPostDTOContentTypeEnumSerializer;
+
+  const CreatePostDTOContentTypeEnum._(String name): super(name);
+
+  static BuiltSet<CreatePostDTOContentTypeEnum> get values => _$createPostDTOContentTypeEnumValues;
+  static CreatePostDTOContentTypeEnum valueOf(String name) => _$createPostDTOContentTypeEnumValueOf(name);
 }
 

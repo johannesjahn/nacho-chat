@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -23,7 +24,8 @@ abstract class UpdatePostDTO implements Built<UpdatePostDTO, UpdatePostDTOBuilde
   String get content;
 
   @BuiltValueField(wireName: r'contentType')
-  String get contentType;
+  UpdatePostDTOContentTypeEnum get contentType;
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
   UpdatePostDTO._();
 
@@ -61,7 +63,7 @@ class _$UpdatePostDTOSerializer implements PrimitiveSerializer<UpdatePostDTO> {
     yield r'contentType';
     yield serializers.serialize(
       object.contentType,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(UpdatePostDTOContentTypeEnum),
     );
   }
 
@@ -103,8 +105,8 @@ class _$UpdatePostDTOSerializer implements PrimitiveSerializer<UpdatePostDTO> {
         case r'contentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(UpdatePostDTOContentTypeEnum),
+          ) as UpdatePostDTOContentTypeEnum;
           result.contentType = valueDes;
           break;
         default:
@@ -134,5 +136,20 @@ class _$UpdatePostDTOSerializer implements PrimitiveSerializer<UpdatePostDTO> {
     );
     return result.build();
   }
+}
+
+class UpdatePostDTOContentTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'TEXT')
+  static const UpdatePostDTOContentTypeEnum TEXT = _$updatePostDTOContentTypeEnum_TEXT;
+  @BuiltValueEnumConst(wireName: r'IMAGE_URL')
+  static const UpdatePostDTOContentTypeEnum IMAGE_URL = _$updatePostDTOContentTypeEnum_IMAGE_URL;
+
+  static Serializer<UpdatePostDTOContentTypeEnum> get serializer => _$updatePostDTOContentTypeEnumSerializer;
+
+  const UpdatePostDTOContentTypeEnum._(String name): super(name);
+
+  static BuiltSet<UpdatePostDTOContentTypeEnum> get values => _$updatePostDTOContentTypeEnumValues;
+  static UpdatePostDTOContentTypeEnum valueOf(String name) => _$updatePostDTOContentTypeEnumValueOf(name);
 }
 

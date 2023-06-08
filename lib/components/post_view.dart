@@ -41,7 +41,6 @@ class PostView extends StatelessWidget {
                               return Image.network(post.content);
                             }
                           } catch (e) {
-                            logger.e(e.toString());
                             return Image.network(post.content);
                           }
                         })),

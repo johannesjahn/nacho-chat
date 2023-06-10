@@ -77,8 +77,9 @@ class AppService {
       }
     });
     socket!.on("message", (data) async {
-      logger.i("New Message in conversation ${data["conversationId"]}");
       await ChatService.instance.getConversations();
+      if (data == null) return;
+      logger.i("New Message in conversation ${data["conversationId"]}");
       if (ChatService.instance.currentChat.value != null &&
           ChatService.instance.currentChat.value?.id ==
               data["conversationId"]) {

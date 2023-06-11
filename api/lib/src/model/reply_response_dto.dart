@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/user_response_dto.dart';
+import 'package:openapi/src/model/reply_response_dto_author.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,27 +12,31 @@ part 'reply_response_dto.g.dart';
 /// ReplyResponseDTO
 ///
 /// Properties:
-/// * [id] 
-/// * [createdAt] 
-/// * [updatedAt] 
-/// * [content] 
+/// * [id] - The unique id of a reply
+/// * [createdAt] - The creation date of a reply
+/// * [updatedAt] - The last update date of a reply
+/// * [content] - The content of a reply
 /// * [author] 
 @BuiltValue()
 abstract class ReplyResponseDTO implements Built<ReplyResponseDTO, ReplyResponseDTOBuilder> {
+  /// The unique id of a reply
   @BuiltValueField(wireName: r'id')
   num get id;
 
+  /// The creation date of a reply
   @BuiltValueField(wireName: r'createdAt')
   DateTime get createdAt;
 
+  /// The last update date of a reply
   @BuiltValueField(wireName: r'updatedAt')
   DateTime get updatedAt;
 
+  /// The content of a reply
   @BuiltValueField(wireName: r'content')
   String get content;
 
   @BuiltValueField(wireName: r'author')
-  UserResponseDTO? get author;
+  ReplyResponseDTOAuthor? get author;
 
   ReplyResponseDTO._();
 
@@ -80,7 +84,7 @@ class _$ReplyResponseDTOSerializer implements PrimitiveSerializer<ReplyResponseD
     yield r'author';
     yield object.author == null ? null : serializers.serialize(
       object.author,
-      specifiedType: const FullType.nullable(UserResponseDTO),
+      specifiedType: const FullType.nullable(ReplyResponseDTOAuthor),
     );
   }
 
@@ -136,8 +140,8 @@ class _$ReplyResponseDTOSerializer implements PrimitiveSerializer<ReplyResponseD
         case r'author':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(UserResponseDTO),
-          ) as UserResponseDTO?;
+            specifiedType: const FullType.nullable(ReplyResponseDTOAuthor),
+          ) as ReplyResponseDTOAuthor?;
           if (valueDes == null) continue;
           result.author.replace(valueDes);
           break;

@@ -3,55 +3,58 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:openapi/src/model/user_response_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'delete_reply_dto.g.dart';
+part 'message_response_dto_author.g.dart';
 
-/// DeleteReplyDTO
+/// The author of the message
 ///
 /// Properties:
-/// * [replyId] - The unique id of the reply
+/// * [id] - The unique id of a user
+/// * [username] - The username of a user
 @BuiltValue()
-abstract class DeleteReplyDTO implements Built<DeleteReplyDTO, DeleteReplyDTOBuilder> {
-  /// The unique id of the reply
-  @BuiltValueField(wireName: r'replyId')
-  num get replyId;
+abstract class MessageResponseDTOAuthor implements UserResponseDTO, Built<MessageResponseDTOAuthor, MessageResponseDTOAuthorBuilder> {
+  MessageResponseDTOAuthor._();
 
-  DeleteReplyDTO._();
-
-  factory DeleteReplyDTO([void updates(DeleteReplyDTOBuilder b)]) = _$DeleteReplyDTO;
+  factory MessageResponseDTOAuthor([void updates(MessageResponseDTOAuthorBuilder b)]) = _$MessageResponseDTOAuthor;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(DeleteReplyDTOBuilder b) => b;
+  static void _defaults(MessageResponseDTOAuthorBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<DeleteReplyDTO> get serializer => _$DeleteReplyDTOSerializer();
+  static Serializer<MessageResponseDTOAuthor> get serializer => _$MessageResponseDTOAuthorSerializer();
 }
 
-class _$DeleteReplyDTOSerializer implements PrimitiveSerializer<DeleteReplyDTO> {
+class _$MessageResponseDTOAuthorSerializer implements PrimitiveSerializer<MessageResponseDTOAuthor> {
   @override
-  final Iterable<Type> types = const [DeleteReplyDTO, _$DeleteReplyDTO];
+  final Iterable<Type> types = const [MessageResponseDTOAuthor, _$MessageResponseDTOAuthor];
 
   @override
-  final String wireName = r'DeleteReplyDTO';
+  final String wireName = r'MessageResponseDTOAuthor';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    DeleteReplyDTO object, {
+    MessageResponseDTOAuthor object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'replyId';
+    yield r'id';
     yield serializers.serialize(
-      object.replyId,
+      object.id,
       specifiedType: const FullType(num),
+    );
+    yield r'username';
+    yield serializers.serialize(
+      object.username,
+      specifiedType: const FullType(String),
     );
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    DeleteReplyDTO object, {
+    MessageResponseDTOAuthor object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -62,19 +65,26 @@ class _$DeleteReplyDTOSerializer implements PrimitiveSerializer<DeleteReplyDTO> 
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required DeleteReplyDTOBuilder result,
+    required MessageResponseDTOAuthorBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'replyId':
+        case r'id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(num),
           ) as num;
-          result.replyId = valueDes;
+          result.id = valueDes;
+          break;
+        case r'username':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.username = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -85,12 +95,12 @@ class _$DeleteReplyDTOSerializer implements PrimitiveSerializer<DeleteReplyDTO> 
   }
 
   @override
-  DeleteReplyDTO deserialize(
+  MessageResponseDTOAuthor deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = DeleteReplyDTOBuilder();
+    final result = MessageResponseDTOAuthorBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

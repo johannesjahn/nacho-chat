@@ -11,10 +11,11 @@ part 'get_messages_dto.g.dart';
 /// GetMessagesDTO
 ///
 /// Properties:
-/// * [conversationId] 
+/// * [conversationId] - The id of the conversation to get messages from
 /// * [lastMessage] - To reduce the amount of data fetched the client can send the id of the last received message and only get messages that are newer than that
 @BuiltValue()
 abstract class GetMessagesDTO implements Built<GetMessagesDTO, GetMessagesDTOBuilder> {
+  /// The id of the conversation to get messages from
   @BuiltValueField(wireName: r'conversationId')
   num get conversationId;
 

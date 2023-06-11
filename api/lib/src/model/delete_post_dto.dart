@@ -11,9 +11,10 @@ part 'delete_post_dto.g.dart';
 /// DeletePostDTO
 ///
 /// Properties:
-/// * [id] 
+/// * [id] - The unique id of the deleted post
 @BuiltValue()
 abstract class DeletePostDTO implements Built<DeletePostDTO, DeletePostDTOBuilder> {
+  /// The unique id of the deleted post
   @BuiltValueField(wireName: r'id')
   num get id;
 

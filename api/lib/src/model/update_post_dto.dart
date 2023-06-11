@@ -12,17 +12,20 @@ part 'update_post_dto.g.dart';
 /// UpdatePostDTO
 ///
 /// Properties:
-/// * [id] 
-/// * [content] 
-/// * [contentType] 
+/// * [id] - The unique id of a post
+/// * [content] - The content of a post
+/// * [contentType] - The content type of a post
 @BuiltValue()
 abstract class UpdatePostDTO implements Built<UpdatePostDTO, UpdatePostDTOBuilder> {
+  /// The unique id of a post
   @BuiltValueField(wireName: r'id')
   num get id;
 
+  /// The content of a post
   @BuiltValueField(wireName: r'content')
   String get content;
 
+  /// The content type of a post
   @BuiltValueField(wireName: r'contentType')
   UpdatePostDTOContentTypeEnum get contentType;
   // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
@@ -140,8 +143,10 @@ class _$UpdatePostDTOSerializer implements PrimitiveSerializer<UpdatePostDTO> {
 
 class UpdatePostDTOContentTypeEnum extends EnumClass {
 
+  /// The content type of a post
   @BuiltValueEnumConst(wireName: r'TEXT')
   static const UpdatePostDTOContentTypeEnum TEXT = _$updatePostDTOContentTypeEnum_TEXT;
+  /// The content type of a post
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const UpdatePostDTOContentTypeEnum IMAGE_URL = _$updatePostDTOContentTypeEnum_IMAGE_URL;
 

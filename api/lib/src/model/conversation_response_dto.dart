@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/user_response_dto.dart';
+import 'package:openapi/src/model/conversation_response_dto_last_message.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -14,31 +15,36 @@ part 'conversation_response_dto.g.dart';
 /// ConversationResponseDTO
 ///
 /// Properties:
-/// * [id] 
-/// * [createdAt] 
-/// * [updatedAt] 
-/// * [participants] 
-/// * [messages] 
+/// * [id] - The id of the conversation
+/// * [createdAt] - The creation date of the conversation
+/// * [updatedAt] - The date of the last update of the conversation
+/// * [participants] - The participants of the conversation
+/// * [messages] - The messages belonging to the conversation
 /// * [lastMessage] 
 @BuiltValue()
 abstract class ConversationResponseDTO implements Built<ConversationResponseDTO, ConversationResponseDTOBuilder> {
+  /// The id of the conversation
   @BuiltValueField(wireName: r'id')
   num get id;
 
+  /// The creation date of the conversation
   @BuiltValueField(wireName: r'createdAt')
   DateTime get createdAt;
 
+  /// The date of the last update of the conversation
   @BuiltValueField(wireName: r'updatedAt')
   DateTime get updatedAt;
 
+  /// The participants of the conversation
   @BuiltValueField(wireName: r'participants')
   BuiltList<UserResponseDTO> get participants;
 
+  /// The messages belonging to the conversation
   @BuiltValueField(wireName: r'messages')
   BuiltList<MessageResponseDTO> get messages;
 
   @BuiltValueField(wireName: r'lastMessage')
-  MessageResponseDTO? get lastMessage;
+  ConversationResponseDTOLastMessage? get lastMessage;
 
   ConversationResponseDTO._();
 
@@ -91,7 +97,7 @@ class _$ConversationResponseDTOSerializer implements PrimitiveSerializer<Convers
     yield r'lastMessage';
     yield object.lastMessage == null ? null : serializers.serialize(
       object.lastMessage,
-      specifiedType: const FullType.nullable(MessageResponseDTO),
+      specifiedType: const FullType.nullable(ConversationResponseDTOLastMessage),
     );
   }
 
@@ -154,8 +160,8 @@ class _$ConversationResponseDTOSerializer implements PrimitiveSerializer<Convers
         case r'lastMessage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(MessageResponseDTO),
-          ) as MessageResponseDTO?;
+            specifiedType: const FullType.nullable(ConversationResponseDTOLastMessage),
+          ) as ConversationResponseDTOLastMessage?;
           if (valueDes == null) continue;
           result.lastMessage.replace(valueDes);
           break;

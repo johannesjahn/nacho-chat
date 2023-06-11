@@ -11,13 +11,15 @@ part 'create_comment_dto.g.dart';
 /// CreateCommentDTO
 ///
 /// Properties:
-/// * [postId] 
-/// * [content] 
+/// * [postId] - The unique id of the post
+/// * [content] - The content of the comment
 @BuiltValue()
 abstract class CreateCommentDTO implements Built<CreateCommentDTO, CreateCommentDTOBuilder> {
+  /// The unique id of the post
   @BuiltValueField(wireName: r'postId')
   num get postId;
 
+  /// The content of the comment
   @BuiltValueField(wireName: r'content')
   String get content;
 

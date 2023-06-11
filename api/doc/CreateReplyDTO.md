@@ -8,8 +8,8 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**commentId** | **num** |  | 
-**content** | **String** |  | 
+**commentId** | **num** | The unique id of the comment | 
+**content** | **String** | The content of the reply | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

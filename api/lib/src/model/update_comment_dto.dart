@@ -11,13 +11,15 @@ part 'update_comment_dto.g.dart';
 /// UpdateCommentDTO
 ///
 /// Properties:
-/// * [commentId] 
-/// * [content] 
+/// * [commentId] - The unique id of the comment
+/// * [content] - The content of the comment
 @BuiltValue()
 abstract class UpdateCommentDTO implements Built<UpdateCommentDTO, UpdateCommentDTOBuilder> {
+  /// The unique id of the comment
   @BuiltValueField(wireName: r'commentId')
   num get commentId;
 
+  /// The content of the comment
   @BuiltValueField(wireName: r'content')
   String get content;
 

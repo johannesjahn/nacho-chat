@@ -8,11 +8,11 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **num** |  | 
-**createdAt** | [**DateTime**](DateTime.md) |  | 
-**updatedAt** | [**DateTime**](DateTime.md) |  | 
-**content** | **String** |  | 
-**author** | [**UserResponseDTO**](UserResponseDTO.md) |  | 
+**id** | **num** | The unique id of a reply | 
+**createdAt** | [**DateTime**](DateTime.md) | The creation date of a reply | 
+**updatedAt** | [**DateTime**](DateTime.md) | The last update date of a reply | 
+**content** | **String** | The content of a reply | 
+**author** | [**ReplyResponseDTOAuthor**](ReplyResponseDTOAuthor.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

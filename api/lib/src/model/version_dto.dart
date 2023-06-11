@@ -11,9 +11,10 @@ part 'version_dto.g.dart';
 /// VersionDTO
 ///
 /// Properties:
-/// * [version] 
+/// * [version] - The version of the API
 @BuiltValue()
 abstract class VersionDTO implements Built<VersionDTO, VersionDTOBuilder> {
+  /// The version of the API
   @BuiltValueField(wireName: r'version')
   String get version;
 

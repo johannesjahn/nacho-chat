@@ -11,13 +11,15 @@ part 'login_dto.g.dart';
 /// LoginDTO
 ///
 /// Properties:
-/// * [username] 
-/// * [password] 
+/// * [username] - The username of a user
+/// * [password] - The password of a user
 @BuiltValue()
 abstract class LoginDTO implements Built<LoginDTO, LoginDTOBuilder> {
+  /// The username of a user
   @BuiltValueField(wireName: r'username')
   String get username;
 
+  /// The password of a user
   @BuiltValueField(wireName: r'password')
   String get password;
 

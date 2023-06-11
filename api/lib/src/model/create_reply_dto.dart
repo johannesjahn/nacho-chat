@@ -11,13 +11,15 @@ part 'create_reply_dto.g.dart';
 /// CreateReplyDTO
 ///
 /// Properties:
-/// * [commentId] 
-/// * [content] 
+/// * [commentId] - The unique id of the comment
+/// * [content] - The content of the reply
 @BuiltValue()
 abstract class CreateReplyDTO implements Built<CreateReplyDTO, CreateReplyDTOBuilder> {
+  /// The unique id of the comment
   @BuiltValueField(wireName: r'commentId')
   num get commentId;
 
+  /// The content of the reply
   @BuiltValueField(wireName: r'content')
   String get content;
 

@@ -16,7 +16,9 @@ import 'package:openapi/src/model/date.dart';
 
 import 'package:openapi/src/model/change_password_dto.dart';
 import 'package:openapi/src/model/comment_response_dto.dart';
+import 'package:openapi/src/model/comment_response_dto_author.dart';
 import 'package:openapi/src/model/conversation_response_dto.dart';
+import 'package:openapi/src/model/conversation_response_dto_last_message.dart';
 import 'package:openapi/src/model/create_comment_dto.dart';
 import 'package:openapi/src/model/create_conversation_request_dto.dart';
 import 'package:openapi/src/model/create_message_dto.dart';
@@ -29,9 +31,12 @@ import 'package:openapi/src/model/get_messages_dto.dart';
 import 'package:openapi/src/model/login_dto.dart';
 import 'package:openapi/src/model/login_response_dto.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
+import 'package:openapi/src/model/message_response_dto_author.dart';
 import 'package:openapi/src/model/post_response_dto.dart';
+import 'package:openapi/src/model/post_response_dto_author.dart';
 import 'package:openapi/src/model/register_dto.dart';
 import 'package:openapi/src/model/reply_response_dto.dart';
+import 'package:openapi/src/model/reply_response_dto_author.dart';
 import 'package:openapi/src/model/update_comment_dto.dart';
 import 'package:openapi/src/model/update_post_dto.dart';
 import 'package:openapi/src/model/update_reply_dto.dart';
@@ -43,7 +48,9 @@ part 'serializers.g.dart';
 @SerializersFor([
   ChangePasswordDTO,
   CommentResponseDTO,
+  CommentResponseDTOAuthor,
   ConversationResponseDTO,
+  ConversationResponseDTOLastMessage,
   CreateCommentDTO,
   CreateConversationRequestDTO,
   CreateMessageDTO,
@@ -55,14 +62,17 @@ part 'serializers.g.dart';
   GetMessagesDTO,
   LoginDTO,
   LoginResponseDTO,
-  MessageResponseDTO,
+  MessageResponseDTO,$MessageResponseDTO,
+  MessageResponseDTOAuthor,
   PostResponseDTO,
+  PostResponseDTOAuthor,
   RegisterDTO,
   ReplyResponseDTO,
+  ReplyResponseDTOAuthor,
   UpdateCommentDTO,
   UpdatePostDTO,
   UpdateReplyDTO,
-  UserResponseDTO,
+  UserResponseDTO,$UserResponseDTO,
   VersionDTO,
 ])
 Serializers serializers = (_$serializers.toBuilder()
@@ -86,6 +96,8 @@ Serializers serializers = (_$serializers.toBuilder()
         const FullType(BuiltList, [FullType(ConversationResponseDTO)]),
         () => ListBuilder<ConversationResponseDTO>(),
       )
+      ..add(MessageResponseDTO.serializer)
+      ..add(UserResponseDTO.serializer)
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())
       ..add(const DateSerializer())

@@ -1,4 +1,4 @@
-# openapi.model.CreateMessageDTO
+# openapi.model.ConversationResponseDTOLastMessage
 
 ## Load the model package
 ```dart
@@ -8,9 +8,12 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**conversationId** | **num** | The id of the conversation the message should be sent to | 
+**id** | **num** | The id of the message | 
+**createdAt** | [**DateTime**](DateTime.md) | The creation date of a message | 
+**updatedAt** | [**DateTime**](DateTime.md) | The date of the last update of a message | 
 **content** | **String** | The content of the message | 
 **contentType** | **String** | The type of content | 
+**author** | [**MessageResponseDTOAuthor**](MessageResponseDTOAuthor.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

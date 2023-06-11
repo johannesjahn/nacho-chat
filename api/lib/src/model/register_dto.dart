@@ -11,13 +11,15 @@ part 'register_dto.g.dart';
 /// RegisterDTO
 ///
 /// Properties:
-/// * [username] 
-/// * [password] 
+/// * [username] - The username to be registered user
+/// * [password] - The password to be registered user
 @BuiltValue()
 abstract class RegisterDTO implements Built<RegisterDTO, RegisterDTOBuilder> {
+  /// The username to be registered user
   @BuiltValueField(wireName: r'username')
   String get username;
 
+  /// The password to be registered user
   @BuiltValueField(wireName: r'password')
   String get password;
 

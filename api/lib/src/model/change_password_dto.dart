@@ -11,13 +11,15 @@ part 'change_password_dto.g.dart';
 /// ChangePasswordDTO
 ///
 /// Properties:
-/// * [password] 
-/// * [passwordConfirm] 
+/// * [password] - The new password
+/// * [passwordConfirm] - The new password again, to confirm it got typed in properly
 @BuiltValue()
 abstract class ChangePasswordDTO implements Built<ChangePasswordDTO, ChangePasswordDTOBuilder> {
+  /// The new password
   @BuiltValueField(wireName: r'password')
   String get password;
 
+  /// The new password again, to confirm it got typed in properly
   @BuiltValueField(wireName: r'passwordConfirm')
   String get passwordConfirm;
 

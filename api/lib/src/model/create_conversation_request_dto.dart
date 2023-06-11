@@ -12,9 +12,10 @@ part 'create_conversation_request_dto.g.dart';
 /// CreateConversationRequestDTO
 ///
 /// Properties:
-/// * [partnerIds] 
+/// * [partnerIds] - The partner ids of a conversation (Can't be empty or contain self)
 @BuiltValue()
 abstract class CreateConversationRequestDTO implements Built<CreateConversationRequestDTO, CreateConversationRequestDTOBuilder> {
+  /// The partner ids of a conversation (Can't be empty or contain self)
   @BuiltValueField(wireName: r'partnerIds')
   BuiltList<num> get partnerIds;
 

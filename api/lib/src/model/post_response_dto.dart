@@ -5,7 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/comment_response_dto.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/user_response_dto.dart';
+import 'package:openapi/src/model/post_response_dto_author.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,34 +14,40 @@ part 'post_response_dto.g.dart';
 /// PostResponseDTO
 ///
 /// Properties:
-/// * [id] 
-/// * [createdAt] 
-/// * [updatedAt] 
-/// * [content] 
-/// * [contentType] 
+/// * [id] - The unique id of a post
+/// * [createdAt] - The creation date of a post
+/// * [updatedAt] - The last update date of a post
+/// * [content] - The content of a post
+/// * [contentType] - The content type of a post
 /// * [author] 
-/// * [comments] 
+/// * [comments] - The comments of a post
 @BuiltValue()
 abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTOBuilder> {
+  /// The unique id of a post
   @BuiltValueField(wireName: r'id')
   num get id;
 
+  /// The creation date of a post
   @BuiltValueField(wireName: r'createdAt')
   DateTime get createdAt;
 
+  /// The last update date of a post
   @BuiltValueField(wireName: r'updatedAt')
   DateTime get updatedAt;
 
+  /// The content of a post
   @BuiltValueField(wireName: r'content')
   String get content;
 
+  /// The content type of a post
   @BuiltValueField(wireName: r'contentType')
   PostResponseDTOContentTypeEnum get contentType;
   // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
   @BuiltValueField(wireName: r'author')
-  UserResponseDTO? get author;
+  PostResponseDTOAuthor? get author;
 
+  /// The comments of a post
   @BuiltValueField(wireName: r'comments')
   BuiltList<CommentResponseDTO>? get comments;
 
@@ -96,7 +102,7 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
     yield r'author';
     yield object.author == null ? null : serializers.serialize(
       object.author,
-      specifiedType: const FullType.nullable(UserResponseDTO),
+      specifiedType: const FullType.nullable(PostResponseDTOAuthor),
     );
     yield r'comments';
     yield object.comments == null ? null : serializers.serialize(
@@ -164,8 +170,8 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
         case r'author':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(UserResponseDTO),
-          ) as UserResponseDTO?;
+            specifiedType: const FullType.nullable(PostResponseDTOAuthor),
+          ) as PostResponseDTOAuthor?;
           if (valueDes == null) continue;
           result.author.replace(valueDes);
           break;
@@ -208,8 +214,10 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
 
 class PostResponseDTOContentTypeEnum extends EnumClass {
 
+  /// The content type of a post
   @BuiltValueEnumConst(wireName: r'TEXT')
   static const PostResponseDTOContentTypeEnum TEXT = _$postResponseDTOContentTypeEnum_TEXT;
+  /// The content type of a post
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const PostResponseDTOContentTypeEnum IMAGE_URL = _$postResponseDTOContentTypeEnum_IMAGE_URL;
 

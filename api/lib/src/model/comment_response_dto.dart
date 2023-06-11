@@ -4,8 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/user_response_dto.dart';
 import 'package:openapi/src/model/reply_response_dto.dart';
+import 'package:openapi/src/model/comment_response_dto_author.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,29 +14,34 @@ part 'comment_response_dto.g.dart';
 /// CommentResponseDTO
 ///
 /// Properties:
-/// * [id] 
-/// * [createdAt] 
-/// * [updatedAt] 
-/// * [content] 
+/// * [id] - The unique id of a comment
+/// * [createdAt] - The creation date of a comment
+/// * [updatedAt] - The last update date of a comment
+/// * [content] - The content of a comment
 /// * [author] 
-/// * [replies] 
+/// * [replies] - The replies of a comment
 @BuiltValue()
 abstract class CommentResponseDTO implements Built<CommentResponseDTO, CommentResponseDTOBuilder> {
+  /// The unique id of a comment
   @BuiltValueField(wireName: r'id')
   num get id;
 
+  /// The creation date of a comment
   @BuiltValueField(wireName: r'createdAt')
   DateTime get createdAt;
 
+  /// The last update date of a comment
   @BuiltValueField(wireName: r'updatedAt')
   DateTime get updatedAt;
 
+  /// The content of a comment
   @BuiltValueField(wireName: r'content')
   String get content;
 
   @BuiltValueField(wireName: r'author')
-  UserResponseDTO? get author;
+  CommentResponseDTOAuthor? get author;
 
+  /// The replies of a comment
   @BuiltValueField(wireName: r'replies')
   BuiltList<ReplyResponseDTO> get replies;
 
@@ -86,7 +91,7 @@ class _$CommentResponseDTOSerializer implements PrimitiveSerializer<CommentRespo
     yield r'author';
     yield object.author == null ? null : serializers.serialize(
       object.author,
-      specifiedType: const FullType.nullable(UserResponseDTO),
+      specifiedType: const FullType.nullable(CommentResponseDTOAuthor),
     );
     yield r'replies';
     yield serializers.serialize(
@@ -147,8 +152,8 @@ class _$CommentResponseDTOSerializer implements PrimitiveSerializer<CommentRespo
         case r'author':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(UserResponseDTO),
-          ) as UserResponseDTO?;
+            specifiedType: const FullType.nullable(CommentResponseDTOAuthor),
+          ) as CommentResponseDTOAuthor?;
           if (valueDes == null) continue;
           result.author.replace(valueDes);
           break;

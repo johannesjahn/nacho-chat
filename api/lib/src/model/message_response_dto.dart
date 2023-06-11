@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/user_response_dto.dart';
+import 'package:openapi/src/model/message_response_dto_author.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,39 +13,37 @@ part 'message_response_dto.g.dart';
 /// MessageResponseDTO
 ///
 /// Properties:
-/// * [id] 
-/// * [createdAt] 
-/// * [updatedAt] 
-/// * [content] 
-/// * [contentType] 
+/// * [id] - The id of the message
+/// * [createdAt] - The creation date of a message
+/// * [updatedAt] - The date of the last update of a message
+/// * [content] - The content of the message
+/// * [contentType] - The type of content
 /// * [author] 
-@BuiltValue()
-abstract class MessageResponseDTO implements Built<MessageResponseDTO, MessageResponseDTOBuilder> {
+@BuiltValue(instantiable: false)
+abstract class MessageResponseDTO  {
+  /// The id of the message
   @BuiltValueField(wireName: r'id')
   num get id;
 
+  /// The creation date of a message
   @BuiltValueField(wireName: r'createdAt')
   DateTime get createdAt;
 
+  /// The date of the last update of a message
   @BuiltValueField(wireName: r'updatedAt')
   DateTime get updatedAt;
 
+  /// The content of the message
   @BuiltValueField(wireName: r'content')
   String get content;
 
+  /// The type of content
   @BuiltValueField(wireName: r'contentType')
   MessageResponseDTOContentTypeEnum get contentType;
   // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
   @BuiltValueField(wireName: r'author')
-  UserResponseDTO get author;
-
-  MessageResponseDTO._();
-
-  factory MessageResponseDTO([void updates(MessageResponseDTOBuilder b)]) = _$MessageResponseDTO;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(MessageResponseDTOBuilder b) => b;
+  MessageResponseDTOAuthor get author;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<MessageResponseDTO> get serializer => _$MessageResponseDTOSerializer();
@@ -53,7 +51,7 @@ abstract class MessageResponseDTO implements Built<MessageResponseDTO, MessageRe
 
 class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageResponseDTO> {
   @override
-  final Iterable<Type> types = const [MessageResponseDTO, _$MessageResponseDTO];
+  final Iterable<Type> types = const [MessageResponseDTO];
 
   @override
   final String wireName = r'MessageResponseDTO';
@@ -91,7 +89,7 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
     yield r'author';
     yield serializers.serialize(
       object.author,
-      specifiedType: const FullType(UserResponseDTO),
+      specifiedType: const FullType(MessageResponseDTOAuthor),
     );
   }
 
@@ -102,6 +100,46 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  MessageResponseDTO deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($MessageResponseDTO)) as $MessageResponseDTO;
+  }
+}
+
+/// a concrete implementation of [MessageResponseDTO], since [MessageResponseDTO] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $MessageResponseDTO implements MessageResponseDTO, Built<$MessageResponseDTO, $MessageResponseDTOBuilder> {
+  $MessageResponseDTO._();
+
+  factory $MessageResponseDTO([void Function($MessageResponseDTOBuilder)? updates]) = _$$MessageResponseDTO;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($MessageResponseDTOBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$MessageResponseDTO> get serializer => _$$MessageResponseDTOSerializer();
+}
+
+class _$$MessageResponseDTOSerializer implements PrimitiveSerializer<$MessageResponseDTO> {
+  @override
+  final Iterable<Type> types = const [$MessageResponseDTO, _$$MessageResponseDTO];
+
+  @override
+  final String wireName = r'$MessageResponseDTO';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $MessageResponseDTO object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(MessageResponseDTO))!;
   }
 
   void _deserializeProperties(
@@ -154,8 +192,8 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
         case r'author':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UserResponseDTO),
-          ) as UserResponseDTO;
+            specifiedType: const FullType(MessageResponseDTOAuthor),
+          ) as MessageResponseDTOAuthor;
           result.author.replace(valueDes);
           break;
         default:
@@ -167,12 +205,12 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
   }
 
   @override
-  MessageResponseDTO deserialize(
+  $MessageResponseDTO deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = MessageResponseDTOBuilder();
+    final result = $MessageResponseDTOBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(
@@ -189,8 +227,10 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
 
 class MessageResponseDTOContentTypeEnum extends EnumClass {
 
+  /// The type of content
   @BuiltValueEnumConst(wireName: r'TEXT')
   static const MessageResponseDTOContentTypeEnum TEXT = _$messageResponseDTOContentTypeEnum_TEXT;
+  /// The type of content
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const MessageResponseDTOContentTypeEnum IMAGE_URL = _$messageResponseDTOContentTypeEnum_IMAGE_URL;
 

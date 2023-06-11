@@ -18,5 +18,5 @@ flutter pub run build_runner build
 To create the openapi scaffold run:
 
 ```shell
-openapi-generator generate -i ./api.json -g dart-dio -o ./api
+openapi-generator generate -i https://chat.johannes-jahn.com/api-json -g dart-dio -o ./api
 ```

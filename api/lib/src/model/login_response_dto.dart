@@ -11,9 +11,10 @@ part 'login_response_dto.g.dart';
 /// LoginResponseDTO
 ///
 /// Properties:
-/// * [accessToken] 
+/// * [accessToken] - The JWT access token of a user
 @BuiltValue()
 abstract class LoginResponseDTO implements Built<LoginResponseDTO, LoginResponseDTOBuilder> {
+  /// The JWT access token of a user
   @BuiltValueField(wireName: r'access_token')
   String get accessToken;
 

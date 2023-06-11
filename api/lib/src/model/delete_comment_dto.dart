@@ -11,9 +11,10 @@ part 'delete_comment_dto.g.dart';
 /// DeleteCommentDTO
 ///
 /// Properties:
-/// * [commentId] 
+/// * [commentId] - The unique id of the comment
 @BuiltValue()
 abstract class DeleteCommentDTO implements Built<DeleteCommentDTO, DeleteCommentDTOBuilder> {
+  /// The unique id of the comment
   @BuiltValueField(wireName: r'commentId')
   num get commentId;
 

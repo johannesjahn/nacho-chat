@@ -11,13 +11,15 @@ part 'update_reply_dto.g.dart';
 /// UpdateReplyDTO
 ///
 /// Properties:
-/// * [replyId] 
-/// * [content] 
+/// * [replyId] - The unique id of the reply
+/// * [content] - The content of the reply
 @BuiltValue()
 abstract class UpdateReplyDTO implements Built<UpdateReplyDTO, UpdateReplyDTOBuilder> {
+  /// The unique id of the reply
   @BuiltValueField(wireName: r'replyId')
   num get replyId;
 
+  /// The content of the reply
   @BuiltValueField(wireName: r'content')
   String get content;
 

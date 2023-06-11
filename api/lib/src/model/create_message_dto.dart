@@ -12,17 +12,20 @@ part 'create_message_dto.g.dart';
 /// CreateMessageDTO
 ///
 /// Properties:
-/// * [conversationId] 
-/// * [content] 
-/// * [contentType] 
+/// * [conversationId] - The id of the conversation the message should be sent to
+/// * [content] - The content of the message
+/// * [contentType] - The type of content
 @BuiltValue()
 abstract class CreateMessageDTO implements Built<CreateMessageDTO, CreateMessageDTOBuilder> {
+  /// The id of the conversation the message should be sent to
   @BuiltValueField(wireName: r'conversationId')
   num get conversationId;
 
+  /// The content of the message
   @BuiltValueField(wireName: r'content')
   String get content;
 
+  /// The type of content
   @BuiltValueField(wireName: r'contentType')
   CreateMessageDTOContentTypeEnum get contentType;
   // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
@@ -140,8 +143,10 @@ class _$CreateMessageDTOSerializer implements PrimitiveSerializer<CreateMessageD
 
 class CreateMessageDTOContentTypeEnum extends EnumClass {
 
+  /// The type of content
   @BuiltValueEnumConst(wireName: r'TEXT')
   static const CreateMessageDTOContentTypeEnum TEXT = _$createMessageDTOContentTypeEnum_TEXT;
+  /// The type of content
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const CreateMessageDTOContentTypeEnum IMAGE_URL = _$createMessageDTOContentTypeEnum_IMAGE_URL;
 

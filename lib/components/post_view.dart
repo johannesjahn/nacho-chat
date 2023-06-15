@@ -52,10 +52,10 @@ class PostView extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              NachoAvatar(user: post.author, radius: 20),
               Text(
                   "${post.author?.username ?? ""}, ${formatPostedDate(post.createdAt, context)}",
                   style: Theme.of(context).textTheme.labelSmall),
+              NachoAvatar(user: post.author, radius: 20),
             ],
           ),
         )

@@ -57,5 +57,9 @@
         }
     },
     "minutes_ago": "vor Minuten",
-    "just_now": "gerade eben"
+    "just_now": "gerade eben",
+    "settings": "Einstellungen",
+    "dark_mode": "Dunkler Modus",
+    "version": "Version",
+    "logout": "Logout"
 }

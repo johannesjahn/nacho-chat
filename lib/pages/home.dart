@@ -4,6 +4,7 @@ import 'package:nacho_chat/components/post_list.dart';
 import 'package:nacho_chat/pages/chat_list.dart';
 import 'package:nacho_chat/pages/login.dart';
 import 'package:nacho_chat/pages/profile.dart';
+import 'package:nacho_chat/pages/settings.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:nacho_chat/service/post.dart';
@@ -52,14 +53,10 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(Icons.person)),
           IconButton(
-              padding: const EdgeInsets.all(10),
-              onPressed: () async {
-                await AppService.instance.logout();
-                if (context.mounted) {
-                  Navigator.push(context, DefaultRoute(const LoginPage()));
-                }
+              onPressed: () {
+                Navigator.of(context).push(DefaultRoute(SettingsPage()));
               },
-              icon: const Icon(Icons.logout))
+              icon: const Icon(Icons.settings))
         ],
       ),
       body: Stack(

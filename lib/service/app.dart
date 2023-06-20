@@ -20,7 +20,7 @@ class AppService {
   String? _accessToken;
 
   String get username {
-    _username ??= hive.get("username") as String;
+    _username ??= hive.get("username");
     return _username ?? "";
   }
 
@@ -129,9 +129,12 @@ class AppService {
     socket?.disconnect();
   }
 
+  VersionDTO? _backendVersion;
   Future<VersionDTO> getBackendVersion() async {
+    if (_backendVersion != null) return _backendVersion!;
     final response = await api.getDefaultApi().appControllerGetVersion();
     logger.i("Backend version: ${response.data!.version}");
-    return response.data!;
+    _backendVersion = response.data;
+    return _backendVersion!;
   }
 }

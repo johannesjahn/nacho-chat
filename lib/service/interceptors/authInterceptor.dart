@@ -5,7 +5,7 @@ class AuthInterceptor extends Interceptor {
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    final token = AppService.instance.hive.get('access_token');
+    final token = AppService.instance.accessToken;
     if (token != null) {
       return handler.next(options.copyWith(headers: {
         "Authorization": "Bearer $token",

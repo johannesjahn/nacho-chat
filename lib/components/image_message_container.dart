@@ -16,8 +16,7 @@ class ImageMessageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isAuthor = message.author.id ==
-        num.parse(AppService.instance.hive.get("user_id") ?? "-1");
+    final isAuthor = message.author.id == AppService.instance.userId;
     final theme = Theme.of(context);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;

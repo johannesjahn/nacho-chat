@@ -31,8 +31,7 @@ class _TextMessageContainerState extends State<TextMessageContainer> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final isAuthor = widget.message.author.id ==
-        num.parse(AppService.instance.hive.get("user_id") ?? "-1");
+    final isAuthor = widget.message.author.id == AppService.instance.userId;
     final theme = Theme.of(context);
     return Container(
         padding: const EdgeInsets.all(16),

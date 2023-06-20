@@ -30,11 +30,7 @@ class _ChatListPageState extends State<ChatListPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title:
-            // ignore: prefer_interpolation_to_compose_strings
-            Text(l10n.hello +
-                ", " +
-                (AppService.instance.hive.get("username") ?? "")),
+        title: Text("${l10n.hello}, ${AppService.instance.username}"),
         actions: [
           true
               ? const SizedBox()

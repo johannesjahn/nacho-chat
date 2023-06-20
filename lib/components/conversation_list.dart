@@ -36,8 +36,7 @@ class ConversationList extends StatelessWidget {
                   final nonSelfParticipants = value[index]
                       .participants
                       .where((participant) =>
-                          participant.username !=
-                          AppService.instance.hive.get("username"))
+                          participant.id != AppService.instance.userId)
                       .toList();
                   final chatTitle =
                       nonSelfParticipants.map((u) => u.username).join(", ");

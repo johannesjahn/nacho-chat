@@ -20,8 +20,8 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
 
   PostResponseDTOBuilder mockPostBuilder() {
     final authorBuilder = PostResponseDTOAuthorBuilder()
-      ..id = num.parse(AppService.instance.hive.get("user_id") ?? "0")
-      ..username = AppService.instance.hive.get("username") ?? "";
+      ..id = AppService.instance.userId
+      ..username = AppService.instance.username;
 
     return PostResponseDTOBuilder()
       ..id = 1337

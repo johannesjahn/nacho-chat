@@ -15,6 +15,29 @@ export 'utils.dart';
 class AppService {
   static final instance = AppService._();
 
+  String? _username;
+  num? _userId;
+  String? _accessToken;
+
+  String get username {
+    _username ??= hive.get("username") as String;
+    return _username ?? "";
+  }
+
+  num get userId {
+    if (_userId != null) return _userId!;
+    final t = num.parse(AppService.instance.hive.get("user_id") ?? "-1");
+    if (t != -1) {
+      _userId = t;
+    }
+    return t;
+  }
+
+  String? get accessToken {
+    _accessToken ??= hive.get("access_token");
+    return _accessToken;
+  }
+
   bool isTablet = false;
 
   Future<void> init() async {
@@ -95,6 +118,9 @@ class AppService {
   /// Logs out the user by deleting all data from the local storage and disconnecting from the websocket
   logout() async {
     await hive.deleteAll(hive.keys.toList());
+    _userId = null;
+    _username = null;
+    _accessToken = null;
     UserService.instance.me.value = null;
     ChatService.instance.currentChat.value = null;
     ChatService.instance.conversations = [];

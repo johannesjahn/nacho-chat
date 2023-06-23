@@ -68,19 +68,19 @@ class _SettingsPageState extends State<SettingsPage> {
                       content: Text("You gotta be kidding me…"),
                       duration: Duration(seconds: 1)),
                 );
-              } else if (versionTapCount == 60) {
+              } else if (versionTapCount == 50) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content: Text("Alright, you're persistent…"),
                       duration: Duration(seconds: 1)),
                 );
-              } else if (versionTapCount == 100) {
+              } else if (versionTapCount == 70) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content: Text("You're not gonna give up, are you?"),
                       duration: Duration(seconds: 1)),
                 );
-              } else if (versionTapCount == 150) {
+              } else if (versionTapCount == 100) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("Here is your egg: 🥚"),
                     duration: Duration(seconds: 5)));

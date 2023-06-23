@@ -60,25 +60,25 @@ class _SettingsPageState extends State<SettingsPage> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content: Text("Feeling like a hacker?"),
-                      duration: Duration(seconds: 1)),
+                      duration: Duration(seconds: 2)),
                 );
               } else if (versionTapCount == 30) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content: Text("You gotta be kidding me…"),
-                      duration: Duration(seconds: 1)),
+                      duration: Duration(seconds: 2)),
                 );
               } else if (versionTapCount == 50) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content: Text("Alright, you're persistent…"),
-                      duration: Duration(seconds: 1)),
+                      duration: Duration(seconds: 2)),
                 );
               } else if (versionTapCount == 70) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content: Text("You're not gonna give up, are you?"),
-                      duration: Duration(seconds: 1)),
+                      duration: Duration(seconds: 2)),
                 );
               } else if (versionTapCount == 100) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

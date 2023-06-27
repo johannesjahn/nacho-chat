@@ -68,7 +68,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       content: Text("You gotta be kidding me…"),
                       duration: Duration(seconds: 2)),
                 );
-              } else if (versionTapCount == 50) {
+              } else if (versionTapCount == 51) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content: Text("Alright, you're persistent…"),

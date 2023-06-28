@@ -80,7 +80,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       content: Text("You're not gonna give up, are you?"),
                       duration: Duration(seconds: 2)),
                 );
-              } else if (versionTapCount == 100) {
+              } else if (versionTapCount == 90) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("Here is your egg: 🥚"),
                     duration: Duration(seconds: 5)));

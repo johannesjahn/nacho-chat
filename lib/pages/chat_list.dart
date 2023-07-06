@@ -54,15 +54,6 @@ class _ChatListPageState extends State<ChatListPage> {
                     builder: (context) => const AddUserDialog());
               },
               icon: const Icon(Icons.add)),
-          IconButton(
-              padding: const EdgeInsets.all(10),
-              onPressed: () async {
-                await AppService.instance.logout();
-                if (context.mounted) {
-                  Navigator.push(context, DefaultRoute(const LoginPage()));
-                }
-              },
-              icon: const Icon(Icons.logout))
         ],
       ),
       body: Builder(builder: (context) {

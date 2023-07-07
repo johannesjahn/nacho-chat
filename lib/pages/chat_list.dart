@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/components/chat_view.dart';
 import 'package:nacho_chat/components/conversation_list.dart';
-import 'package:nacho_chat/pages/login.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/chat.dart';
 import 'package:nacho_chat/service/user.dart';
@@ -32,20 +31,6 @@ class _ChatListPageState extends State<ChatListPage> {
       appBar: AppBar(
         title: Text("${l10n.hello}, ${AppService.instance.username}"),
         actions: [
-          true
-              ? const SizedBox()
-              : IconButton(
-                  padding: const EdgeInsets.all(10),
-                  icon: Icon(Icons.bug_report),
-                  onPressed: () async {
-                    // create a snackbar
-                    await UserService.instance.uploadAvatar();
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Bugs Bugs Bugs everywhere 🐛🐛🐛')));
-                    }
-                  },
-                ),
           IconButton(
               padding: const EdgeInsets.all(10),
               onPressed: () {

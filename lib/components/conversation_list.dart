@@ -78,7 +78,14 @@ class ConversationList extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(chatTitle),
+                                      SizedBox(
+                                        width: preferredWidth - 100,
+                                        child: Text(
+                                          chatTitle,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                        ),
+                                      ),
                                       if (lastMessage != null)
                                         Text(
                                           shortFormatPostedDate(

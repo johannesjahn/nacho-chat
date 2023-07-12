@@ -65,8 +65,19 @@ class ConversationList extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       child: Row(
                         children: [
-                          NachoAvatar(
-                              user: nonSelfParticipants.first, radius: 15),
+                          Builder(builder: (context) {
+                            if (value[index].participants.length > 2) {
+                              return NachoAvatar(
+                                  user: nonSelfParticipants.first,
+                                  radius: 15,
+                                  users: value[index].participants.toList());
+                            } else {
+                              return NachoAvatar(
+                                user: nonSelfParticipants.first,
+                                radius: 15,
+                              );
+                            }
+                          }),
                           Container(
                             margin: const EdgeInsets.only(left: 16),
                             child: Column(

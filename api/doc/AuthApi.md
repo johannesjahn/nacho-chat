@@ -9,13 +9,13 @@ All URIs are relative to *https://chat.johannes-jahn.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authControllerGetUsers**](AuthApi.md#authcontrollergetusers) | **POST** /app/auth/change-password | 
+[**authControllerChangePassword**](AuthApi.md#authcontrollerchangepassword) | **POST** /app/auth/change-password | 
 [**authControllerLogin**](AuthApi.md#authcontrollerlogin) | **POST** /app/auth/login | 
 [**authControllerRegister**](AuthApi.md#authcontrollerregister) | **POST** /app/auth/register | 
 
 
-# **authControllerGetUsers**
-> BuiltList<UserResponseDTO> authControllerGetUsers(changePasswordDTO)
+# **authControllerChangePassword**
+> UserResponseDTO authControllerChangePassword(changePasswordDTO)
 
 
 
@@ -32,10 +32,10 @@ final api = Openapi().getAuthApi();
 final ChangePasswordDTO changePasswordDTO = ; // ChangePasswordDTO | 
 
 try {
-    final response = api.authControllerGetUsers(changePasswordDTO);
+    final response = api.authControllerChangePassword(changePasswordDTO);
     print(response);
 } catch on DioError (e) {
-    print('Exception when calling AuthApi->authControllerGetUsers: $e\n');
+    print('Exception when calling AuthApi->authControllerChangePassword: $e\n');
 }
 ```
 
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList&lt;UserResponseDTO&gt;**](UserResponseDTO.md)
+[**UserResponseDTO**](UserResponseDTO.md)
 
 ### Authorization
 

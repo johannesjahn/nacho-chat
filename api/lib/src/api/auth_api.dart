@@ -7,7 +7,6 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/change_password_dto.dart';
 import 'package:openapi/src/model/login_dto.dart';
 import 'package:openapi/src/model/login_response_dto.dart';
@@ -34,9 +33,9 @@ class AuthApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<UserResponseDTO>] as data
+  /// Returns a [Future] containing a [Response] with a [UserResponseDTO] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<BuiltList<UserResponseDTO>>> authControllerGetUsers({ 
+  Future<Response<UserResponseDTO>> authControllerChangePassword({ 
     required ChangePasswordDTO changePasswordDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -92,14 +91,14 @@ class AuthApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<UserResponseDTO>? _responseData;
+    UserResponseDTO? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(BuiltList, [FullType(UserResponseDTO)]),
-      ) as BuiltList<UserResponseDTO>;
+        specifiedType: const FullType(UserResponseDTO),
+      ) as UserResponseDTO;
 
     } catch (error, stackTrace) {
       throw DioError(
@@ -111,7 +110,7 @@ class AuthApi {
       );
     }
 
-    return Response<BuiltList<UserResponseDTO>>(
+    return Response<UserResponseDTO>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

@@ -51,4 +51,14 @@ class AuthService {
 
     await login(username: username, password: password);
   }
+
+  Future<void> changePassword(
+      {required String password, required String passwordConfirm}) async {
+    final changePasswordDTO = ChangePasswordDTOBuilder()
+      ..password = password
+      ..passwordConfirm = passwordConfirm;
+
+    await appService.api.getAuthApi().authControllerChangePassword(
+        changePasswordDTO: changePasswordDTO.build());
+  }
 }

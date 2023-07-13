@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/components/version_display.dart';
+import 'package:nacho_chat/pages/change_password.dart';
 import 'package:nacho_chat/service/settings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:openapi/openapi.dart';
 
 import '../service/app.dart';
 import 'login.dart';
@@ -89,7 +91,11 @@ class _SettingsPageState extends State<SettingsPage> {
             },
           ),
           ListTile(
-            title: Text("Change password"),
+            title: Text(l10n.change_password),
+            leading: const Icon(Icons.lock),
+            onTap: () {
+              Navigator.push(context, DefaultRoute(const ChangePasswordPage()));
+            },
           ),
           ListTile(
             leading: const Icon(Icons.logout),

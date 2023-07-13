@@ -61,5 +61,9 @@
     "settings": "Einstellungen",
     "dark_mode": "Dunkler Modus",
     "version": "Version",
-    "logout": "Logout"
+    "logout": "Logout",
+    "change_password": "Passwort ändern",
+    "new_password": "Neues Passwort",
+    "confirm_password": "Neues Passwort bestätigen",
+    "change": "Ändern"
 }

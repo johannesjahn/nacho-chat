@@ -89,6 +89,9 @@ class _SettingsPageState extends State<SettingsPage> {
             },
           ),
           ListTile(
+            title: Text("Change password"),
+          ),
+          ListTile(
             leading: const Icon(Icons.logout),
             title: Text(l10n.logout),
             onTap: () async {

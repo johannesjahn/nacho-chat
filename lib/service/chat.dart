@@ -27,7 +27,7 @@ class ChatService {
 
   Future<void> createConversation({required List<num> partnerIds}) async {
     final dto = CreateConversationRequestDTOBuilder()
-      ..partnerIds = ListBuilder(partnerIds.map((e) => e.toString()));
+      ..partnerIds = ListBuilder(partnerIds.map((e) => e));
     await appService.api.getChatApi().chatControllerCreateConversation(
         createConversationRequestDTO: dto.build());
 

@@ -141,13 +141,14 @@ class ConversationList extends StatelessWidget {
                           isUnread
                               ? Container(
                                   margin: const EdgeInsets.only(left: 8),
-                                  child: Icon(
-                                    Icons.circle,
-                                    size: UNREAD_CIRCLE_SIZE,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .secondaryContainer,
-                                  ))
+                                  child: Container(
+                                      width: UNREAD_CIRCLE_SIZE,
+                                      height: UNREAD_CIRCLE_SIZE,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .inversePrimary)))
                               : const SizedBox()
                         ],
                       ));

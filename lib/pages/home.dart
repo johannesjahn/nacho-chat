@@ -55,11 +55,14 @@ class _HomePageState extends State<HomePage> {
                       bottom: 0,
                       right: 0,
                       child: value > 0
-                          ? Icon(Icons.circle,
-                              size: 10,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .secondaryContainer)
+                          ? Container(
+                              width: 10,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .inversePrimary))
                           : const SizedBox(),
                     ),
                   )

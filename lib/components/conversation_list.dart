@@ -71,7 +71,7 @@ class ConversationList extends StatelessWidget {
                   }
 
                   final preferredWidth = AppService.instance.isTablet
-                      ? 200.0
+                      ? 200.0 - (isUnread ? UNREAD_CIRCLE_SIZE : 0)
                       : MediaQuery.of(context).size.width -
                           100 -
                           (isUnread ? UNREAD_CIRCLE_SIZE : 0);

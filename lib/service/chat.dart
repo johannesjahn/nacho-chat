@@ -50,12 +50,14 @@ class ChatService {
         .chatControllerSendMessage(createMessageDTO: dto.build());
 
     await Future.wait([
-      getMessages(conversationId: conversationId),
+      getMessages(
+          conversationId: conversationId, markConversationAsRead: false),
       getConversations(),
     ]);
   }
 
-  Future<void> getMessages({required int conversationId}) async {
+  Future<void> getMessages(
+      {required int conversationId, bool markConversationAsRead = true}) async {
     try {
       List<MessageResponseDTO> messages = [];
       final dto = GetMessagesDTOBuilder()..conversationId = conversationId;
@@ -85,6 +87,10 @@ class ChatService {
       messages.sort((a, b) => (b.id - a.id).toInt());
 
       messagesNotifier.value = messages;
+
+      if (markConversationAsRead) {
+        this.markConversationAsRead(conversationId: conversationId);
+      }
     } finally {}
   }
 
@@ -95,7 +101,8 @@ class ChatService {
         markConversationAsReadDTO: dto.build());
 
     await Future.wait([
-      getMessages(conversationId: conversationId),
+      getMessages(
+          conversationId: conversationId, markConversationAsRead: false),
       getConversations(),
     ]);
 

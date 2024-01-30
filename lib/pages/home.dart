@@ -57,8 +57,9 @@ class _HomePageState extends State<HomePage> {
                       child: value > 0
                           ? Icon(Icons.circle,
                               size: 10,
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary)
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondaryContainer)
                           : const SizedBox(),
                     ),
                   )

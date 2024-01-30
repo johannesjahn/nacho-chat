@@ -146,7 +146,7 @@ class ConversationList extends StatelessWidget {
                                     size: UNREAD_CIRCLE_SIZE,
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .inversePrimary,
+                                        .secondaryContainer,
                                   ))
                               : const SizedBox()
                         ],

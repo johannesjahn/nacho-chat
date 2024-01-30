@@ -27,36 +27,46 @@ class _ChatListPageState extends State<ChatListPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("${l10n.hello}, ${AppService.instance.username}"),
-        actions: [
-          IconButton(
-              padding: const EdgeInsets.all(10),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) => const AddUserDialog());
-              },
-              icon: const Icon(Icons.add)),
-        ],
-      ),
-      body: Builder(builder: (context) {
-        final width = MediaQuery.of(context).size.width;
-
-        if (width < 750) {
-          AppService.instance.isTablet = false;
-          return const ConversationList();
+    return PopScope(
+      onPopInvoked: (didPop) {
+        if (!AppService.instance.isTablet) {
+          return;
         }
-
-        AppService.instance.isTablet = true;
-        return Row(
-          children: [
-            const SizedBox(width: 300, child: ConversationList()),
-            SizedBox(width: width - 300, child: const ChatView())
+        logger.i('didPop chat Tablet: $didPop');
+        ChatService.instance.currentChat.value = null;
+        ChatService.instance.messagesNotifier.value = [];
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("${l10n.hello}, ${AppService.instance.username}"),
+          actions: [
+            IconButton(
+                padding: const EdgeInsets.all(10),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => const AddUserDialog());
+                },
+                icon: const Icon(Icons.add)),
           ],
-        );
-      }),
+        ),
+        body: Builder(builder: (context) {
+          final width = MediaQuery.of(context).size.width;
+
+          if (width < 750) {
+            AppService.instance.isTablet = false;
+            return const ConversationList();
+          }
+
+          AppService.instance.isTablet = true;
+          return Row(
+            children: [
+              const SizedBox(width: 300, child: ConversationList()),
+              SizedBox(width: width - 300, child: const ChatView())
+            ],
+          );
+        }),
+      ),
     );
   }
 }

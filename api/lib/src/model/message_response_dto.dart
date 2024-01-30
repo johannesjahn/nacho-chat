@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/message_response_dto_author.dart';
+import 'package:openapi/src/model/user_response_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,6 +19,7 @@ part 'message_response_dto.g.dart';
 /// * [content] - The content of the message
 /// * [contentType] - The type of content
 /// * [author] 
+/// * [readBy] - The users that have read the message
 @BuiltValue(instantiable: false)
 abstract class MessageResponseDTO  {
   /// The id of the message
@@ -43,7 +44,11 @@ abstract class MessageResponseDTO  {
   // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
   @BuiltValueField(wireName: r'author')
-  MessageResponseDTOAuthor get author;
+  UserResponseDTO get author;
+
+  /// The users that have read the message
+  @BuiltValueField(wireName: r'readBy')
+  BuiltList<UserResponseDTO> get readBy;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<MessageResponseDTO> get serializer => _$MessageResponseDTOSerializer();
@@ -89,7 +94,12 @@ class _$MessageResponseDTOSerializer implements PrimitiveSerializer<MessageRespo
     yield r'author';
     yield serializers.serialize(
       object.author,
-      specifiedType: const FullType(MessageResponseDTOAuthor),
+      specifiedType: const FullType(UserResponseDTO),
+    );
+    yield r'readBy';
+    yield serializers.serialize(
+      object.readBy,
+      specifiedType: const FullType(BuiltList, [FullType(UserResponseDTO)]),
     );
   }
 
@@ -192,9 +202,16 @@ class _$$MessageResponseDTOSerializer implements PrimitiveSerializer<$MessageRes
         case r'author':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageResponseDTOAuthor),
-          ) as MessageResponseDTOAuthor;
-          result.author.replace(valueDes);
+            specifiedType: const FullType(UserResponseDTO),
+          ) as UserResponseDTO;
+          result.author = valueDes;
+          break;
+        case r'readBy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(UserResponseDTO)]),
+          ) as BuiltList<UserResponseDTO>;
+          result.readBy.replace(valueDes);
           break;
         default:
           unhandled.add(key);

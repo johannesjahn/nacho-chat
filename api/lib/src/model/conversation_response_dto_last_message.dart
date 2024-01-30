@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/message_response_dto_author.dart';
+import 'package:openapi/src/model/user_response_dto.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,6 +20,7 @@ part 'conversation_response_dto_last_message.g.dart';
 /// * [content] - The content of the message
 /// * [contentType] - The type of content
 /// * [author] 
+/// * [readBy] - The users that have read the message
 @BuiltValue()
 abstract class ConversationResponseDTOLastMessage implements MessageResponseDTO, Built<ConversationResponseDTOLastMessage, ConversationResponseDTOLastMessageBuilder> {
   ConversationResponseDTOLastMessage._();
@@ -50,6 +51,16 @@ class _$ConversationResponseDTOLastMessageSerializer implements PrimitiveSeriali
       object.createdAt,
       specifiedType: const FullType(DateTime),
     );
+    yield r'author';
+    yield serializers.serialize(
+      object.author,
+      specifiedType: const FullType(UserResponseDTO),
+    );
+    yield r'readBy';
+    yield serializers.serialize(
+      object.readBy,
+      specifiedType: const FullType(BuiltList, [FullType(UserResponseDTO)]),
+    );
     yield r'id';
     yield serializers.serialize(
       object.id,
@@ -59,11 +70,6 @@ class _$ConversationResponseDTOLastMessageSerializer implements PrimitiveSeriali
     yield serializers.serialize(
       object.contentType,
       specifiedType: const FullType(MessageResponseDTOContentTypeEnum),
-    );
-    yield r'author';
-    yield serializers.serialize(
-      object.author,
-      specifiedType: const FullType(MessageResponseDTOAuthor),
     );
     yield r'content';
     yield serializers.serialize(
@@ -105,6 +111,20 @@ class _$ConversationResponseDTOLastMessageSerializer implements PrimitiveSeriali
           ) as DateTime;
           result.createdAt = valueDes;
           break;
+        case r'author':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UserResponseDTO),
+          ) as UserResponseDTO;
+          result.author = valueDes;
+          break;
+        case r'readBy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(UserResponseDTO)]),
+          ) as BuiltList<UserResponseDTO>;
+          result.readBy.replace(valueDes);
+          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
@@ -118,13 +138,6 @@ class _$ConversationResponseDTOLastMessageSerializer implements PrimitiveSeriali
             specifiedType: const FullType(MessageResponseDTOContentTypeEnum),
           ) as MessageResponseDTOContentTypeEnum;
           result.contentType = valueDes;
-          break;
-        case r'author':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(MessageResponseDTOAuthor),
-          ) as MessageResponseDTOAuthor;
-          result.author.replace(valueDes);
           break;
         case r'content':
           final valueDes = serializers.deserialize(

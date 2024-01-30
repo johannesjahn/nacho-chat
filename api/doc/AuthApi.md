@@ -24,9 +24,6 @@ Change password
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getAuthApi();
 final ChangePasswordDTO changePasswordDTO = ; // ChangePasswordDTO | 
@@ -34,7 +31,7 @@ final ChangePasswordDTO changePasswordDTO = ; // ChangePasswordDTO |
 try {
     final response = api.authControllerChangePassword(changePasswordDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling AuthApi->authControllerChangePassword: $e\n');
 }
 ```
@@ -77,7 +74,7 @@ final LoginDTO loginDTO = ; // LoginDTO |
 try {
     final response = api.authControllerLogin(loginDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling AuthApi->authControllerLogin: $e\n');
 }
 ```
@@ -120,7 +117,7 @@ final RegisterDTO registerDTO = ; // RegisterDTO |
 try {
     final response = api.authControllerRegister(registerDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling AuthApi->authControllerRegister: $e\n');
 }
 ```

@@ -20,8 +20,10 @@ doc/DeleteReplyDTO.md
 doc/GetMessagesDTO.md
 doc/LoginDTO.md
 doc/LoginResponseDTO.md
+doc/MarkConversationAsReadDTO.md
+doc/MarkMessageAsReadDTO.md
 doc/MessageResponseDTO.md
-doc/MessageResponseDTOAuthor.md
+doc/NumberOfUnreadMessagesResponseDTO.md
 doc/PostApi.md
 doc/PostResponseDTO.md
 doc/PostResponseDTOAuthor.md
@@ -65,8 +67,10 @@ lib/src/model/delete_reply_dto.dart
 lib/src/model/get_messages_dto.dart
 lib/src/model/login_dto.dart
 lib/src/model/login_response_dto.dart
+lib/src/model/mark_conversation_as_read_dto.dart
+lib/src/model/mark_message_as_read_dto.dart
 lib/src/model/message_response_dto.dart
-lib/src/model/message_response_dto_author.dart
+lib/src/model/number_of_unread_messages_response_dto.dart
 lib/src/model/post_response_dto.dart
 lib/src/model/post_response_dto_author.dart
 lib/src/model/register_dto.dart

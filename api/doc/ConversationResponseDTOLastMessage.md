@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **updatedAt** | [**DateTime**](DateTime.md) | The date of the last update of a message | 
 **content** | **String** | The content of the message | 
 **contentType** | **String** | The type of content | 
-**author** | [**MessageResponseDTOAuthor**](MessageResponseDTOAuthor.md) |  | 
+**author** | [**UserResponseDTO**](UserResponseDTO.md) |  | 
+**readBy** | [**BuiltList&lt;UserResponseDTO&gt;**](UserResponseDTO.md) | The users that have read the message | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

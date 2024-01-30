@@ -8,6 +8,7 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/comment_response_dto.dart';
 import 'package:openapi/src/model/create_comment_dto.dart';
 import 'package:openapi/src/model/create_post_dto.dart';
@@ -42,7 +43,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [CommentResponseDTO] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<CommentResponseDTO>> postControllerCreateComment({ 
     required CreateCommentDTO createCommentDTO,
     CancelToken? cancelToken,
@@ -79,12 +80,12 @@ class PostApi {
       _bodyData = _serializers.serialize(createCommentDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -109,10 +110,10 @@ class PostApi {
       ) as CommentResponseDTO;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -143,7 +144,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [PostResponseDTO] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<PostResponseDTO>> postControllerCreatePost({ 
     required CreatePostDTO createPostDTO,
     CancelToken? cancelToken,
@@ -180,12 +181,12 @@ class PostApi {
       _bodyData = _serializers.serialize(createPostDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -210,10 +211,10 @@ class PostApi {
       ) as PostResponseDTO;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -244,7 +245,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [ReplyResponseDTO] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<ReplyResponseDTO>> postControllerCreateReply({ 
     required CreateReplyDTO createReplyDTO,
     CancelToken? cancelToken,
@@ -281,12 +282,12 @@ class PostApi {
       _bodyData = _serializers.serialize(createReplyDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -311,10 +312,10 @@ class PostApi {
       ) as ReplyResponseDTO;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -345,7 +346,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> postControllerDeleteComment({ 
     required DeleteCommentDTO deleteCommentDTO,
     CancelToken? cancelToken,
@@ -382,12 +383,12 @@ class PostApi {
       _bodyData = _serializers.serialize(deleteCommentDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -418,7 +419,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> postControllerDeletePost({ 
     required DeletePostDTO deletePostDTO,
     CancelToken? cancelToken,
@@ -455,12 +456,12 @@ class PostApi {
       _bodyData = _serializers.serialize(deletePostDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -491,7 +492,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> postControllerDeleteReply({ 
     required DeleteReplyDTO deleteReplyDTO,
     CancelToken? cancelToken,
@@ -528,12 +529,12 @@ class PostApi {
       _bodyData = _serializers.serialize(deleteReplyDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -564,7 +565,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<CommentResponseDTO>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<CommentResponseDTO>>> postControllerGetComments({ 
     required num postId,
     CancelToken? cancelToken,
@@ -574,7 +575,7 @@ class PostApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/app/post/comment/{postId}'.replaceAll('{' r'postId' '}', postId.toString());
+    final _path = r'/app/post/comment/{postId}'.replaceAll('{' r'postId' '}', encodeQueryParameter(_serializers, postId, const FullType(num)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -605,10 +606,10 @@ class PostApi {
       ) as BuiltList<CommentResponseDTO>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -638,7 +639,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<PostResponseDTO>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<PostResponseDTO>>> postControllerGetPosts({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -678,10 +679,10 @@ class PostApi {
       ) as BuiltList<PostResponseDTO>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -712,7 +713,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<ReplyResponseDTO>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<ReplyResponseDTO>>> postControllerGetReplies({ 
     required num commentId,
     CancelToken? cancelToken,
@@ -722,7 +723,7 @@ class PostApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/app/post/reply/{commentId}'.replaceAll('{' r'commentId' '}', commentId.toString());
+    final _path = r'/app/post/reply/{commentId}'.replaceAll('{' r'commentId' '}', encodeQueryParameter(_serializers, commentId, const FullType(num)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -753,10 +754,10 @@ class PostApi {
       ) as BuiltList<ReplyResponseDTO>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -787,7 +788,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [CommentResponseDTO] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<CommentResponseDTO>> postControllerUpdateComment({ 
     required UpdateCommentDTO updateCommentDTO,
     CancelToken? cancelToken,
@@ -824,12 +825,12 @@ class PostApi {
       _bodyData = _serializers.serialize(updateCommentDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -854,10 +855,10 @@ class PostApi {
       ) as CommentResponseDTO;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -888,7 +889,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [PostResponseDTO] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<PostResponseDTO>> postControllerUpdatePost({ 
     required UpdatePostDTO updatePostDTO,
     CancelToken? cancelToken,
@@ -925,12 +926,12 @@ class PostApi {
       _bodyData = _serializers.serialize(updatePostDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -955,10 +956,10 @@ class PostApi {
       ) as PostResponseDTO;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -989,7 +990,7 @@ class PostApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [ReplyResponseDTO] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<ReplyResponseDTO>> postControllerUpdateReply({ 
     required UpdateReplyDTO updateReplyDTO,
     CancelToken? cancelToken,
@@ -1026,12 +1027,12 @@ class PostApi {
       _bodyData = _serializers.serialize(updateReplyDTO, specifiedType: _type);
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -1056,10 +1057,10 @@ class PostApi {
       ) as ReplyResponseDTO;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

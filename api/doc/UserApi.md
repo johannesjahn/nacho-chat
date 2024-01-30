@@ -31,7 +31,7 @@ final num userId = 8.14; // num |
 
 try {
     api.usersControllerGetAvatar(userId);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling UserApi->usersControllerGetAvatar: $e\n');
 }
 ```
@@ -67,16 +67,13 @@ Get current authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getUserApi();
 
 try {
     final response = api.usersControllerGetMe();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling UserApi->usersControllerGetMe: $e\n');
 }
 ```
@@ -109,16 +106,13 @@ Get all users without self
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getUserApi();
 
 try {
     final response = api.usersControllerGetUsers();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling UserApi->usersControllerGetUsers: $e\n');
 }
 ```
@@ -151,16 +145,13 @@ Upload avatar for current authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getUserApi();
 final MultipartFile file = BINARY_DATA_HERE; // MultipartFile | 
 
 try {
     api.usersControllerUploadAvatar(file);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling UserApi->usersControllerUploadAvatar: $e\n');
 }
 ```

@@ -17,6 +17,8 @@ class ChatService {
 
   final messagesNotifier = ValueNotifier<List<MessageResponseDTO>>([]);
 
+  final unreadCountNotifier = ValueNotifier<num>(0);
+
   Future<void> getConversations() async {
     final response =
         await appService.api.getChatApi().chatControllerGetConversations();
@@ -84,5 +86,28 @@ class ChatService {
 
       messagesNotifier.value = messages;
     } finally {}
+  }
+
+  Future<void> markConversationAsRead({required int conversationId}) async {
+    final dto = MarkConversationAsReadDTOBuilder()
+      ..conversationId = conversationId;
+    await appService.api.getChatApi().chatControllerMarkConversationAsRead(
+        markConversationAsReadDTO: dto.build());
+
+    await Future.wait([
+      getMessages(conversationId: conversationId),
+      getConversations(),
+    ]);
+
+    getNumberOfUnreadMessages();
+  }
+
+  Future<num> getNumberOfUnreadMessages() async {
+    final response = await appService.api
+        .getChatApi()
+        .chatControllerGetNumberOfUnreadMessages();
+
+    unreadCountNotifier.value = response.data?.count ?? 0;
+    return response.data?.count ?? 0;
   }
 }

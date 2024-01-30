@@ -100,6 +100,7 @@ class AppService {
       }
     });
     socket!.on("message", (data) async {
+      ChatService.instance.getNumberOfUnreadMessages();
       await ChatService.instance.getConversations();
       if (data == null) return;
       logger.i("New Message in conversation ${data["conversationId"]}");
@@ -109,6 +110,10 @@ class AppService {
         await ChatService.instance.getMessages(
             conversationId: ChatService.instance.currentChat.value!.id as int);
       }
+    });
+
+    socket!.on("conversation", (data) async {
+      logger.i("New Conversation");
     });
 
     socket!.onConnectError((data) => logger.e(data));

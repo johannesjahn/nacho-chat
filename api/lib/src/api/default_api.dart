@@ -29,7 +29,7 @@ class DefaultApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> appControllerGetDebug({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -74,7 +74,7 @@ class DefaultApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [VersionDTO] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<VersionDTO>> appControllerGetVersion({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -114,10 +114,10 @@ class DefaultApi {
       ) as VersionDTO;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -147,7 +147,7 @@ class DefaultApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> statusMonitorControllerGetData({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -192,7 +192,7 @@ class DefaultApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> statusMonitorControllerRoot({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,

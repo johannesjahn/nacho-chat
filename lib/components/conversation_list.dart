@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/pages/chat.dart';
 import 'package:openapi/openapi.dart';
+import 'package:provider/provider.dart';
 
 import '../service/app.dart';
 import '../service/chat.dart';
@@ -9,6 +10,8 @@ import 'avatar.dart';
 
 class ConversationList extends StatelessWidget {
   const ConversationList({Key? key}) : super(key: key);
+
+  static const UNREAD_CIRCLE_SIZE = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +29,8 @@ class ConversationList extends StatelessWidget {
                     ChatService.instance.messagesNotifier.value = [];
                   }
                   ChatService.instance.currentChat.value = value[index];
-                  ChatService.instance
-                      .getMessages(conversationId: value[index].id.toInt());
+                  ChatService.instance.markConversationAsRead(
+                      conversationId: value[index].id.toInt());
                   if (!AppService.instance.isTablet) {
                     Navigator.push(context, DefaultRoute(const ChatPage()));
                   }
@@ -57,9 +60,21 @@ class ConversationList extends StatelessWidget {
                     }
                   }
 
+                  var isUnread = false;
+
+                  if (lastMessage?.author.id != AppService.instance.userId) {
+                    if (!(lastMessage?.readBy
+                            .any((p) => p.id == AppService.instance.userId) ??
+                        true)) {
+                      isUnread = true;
+                    }
+                  }
+
                   final preferredWidth = AppService.instance.isTablet
                       ? 200.0
-                      : MediaQuery.of(context).size.width - 100;
+                      : MediaQuery.of(context).size.width -
+                          100 -
+                          (isUnread ? UNREAD_CIRCLE_SIZE : 0);
 
                   return Container(
                       padding: const EdgeInsets.all(16),
@@ -123,6 +138,17 @@ class ConversationList extends StatelessWidget {
                               ],
                             ),
                           ),
+                          isUnread
+                              ? Container(
+                                  margin: const EdgeInsets.only(left: 8),
+                                  child: Icon(
+                                    Icons.circle,
+                                    size: UNREAD_CIRCLE_SIZE,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .inversePrimary,
+                                  ))
+                              : const SizedBox()
                         ],
                       ));
                 }),

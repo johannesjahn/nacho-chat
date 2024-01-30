@@ -33,9 +33,6 @@ Create comment with the authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final CreateCommentDTO createCommentDTO = ; // CreateCommentDTO | 
@@ -43,7 +40,7 @@ final CreateCommentDTO createCommentDTO = ; // CreateCommentDTO |
 try {
     final response = api.postControllerCreateComment(createCommentDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerCreateComment: $e\n');
 }
 ```
@@ -79,9 +76,6 @@ Create post with the authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final CreatePostDTO createPostDTO = ; // CreatePostDTO | 
@@ -89,7 +83,7 @@ final CreatePostDTO createPostDTO = ; // CreatePostDTO |
 try {
     final response = api.postControllerCreatePost(createPostDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerCreatePost: $e\n');
 }
 ```
@@ -125,9 +119,6 @@ Create reply with the authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final CreateReplyDTO createReplyDTO = ; // CreateReplyDTO | 
@@ -135,7 +126,7 @@ final CreateReplyDTO createReplyDTO = ; // CreateReplyDTO |
 try {
     final response = api.postControllerCreateReply(createReplyDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerCreateReply: $e\n');
 }
 ```
@@ -171,16 +162,13 @@ Delete a comment that belongs to the currently authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final DeleteCommentDTO deleteCommentDTO = ; // DeleteCommentDTO | 
 
 try {
     api.postControllerDeleteComment(deleteCommentDTO);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerDeleteComment: $e\n');
 }
 ```
@@ -216,16 +204,13 @@ Delete a post that belongs to the currently authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final DeletePostDTO deletePostDTO = ; // DeletePostDTO | 
 
 try {
     api.postControllerDeletePost(deletePostDTO);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerDeletePost: $e\n');
 }
 ```
@@ -261,16 +246,13 @@ Delete reply with the authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final DeleteReplyDTO deleteReplyDTO = ; // DeleteReplyDTO | 
 
 try {
     api.postControllerDeleteReply(deleteReplyDTO);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerDeleteReply: $e\n');
 }
 ```
@@ -313,7 +295,7 @@ final num postId = 8.14; // num |
 try {
     final response = api.postControllerGetComments(postId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerGetComments: $e\n');
 }
 ```
@@ -355,7 +337,7 @@ final api = Openapi().getPostApi();
 try {
     final response = api.postControllerGetPosts();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerGetPosts: $e\n');
 }
 ```
@@ -395,7 +377,7 @@ final num commentId = 8.14; // num |
 try {
     final response = api.postControllerGetReplies(commentId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerGetReplies: $e\n');
 }
 ```
@@ -431,9 +413,6 @@ Update a comment that belongs to the currently authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final UpdateCommentDTO updateCommentDTO = ; // UpdateCommentDTO | 
@@ -441,7 +420,7 @@ final UpdateCommentDTO updateCommentDTO = ; // UpdateCommentDTO |
 try {
     final response = api.postControllerUpdateComment(updateCommentDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerUpdateComment: $e\n');
 }
 ```
@@ -477,9 +456,6 @@ Update a post that belongs to the currently authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final UpdatePostDTO updatePostDTO = ; // UpdatePostDTO | 
@@ -487,7 +463,7 @@ final UpdatePostDTO updatePostDTO = ; // UpdatePostDTO |
 try {
     final response = api.postControllerUpdatePost(updatePostDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerUpdatePost: $e\n');
 }
 ```
@@ -523,9 +499,6 @@ Update reply with the authenticated user
 ### Example
 ```dart
 import 'package:openapi/api.dart';
-// TODO Configure HTTP basic authorization: bearer
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').username = 'YOUR_USERNAME'
-//defaultApiClient.getAuthentication<HttpBasicAuth>('bearer').password = 'YOUR_PASSWORD';
 
 final api = Openapi().getPostApi();
 final UpdateReplyDTO updateReplyDTO = ; // UpdateReplyDTO | 
@@ -533,7 +506,7 @@ final UpdateReplyDTO updateReplyDTO = ; // UpdateReplyDTO |
 try {
     final response = api.postControllerUpdateReply(updateReplyDTO);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PostApi->postControllerUpdateReply: $e\n');
 }
 ```

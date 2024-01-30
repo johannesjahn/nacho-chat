@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
     UserService.instance.getMe();
     ChatService.instance.getConversations();
     PostService.instance.getPosts();
+    ChatService.instance.getNumberOfUnreadMessages();
   }
 
   @override
@@ -45,7 +46,24 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.of(context).push(DefaultRoute(const ChatListPage()));
               },
-              icon: const Icon(Icons.chat)),
+              icon: Stack(
+                children: [
+                  const Icon(Icons.chat),
+                  ValueListenableBuilder<num>(
+                    valueListenable: ChatService.instance.unreadCountNotifier,
+                    builder: (context, value, widget) => Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: value > 0
+                          ? Icon(Icons.circle,
+                              size: 10,
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary)
+                          : const SizedBox(),
+                    ),
+                  )
+                ],
+              )),
           IconButton(
               padding: const EdgeInsets.all(12),
               onPressed: () {

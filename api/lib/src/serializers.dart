@@ -30,8 +30,10 @@ import 'package:openapi/src/model/delete_reply_dto.dart';
 import 'package:openapi/src/model/get_messages_dto.dart';
 import 'package:openapi/src/model/login_dto.dart';
 import 'package:openapi/src/model/login_response_dto.dart';
+import 'package:openapi/src/model/mark_conversation_as_read_dto.dart';
+import 'package:openapi/src/model/mark_message_as_read_dto.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
-import 'package:openapi/src/model/message_response_dto_author.dart';
+import 'package:openapi/src/model/number_of_unread_messages_response_dto.dart';
 import 'package:openapi/src/model/post_response_dto.dart';
 import 'package:openapi/src/model/post_response_dto_author.dart';
 import 'package:openapi/src/model/register_dto.dart';
@@ -62,8 +64,10 @@ part 'serializers.g.dart';
   GetMessagesDTO,
   LoginDTO,
   LoginResponseDTO,
+  MarkConversationAsReadDTO,
+  MarkMessageAsReadDTO,
   MessageResponseDTO,$MessageResponseDTO,
-  MessageResponseDTOAuthor,
+  NumberOfUnreadMessagesResponseDTO,
   PostResponseDTO,
   PostResponseDTOAuthor,
   RegisterDTO,

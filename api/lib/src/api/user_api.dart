@@ -32,7 +32,7 @@ class UserApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> usersControllerGetAvatar({ 
     required num userId,
     CancelToken? cancelToken,
@@ -42,7 +42,7 @@ class UserApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/app/user/avatar/{userId}'.replaceAll('{' r'userId' '}', userId.toString());
+    final _path = r'/app/user/avatar/{userId}'.replaceAll('{' r'userId' '}', encodeQueryParameter(_serializers, userId, const FullType(num)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -78,7 +78,7 @@ class UserApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [UserResponseDTO] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<UserResponseDTO>> usersControllerGetMe({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -124,10 +124,10 @@ class UserApi {
       ) as UserResponseDTO;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -157,7 +157,7 @@ class UserApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<UserResponseDTO>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<UserResponseDTO>>> usersControllerGetUsers({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -203,10 +203,10 @@ class UserApi {
       ) as BuiltList<UserResponseDTO>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -237,7 +237,7 @@ class UserApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> usersControllerUploadAvatar({ 
     MultipartFile? file,
     CancelToken? cancelToken,
@@ -275,12 +275,12 @@ class UserApi {
       });
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

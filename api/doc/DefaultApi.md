@@ -30,7 +30,7 @@ final api = Openapi().getDefaultApi();
 
 try {
     api.appControllerGetDebug();
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->appControllerGetDebug: $e\n');
 }
 ```
@@ -69,7 +69,7 @@ final api = Openapi().getDefaultApi();
 try {
     final response = api.appControllerGetVersion();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->appControllerGetVersion: $e\n');
 }
 ```
@@ -105,7 +105,7 @@ final api = Openapi().getDefaultApi();
 
 try {
     api.statusMonitorControllerGetData();
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->statusMonitorControllerGetData: $e\n');
 }
 ```
@@ -141,7 +141,7 @@ final api = Openapi().getDefaultApi();
 
 try {
     api.statusMonitorControllerRoot();
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->statusMonitorControllerRoot: $e\n');
 }
 ```

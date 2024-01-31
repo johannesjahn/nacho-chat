@@ -17,7 +17,7 @@ class ChatService {
 
   final messagesNotifier = ValueNotifier<List<MessageResponseDTO>>([]);
 
-  final unreadCountNotifier = ValueNotifier<num>(0);
+  final unreadCountNotifier = ValueNotifier(false);
 
   Future<void> getConversations() async {
     final response =
@@ -109,12 +109,11 @@ class ChatService {
     getNumberOfUnreadMessages();
   }
 
-  Future<num> getNumberOfUnreadMessages() async {
-    final response = await appService.api
-        .getChatApi()
-        .chatControllerGetNumberOfUnreadMessages();
+  Future<bool> getNumberOfUnreadMessages() async {
+    final response =
+        await appService.api.getChatApi().chatControllerHasUnreadMessages();
 
-    unreadCountNotifier.value = response.data?.count ?? 0;
-    return response.data?.count ?? 0;
+    unreadCountNotifier.value = response.data?.hasUnreadMessages ?? false;
+    return response.data?.hasUnreadMessages ?? false;
   }
 }

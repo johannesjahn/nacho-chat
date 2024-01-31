@@ -49,12 +49,12 @@ class _HomePageState extends State<HomePage> {
               icon: Stack(
                 children: [
                   const Icon(Icons.chat),
-                  ValueListenableBuilder<num>(
+                  ValueListenableBuilder<bool>(
                     valueListenable: ChatService.instance.unreadCountNotifier,
                     builder: (context, value, widget) => Positioned(
                       bottom: 0,
                       right: 0,
-                      child: value > 0
+                      child: value
                           ? Container(
                               width: 10,
                               height: 10,

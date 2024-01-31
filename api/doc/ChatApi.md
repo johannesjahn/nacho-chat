@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**chatControllerGetConversations**](ChatApi.md#chatcontrollergetconversations) | **GET** /app/chat/get-conversations | 
 [**chatControllerGetMessages**](ChatApi.md#chatcontrollergetmessages) | **POST** /app/chat/get-messages | 
 [**chatControllerGetNumberOfUnreadMessages**](ChatApi.md#chatcontrollergetnumberofunreadmessages) | **GET** /app/chat/get-number-of-unread-messages | 
+[**chatControllerHasUnreadMessages**](ChatApi.md#chatcontrollerhasunreadmessages) | **GET** /app/chat/has-unread-messages | 
 [**chatControllerMarkConversationAsRead**](ChatApi.md#chatcontrollermarkconversationasread) | **PUT** /app/chat/mark-conversation-as-read | 
 [**chatControllerMarkMessageAsRead**](ChatApi.md#chatcontrollermarkmessageasread) | **PUT** /app/chat/mark-message-as-read | 
 [**chatControllerSendMessage**](ChatApi.md#chatcontrollersendmessage) | **POST** /app/chat/send-message | 
@@ -170,6 +171,45 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**NumberOfUnreadMessagesResponseDTO**](NumberOfUnreadMessagesResponseDTO.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **chatControllerHasUnreadMessages**
+> HasUnreadMessagesResponseDTO chatControllerHasUnreadMessages()
+
+
+
+Endpoint to get the number of unread messages for the authenticated user
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getChatApi();
+
+try {
+    final response = api.chatControllerHasUnreadMessages();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling ChatApi->chatControllerHasUnreadMessages: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**HasUnreadMessagesResponseDTO**](HasUnreadMessagesResponseDTO.md)
 
 ### Authorization
 

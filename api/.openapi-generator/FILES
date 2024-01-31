@@ -18,6 +18,7 @@ doc/DeleteCommentDTO.md
 doc/DeletePostDTO.md
 doc/DeleteReplyDTO.md
 doc/GetMessagesDTO.md
+doc/HasUnreadMessagesResponseDTO.md
 doc/LoginDTO.md
 doc/LoginResponseDTO.md
 doc/MarkConversationAsReadDTO.md
@@ -65,6 +66,7 @@ lib/src/model/delete_comment_dto.dart
 lib/src/model/delete_post_dto.dart
 lib/src/model/delete_reply_dto.dart
 lib/src/model/get_messages_dto.dart
+lib/src/model/has_unread_messages_response_dto.dart
 lib/src/model/login_dto.dart
 lib/src/model/login_response_dto.dart
 lib/src/model/mark_conversation_as_read_dto.dart
@@ -83,3 +85,4 @@ lib/src/model/user_response_dto.dart
 lib/src/model/version_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/has_unread_messages_response_dto_test.dart

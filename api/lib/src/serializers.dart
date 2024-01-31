@@ -28,6 +28,7 @@ import 'package:openapi/src/model/delete_comment_dto.dart';
 import 'package:openapi/src/model/delete_post_dto.dart';
 import 'package:openapi/src/model/delete_reply_dto.dart';
 import 'package:openapi/src/model/get_messages_dto.dart';
+import 'package:openapi/src/model/has_unread_messages_response_dto.dart';
 import 'package:openapi/src/model/login_dto.dart';
 import 'package:openapi/src/model/login_response_dto.dart';
 import 'package:openapi/src/model/mark_conversation_as_read_dto.dart';
@@ -62,6 +63,7 @@ part 'serializers.g.dart';
   DeletePostDTO,
   DeleteReplyDTO,
   GetMessagesDTO,
+  HasUnreadMessagesResponseDTO,
   LoginDTO,
   LoginResponseDTO,
   MarkConversationAsReadDTO,

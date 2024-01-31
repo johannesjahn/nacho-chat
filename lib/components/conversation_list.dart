@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/pages/chat.dart';
 import 'package:openapi/openapi.dart';
-import 'package:provider/provider.dart';
 
 import '../service/app.dart';
 import '../service/chat.dart';
 import 'avatar.dart';
 
 class ConversationList extends StatelessWidget {
-  const ConversationList({Key? key}) : super(key: key);
+  const ConversationList({super.key});
 
   static const UNREAD_CIRCLE_SIZE = 20.0;
 

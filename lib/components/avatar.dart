@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:openapi/openapi.dart';
 
 import '../pages/profile.dart';
@@ -91,6 +92,10 @@ class _NachoAvatarState extends State<NachoAvatar> {
                         size +
                         NachoAvatar.profileHash)),
               );
+            }
+
+            if (widget.user?.avatarHash != null) {
+              return BlurHash(hash: widget.user!.avatarHash!);
             }
 
             return CircleAvatar(

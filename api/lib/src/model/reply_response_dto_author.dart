@@ -14,6 +14,7 @@ part 'reply_response_dto_author.g.dart';
 /// Properties:
 /// * [id] - The unique id of a user
 /// * [username] - The username of a user
+/// * [avatarHash] - The avatar hash of a user
 @BuiltValue()
 abstract class ReplyResponseDTOAuthor implements UserResponseDTO, Built<ReplyResponseDTOAuthor, ReplyResponseDTOAuthorBuilder> {
   ReplyResponseDTOAuthor._();
@@ -43,6 +44,11 @@ class _$ReplyResponseDTOAuthorSerializer implements PrimitiveSerializer<ReplyRes
     yield serializers.serialize(
       object.id,
       specifiedType: const FullType(num),
+    );
+    yield r'avatarHash';
+    yield object.avatarHash == null ? null : serializers.serialize(
+      object.avatarHash,
+      specifiedType: const FullType.nullable(String),
     );
     yield r'username';
     yield serializers.serialize(
@@ -78,6 +84,14 @@ class _$ReplyResponseDTOAuthorSerializer implements PrimitiveSerializer<ReplyRes
             specifiedType: const FullType(num),
           ) as num;
           result.id = valueDes;
+          break;
+        case r'avatarHash':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.avatarHash = valueDes;
           break;
         case r'username':
           final valueDes = serializers.deserialize(

@@ -13,6 +13,7 @@ part 'user_response_dto.g.dart';
 /// Properties:
 /// * [id] - The unique id of a user
 /// * [username] - The username of a user
+/// * [avatarHash] - The avatar hash of a user
 @BuiltValue(instantiable: false)
 abstract class UserResponseDTO  {
   /// The unique id of a user
@@ -22,6 +23,10 @@ abstract class UserResponseDTO  {
   /// The username of a user
   @BuiltValueField(wireName: r'username')
   String get username;
+
+  /// The avatar hash of a user
+  @BuiltValueField(wireName: r'avatarHash')
+  String? get avatarHash;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<UserResponseDTO> get serializer => _$UserResponseDTOSerializer();
@@ -48,6 +53,11 @@ class _$UserResponseDTOSerializer implements PrimitiveSerializer<UserResponseDTO
     yield serializers.serialize(
       object.username,
       specifiedType: const FullType(String),
+    );
+    yield r'avatarHash';
+    yield object.avatarHash == null ? null : serializers.serialize(
+      object.avatarHash,
+      specifiedType: const FullType.nullable(String),
     );
   }
 
@@ -125,6 +135,14 @@ class _$$UserResponseDTOSerializer implements PrimitiveSerializer<$UserResponseD
             specifiedType: const FullType(String),
           ) as String;
           result.username = valueDes;
+          break;
+        case r'avatarHash':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.avatarHash = valueDes;
           break;
         default:
           unhandled.add(key);

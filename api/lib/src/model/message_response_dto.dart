@@ -18,7 +18,7 @@ part 'message_response_dto.g.dart';
 /// * [updatedAt] - The date of the last update of a message
 /// * [content] - The content of the message
 /// * [contentType] - The type of content
-/// * [author] 
+/// * [author] - The author of the message
 /// * [readBy] - The users that have read the message
 @BuiltValue(instantiable: false)
 abstract class MessageResponseDTO  {
@@ -43,6 +43,7 @@ abstract class MessageResponseDTO  {
   MessageResponseDTOContentTypeEnum get contentType;
   // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
+  /// The author of the message
   @BuiltValueField(wireName: r'author')
   UserResponseDTO get author;
 

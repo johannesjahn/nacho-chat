@@ -19,7 +19,7 @@ part 'conversation_response_dto_last_message.g.dart';
 /// * [updatedAt] - The date of the last update of a message
 /// * [content] - The content of the message
 /// * [contentType] - The type of content
-/// * [author] 
+/// * [author] - The author of the message
 /// * [readBy] - The users that have read the message
 @BuiltValue()
 abstract class ConversationResponseDTOLastMessage implements MessageResponseDTO, Built<ConversationResponseDTOLastMessage, ConversationResponseDTOLastMessageBuilder> {

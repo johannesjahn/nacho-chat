@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:openapi/openapi.dart';
@@ -94,17 +95,23 @@ class _NachoAvatarState extends State<NachoAvatar> {
               );
             }
 
-            if (widget.user?.avatarHash != null) {
-              return BlurHash(hash: widget.user!.avatarHash!);
-            }
-
-            return CircleAvatar(
-                radius: widget.radius,
-                backgroundColor: backgroundColor,
-                backgroundImage: NetworkImage(Urls.avatar +
-                    (widget.user?.id.toString() ?? "-1") +
-                    size +
-                    NachoAvatar.profileHash));
+            return ClipOval(
+              child: SizedBox(
+                width: widget.radius,
+                height: widget.radius,
+                child: CachedNetworkImage(
+                  imageUrl: Urls.avatar +
+                      (widget.user?.id.toString() ?? "-1") +
+                      size +
+                      NachoAvatar.profileHash,
+                  placeholder: (context, url) => BlurHash(
+                    hash: widget.user?.avatarHash ?? "KTGRB{\$~07~6xYEOE5WD-S",
+                    imageFit: BoxFit.cover,
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
           }),
         ),
       ),

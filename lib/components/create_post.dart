@@ -7,7 +7,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../service/app.dart';
 
 class CreatePostWidget extends StatefulWidget {
-  const CreatePostWidget({Key? key}) : super(key: key);
+  const CreatePostWidget({super.key});
 
   @override
   State<CreatePostWidget> createState() => _CreatePostWidgetState();

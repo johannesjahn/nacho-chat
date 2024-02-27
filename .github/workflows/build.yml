@@ -74,14 +74,14 @@ jobs:
           path: build.zip
       - uses: easingthemes/ssh-deploy@v5.0.0
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
           SOURCE: "build.zip"
           REMOTE_HOST: "chat.johannes-jahn.com"
-          REMOTE_USER: "docker"
+          REMOTE_USER: ${{ secrets.SSH_USER }}
           TARGET: "chat-api/"
       - uses: appleboy/ssh-action@master
         with:
           host: chat.johannes-jahn.com
-          username: docker
-          key: ${{ secrets.EC2_SSH_KEY }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
           script: cd chat-api && mv build.zip tmp && mv tmp/build.zip build.zip && rm -rf tmp && unzip build.zip && rm -rf static/* && mv build/web/* static/ && rm -rf build && rm build.zip

@@ -64,5 +64,6 @@
     "change_password": "Change password",
     "new_password": "New password",
     "confirm_password": "Confirm password",
-    "change": "Change"
+    "change": "Change",
+    "participants": "Participants"
 }

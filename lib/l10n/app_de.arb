@@ -65,5 +65,6 @@
     "change_password": "Passwort ändern",
     "new_password": "Neues Passwort",
     "confirm_password": "Neues Passwort bestätigen",
-    "change": "Ändern"
+    "change": "Ändern",
+    "participants": "Teilnehmer"
 }

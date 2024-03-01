@@ -27,7 +27,6 @@ class _ChatListPageState extends State<ChatListPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final isTablet = AppService.instance.isTablet;
 
     return PopScope(
       onPopInvoked: (didPop) {
@@ -47,7 +46,7 @@ class _ChatListPageState extends State<ChatListPage> {
           appBar: AppBar(
             title: Text("${l10n.hello}, ${AppService.instance.username}"),
             actions: [
-              isTablet
+              AppService.instance.isTablet
                   ? IconButton(
                       padding: const EdgeInsets.all(10),
                       onPressed: () {
@@ -57,7 +56,7 @@ class _ChatListPageState extends State<ChatListPage> {
                       },
                       icon: const Icon(Icons.add))
                   : const SizedBox(),
-              isTablet
+              AppService.instance.isTablet
                   ? IconButton(
                       padding: const EdgeInsets.all(10),
                       onPressed: () {
@@ -71,7 +70,7 @@ class _ChatListPageState extends State<ChatListPage> {
                   : const SizedBox(),
             ],
           ),
-          floatingActionButton: !isTablet
+          floatingActionButton: !AppService.instance.isTablet
               ? FloatingActionButton(
                   child: const Icon(Icons.add),
                   onPressed: () {

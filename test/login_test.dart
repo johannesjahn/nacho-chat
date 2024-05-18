@@ -24,6 +24,6 @@ Widget makeTestableWidget({required Widget child}) {
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    expect(4, equals(8 - 4));
+    expect(3, equals(8 - 5));
   });
 }

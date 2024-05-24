@@ -44,7 +44,7 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         Padding(
           padding: const EdgeInsets.all(32.0),
-          child: Text("Nacho Chat", style: theme.textTheme.headline1),
+          child: Text("Nacho Chat", style: theme.textTheme.headlineLarge),
         ),
         Form(
           key: _formKey,

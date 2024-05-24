@@ -61,7 +61,7 @@ class _PostDetailState extends State<PostDetail> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         l10n.comments,
-                        style: Theme.of(context).textTheme.headline4,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ),
                     ValueListenableBuilder<List<CommentResponseDTO>>(
@@ -76,7 +76,7 @@ class _PostDetailState extends State<PostDetail> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         l10n.new_comment,
-                        style: Theme.of(context).textTheme.headline4,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ),
                     ConstrainedBox(

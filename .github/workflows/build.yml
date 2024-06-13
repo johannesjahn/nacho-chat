@@ -3,7 +3,6 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main
 
 jobs:
   test:
@@ -44,7 +43,7 @@ jobs:
           path: build.zip
 
   version_bump:
-    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]') && github.ref == 'refs/heads/main'"
     runs-on: ubuntu-latest
     needs: [build]
     steps:
@@ -64,7 +63,7 @@ jobs:
           git push --tags
 
   deploy:
-    if: "startsWith(github.event.head_commit.message, '[RELEASE]')"
+    if: "startsWith(github.event.head_commit.message, '[RELEASE]') && github.ref == 'refs/heads/main'"
     runs-on: ubuntu-latest
     needs: [build]
     steps:

@@ -29,6 +29,24 @@
     "add_user": "Add user",
     "create_conversation": "Create conversation",
     "media_message": "Media message",
+    "one_year_ago": "1 year ago",
+    "years_ago": "{years} years ago",
+    "@years_ago": {
+        "placeholder": {
+            "years": {
+                "type": "int"
+            }
+        }
+    },
+    "one_month_ago": "1 month ago",
+    "months_ago": "{months} months ago",
+    "@months_ago": {
+        "placeholder": {
+            "months": {
+                "type": "int"
+            }
+        }
+    },
     "one_day_ago": "1 day ago",
     "days_ago": "{days} days ago",
     "@days_ago": {

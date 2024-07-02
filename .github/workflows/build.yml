@@ -52,6 +52,10 @@ jobs:
         with:
           flutter-version: "3.22.2"
           channel: "stable"
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
       - run: flutter pub get
       - run: dart run build_runner build
       - run: cd api && flutter pub get

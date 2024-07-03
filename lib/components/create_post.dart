@@ -19,7 +19,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
   PostResponseDTO? preview;
 
   PostResponseDTOBuilder mockPostBuilder() {
-    final authorBuilder = PostResponseDTOAuthorBuilder()
+    final authorBuilder = UserResponseDTOBuilder()
       ..id = AppService.instance.userId
       ..username = AppService.instance.username;
 

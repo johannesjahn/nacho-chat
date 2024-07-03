@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/reply_response_dto_author.dart';
+import 'package:openapi/src/model/user_response_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -16,7 +16,8 @@ part 'reply_response_dto.g.dart';
 /// * [createdAt] - The creation date of a reply
 /// * [updatedAt] - The last update date of a reply
 /// * [content] - The content of a reply
-/// * [author] 
+/// * [author] - The author of a reply
+/// * [likes] - Number of likes
 @BuiltValue()
 abstract class ReplyResponseDTO implements Built<ReplyResponseDTO, ReplyResponseDTOBuilder> {
   /// The unique id of a reply
@@ -35,8 +36,13 @@ abstract class ReplyResponseDTO implements Built<ReplyResponseDTO, ReplyResponse
   @BuiltValueField(wireName: r'content')
   String get content;
 
+  /// The author of a reply
   @BuiltValueField(wireName: r'author')
-  ReplyResponseDTOAuthor? get author;
+  UserResponseDTO? get author;
+
+  /// Number of likes
+  @BuiltValueField(wireName: r'likes')
+  num get likes;
 
   ReplyResponseDTO._();
 
@@ -84,7 +90,12 @@ class _$ReplyResponseDTOSerializer implements PrimitiveSerializer<ReplyResponseD
     yield r'author';
     yield object.author == null ? null : serializers.serialize(
       object.author,
-      specifiedType: const FullType.nullable(ReplyResponseDTOAuthor),
+      specifiedType: const FullType.nullable(UserResponseDTO),
+    );
+    yield r'likes';
+    yield serializers.serialize(
+      object.likes,
+      specifiedType: const FullType(num),
     );
   }
 
@@ -140,10 +151,17 @@ class _$ReplyResponseDTOSerializer implements PrimitiveSerializer<ReplyResponseD
         case r'author':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(ReplyResponseDTOAuthor),
-          ) as ReplyResponseDTOAuthor?;
+            specifiedType: const FullType.nullable(UserResponseDTO),
+          ) as UserResponseDTO?;
           if (valueDes == null) continue;
           result.author.replace(valueDes);
+          break;
+        case r'likes':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.likes = valueDes;
           break;
         default:
           unhandled.add(key);

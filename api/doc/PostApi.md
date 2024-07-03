@@ -18,6 +18,9 @@ Method | HTTP request | Description
 [**postControllerGetComments**](PostApi.md#postcontrollergetcomments) | **GET** /app/post/comment/{postId} | 
 [**postControllerGetPosts**](PostApi.md#postcontrollergetposts) | **GET** /app/post | 
 [**postControllerGetReplies**](PostApi.md#postcontrollergetreplies) | **GET** /app/post/reply/{commentId} | 
+[**postControllerLikeComment**](PostApi.md#postcontrollerlikecomment) | **POST** /app/post/comment/{commentId}/like | 
+[**postControllerLikePost**](PostApi.md#postcontrollerlikepost) | **POST** /app/post/{postId}/like | 
+[**postControllerLikeReply**](PostApi.md#postcontrollerlikereply) | **POST** /app/post/reply/{replyId}/like | 
 [**postControllerUpdateComment**](PostApi.md#postcontrollerupdatecomment) | **PUT** /app/post/comment | 
 [**postControllerUpdatePost**](PostApi.md#postcontrollerupdatepost) | **PUT** /app/post | 
 [**postControllerUpdateReply**](PostApi.md#postcontrollerupdatereply) | **PUT** /app/post/reply | 
@@ -400,6 +403,126 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **postControllerLikeComment**
+> postControllerLikeComment(commentId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getPostApi();
+final num commentId = 8.14; // num | 
+
+try {
+    api.postControllerLikeComment(commentId);
+} catch on DioException (e) {
+    print('Exception when calling PostApi->postControllerLikeComment: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **commentId** | **num**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **postControllerLikePost**
+> postControllerLikePost(postId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getPostApi();
+final num postId = 8.14; // num | 
+
+try {
+    api.postControllerLikePost(postId);
+} catch on DioException (e) {
+    print('Exception when calling PostApi->postControllerLikePost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postId** | **num**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **postControllerLikeReply**
+> postControllerLikeReply(replyId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getPostApi();
+final num replyId = 8.14; // num | 
+
+try {
+    api.postControllerLikeReply(replyId);
+} catch on DioException (e) {
+    print('Exception when calling PostApi->postControllerLikeReply: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **replyId** | **num**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

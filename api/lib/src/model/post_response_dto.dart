@@ -5,7 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/comment_response_dto.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/post_response_dto_author.dart';
+import 'package:openapi/src/model/user_response_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,8 +19,9 @@ part 'post_response_dto.g.dart';
 /// * [updatedAt] - The last update date of a post
 /// * [content] - The content of a post
 /// * [contentType] - The content type of a post
-/// * [author] 
+/// * [author] - The author of a post
 /// * [comments] - The comments of a post
+/// * [likes] - Number of likes
 @BuiltValue()
 abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTOBuilder> {
   /// The unique id of a post
@@ -44,12 +45,17 @@ abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTO
   PostResponseDTOContentTypeEnum get contentType;
   // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
 
+  /// The author of a post
   @BuiltValueField(wireName: r'author')
-  PostResponseDTOAuthor? get author;
+  UserResponseDTO? get author;
 
   /// The comments of a post
   @BuiltValueField(wireName: r'comments')
   BuiltList<CommentResponseDTO>? get comments;
+
+  /// Number of likes
+  @BuiltValueField(wireName: r'likes')
+  num get likes;
 
   PostResponseDTO._();
 
@@ -102,12 +108,17 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
     yield r'author';
     yield object.author == null ? null : serializers.serialize(
       object.author,
-      specifiedType: const FullType.nullable(PostResponseDTOAuthor),
+      specifiedType: const FullType.nullable(UserResponseDTO),
     );
     yield r'comments';
     yield object.comments == null ? null : serializers.serialize(
       object.comments,
       specifiedType: const FullType.nullable(BuiltList, [FullType(CommentResponseDTO)]),
+    );
+    yield r'likes';
+    yield serializers.serialize(
+      object.likes,
+      specifiedType: const FullType(num),
     );
   }
 
@@ -170,8 +181,8 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
         case r'author':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(PostResponseDTOAuthor),
-          ) as PostResponseDTOAuthor?;
+            specifiedType: const FullType.nullable(UserResponseDTO),
+          ) as UserResponseDTO?;
           if (valueDes == null) continue;
           result.author.replace(valueDes);
           break;
@@ -182,6 +193,13 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
           ) as BuiltList<CommentResponseDTO>?;
           if (valueDes == null) continue;
           result.comments.replace(valueDes);
+          break;
+        case r'likes':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.likes = valueDes;
           break;
         default:
           unhandled.add(key);

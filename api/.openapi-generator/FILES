@@ -5,9 +5,7 @@ doc/AuthApi.md
 doc/ChangePasswordDTO.md
 doc/ChatApi.md
 doc/CommentResponseDTO.md
-doc/CommentResponseDTOAuthor.md
 doc/ConversationResponseDTO.md
-doc/ConversationResponseDTOLastMessage.md
 doc/CreateCommentDTO.md
 doc/CreateConversationRequestDTO.md
 doc/CreateMessageDTO.md
@@ -27,10 +25,8 @@ doc/MessageResponseDTO.md
 doc/NumberOfUnreadMessagesResponseDTO.md
 doc/PostApi.md
 doc/PostResponseDTO.md
-doc/PostResponseDTOAuthor.md
 doc/RegisterDTO.md
 doc/ReplyResponseDTO.md
-doc/ReplyResponseDTOAuthor.md
 doc/UpdateCommentDTO.md
 doc/UpdatePostDTO.md
 doc/UpdateReplyDTO.md
@@ -53,9 +49,7 @@ lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/change_password_dto.dart
 lib/src/model/comment_response_dto.dart
-lib/src/model/comment_response_dto_author.dart
 lib/src/model/conversation_response_dto.dart
-lib/src/model/conversation_response_dto_last_message.dart
 lib/src/model/create_comment_dto.dart
 lib/src/model/create_conversation_request_dto.dart
 lib/src/model/create_message_dto.dart
@@ -74,10 +68,8 @@ lib/src/model/mark_message_as_read_dto.dart
 lib/src/model/message_response_dto.dart
 lib/src/model/number_of_unread_messages_response_dto.dart
 lib/src/model/post_response_dto.dart
-lib/src/model/post_response_dto_author.dart
 lib/src/model/register_dto.dart
 lib/src/model/reply_response_dto.dart
-lib/src/model/reply_response_dto_author.dart
 lib/src/model/update_comment_dto.dart
 lib/src/model/update_post_dto.dart
 lib/src/model/update_reply_dto.dart

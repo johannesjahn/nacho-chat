@@ -12,7 +12,8 @@ Name | Type | Description | Notes
 **createdAt** | [**DateTime**](DateTime.md) | The creation date of a reply | 
 **updatedAt** | [**DateTime**](DateTime.md) | The last update date of a reply | 
 **content** | **String** | The content of a reply | 
-**author** | [**ReplyResponseDTOAuthor**](ReplyResponseDTOAuthor.md) |  | 
+**author** | [**UserResponseDTO**](UserResponseDTO.md) | The author of a reply | 
+**likes** | **num** | Number of likes | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

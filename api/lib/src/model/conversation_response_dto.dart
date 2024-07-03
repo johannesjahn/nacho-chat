@@ -5,7 +5,6 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/user_response_dto.dart';
-import 'package:openapi/src/model/conversation_response_dto_last_message.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,7 +19,7 @@ part 'conversation_response_dto.g.dart';
 /// * [updatedAt] - The date of the last update of the conversation
 /// * [participants] - The participants of the conversation
 /// * [messages] - The messages belonging to the conversation
-/// * [lastMessage] 
+/// * [lastMessage] - The last message that was sent within a conversation
 @BuiltValue()
 abstract class ConversationResponseDTO implements Built<ConversationResponseDTO, ConversationResponseDTOBuilder> {
   /// The id of the conversation
@@ -43,8 +42,9 @@ abstract class ConversationResponseDTO implements Built<ConversationResponseDTO,
   @BuiltValueField(wireName: r'messages')
   BuiltList<MessageResponseDTO> get messages;
 
+  /// The last message that was sent within a conversation
   @BuiltValueField(wireName: r'lastMessage')
-  ConversationResponseDTOLastMessage? get lastMessage;
+  MessageResponseDTO? get lastMessage;
 
   ConversationResponseDTO._();
 
@@ -97,7 +97,7 @@ class _$ConversationResponseDTOSerializer implements PrimitiveSerializer<Convers
     yield r'lastMessage';
     yield object.lastMessage == null ? null : serializers.serialize(
       object.lastMessage,
-      specifiedType: const FullType.nullable(ConversationResponseDTOLastMessage),
+      specifiedType: const FullType.nullable(MessageResponseDTO),
     );
   }
 
@@ -160,8 +160,8 @@ class _$ConversationResponseDTOSerializer implements PrimitiveSerializer<Convers
         case r'lastMessage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(ConversationResponseDTOLastMessage),
-          ) as ConversationResponseDTOLastMessage?;
+            specifiedType: const FullType.nullable(MessageResponseDTO),
+          ) as MessageResponseDTO?;
           if (valueDes == null) continue;
           result.lastMessage.replace(valueDes);
           break;

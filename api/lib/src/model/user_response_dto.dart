@@ -14,8 +14,8 @@ part 'user_response_dto.g.dart';
 /// * [id] - The unique id of a user
 /// * [username] - The username of a user
 /// * [avatarHash] - The avatar hash of a user
-@BuiltValue(instantiable: false)
-abstract class UserResponseDTO  {
+@BuiltValue()
+abstract class UserResponseDTO implements Built<UserResponseDTO, UserResponseDTOBuilder> {
   /// The unique id of a user
   @BuiltValueField(wireName: r'id')
   num get id;
@@ -28,13 +28,20 @@ abstract class UserResponseDTO  {
   @BuiltValueField(wireName: r'avatarHash')
   String? get avatarHash;
 
+  UserResponseDTO._();
+
+  factory UserResponseDTO([void updates(UserResponseDTOBuilder b)]) = _$UserResponseDTO;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(UserResponseDTOBuilder b) => b;
+
   @BuiltValueSerializer(custom: true)
   static Serializer<UserResponseDTO> get serializer => _$UserResponseDTOSerializer();
 }
 
 class _$UserResponseDTOSerializer implements PrimitiveSerializer<UserResponseDTO> {
   @override
-  final Iterable<Type> types = const [UserResponseDTO];
+  final Iterable<Type> types = const [UserResponseDTO, _$UserResponseDTO];
 
   @override
   final String wireName = r'UserResponseDTO';
@@ -68,46 +75,6 @@ class _$UserResponseDTOSerializer implements PrimitiveSerializer<UserResponseDTO
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  @override
-  UserResponseDTO deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return serializers.deserialize(serialized, specifiedType: FullType($UserResponseDTO)) as $UserResponseDTO;
-  }
-}
-
-/// a concrete implementation of [UserResponseDTO], since [UserResponseDTO] is not instantiable
-@BuiltValue(instantiable: true)
-abstract class $UserResponseDTO implements UserResponseDTO, Built<$UserResponseDTO, $UserResponseDTOBuilder> {
-  $UserResponseDTO._();
-
-  factory $UserResponseDTO([void Function($UserResponseDTOBuilder)? updates]) = _$$UserResponseDTO;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults($UserResponseDTOBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<$UserResponseDTO> get serializer => _$$UserResponseDTOSerializer();
-}
-
-class _$$UserResponseDTOSerializer implements PrimitiveSerializer<$UserResponseDTO> {
-  @override
-  final Iterable<Type> types = const [$UserResponseDTO, _$$UserResponseDTO];
-
-  @override
-  final String wireName = r'$UserResponseDTO';
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    $UserResponseDTO object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return serializers.serialize(object, specifiedType: FullType(UserResponseDTO))!;
   }
 
   void _deserializeProperties(
@@ -153,12 +120,12 @@ class _$$UserResponseDTOSerializer implements PrimitiveSerializer<$UserResponseD
   }
 
   @override
-  $UserResponseDTO deserialize(
+  UserResponseDTO deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = $UserResponseDTOBuilder();
+    final result = UserResponseDTOBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

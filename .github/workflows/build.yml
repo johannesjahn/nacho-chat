@@ -96,7 +96,7 @@ jobs:
         with:
           name: build-web
           path: build-web.zip
-      - uses: easingthemes/ssh-deploy@v5.0.0
+      - uses: easingthemes/ssh-deploy@v5.0.3
         env:
           SSH_PRIVATE_KEY: "${{ secrets.SSH_KEY }}"
           SOURCE: "build-web.zip"

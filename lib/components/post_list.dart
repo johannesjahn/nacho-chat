@@ -17,12 +17,12 @@ class PostList extends StatelessWidget {
     return ListView.builder(
         itemCount: posts.length,
         itemBuilder: (context, index) {
-          return Hero(
-            tag: posts[index].id,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ConstrainedBox(
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Hero(
+                tag: posts[index].id,
+                child: ConstrainedBox(
                   constraints:
                       const BoxConstraints(minWidth: 300, maxWidth: 500),
                   child: SizedBox(
@@ -47,8 +47,8 @@ class PostList extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         });
   }

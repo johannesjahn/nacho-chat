@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,7 +17,7 @@ void main() async {
 }
 
 class NachoChat extends StatelessWidget {
-  const NachoChat({Key? key}) : super(key: key);
+  const NachoChat({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ import '../service/app.dart';
 import 'image_message_container.dart';
 
 class ChatView extends StatefulWidget {
-  const ChatView({Key? key}) : super(key: key);
+  const ChatView({super.key});
 
   @override
   State<ChatView> createState() => _ChatViewState();

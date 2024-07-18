@@ -7,7 +7,7 @@ import 'package:openapi/openapi.dart';
 import '../components/comments_list.dart';
 
 class PostDetail extends StatefulWidget {
-  const PostDetail({Key? key}) : super(key: key);
+  const PostDetail({super.key});
 
   @override
   State<PostDetail> createState() => _PostDetailState();

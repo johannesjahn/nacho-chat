@@ -10,7 +10,7 @@ import 'package:nacho_chat/service/user.dart';
 import '../components/add_user_dialog.dart';
 
 class ChatListPage extends StatefulWidget {
-  const ChatListPage({Key? key}) : super(key: key);
+  const ChatListPage({super.key});
 
   @override
   State<ChatListPage> createState() => _ChatListPageState();

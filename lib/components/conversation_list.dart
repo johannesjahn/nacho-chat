@@ -10,6 +10,7 @@ import 'avatar.dart';
 class ConversationList extends StatelessWidget {
   const ConversationList({super.key});
 
+  // ignore: constant_identifier_names
   static const UNREAD_CIRCLE_SIZE = 20.0;
 
   @override

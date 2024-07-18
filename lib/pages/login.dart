@@ -3,7 +3,7 @@ import 'package:nacho_chat/components/login_form.dart';
 import 'package:nacho_chat/components/version_display.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();

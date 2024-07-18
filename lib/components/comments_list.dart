@@ -5,10 +5,10 @@ import 'comment_display.dart';
 
 class CommentsList extends StatefulWidget {
   const CommentsList({
-    Key? key,
+    super.key,
     required this.width,
     required this.comments,
-  }) : super(key: key);
+  });
 
   final double width;
   final List<CommentResponseDTO> comments;

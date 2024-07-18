@@ -9,7 +9,7 @@ import '../service/user.dart';
 class ProfilePage extends StatefulWidget {
   final UserResponseDTO? user;
 
-  const ProfilePage({Key? key, this.user}) : super(key: key);
+  const ProfilePage({super.key, this.user});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -82,10 +82,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                       .toString();
                                   setState(() {});
                                 } catch (e) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                              l10n.error_uploading_avatar)));
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                l10n.error_uploading_avatar)));
+                                  }
                                 } finally {
                                   setState(() {
                                     uploadingAvatar = false;

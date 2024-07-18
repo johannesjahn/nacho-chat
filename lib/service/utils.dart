@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_function_declarations_over_variables
+
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

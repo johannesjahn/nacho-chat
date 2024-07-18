@@ -6,6 +6,7 @@ import 'package:openapi/openapi.dart';
 import '../service/utils.dart';
 import 'avatar.dart';
 
+// ignore: must_be_immutable
 class CommentDisplay extends StatefulWidget {
   final CommentResponseDTO comment;
   var hasOverflow = false;

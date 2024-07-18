@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, depend_on_referenced_packages
+
 import 'package:dio/dio.dart';
 import 'package:nacho_chat/service/app.dart';
 

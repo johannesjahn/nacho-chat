@@ -10,8 +10,7 @@ class PostView extends StatelessWidget {
   final PostResponseDTO post;
   final bool isInList;
 
-  const PostView({Key? key, required this.post, this.isInList = true})
-      : super(key: key);
+  const PostView({super.key, required this.post, this.isInList = true});
 
   @override
   Widget build(BuildContext context) {

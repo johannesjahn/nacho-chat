@@ -5,7 +5,7 @@ import 'package:nacho_chat/service/utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+  const LoginForm({super.key});
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -111,9 +111,10 @@ class _LoginFormState extends State<LoginForm> {
                                 username: usernameController.text,
                                 password: passwordController.text);
 
-                            // ignore: use_build_context_synchronously
-                            Navigator.pushReplacement(
-                                context, DefaultRoute(const HomePage()));
+                            if (context.mounted) {
+                              Navigator.pushReplacement(
+                                  context, DefaultRoute(const HomePage()));
+                            }
                           }
                         },
                       ),

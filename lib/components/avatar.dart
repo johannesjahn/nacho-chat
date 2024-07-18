@@ -21,8 +21,7 @@ class NachoAvatar extends StatefulWidget {
       this.radius = 10,
       this.onClick,
       this.users = const [],
-      Key? key})
-      : super(key: key);
+      super.key});
 
   @override
   State<NachoAvatar> createState() => _NachoAvatarState();

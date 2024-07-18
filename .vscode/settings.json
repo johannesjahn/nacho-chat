@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["openapi", "subosito"],
+  "cSpell.words": ["blurhash", "openapi", "subosito"],
   "yaml.schemas": {
     "kubernetes": "deployment.yaml",
     "https://json.schemastore.org/pubspec.json": "file:///Users/johannesjahn/dev/nacho_chat/pubspec.yaml"

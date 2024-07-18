@@ -8,6 +8,7 @@ import 'package:nacho_chat/service/post.dart';
 import 'package:nacho_chat/service/user.dart';
 import 'package:nacho_chat/service/utils.dart';
 import 'package:openapi/openapi.dart';
+// ignore: library_prefixes
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 export 'utils.dart';

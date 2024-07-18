@@ -4,10 +4,9 @@ import 'package:nacho_chat/components/chat_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/chat.dart';
-import 'package:nacho_chat/service/utils.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({Key? key}) : super(key: key);
+  const ChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {

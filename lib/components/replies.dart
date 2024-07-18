@@ -8,7 +8,7 @@ import '../service/post.dart';
 class Replies extends StatefulWidget {
   final CommentResponseDTO comment;
 
-  const Replies({Key? key, required this.comment}) : super(key: key);
+  const Replies({super.key, required this.comment});
 
   @override
   State<Replies> createState() => _RepliesState();

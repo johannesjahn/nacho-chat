@@ -8,7 +8,7 @@ import 'package:openapi/openapi.dart';
 class PostList extends StatelessWidget {
   final List<PostResponseDTO> posts;
 
-  const PostList({Key? key, required this.posts}) : super(key: key);
+  const PostList({super.key, required this.posts});
 
   @override
   Widget build(BuildContext context) {

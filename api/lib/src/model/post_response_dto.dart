@@ -22,6 +22,7 @@ part 'post_response_dto.g.dart';
 /// * [author] - The author of a post
 /// * [comments] - The comments of a post
 /// * [likes] - Number of likes
+/// * [liked] - Liked by current user
 @BuiltValue()
 abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTOBuilder> {
   /// The unique id of a post
@@ -56,6 +57,10 @@ abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTO
   /// Number of likes
   @BuiltValueField(wireName: r'likes')
   num get likes;
+
+  /// Liked by current user
+  @BuiltValueField(wireName: r'liked')
+  bool get liked;
 
   PostResponseDTO._();
 
@@ -119,6 +124,11 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
     yield serializers.serialize(
       object.likes,
       specifiedType: const FullType(num),
+    );
+    yield r'liked';
+    yield serializers.serialize(
+      object.liked,
+      specifiedType: const FullType(bool),
     );
   }
 
@@ -200,6 +210,13 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
             specifiedType: const FullType(num),
           ) as num;
           result.likes = valueDes;
+          break;
+        case r'liked':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.liked = valueDes;
           break;
         default:
           unhandled.add(key);

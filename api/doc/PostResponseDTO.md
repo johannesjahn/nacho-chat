@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **author** | [**UserResponseDTO**](UserResponseDTO.md) | The author of a post | 
 **comments** | [**BuiltList&lt;CommentResponseDTO&gt;**](CommentResponseDTO.md) | The comments of a post | 
 **likes** | **num** | Number of likes | 
+**liked** | **bool** | Liked by current user | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

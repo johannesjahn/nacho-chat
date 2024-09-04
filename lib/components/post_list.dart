@@ -40,7 +40,11 @@ class PostList extends StatelessWidget {
                                 .push(DefaultRoute(const PostDetail()));
                           },
                           child: Card(
-                            child: PostView(post: posts[index]),
+                            child: PostView(
+                              post: posts[index],
+                              isInList: true,
+                              isPreview: false,
+                            ),
                           ),
                         ),
                       ),

@@ -50,6 +50,7 @@ class _PostDetailState extends State<PostDetail> {
                                 child: PostView(
                                   post: post,
                                   isInList: false,
+                                  isPreview: false,
                                 ),
                               ),
                             ),

@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**postControllerDeletePost**](PostApi.md#postcontrollerdeletepost) | **DELETE** /app/post | 
 [**postControllerDeleteReply**](PostApi.md#postcontrollerdeletereply) | **DELETE** /app/post/reply | 
 [**postControllerGetComments**](PostApi.md#postcontrollergetcomments) | **GET** /app/post/comment/{postId} | 
+[**postControllerGetLikedPosts**](PostApi.md#postcontrollergetlikedposts) | **GET** /app/post/like | 
 [**postControllerGetPosts**](PostApi.md#postcontrollergetposts) | **GET** /app/post | 
 [**postControllerGetReplies**](PostApi.md#postcontrollergetreplies) | **GET** /app/post/reply/{commentId} | 
 [**postControllerLikeComment**](PostApi.md#postcontrollerlikecomment) | **POST** /app/post/comment/{commentId}/like | 
@@ -324,6 +325,43 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **postControllerGetLikedPosts**
+> BuiltList<PostResponseDTO> postControllerGetLikedPosts()
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getPostApi();
+
+try {
+    final response = api.postControllerGetLikedPosts();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling PostApi->postControllerGetLikedPosts: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BuiltList&lt;PostResponseDTO&gt;**](PostResponseDTO.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **postControllerGetPosts**
 > BuiltList<PostResponseDTO> postControllerGetPosts()
 
@@ -354,7 +392,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 

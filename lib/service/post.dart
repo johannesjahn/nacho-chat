@@ -70,4 +70,8 @@ class PostService {
 
     return response.data;
   }
+
+  Future<void> likePost({required num postId}) async {
+    await appService.api.getPostApi().postControllerLikePost(postId: postId);
+  }
 }

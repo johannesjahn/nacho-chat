@@ -118,7 +118,9 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                 final builder = mockPostBuilder()
                                   ..contentType =
                                       PostResponseDTOContentTypeEnum.TEXT
-                                  ..content = value;
+                                  ..content = value
+                                  ..likes = 0
+                                  ..liked = false;
                                 setState(() {
                                   preview = builder.build();
                                 });
@@ -143,6 +145,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                     child: PostView(
                                       post: preview!,
                                       isInList: false,
+                                      isPreview: true,
                                     ),
                                   ),
                                 ),

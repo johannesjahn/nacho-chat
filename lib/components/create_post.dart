@@ -26,6 +26,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
     return PostResponseDTOBuilder()
       ..id = 1337
       ..author = authorBuilder
+      ..numberOfComments = 0
       ..createdAt = DateTime.now()
       ..updatedAt = DateTime.now();
   }

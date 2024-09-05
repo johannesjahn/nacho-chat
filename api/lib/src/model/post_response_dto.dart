@@ -6,7 +6,6 @@
 import 'package:openapi/src/model/comment_response_dto.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/user_response_dto.dart';
-import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -66,7 +65,7 @@ abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTO
 
   /// Number of comments and replies in a post
   @BuiltValueField(wireName: r'numberOfComments')
-  JsonObject? get numberOfComments;
+  num? get numberOfComments;
 
   PostResponseDTO._();
 
@@ -139,7 +138,7 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
     yield r'numberOfComments';
     yield object.numberOfComments == null ? null : serializers.serialize(
       object.numberOfComments,
-      specifiedType: const FullType.nullable(JsonObject),
+      specifiedType: const FullType.nullable(num),
     );
   }
 
@@ -232,8 +231,8 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
         case r'numberOfComments':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
           if (valueDes == null) continue;
           result.numberOfComments = valueDes;
           break;

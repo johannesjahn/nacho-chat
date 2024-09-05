@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **comments** | [**BuiltList&lt;CommentResponseDTO&gt;**](CommentResponseDTO.md) | The comments of a post | 
 **likes** | **num** | Number of likes | 
 **liked** | **bool** | Liked by current user | 
-**numberOfComments** | [**JsonObject**](.md) | Number of comments and replies in a post | 
+**numberOfComments** | **num** | Number of comments and replies in a post | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

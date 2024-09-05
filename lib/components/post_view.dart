@@ -32,6 +32,19 @@ class PostView extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Container(
+                margin: const EdgeInsets.only(right: 10),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.comment,
+                      color: theme.secondaryHeaderColor,
+                    ),
+                    Text(post.numberOfComments.toString(),
+                        style: const TextStyle(fontSize: 10)),
+                  ],
+                ),
+              ),
               GestureDetector(
                 onTap: () async {
                   if (isPreview) {

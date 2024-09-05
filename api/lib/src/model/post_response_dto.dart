@@ -6,6 +6,7 @@
 import 'package:openapi/src/model/comment_response_dto.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/user_response_dto.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -23,6 +24,7 @@ part 'post_response_dto.g.dart';
 /// * [comments] - The comments of a post
 /// * [likes] - Number of likes
 /// * [liked] - Liked by current user
+/// * [numberOfComments] - Number of comments and replies in a post
 @BuiltValue()
 abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTOBuilder> {
   /// The unique id of a post
@@ -61,6 +63,10 @@ abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTO
   /// Liked by current user
   @BuiltValueField(wireName: r'liked')
   bool get liked;
+
+  /// Number of comments and replies in a post
+  @BuiltValueField(wireName: r'numberOfComments')
+  JsonObject? get numberOfComments;
 
   PostResponseDTO._();
 
@@ -129,6 +135,11 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
     yield serializers.serialize(
       object.liked,
       specifiedType: const FullType(bool),
+    );
+    yield r'numberOfComments';
+    yield object.numberOfComments == null ? null : serializers.serialize(
+      object.numberOfComments,
+      specifiedType: const FullType.nullable(JsonObject),
     );
   }
 
@@ -217,6 +228,14 @@ class _$PostResponseDTOSerializer implements PrimitiveSerializer<PostResponseDTO
             specifiedType: const FullType(bool),
           ) as bool;
           result.liked = valueDes;
+          break;
+        case r'numberOfComments':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
+          result.numberOfComments = valueDes;
           break;
         default:
           unhandled.add(key);

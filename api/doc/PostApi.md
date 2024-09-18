@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**postControllerDeleteReply**](PostApi.md#postcontrollerdeletereply) | **DELETE** /app/post/reply | 
 [**postControllerGetComments**](PostApi.md#postcontrollergetcomments) | **GET** /app/post/comment/{postId} | 
 [**postControllerGetLikedPosts**](PostApi.md#postcontrollergetlikedposts) | **GET** /app/post/like | 
+[**postControllerGetPost**](PostApi.md#postcontrollergetpost) | **GET** /app/post/single/{postId} | 
 [**postControllerGetPosts**](PostApi.md#postcontrollergetposts) | **GET** /app/post | 
 [**postControllerGetReplies**](PostApi.md#postcontrollergetreplies) | **GET** /app/post/reply/{commentId} | 
 [**postControllerLikeComment**](PostApi.md#postcontrollerlikecomment) | **POST** /app/post/comment/{commentId}/like | 
@@ -330,6 +331,8 @@ No authorization required
 
 
 
+Get posts liked by the authenticated user
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -350,6 +353,49 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**BuiltList&lt;PostResponseDTO&gt;**](PostResponseDTO.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **postControllerGetPost**
+> PostResponseDTO postControllerGetPost(postId)
+
+
+
+Get a post by id
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getPostApi();
+final num postId = 8.14; // num | 
+
+try {
+    final response = api.postControllerGetPost(postId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling PostApi->postControllerGetPost: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postId** | **num**|  | 
+
+### Return type
+
+[**PostResponseDTO**](PostResponseDTO.md)
 
 ### Authorization
 
@@ -449,6 +495,8 @@ No authorization required
 
 
 
+Like or dislike a comment
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -489,6 +537,8 @@ void (empty response body)
 
 
 
+Like or dislike a post
+
 ### Example
 ```dart
 import 'package:openapi/api.dart';
@@ -528,6 +578,8 @@ void (empty response body)
 > postControllerLikeReply(replyId)
 
 
+
+Like or dislike a reply
 
 ### Example
 ```dart

@@ -96,7 +96,18 @@ class _RepliesState extends State<Replies> {
                                     commentId: widget.comment.id,
                                     content: textController.text);
                                 textController.clear();
-                                await PostService.instance.getComments();
+                                final commentsFetch =
+                                    PostService.instance.getComments();
+                                final postFetch =
+                                    PostService.instance.getPosts();
+                                final selectedPostRefresh =
+                                    PostService.instance.refreshSelectedPost();
+
+                                await Future.wait([
+                                  commentsFetch,
+                                  postFetch,
+                                  selectedPostRefresh
+                                ]);
                               } finally {
                                 setState(() {
                                   isSubmitting = false;

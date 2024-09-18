@@ -22,6 +22,16 @@ class PostService {
     return response.data?.toList() ?? [];
   }
 
+  Future<void> refreshSelectedPost() async {
+    if (selectedPost.value != null) {
+      final response = await appService.api
+          .getPostApi()
+          .postControllerGetPost(postId: selectedPost.value!.id);
+
+      selectedPost.value = response.data;
+    }
+  }
+
   Future<PostResponseDTO?> createPost(
       {required String content,
       CreatePostDTOContentTypeEnum contentType =

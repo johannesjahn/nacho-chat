@@ -127,7 +127,20 @@ class _PostDetailState extends State<PostDetail> {
                                                     content: textController
                                                         .value.text);
                                                 textController.clear();
-                                                await postService.getComments();
+
+                                                final commentsFetch =
+                                                    postService.getComments();
+                                                final postFetch =
+                                                    postService.getPosts();
+                                                final selectedPostRefresh =
+                                                    postService
+                                                        .refreshSelectedPost();
+
+                                                await Future.wait([
+                                                  commentsFetch,
+                                                  postFetch,
+                                                  selectedPostRefresh
+                                                ]);
                                               } finally {
                                                 setState(() {
                                                   isSubmitting = false;

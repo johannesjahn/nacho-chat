@@ -118,7 +118,6 @@ class AppService {
     });
 
     socket!.onConnectError((data) => logger.e(data));
-    socket!.onConnectTimeout((data) => logger.e(data));
   }
 
   /// Logs out the user by deleting all data from the local storage and disconnecting from the websocket

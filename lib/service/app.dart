@@ -74,6 +74,8 @@ class AppService {
             Urls.url, IO.OptionBuilder().setAuth({"token": token}).build());
       }
     } catch (e) {
+      logger.e("Exception during websocket init.");
+      logger.e(e);
       final token = hive.get("access_token")!;
       socket =
           IO.io(Urls.url, IO.OptionBuilder().setAuth({"token": token}).build());

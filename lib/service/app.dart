@@ -139,7 +139,7 @@ class AppService {
   VersionDTO? _backendVersion;
   Future<VersionDTO> getBackendVersion() async {
     if (_backendVersion != null) return _backendVersion!;
-    final response = await api.getDefaultApi().appControllerGetVersion();
+    final response = await api.getAppApi().appControllerGetVersion();
     logger.i("Backend version: ${response.data!.version}");
     _backendVersion = response.data;
     return _backendVersion!;

@@ -10,9 +10,9 @@ export 'package:openapi/src/auth/oauth.dart';
 export 'package:openapi/src/serializers.dart';
 export 'package:openapi/src/model/date.dart';
 
+export 'package:openapi/src/api/app_api.dart';
 export 'package:openapi/src/api/auth_api.dart';
 export 'package:openapi/src/api/chat_api.dart';
-export 'package:openapi/src/api/default_api.dart';
 export 'package:openapi/src/api/post_api.dart';
 export 'package:openapi/src/api/user_api.dart';
 

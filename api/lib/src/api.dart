@@ -9,9 +9,9 @@ import 'package:openapi/src/auth/api_key_auth.dart';
 import 'package:openapi/src/auth/basic_auth.dart';
 import 'package:openapi/src/auth/bearer_auth.dart';
 import 'package:openapi/src/auth/oauth.dart';
+import 'package:openapi/src/api/app_api.dart';
 import 'package:openapi/src/api/auth_api.dart';
 import 'package:openapi/src/api/chat_api.dart';
-import 'package:openapi/src/api/default_api.dart';
 import 'package:openapi/src/api/post_api.dart';
 import 'package:openapi/src/api/user_api.dart';
 
@@ -69,6 +69,12 @@ class Openapi {
     }
   }
 
+  /// Get AppApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AppApi getAppApi() {
+    return AppApi(dio, serializers);
+  }
+
   /// Get AuthApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   AuthApi getAuthApi() {
@@ -79,12 +85,6 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   ChatApi getChatApi() {
     return ChatApi(dio, serializers);
-  }
-
-  /// Get DefaultApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  DefaultApi getDefaultApi() {
-    return DefaultApi(dio, serializers);
   }
 
   /// Get PostApi instance, base route and serializer can be overridden by a given but be careful,

@@ -1,6 +1,7 @@
 .gitignore
 README.md
 analysis_options.yaml
+doc/AppApi.md
 doc/AuthApi.md
 doc/ChangePasswordDTO.md
 doc/ChatApi.md
@@ -11,7 +12,6 @@ doc/CreateConversationRequestDTO.md
 doc/CreateMessageDTO.md
 doc/CreatePostDTO.md
 doc/CreateReplyDTO.md
-doc/DefaultApi.md
 doc/DeleteCommentDTO.md
 doc/DeletePostDTO.md
 doc/DeleteReplyDTO.md
@@ -35,9 +35,9 @@ doc/UserResponseDTO.md
 doc/VersionDTO.md
 lib/openapi.dart
 lib/src/api.dart
+lib/src/api/app_api.dart
 lib/src/api/auth_api.dart
 lib/src/api/chat_api.dart
-lib/src/api/default_api.dart
 lib/src/api/post_api.dart
 lib/src/api/user_api.dart
 lib/src/api_util.dart
@@ -77,3 +77,4 @@ lib/src/model/user_response_dto.dart
 lib/src/model/version_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/app_api_test.dart

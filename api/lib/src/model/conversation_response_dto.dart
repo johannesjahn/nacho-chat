@@ -17,6 +17,7 @@ part 'conversation_response_dto.g.dart';
 /// * [id] - The id of the conversation
 /// * [createdAt] - The creation date of the conversation
 /// * [updatedAt] - The date of the last update of the conversation
+/// * [title] - The title of the conversation
 /// * [participants] - The participants of the conversation
 /// * [messages] - The messages belonging to the conversation
 /// * [lastMessage] - The last message that was sent within a conversation
@@ -33,6 +34,10 @@ abstract class ConversationResponseDTO implements Built<ConversationResponseDTO,
   /// The date of the last update of the conversation
   @BuiltValueField(wireName: r'updatedAt')
   DateTime get updatedAt;
+
+  /// The title of the conversation
+  @BuiltValueField(wireName: r'title')
+  String? get title;
 
   /// The participants of the conversation
   @BuiltValueField(wireName: r'participants')
@@ -84,6 +89,13 @@ class _$ConversationResponseDTOSerializer implements PrimitiveSerializer<Convers
       object.updatedAt,
       specifiedType: const FullType(DateTime),
     );
+    if (object.title != null) {
+      yield r'title';
+      yield serializers.serialize(
+        object.title,
+        specifiedType: const FullType(String),
+      );
+    }
     yield r'participants';
     yield serializers.serialize(
       object.participants,
@@ -142,6 +154,13 @@ class _$ConversationResponseDTOSerializer implements PrimitiveSerializer<Convers
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.updatedAt = valueDes;
+          break;
+        case r'title':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.title = valueDes;
           break;
         case r'participants':
           final valueDes = serializers.deserialize(

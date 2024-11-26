@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**chatControllerMarkConversationAsRead**](ChatApi.md#chatcontrollermarkconversationasread) | **PUT** /app/chat/mark-conversation-as-read | 
 [**chatControllerMarkMessageAsRead**](ChatApi.md#chatcontrollermarkmessageasread) | **PUT** /app/chat/mark-message-as-read | 
 [**chatControllerSendMessage**](ChatApi.md#chatcontrollersendmessage) | **POST** /app/chat/send-message | 
+[**chatControllerSetConversationTitle**](ChatApi.md#chatcontrollersetconversationtitle) | **PUT** /app/chat/set-conversation-title | 
 
 
 # **chatControllerCreateConversation**
@@ -346,6 +347,44 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **chatControllerSetConversationTitle**
+> chatControllerSetConversationTitle()
+
+
+
+Endpoint to set the title of a conversation
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getChatApi();
+
+try {
+    api.chatControllerSetConversationTitle();
+} catch on DioException (e) {
+    print('Exception when calling ChatApi->chatControllerSetConversationTitle: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

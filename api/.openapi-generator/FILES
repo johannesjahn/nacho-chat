@@ -27,6 +27,7 @@ doc/PostApi.md
 doc/PostResponseDTO.md
 doc/RegisterDTO.md
 doc/ReplyResponseDTO.md
+doc/SetConversationTitleRequestDTO.md
 doc/UpdateCommentDTO.md
 doc/UpdatePostDTO.md
 doc/UpdateReplyDTO.md
@@ -70,6 +71,7 @@ lib/src/model/number_of_unread_messages_response_dto.dart
 lib/src/model/post_response_dto.dart
 lib/src/model/register_dto.dart
 lib/src/model/reply_response_dto.dart
+lib/src/model/set_conversation_title_request_dto.dart
 lib/src/model/update_comment_dto.dart
 lib/src/model/update_post_dto.dart
 lib/src/model/update_reply_dto.dart
@@ -77,3 +79,4 @@ lib/src/model/user_response_dto.dart
 lib/src/model/version_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/set_conversation_title_request_dto_test.dart

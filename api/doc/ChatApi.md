@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **chatControllerSetConversationTitle**
-> chatControllerSetConversationTitle()
+> ConversationResponseDTO chatControllerSetConversationTitle(setConversationTitleRequestDTO)
 
 
 
@@ -362,20 +362,25 @@ Endpoint to set the title of a conversation
 import 'package:openapi/api.dart';
 
 final api = Openapi().getChatApi();
+final SetConversationTitleRequestDTO setConversationTitleRequestDTO = ; // SetConversationTitleRequestDTO | 
 
 try {
-    api.chatControllerSetConversationTitle();
+    final response = api.chatControllerSetConversationTitle(setConversationTitleRequestDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ChatApi->chatControllerSetConversationTitle: $e\n');
 }
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **setConversationTitleRequestDTO** | [**SetConversationTitleRequestDTO**](SetConversationTitleRequestDTO.md)|  | 
 
 ### Return type
 
-void (empty response body)
+[**ConversationResponseDTO**](ConversationResponseDTO.md)
 
 ### Authorization
 
@@ -383,8 +388,8 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

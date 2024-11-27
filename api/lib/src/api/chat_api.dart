@@ -18,6 +18,7 @@ import 'package:openapi/src/model/mark_conversation_as_read_dto.dart';
 import 'package:openapi/src/model/mark_message_as_read_dto.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
 import 'package:openapi/src/model/number_of_unread_messages_response_dto.dart';
+import 'package:openapi/src/model/set_conversation_title_request_dto.dart';
 
 class ChatApi {
 
@@ -717,6 +718,7 @@ class ChatApi {
   /// Endpoint to set the title of a conversation
   ///
   /// Parameters:
+  /// * [setConversationTitleRequestDTO] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -724,9 +726,10 @@ class ChatApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ConversationResponseDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> chatControllerSetConversationTitle({ 
+  Future<Response<ConversationResponseDTO>> chatControllerSetConversationTitle({ 
+    required SetConversationTitleRequestDTO setConversationTitleRequestDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -750,18 +753,66 @@ class ChatApi {
         ],
         ...?extra,
       },
+      contentType: 'application/json',
       validateStatus: validateStatus,
     );
 
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(SetConversationTitleRequestDTO);
+      _bodyData = _serializers.serialize(setConversationTitleRequestDTO, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
     final _response = await _dio.request<Object>(
       _path,
+      data: _bodyData,
       options: _options,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ConversationResponseDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ConversationResponseDTO),
+      ) as ConversationResponseDTO;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ConversationResponseDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
 }

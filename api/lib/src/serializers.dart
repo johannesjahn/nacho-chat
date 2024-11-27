@@ -36,6 +36,7 @@ import 'package:openapi/src/model/number_of_unread_messages_response_dto.dart';
 import 'package:openapi/src/model/post_response_dto.dart';
 import 'package:openapi/src/model/register_dto.dart';
 import 'package:openapi/src/model/reply_response_dto.dart';
+import 'package:openapi/src/model/set_conversation_title_request_dto.dart';
 import 'package:openapi/src/model/update_comment_dto.dart';
 import 'package:openapi/src/model/update_post_dto.dart';
 import 'package:openapi/src/model/update_reply_dto.dart';
@@ -67,6 +68,7 @@ part 'serializers.g.dart';
   PostResponseDTO,
   RegisterDTO,
   ReplyResponseDTO,
+  SetConversationTitleRequestDTO,
   UpdateCommentDTO,
   UpdatePostDTO,
   UpdateReplyDTO,

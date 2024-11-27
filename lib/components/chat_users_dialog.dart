@@ -16,19 +16,20 @@ class ChatUsersDialog extends StatelessWidget {
     return ValueListenableBuilder<ConversationResponseDTO?>(
       valueListenable: chatService.currentChat,
       builder: (context, value, widget) => AlertDialog(
-          title: Center(
-              child: value?.title != null
-                  ? GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        showDialog(
-                            context: context,
-                            builder: (context) => EditChatTitleDialog(
-                                  initialTitle: value.title ?? "",
-                                ));
-                      },
-                      child: Text(value!.title!))
-                  : Text(l10n.participants)),
+          title: GestureDetector(
+              onTap: () {
+                if ((value?.participants.length ?? 0) < 3) return;
+                Navigator.of(context).pop();
+                showDialog(
+                    context: context,
+                    builder: (context) => EditChatTitleDialog(
+                          initialTitle: value?.title ?? "",
+                        ));
+              },
+              child: Center(
+                  child: value?.title != null
+                      ? Text(value!.title!)
+                      : Text(l10n.participants))),
           content: Builder(builder: (context) {
             if (value == null) return const SizedBox();
             return SingleChildScrollView(

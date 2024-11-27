@@ -84,5 +84,8 @@
     "new_password": "Neues Passwort",
     "confirm_password": "Neues Passwort bestätigen",
     "change": "Ändern",
-    "participants": "Teilnehmer"
+    "participants": "Teilnehmer",
+    "cancel": "Abbrechen",
+    "submit": "Absenden",
+    "title_can_not_be_empty": "Titel darf nicht leer sein"
 }

@@ -83,5 +83,8 @@
     "new_password": "New password",
     "confirm_password": "Confirm password",
     "change": "Change",
-    "participants": "Participants"
+    "participants": "Participants",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "title_can_not_be_empty": "Title can not be empty"
 }

@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/service/chat.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditChatTitleDialog extends StatefulWidget {
   const EditChatTitleDialog({super.key, required this.initialTitle});
@@ -21,6 +24,7 @@ class _EditChatTitleDialogState extends State<EditChatTitleDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
       title: const Text('Edit chat title'),
       actions: [
@@ -28,14 +32,14 @@ class _EditChatTitleDialogState extends State<EditChatTitleDialog> {
           onPressed: () async {
             Navigator.of(context).pop();
           },
-          child: const Text('Cancel'),
+          child: Text(l10n.cancel),
         ),
         TextButton(
           onPressed: () async {
             if (inputController.text.isEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Title cannot be empty'),
+                SnackBar(
+                  content: Text(l10n.title_can_not_be_empty),
                 ),
               );
               return;
@@ -44,7 +48,7 @@ class _EditChatTitleDialogState extends State<EditChatTitleDialog> {
                 .updateChatTitleOfCurrentChat(newTitle: inputController.text);
             Navigator.of(context).pop();
           },
-          child: const Text('Save'),
+          child: Text(l10n.submit),
         ),
       ],
       content: TextField(

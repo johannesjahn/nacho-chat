@@ -79,4 +79,3 @@ lib/src/model/user_response_dto.dart
 lib/src/model/version_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
-test/set_conversation_title_request_dto_test.dart

@@ -59,7 +59,7 @@ class _NachoAvatarState extends State<NachoAvatar> {
       size = "?size=800&profileHash=";
     }
 
-    final backgroundColor = Theme.of(context).colorScheme.background;
+    final backgroundColor = Theme.of(context).colorScheme.surface;
 
     return Padding(
       padding: EdgeInsets.all(widget.radius / 5),

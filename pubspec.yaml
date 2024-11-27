@@ -39,7 +39,7 @@ dev_dependencies:
   lint: 2.3.0
   build_runner: 2.4.13
   json_serializable: 6.9.0
-  version_bmp: 1.2.1
+  version_bmp: 1.2.2
 
 flutter:
   generate: true

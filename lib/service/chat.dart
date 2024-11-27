@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:openapi/openapi.dart';
@@ -115,5 +116,22 @@ class ChatService {
 
     unreadCountNotifier.value = response.data?.hasUnreadMessages ?? false;
     return response.data?.hasUnreadMessages ?? false;
+  }
+
+  Future<void> updateChatTitleOfCurrentChat({required String newTitle}) async {
+    final setConversationTitleRequestDTOBuilder =
+        SetConversationTitleRequestDTOBuilder()
+          ..conversationId = currentChat.value?.id
+          ..title = newTitle;
+
+    await appService.api.getChatApi().chatControllerSetConversationTitle(
+        setConversationTitleRequestDTO:
+            setConversationTitleRequestDTOBuilder.build());
+
+    await getConversations();
+
+    final chatFromList =
+        conversations.where((element) => element.id == currentChat.value?.id);
+    currentChat.value = chatFromList.length == 1 ? chatFromList.first : null;
   }
 }

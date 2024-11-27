@@ -41,7 +41,8 @@ class ConversationList extends StatelessWidget {
                       .where((participant) =>
                           participant.id != AppService.instance.userId)
                       .toList();
-                  final chatTitle =
+
+                  final chatTitle = value[index].title ??
                       nonSelfParticipants.map((u) => u.username).join(", ");
 
                   final lastMessage = value[index].lastMessage;

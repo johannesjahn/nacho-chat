@@ -13,7 +13,7 @@ class ChatPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return PopScope(
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, _) {
         if (AppService.instance.isTablet) {
           return;
         }

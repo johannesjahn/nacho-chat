@@ -490,10 +490,10 @@ packages:
     dependency: "direct dev"
     description:
       name: test
-      sha256: "7afaf571fe4476e3cf7c5f822daa5a295dbbca227b52cb246d6ed3216e282f44"
+      sha256: be7697dcfa9d47333e6ceb38400b4c8b8de15dc97023e8eb219189ba19c5d423
       url: "https://pub.dev"
     source: hosted
-    version: "1.25.10"
+    version: "1.25.11"
   test_api:
     dependency: transitive
     description:

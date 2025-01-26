@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,6 @@ class PostView extends StatelessWidget {
                   if (isPreview) {
                     return;
                   }
-                  await PostService.instance.likePost(postId: post.id);
                   final index = PostService.instance.posts.value.indexOf(post);
                   final postBuilder = post.toBuilder()
                     ..liked = !post.liked
@@ -63,6 +63,12 @@ class PostView extends StatelessWidget {
                     PostService.instance.selectedPost.value =
                         postBuilder.build();
                   }
+                  PostService.instance.likePost(postId: post.id).then((a) {
+                    logger.i("Post ${post.id} liked");
+                  }).catchError((e) {
+                    logger.e("Error liking post ${post.id}");
+                    logger.e(e);
+                  });
                 },
                 child: Column(
                   children: [

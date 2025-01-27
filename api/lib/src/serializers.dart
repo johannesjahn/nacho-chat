@@ -22,6 +22,7 @@ import 'package:openapi/src/model/create_conversation_request_dto.dart';
 import 'package:openapi/src/model/create_message_dto.dart';
 import 'package:openapi/src/model/create_post_dto.dart';
 import 'package:openapi/src/model/create_reply_dto.dart';
+import 'package:openapi/src/model/debug_response_dto.dart';
 import 'package:openapi/src/model/delete_comment_dto.dart';
 import 'package:openapi/src/model/delete_post_dto.dart';
 import 'package:openapi/src/model/delete_reply_dto.dart';
@@ -54,6 +55,7 @@ part 'serializers.g.dart';
   CreateMessageDTO,
   CreatePostDTO,
   CreateReplyDTO,
+  DebugResponseDTO,
   DeleteCommentDTO,
   DeletePostDTO,
   DeleteReplyDTO,

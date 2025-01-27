@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **appControllerGetDebug**
-> appControllerGetDebug()
+> DebugResponseDTO appControllerGetDebug()
 
 
 
@@ -27,7 +27,8 @@ import 'package:openapi/api.dart';
 final api = Openapi().getAppApi();
 
 try {
-    api.appControllerGetDebug();
+    final response = api.appControllerGetDebug();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AppApi->appControllerGetDebug: $e\n');
 }
@@ -38,7 +39,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**DebugResponseDTO**](DebugResponseDTO.md)
 
 ### Authorization
 
@@ -47,7 +48,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

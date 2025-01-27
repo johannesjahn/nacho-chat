@@ -24,6 +24,7 @@ export 'package:openapi/src/model/create_conversation_request_dto.dart';
 export 'package:openapi/src/model/create_message_dto.dart';
 export 'package:openapi/src/model/create_post_dto.dart';
 export 'package:openapi/src/model/create_reply_dto.dart';
+export 'package:openapi/src/model/debug_response_dto.dart';
 export 'package:openapi/src/model/delete_comment_dto.dart';
 export 'package:openapi/src/model/delete_post_dto.dart';
 export 'package:openapi/src/model/delete_reply_dto.dart';

@@ -40,14 +40,17 @@ class AuthService {
   Future<void> register(
       {required String username, required String password}) async {
     if (_isActive) return;
-    _isActive = true;
-    final registerDTO = RegisterDTOBuilder()
-      ..username = username
-      ..password = password;
-    await appService.api
-        .getAuthApi()
-        .authControllerRegister(registerDTO: registerDTO.build());
-    _isActive = false;
+    try {
+      _isActive = true;
+      final registerDTO = RegisterDTOBuilder()
+        ..username = username
+        ..password = password;
+      await appService.api
+          .getAuthApi()
+          .authControllerRegister(registerDTO: registerDTO.build());
+    } finally {
+      _isActive = false;
+    }
 
     await login(username: username, password: password);
   }

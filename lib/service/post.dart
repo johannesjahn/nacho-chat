@@ -84,4 +84,10 @@ class PostService {
   Future<void> likePost({required num postId}) async {
     await appService.api.getPostApi().postControllerLikePost(postId: postId);
   }
+
+  Future<void> likeComment({required num commentId}) async {
+    await appService.api
+        .getPostApi()
+        .postControllerLikeComment(commentId: commentId);
+  }
 }

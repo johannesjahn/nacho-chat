@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/components/replies.dart';
+import 'package:nacho_chat/service/post.dart';
 import 'package:openapi/openapi.dart';
 
 import '../service/utils.dart';
@@ -30,6 +31,7 @@ class _CommentDisplayState extends State<CommentDisplay> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -84,6 +86,31 @@ class _CommentDisplayState extends State<CommentDisplay> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      PostService.instance
+                          .likeComment(commentId: widget.comment.id)
+                          .then((a) {
+                        logger.i("Comment ${widget.comment.id} liked");
+                      }).catchError((e) {
+                        logger.e("Error liking comment ${widget.comment.id}");
+                        logger.e(e);
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.favorite,
+                          color:
+                              false ? Colors.red : theme.secondaryHeaderColor,
+                        ),
+                        Text(
+                          widget.comment.likes.toString(),
+                          style: const TextStyle(fontSize: 10),
+                        )
+                      ],
+                    ),
+                  ),
                   NachoAvatar(user: widget.comment.author!, radius: 20),
                   Text(
                       "${widget.comment.author?.username ?? ""}, ${formatPostedDate(widget.comment.createdAt, context)}",

@@ -810,18 +810,18 @@ packages:
     dependency: "direct main"
     description:
       name: socket_io_client
-      sha256: "180fdbc7685e32a849511bbf8b1c7bcc46ab0ff116f7024aa204b425bb3a1ffe"
+      sha256: defdad89125af08050b77ecb51516db429ec4519f75e1ca159fcea3da67b72b1
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.2"
+    version: "3.1.0+2"
   socket_io_common:
     dependency: transitive
     description:
       name: socket_io_common
-      sha256: "41fdf2d333d1f8209d9c39885c2805141afc570df6bd93ae791e12e271e2e42c"
+      sha256: "1544131e3fa557b3f6b7897e1d2aab245cd5006189bda127997cb391a37591b9"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   source_gen:
     dependency: transitive
     description:

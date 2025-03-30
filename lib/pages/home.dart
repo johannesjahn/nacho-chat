@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       // version number
       appBar: AppBar(
-        title: Text("${l10n.hello}, ${AppService.instance.username}"),
+        title: Text("${l10n.hello}, ${AppService.instance.username}!"),
         actions: [
           IconButton(
               padding: const EdgeInsets.all(10),

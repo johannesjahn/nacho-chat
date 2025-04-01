@@ -81,4 +81,3 @@ lib/src/model/user_response_dto.dart
 lib/src/model/version_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
-test/debug_response_dto_test.dart

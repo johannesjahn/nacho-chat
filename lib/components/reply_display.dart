@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 import 'package:openapi/openapi.dart';
 
 import '../service/utils.dart';
@@ -8,10 +8,7 @@ import 'avatar.dart';
 class ReplyDisplay extends StatefulWidget {
   final ReplyResponseDTO reply;
 
-  const ReplyDisplay({
-    super.key,
-    required this.reply,
-  });
+  const ReplyDisplay({super.key, required this.reply});
 
   @override
   State<ReplyDisplay> createState() => _ReplyDisplayState();
@@ -46,11 +43,9 @@ class _ReplyDisplayState extends State<ReplyDisplay> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  child: Text(
-                    widget.reply.content,
-                    maxLines: maxLines,
-                  )),
+                duration: const Duration(milliseconds: 300),
+                child: Text(widget.reply.content, maxLines: maxLines),
+              ),
               if (hasOverflow)
                 SizedBox(
                   width: width,
@@ -88,8 +83,9 @@ class _ReplyDisplayState extends State<ReplyDisplay> {
                 children: [
                   NachoAvatar(user: widget.reply.author!, radius: 20),
                   Text(
-                      "${widget.reply.author?.username ?? ""}, ${formatPostedDate(widget.reply.createdAt, context)}",
-                      style: Theme.of(context).textTheme.labelSmall),
+                    "${widget.reply.author?.username ?? ""}, ${formatPostedDate(widget.reply.createdAt, context)}",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
                 ],
               ),
             ],

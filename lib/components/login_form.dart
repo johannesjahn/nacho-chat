@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nacho_chat/pages/home.dart';
 import 'package:nacho_chat/service/auth.dart';
 import 'package:nacho_chat/service/utils.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -19,7 +19,9 @@ class _LoginFormState extends State<LoginForm> {
   login() async {
     if (_formKey.currentState?.validate() ?? false) {
       final success = await AuthService.instance.login(
-          username: usernameController.text, password: passwordController.text);
+        username: usernameController.text,
+        password: passwordController.text,
+      );
 
       if (success) {
         // ignore: use_build_context_synchronously
@@ -57,10 +59,7 @@ class _LoginFormState extends State<LoginForm> {
             child: Container(
               width: width * 0.5,
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: theme.hintColor,
-                  width: 2,
-                ),
+                border: Border.all(color: theme.hintColor, width: 2),
                 borderRadius: BorderRadius.circular(10),
               ),
               padding: const EdgeInsets.all(16.0),
@@ -70,9 +69,7 @@ class _LoginFormState extends State<LoginForm> {
                 children: [
                   TextFormField(
                     controller: usernameController,
-                    decoration: InputDecoration(
-                      labelText: l10n.username,
-                    ),
+                    decoration: InputDecoration(labelText: l10n.username),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return l10n.please_enter_your_username;
@@ -81,9 +78,7 @@ class _LoginFormState extends State<LoginForm> {
                     },
                   ),
                   TextFormField(
-                    decoration: InputDecoration(
-                      labelText: l10n.password,
-                    ),
+                    decoration: InputDecoration(labelText: l10n.password),
                     keyboardType: TextInputType.visiblePassword,
                     controller: passwordController,
                     obscureText: true,
@@ -108,12 +103,15 @@ class _LoginFormState extends State<LoginForm> {
                         onPressed: () async {
                           if (_formKey.currentState?.validate() ?? false) {
                             await AuthService.instance.register(
-                                username: usernameController.text,
-                                password: passwordController.text);
+                              username: usernameController.text,
+                              password: passwordController.text,
+                            );
 
                             if (context.mounted) {
                               Navigator.pushReplacement(
-                                  context, DefaultRoute(const HomePage()));
+                                context,
+                                DefaultRoute(const HomePage()),
+                              );
                             }
                           }
                         },
@@ -128,7 +126,7 @@ class _LoginFormState extends State<LoginForm> {
                         },
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

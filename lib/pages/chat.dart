@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/components/chat_users_dialog.dart';
 import 'package:nacho_chat/components/chat_view.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:nacho_chat/service/chat.dart';
 
@@ -25,19 +25,21 @@ class ChatPage extends StatelessWidget {
         appBar: AppBar(
           title: Text(l10n.chat),
           actions: [
-            PopupMenuButton(itemBuilder: (BuildContext context) {
-              return [
-                PopupMenuItem(
-                  child: Text(l10n.participants),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => const ChatUsersDialog(),
-                    );
-                  },
-                ),
-              ];
-            })
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) {
+                return [
+                  PopupMenuItem(
+                    child: Text(l10n.participants),
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const ChatUsersDialog(),
+                      );
+                    },
+                  ),
+                ];
+              },
+            ),
           ],
         ),
         body: const ChatView(),

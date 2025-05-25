@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 import 'package:time_machine/time_machine.dart';
 
 final DefaultRoute =

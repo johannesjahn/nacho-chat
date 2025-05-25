@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nacho_chat/components/reply_display.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 import 'package:openapi/openapi.dart';
 
 import '../service/post.dart';
@@ -29,39 +29,39 @@ class _RepliesState extends State<Replies> {
       children: [
         widget.comment.replies.isNotEmpty
             ? SizedBox(
-                width: width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(l10n.replies, style: theme.textTheme.headlineSmall),
-                  ],
-                ))
+              width: width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(l10n.replies, style: theme.textTheme.headlineSmall),
+                ],
+              ),
+            )
             : const SizedBox(),
-        ...widget.comment.replies.map((reply) => ReplyDisplay(
-              reply: reply,
-            )),
+        ...widget.comment.replies.map((reply) => ReplyDisplay(reply: reply)),
         SizedBox(
           width: width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextButton(
-                  onPressed: () {
-                    setState(() {
-                      showReplyEntry = !showReplyEntry;
-                    });
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(l10n.new_reply),
-                      AnimatedRotation(
-                        turns: showReplyEntry ? 0.5 : 0,
-                        duration: const Duration(milliseconds: 300),
-                        child: const Icon(Icons.arrow_drop_down),
-                      ),
-                    ],
-                  )),
+                onPressed: () {
+                  setState(() {
+                    showReplyEntry = !showReplyEntry;
+                  });
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(l10n.new_reply),
+                    AnimatedRotation(
+                      turns: showReplyEntry ? 0.5 : 0,
+                      duration: const Duration(milliseconds: 300),
+                      child: const Icon(Icons.arrow_drop_down),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -83,39 +83,42 @@ class _RepliesState extends State<Replies> {
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 10),
-                    child: isSubmitting
-                        ? const CircularProgressIndicator()
-                        : ElevatedButton(
-                            child: Text(l10n.submit),
-                            onPressed: () async {
-                              try {
-                                setState(() {
-                                  isSubmitting = true;
-                                });
-                                await PostService.instance.createReply(
+                    child:
+                        isSubmitting
+                            ? const CircularProgressIndicator()
+                            : ElevatedButton(
+                              child: Text(l10n.submit),
+                              onPressed: () async {
+                                try {
+                                  setState(() {
+                                    isSubmitting = true;
+                                  });
+                                  await PostService.instance.createReply(
                                     commentId: widget.comment.id,
-                                    content: textController.text);
-                                textController.clear();
-                                final commentsFetch =
-                                    PostService.instance.getComments();
-                                final postFetch =
-                                    PostService.instance.getPosts();
-                                final selectedPostRefresh =
-                                    PostService.instance.refreshSelectedPost();
+                                    content: textController.text,
+                                  );
+                                  textController.clear();
+                                  final commentsFetch =
+                                      PostService.instance.getComments();
+                                  final postFetch =
+                                      PostService.instance.getPosts();
+                                  final selectedPostRefresh =
+                                      PostService.instance
+                                          .refreshSelectedPost();
 
-                                await Future.wait([
-                                  commentsFetch,
-                                  postFetch,
-                                  selectedPostRefresh
-                                ]);
-                              } finally {
-                                setState(() {
-                                  isSubmitting = false;
-                                  showReplyEntry = false;
-                                });
-                              }
-                            },
-                          ),
+                                  await Future.wait([
+                                    commentsFetch,
+                                    postFetch,
+                                    selectedPostRefresh,
+                                  ]);
+                                } finally {
+                                  setState(() {
+                                    isSubmitting = false;
+                                    showReplyEntry = false;
+                                  });
+                                }
+                              },
+                            ),
                   ),
                 ],
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 import 'package:nacho_chat/components/replies.dart';
 import 'package:openapi/openapi.dart';
 
@@ -11,10 +11,7 @@ class CommentDisplay extends StatefulWidget {
   final CommentResponseDTO comment;
   var hasOverflow = false;
 
-  CommentDisplay({
-    super.key,
-    required this.comment,
-  }) {
+  CommentDisplay({super.key, required this.comment}) {
     hasOverflow = '\n'.allMatches(comment.content).length > 3;
   }
 
@@ -40,9 +37,7 @@ class _CommentDisplayState extends State<CommentDisplay> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AnimatedSize(
-                duration: const Duration(
-                  milliseconds: 300,
-                ),
+                duration: const Duration(milliseconds: 300),
                 child: Text(
                   widget.comment.content,
                   maxLines: maxLines,
@@ -86,8 +81,9 @@ class _CommentDisplayState extends State<CommentDisplay> {
                 children: [
                   NachoAvatar(user: widget.comment.author!, radius: 20),
                   Text(
-                      "${widget.comment.author?.username ?? ""}, ${formatPostedDate(widget.comment.createdAt, context)}",
-                      style: Theme.of(context).textTheme.labelSmall),
+                    "${widget.comment.author?.username ?? ""}, ${formatPostedDate(widget.comment.createdAt, context)}",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
                 ],
               ),
               Replies(comment: widget.comment),

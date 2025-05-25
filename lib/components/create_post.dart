@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nacho_chat/components/post_view.dart';
 import 'package:nacho_chat/service/post.dart';
 import 'package:openapi/openapi.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 
 import '../service/app.dart';
 
@@ -19,9 +19,10 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
   PostResponseDTO? preview;
 
   PostResponseDTOBuilder mockPostBuilder() {
-    final authorBuilder = UserResponseDTOBuilder()
-      ..id = AppService.instance.userId
-      ..username = AppService.instance.username;
+    final authorBuilder =
+        UserResponseDTOBuilder()
+          ..id = AppService.instance.userId
+          ..username = AppService.instance.username;
 
     return PostResponseDTOBuilder()
       ..id = 1337
@@ -59,100 +60,110 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                         children: [
                           const Text("Image?"),
                           Switch(
-                              value: isImage,
-                              onChanged: (v) {
-                                setState(() {
-                                  textController.clear();
-                                  isImage = v;
-                                  preview = null;
-                                });
-                              }),
+                            value: isImage,
+                            onChanged: (v) {
+                              setState(() {
+                                textController.clear();
+                                isImage = v;
+                                preview = null;
+                              });
+                            },
+                          ),
                         ],
                       ),
                     ),
                     SizedBox(
                       height: 150,
                       width: 300,
-                      child: isImage
-                          ? TextFormField(
-                              controller: textController,
-                              keyboardType: TextInputType.url,
-                              onChanged: (value) {
-                                if (value.isEmpty) {
+                      child:
+                          isImage
+                              ? TextFormField(
+                                controller: textController,
+                                keyboardType: TextInputType.url,
+                                onChanged: (value) {
+                                  if (value.isEmpty) {
+                                    setState(() {
+                                      preview = null;
+                                    });
+                                    return;
+                                  }
+                                  var isValidUrl =
+                                      Uri.tryParse(
+                                        textController.value.text,
+                                      )?.hasAbsolutePath ??
+                                      false;
+                                  if (!isValidUrl) {
+                                    setState(() {
+                                      preview = null;
+                                    });
+                                    return;
+                                  }
+                                  final builder =
+                                      mockPostBuilder()
+                                        ..contentType =
+                                            PostResponseDTOContentTypeEnum
+                                                .IMAGE_URL
+                                        ..content = value;
                                   setState(() {
-                                    preview = null;
+                                    preview = builder.build();
                                   });
-                                  return;
-                                }
-                                var isValidUrl =
-                                    Uri.tryParse(textController.value.text)
-                                            ?.hasAbsolutePath ??
-                                        false;
-                                if (!isValidUrl) {
+                                },
+                                maxLines: 1,
+                                decoration: InputDecoration(
+                                  label: Text(l10n.image_url),
+                                ),
+                              )
+                              : TextFormField(
+                                controller: textController,
+                                keyboardType: TextInputType.multiline,
+                                onChanged: ((value) {
+                                  if (value.isEmpty) {
+                                    setState(() {
+                                      preview = null;
+                                    });
+                                    return;
+                                  }
+                                  final builder =
+                                      mockPostBuilder()
+                                        ..contentType =
+                                            PostResponseDTOContentTypeEnum.TEXT
+                                        ..content = value
+                                        ..likes = 0
+                                        ..liked = false;
                                   setState(() {
-                                    preview = null;
+                                    preview = builder.build();
                                   });
-                                  return;
-                                }
-                                final builder = mockPostBuilder()
-                                  ..contentType =
-                                      PostResponseDTOContentTypeEnum.IMAGE_URL
-                                  ..content = value;
-                                setState(() {
-                                  preview = builder.build();
-                                });
-                              },
-                              maxLines: 1,
-                              decoration:
-                                  InputDecoration(label: Text(l10n.image_url)),
-                            )
-                          : TextFormField(
-                              controller: textController,
-                              keyboardType: TextInputType.multiline,
-                              onChanged: ((value) {
-                                if (value.isEmpty) {
-                                  setState(() {
-                                    preview = null;
-                                  });
-                                  return;
-                                }
-                                final builder = mockPostBuilder()
-                                  ..contentType =
-                                      PostResponseDTOContentTypeEnum.TEXT
-                                  ..content = value
-                                  ..likes = 0
-                                  ..liked = false;
-                                setState(() {
-                                  preview = builder.build();
-                                });
-                              }),
-                              maxLines: null,
-                              maxLength: 500,
-                              decoration:
-                                  InputDecoration(label: Text(l10n.content)),
-                            ),
+                                }),
+                                maxLines: null,
+                                maxLength: 500,
+                                decoration: InputDecoration(
+                                  label: Text(l10n.content),
+                                ),
+                              ),
                     ),
                     preview != null
                         ? ConstrainedBox(
-                            constraints: const BoxConstraints(
-                                minWidth: 300, maxWidth: 500),
-                            child: SizedBox(
-                              width: width * 0.5,
-                              child: AspectRatio(
-                                aspectRatio: 1,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Card(
-                                    child: PostView(
-                                      post: preview!,
-                                      isInList: false,
-                                      isPreview: true,
-                                    ),
+                          constraints: const BoxConstraints(
+                            minWidth: 300,
+                            maxWidth: 500,
+                          ),
+                          child: SizedBox(
+                            width: width * 0.5,
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Card(
+                                  child: PostView(
+                                    post: preview!,
+                                    isInList: false,
+                                    isPreview: true,
                                   ),
                                 ),
                               ),
                             ),
-                          )
+                          ),
+                        )
                         : const SizedBox(),
                     ElevatedButton(
                       child: Text(l10n.create),
@@ -160,21 +171,24 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                         if (textController.value.text.isEmpty) return;
                         if (isImage) {
                           var isValidUrl =
-                              Uri.tryParse(textController.value.text)
-                                      ?.hasAbsolutePath ??
-                                  false;
+                              Uri.tryParse(
+                                textController.value.text,
+                              )?.hasAbsolutePath ??
+                              false;
                           if (!isValidUrl) {
                             return;
                           } else {
                             await PostService.instance.createPost(
-                                content: textController.value.text,
-                                contentType:
-                                    CreatePostDTOContentTypeEnum.IMAGE_URL);
+                              content: textController.value.text,
+                              contentType:
+                                  CreatePostDTOContentTypeEnum.IMAGE_URL,
+                            );
                           }
                         } else {
                           await PostService.instance.createPost(
-                              content: textController.value.text,
-                              contentType: CreatePostDTOContentTypeEnum.TEXT);
+                            content: textController.value.text,
+                            contentType: CreatePostDTOContentTypeEnum.TEXT,
+                          );
                         }
                         PostService.instance.getPosts();
                         if (context.mounted) {

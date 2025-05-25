@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/service/chat.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 
 class EditChatTitleDialog extends StatefulWidget {
   const EditChatTitleDialog({super.key, required this.initialTitle});
@@ -38,14 +38,13 @@ class _EditChatTitleDialogState extends State<EditChatTitleDialog> {
           onPressed: () async {
             if (inputController.text.isEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(l10n.title_can_not_be_empty),
-                ),
+                SnackBar(content: Text(l10n.title_can_not_be_empty)),
               );
               return;
             }
-            await ChatService.instance
-                .updateChatTitleOfCurrentChat(newTitle: inputController.text);
+            await ChatService.instance.updateChatTitleOfCurrentChat(
+              newTitle: inputController.text,
+            );
             Navigator.of(context).pop();
           },
           child: Text(l10n.submit),

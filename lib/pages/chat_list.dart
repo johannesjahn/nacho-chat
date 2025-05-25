@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 import 'package:nacho_chat/components/chat_users_dialog.dart';
 import 'package:nacho_chat/components/chat_view.dart';
 import 'package:nacho_chat/components/conversation_list.dart';
@@ -37,27 +37,30 @@ class _ChatListPageState extends State<ChatListPage> {
         ChatService.instance.currentChat.value = null;
         ChatService.instance.messagesNotifier.value = [];
       },
-      child: Builder(builder: (context) {
-        final width = MediaQuery.of(context).size.width;
+      child: Builder(
+        builder: (context) {
+          final width = MediaQuery.of(context).size.width;
 
-        AppService.instance.isTablet = width >= 750;
+          AppService.instance.isTablet = width >= 750;
 
-        return Scaffold(
-          appBar: AppBar(
-            title: Text("${l10n.hello}, ${AppService.instance.username}"),
-            actions: [
-              AppService.instance.isTablet
-                  ? IconButton(
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("${l10n.hello}, ${AppService.instance.username}"),
+              actions: [
+                AppService.instance.isTablet
+                    ? IconButton(
                       padding: const EdgeInsets.all(10),
                       onPressed: () {
                         showDialog(
-                            context: context,
-                            builder: (context) => const AddUserDialog());
+                          context: context,
+                          builder: (context) => const AddUserDialog(),
+                        );
                       },
-                      icon: const Icon(Icons.add))
-                  : const SizedBox(),
-              AppService.instance.isTablet
-                  ? IconButton(
+                      icon: const Icon(Icons.add),
+                    )
+                    : const SizedBox(),
+                AppService.instance.isTablet
+                    ? IconButton(
                       padding: const EdgeInsets.all(10),
                       onPressed: () {
                         showDialog(
@@ -67,35 +70,40 @@ class _ChatListPageState extends State<ChatListPage> {
                       },
                       icon: const Icon(Icons.info),
                     )
-                  : const SizedBox(),
-            ],
-          ),
-          floatingActionButton: !AppService.instance.isTablet
-              ? FloatingActionButton(
-                  child: const Icon(Icons.add),
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => const AddUserDialog());
-                  },
-                )
-              : null,
-          body: Builder(builder: (context) {
-            final width = MediaQuery.of(context).size.width;
-
-            if (width < 750) {
-              return const ConversationList();
-            }
-
-            return Row(
-              children: [
-                const SizedBox(width: 300, child: ConversationList()),
-                SizedBox(width: width - 300, child: const ChatView())
+                    : const SizedBox(),
               ],
-            );
-          }),
-        );
-      }),
+            ),
+            floatingActionButton:
+                !AppService.instance.isTablet
+                    ? FloatingActionButton(
+                      child: const Icon(Icons.add),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => const AddUserDialog(),
+                        );
+                      },
+                    )
+                    : null,
+            body: Builder(
+              builder: (context) {
+                final width = MediaQuery.of(context).size.width;
+
+                if (width < 750) {
+                  return const ConversationList();
+                }
+
+                return Row(
+                  children: [
+                    const SizedBox(width: 300, child: ConversationList()),
+                    SizedBox(width: width - 300, child: const ChatView()),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

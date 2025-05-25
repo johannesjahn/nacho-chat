@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nacho_chat/l10n/app_localizations.dart';
 import 'package:nacho_chat/components/avatar.dart';
 import 'package:nacho_chat/components/text_message_container.dart';
 import 'package:nacho_chat/service/chat.dart';
@@ -37,130 +37,138 @@ class _ChatViewState extends State<ChatView> {
           children: [
             Expanded(
               child: ValueListenableBuilder<List<MessageResponseDTO>>(
-                  valueListenable: ChatService.instance.messagesNotifier,
-                  builder: (context, value, widget) {
-                    return ListView.builder(
-                        itemCount: value.length,
-                        reverse: true,
-                        itemBuilder: (context, index) {
-                          final message = value[index];
-                          final isAuthor =
-                              message.author.id == AppService.instance.userId;
-                          return Row(
-                            mainAxisAlignment: isAuthor
+                valueListenable: ChatService.instance.messagesNotifier,
+                builder: (context, value, widget) {
+                  return ListView.builder(
+                    itemCount: value.length,
+                    reverse: true,
+                    itemBuilder: (context, index) {
+                      final message = value[index];
+                      final isAuthor =
+                          message.author.id == AppService.instance.userId;
+                      return Row(
+                        mainAxisAlignment:
+                            isAuthor
                                 ? MainAxisAlignment.end
                                 : MainAxisAlignment.start,
-                            children: [
-                              !isAuthor
-                                  ? NachoAvatar(
-                                      user: message.author,
-                                      radius: 25,
-                                    )
-                                  : const SizedBox(),
-                              GestureDetector(
-                                onTap: () {
-                                  if (message.contentType ==
-                                      MessageResponseDTOContentTypeEnum
-                                          .IMAGE_URL) {
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return Dialog(
-                                            child: SizedBox(
-                                              width: width,
-                                              height: height,
-                                              child: CachedNetworkImage(
-                                                  imageUrl: message.content),
-                                            ),
-                                          );
-                                        });
-                                  }
-                                },
-                                child: Card(child: Builder(builder: (context) {
+                        children: [
+                          !isAuthor
+                              ? NachoAvatar(user: message.author, radius: 25)
+                              : const SizedBox(),
+                          GestureDetector(
+                            onTap: () {
+                              if (message.contentType ==
+                                  MessageResponseDTOContentTypeEnum.IMAGE_URL) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Dialog(
+                                      child: SizedBox(
+                                        width: width,
+                                        height: height,
+                                        child: CachedNetworkImage(
+                                          imageUrl: message.content,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                            child: Card(
+                              child: Builder(
+                                builder: (context) {
                                   if (message.contentType ==
                                       MessageResponseDTOContentTypeEnum
                                           .IMAGE_URL) {
                                     return ConstrainedBox(
                                       constraints: BoxConstraints.loose(
-                                          Size(width / 2.5, height / 3)),
+                                        Size(width / 2.5, height / 3),
+                                      ),
                                       child: ImageMessageContainer(
-                                          message: message),
+                                        message: message,
+                                      ),
                                     );
                                   } else if (message.contentType ==
                                       MessageResponseDTOContentTypeEnum.TEXT) {
                                     return ConstrainedBox(
                                       constraints: BoxConstraints.loose(
-                                          Size(width / 2.5, double.infinity)),
+                                        Size(width / 2.5, double.infinity),
+                                      ),
                                       child: TextMessageContainer(
-                                          message: message),
+                                        message: message,
+                                      ),
                                     );
                                   } else {
                                     return Container(
-                                        padding: const EdgeInsets.all(8),
-                                        child:
-                                            const Text('Unknown content type'));
+                                      padding: const EdgeInsets.all(8),
+                                      child: const Text('Unknown content type'),
+                                    );
                                   }
-                                })),
+                                },
                               ),
-                              isAuthor
-                                  ? NachoAvatar(
-                                      user: message.author,
-                                      radius: 25,
-                                    )
-                                  : const SizedBox()
-                            ],
-                          );
-                        });
-                  }),
+                            ),
+                          ),
+                          isAuthor
+                              ? NachoAvatar(user: message.author, radius: 25)
+                              : const SizedBox(),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
             ),
             Card(
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: Row(children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: inputController,
-                      focusNode: focusNode,
-                      onFieldSubmitted: (text) async {
-                        if (text.isEmpty) {
-                          showEmptySnackbar();
-                          return;
-                        }
-                        inputController.clear();
-                        await ChatService.instance.sendMessage(
-                          conversationId: value.id.toInt(),
-                          message: text,
-                        );
-                        focusNode.requestFocus();
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Message',
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: inputController,
+                        focusNode: focusNode,
+                        onFieldSubmitted: (text) async {
+                          if (text.isEmpty) {
+                            showEmptySnackbar();
+                            return;
+                          }
+                          inputController.clear();
+                          await ChatService.instance.sendMessage(
+                            conversationId: value.id.toInt(),
+                            message: text,
+                          );
+                          focusNode.requestFocus();
+                        },
+                        decoration: const InputDecoration(labelText: 'Message'),
                       ),
                     ),
-                  ),
-                  IconButton(
+                    IconButton(
                       onPressed: () async {
                         if (inputController.text.isEmpty) {
                           showEmptySnackbar();
                           return;
                         }
                         var isValidUrl =
-                            Uri.tryParse(inputController.value.text)
-                                    ?.hasAbsolutePath ??
-                                false;
+                            Uri.tryParse(
+                              inputController.value.text,
+                            )?.hasAbsolutePath ??
+                            false;
                         if (!isValidUrl) {
                           showInvalidUrlSnackbar();
                           return;
                         }
                         await ChatService.instance.sendMessage(
-                            conversationId: value.id.toInt(),
-                            message: inputController.text,
-                            contentType:
-                                CreateMessageDTOContentTypeEnum.IMAGE_URL);
+                          conversationId: value.id.toInt(),
+                          message: inputController.text,
+                          contentType:
+                              CreateMessageDTOContentTypeEnum.IMAGE_URL,
+                        );
                         inputController.clear();
                       },
-                      icon: const Icon(Icons.image)),
-                  IconButton(
+                      icon: const Icon(Icons.image),
+                    ),
+                    IconButton(
                       onPressed: () async {
                         if (inputController.text.isEmpty) {
                           showEmptySnackbar();
@@ -173,8 +181,10 @@ class _ChatViewState extends State<ChatView> {
                         );
                         inputController.clear();
                       },
-                      icon: const Icon(Icons.send))
-                ]),
+                      icon: const Icon(Icons.send),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -185,13 +195,15 @@ class _ChatViewState extends State<ChatView> {
 
   void showEmptySnackbar() {
     final l10n = AppLocalizations.of(context)!;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(l10n.cannot_send_empty_message)));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l10n.cannot_send_empty_message)));
   }
 
   void showInvalidUrlSnackbar() {
     final l10n = AppLocalizations.of(context)!;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(l10n.invalid_url)));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l10n.invalid_url)));
   }
 }

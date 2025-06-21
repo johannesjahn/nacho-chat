@@ -2,10 +2,15 @@
 FROM ghcr.io/cirruslabs/flutter:3.32.3 AS build
 
 WORKDIR /app
-COPY . .
+COPY pubspec.* ./
+COPY api/pubspec.* ./api/
+
 RUN flutter pub get
-RUN dart run build_runner build --delete-conflicting-outputs
 RUN cd api && flutter pub get
+
+COPY . .
+
+RUN dart run build_runner build --delete-conflicting-outputs
 RUN cd api && dart run build_runner build --delete-conflicting-outputs
 RUN flutter gen-l10n
 RUN flutter build web --release

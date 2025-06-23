@@ -102,9 +102,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Install yq
+        run: sudo apt update && sudo apt install -y yq
       - name: Extract version
         id: meta
-        run: echo "version=$(jq -r .version ./package.json)" >> $GITHUB_ENV
+        run: echo "version=$(yq -r .version ./pubspec.yaml)" >> $GITHUB_ENV
       - name: Build and push
         uses: docker/build-push-action@v6
         with:

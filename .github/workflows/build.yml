@@ -91,6 +91,8 @@ jobs:
     runs-on: ubuntu-24.04
     needs: [test]
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -100,12 +102,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Extract version
+        id: meta
+        run: echo "version=$(jq -r .version ./package.json)" >> $GITHUB_ENV
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: johannesjahn/nacho-chat:latest
+          tags: |
+            johannesjahn/nacho-chat:latest
+            johannesjahn/nacho-chat:${{ env.version }}
 
   deploy-web:
     if: "startsWith(github.event.head_commit.message, '[RELEASE]') && github.ref == 'refs/heads/main'"

@@ -106,7 +106,9 @@ jobs:
         run: sudo apt update && sudo apt install -y yq
       - name: Extract version
         id: meta
-        run: echo "version=$(yq -r .version ./pubspec.yaml)" >> $GITHUB_ENV
+        run: |
+          version=$(yq -r .version ./pubspec.yaml | cut -d'+' -f1)
+          echo "version=$version" >> $GITHUB_ENV
       - name: Build and push
         uses: docker/build-push-action@v6
         with:

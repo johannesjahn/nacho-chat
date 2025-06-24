@@ -51,8 +51,10 @@ class AppService {
 
   AppService._();
 
-  final api =
-      Openapi(basePathOverride: Urls.url, interceptors: [AuthInterceptor()]);
+  final api = Openapi(
+    basePathOverride: Urls.getUrl(),
+    interceptors: [AuthInterceptor()],
+  );
   late Box<String> hive;
 
   IO.Socket? socket;
@@ -66,19 +68,25 @@ class AppService {
           Platform.isLinux ||
           Platform.isWindows) {
         socket = IO.io(
-            Urls.url,
-            IO.OptionBuilder().setAuth({"token": token}).setTransports(
-                ['websocket']).build());
+          Urls.getUrl(),
+          IO.OptionBuilder().setAuth({"token": token}).setTransports([
+            'websocket',
+          ]).build(),
+        );
       } else {
         socket = IO.io(
-            Urls.url, IO.OptionBuilder().setAuth({"token": token}).build());
+          Urls.getUrl(),
+          IO.OptionBuilder().setAuth({"token": token}).build(),
+        );
       }
     } catch (e) {
       logger.e("Exception during websocket init.");
       logger.e(e);
       final token = hive.get("access_token")!;
-      socket =
-          IO.io(Urls.url, IO.OptionBuilder().setAuth({"token": token}).build());
+      socket = IO.io(
+        Urls.getUrl(),
+        IO.OptionBuilder().setAuth({"token": token}).build(),
+      );
     }
 
     socket!.onConnect((data) {
@@ -96,8 +104,9 @@ class AppService {
     });
     socket!.on('post/comment/reply', (commentId) {
       logger.i('New Reply');
-      if (PostService.instance.selectedPost.value?.comments
-              ?.any((comment) => comment.id == commentId) ??
+      if (PostService.instance.selectedPost.value?.comments?.any(
+            (comment) => comment.id == commentId,
+          ) ??
           false) {
         PostService.instance.getComments();
       }
@@ -111,7 +120,8 @@ class AppService {
           ChatService.instance.currentChat.value?.id ==
               data["conversationId"]) {
         await ChatService.instance.getMessages(
-            conversationId: ChatService.instance.currentChat.value!.id as int);
+          conversationId: ChatService.instance.currentChat.value!.id as int,
+        );
       }
     });
 

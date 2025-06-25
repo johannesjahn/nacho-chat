@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class Urls {
   Urls._();
 
@@ -7,15 +5,11 @@ class Urls {
   // static const url = "http://localhost:3000/";
 
   static String getUrl() {
-    if (Platform.isAndroid ||
-        Platform.isIOS ||
-        Platform.isLinux ||
-        Platform.isMacOS ||
-        Platform.isWindows) {
-      return url;
-    } else {
+    if (Uri.base.toString().startsWith("http") &&
+        !Uri.base.toString().contains("localhost")) {
       return Uri.base.toString();
     }
+    return "https://chat.johannes-jahn.com/";
   }
 
   static const avatar = "${url}app/user/avatar/";

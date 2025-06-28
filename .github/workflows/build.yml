@@ -159,4 +159,4 @@ jobs:
           host: cluster.johannes-jahn.com
           username: ${{ secrets.CLUSTER_USER }}
           key: ${{ secrets.CLUSTER_KEY }}
-          script: helm upgrade chat chat-api/ --set images.frontend=johannesjahn/chat-api:${{ env.version }}
+          script: helm upgrade chat chat-api/ --set images.frontend=johannesjahn/nacho-chat:${{ env.version }}

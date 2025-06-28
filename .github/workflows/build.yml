@@ -140,3 +140,23 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: cd chat-api && mv build-web.zip tmp && mv tmp/build-web.zip build-web.zip && rm -rf tmp && unzip build-web.zip && rm -rf static/* && mv build/web/* static/ && rm -rf build && rm build-web.zip
+  deploy-cluster:
+    if: startsWith(github.event.head_commit.message, '[RELEASE]') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    needs: build-image
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install yq
+        run: sudo apt update && sudo apt install -y yq
+      - name: Extract version
+        id: meta
+        run: |
+          version=$(yq -r .version ./pubspec.yaml | cut -d'+' -f1)
+          echo "version=$version" >> $GITHUB_ENV
+      - uses: appleboy/ssh-action@master
+        with:
+          host: cluster.johannes-jahn.com
+          username: ${{ secrets.CLUSTER_USER }}
+          key: ${{ secrets.CLUSTER_KEY }}
+          script: helm upgrade chat chat-api/ --set images.frontend=johannesjahn/chat-api:${{ env.version }}

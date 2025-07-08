@@ -100,7 +100,7 @@ jobs:
       - name: directory
         run: mkdir -p build/web
       - name: Extract web build to build/web
-        run: unzip build-web/build-web.zip -d build/web
+        run: unzip build-web/build-web.zip -d .
       - name: ls build/web
         run: ls -la build/web
       - name: Set up QEMU

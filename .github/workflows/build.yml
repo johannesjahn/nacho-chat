@@ -96,11 +96,11 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: build-web
-          path: build-web.zip
+          path: build-web
       - name: file
-        run: file build-web.zip
+        run: ls -la build-web
       - name: Extract web build to build/web
-        run: unzip ./build-web.zip -d build/web
+        run: unzip build-web/build-web.zip -d build/web
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx

@@ -97,6 +97,8 @@ jobs:
         with:
           name: build-web
           path: build-web.zip
+      - name: file
+        run: file build-web.zip
       - name: Extract web build to build/web
         run: unzip ./build-web.zip -d build/web
       - name: Set up QEMU

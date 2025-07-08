@@ -89,7 +89,7 @@ jobs:
   build-image:
     if: startsWith(github.event.head_commit.message, '[RELEASE]') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
-    needs: [test]
+    needs: [build-web]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

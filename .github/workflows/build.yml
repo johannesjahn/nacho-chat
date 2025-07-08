@@ -97,10 +97,12 @@ jobs:
         with:
           name: build-web
           path: build-web
-      - name: file
-        run: ls -la build-web
+      - name: directory
+        run: mkdir -p build/web
       - name: Extract web build to build/web
         run: unzip build-web/build-web.zip -d build/web
+      - name: ls build/web
+        run: ls -la build/web
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx

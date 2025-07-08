@@ -93,6 +93,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-web
+          path: build-web.zip
+      - name: Extract web build to build/web
+        run: unzip build-web.zip -d build/web
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx

@@ -97,6 +97,10 @@ jobs:
         with:
           name: build-web
           path: build-web.zip
+      - name: Show current directory and list files
+        run: |
+          pwd
+          ls -al
       - name: Extract web build to build/web
         run: unzip nacho-chat/build-web.zip -d build/web
       - name: Set up QEMU

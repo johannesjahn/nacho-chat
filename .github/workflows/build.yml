@@ -98,7 +98,7 @@ jobs:
           name: build-web
           path: build-web.zip
       - name: Extract web build to build/web
-        run: unzip build-web.zip -d build/web
+        run: unzip nacho-chat/build-web.zip -d build/web
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx

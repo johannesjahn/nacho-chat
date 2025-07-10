@@ -103,6 +103,12 @@ jobs:
         run: unzip build-web/build-web.zip -d .
       - name: ls build/web
         run: ls -la build/web
+      - name: ls
+        run: ls -la
+      - name: ls build
+        run: ls -la build
+      - name: ls build/web
+        run: ls -la build/web
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx

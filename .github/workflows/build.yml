@@ -101,14 +101,6 @@ jobs:
         run: mkdir -p build/web
       - name: Extract web build to build/web
         run: unzip build-web/build-web.zip -d .
-      - name: ls build/web
-        run: ls -la build/web
-      - name: ls
-        run: ls -la
-      - name: ls build
-        run: ls -la build
-      - name: ls build/web
-        run: ls -la build/web
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -125,6 +117,14 @@ jobs:
         run: |
           version=$(yq -r .version ./pubspec.yaml | cut -d'+' -f1)
           echo "version=$version" >> $GITHUB_ENV
+      - name: ls build/web
+        run: ls -la build/web
+      - name: ls
+        run: ls -la
+      - name: ls build
+        run: ls -la build
+      - name: ls build/web
+        run: ls -la build/web
       - name: Build and push
         uses: docker/build-push-action@v6
         with:

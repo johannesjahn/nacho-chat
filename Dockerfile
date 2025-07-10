@@ -1,6 +1,6 @@
 FROM caddy:2.10.0
 
-COPY build/web /usr/share/caddy
+COPY ./build/web /usr/share/caddy
 COPY Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 80

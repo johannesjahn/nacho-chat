@@ -22,7 +22,7 @@ dependencies:
     path: ./api
   cached_network_image: 3.4.1
   socket_io_client: 3.1.2
-  logger: 2.6.0
+  logger: 2.6.1
   built_value: 8.11.0
   built_collection: 5.1.1
   flutter_localization: 0.3.3

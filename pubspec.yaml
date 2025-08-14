@@ -3,7 +3,7 @@ description: A frontend for the chat-api
 
 publish_to: "none"
 
-version: 1.6.0+395
+version: 1.6.16+411
 
 environment:
   sdk: ">=3.7.0 <4.0.0"
@@ -22,13 +22,13 @@ dependencies:
     path: ./api
   cached_network_image: 3.4.1
   socket_io_client: 3.1.2
-  logger: 2.6.0
-  built_value: 8.10.1
+  logger: 2.6.1
+  built_value: 8.11.1
   built_collection: 5.1.1
   flutter_localization: 0.3.3
   intl: 0.20.2
-  file_picker: 10.2.0
-  package_info_plus: 8.3.0
+  file_picker: 10.2.4
+  package_info_plus: 8.3.1
   flutter_blurhash: 0.9.1
   time_machine: 0.9.17
 
@@ -37,8 +37,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: 6.0.0
   lint: 2.8.0
-  build_runner: 2.5.4
-  json_serializable: 6.9.5
+  build_runner: 2.6.0
+  json_serializable: 6.10.0
   version_bmp: 1.2.3
 
 flutter:

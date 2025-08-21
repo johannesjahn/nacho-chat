@@ -52,7 +52,7 @@ jobs:
         with:
           flutter-version: "3.32.5"
           channel: "stable"
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: "adopt"
           java-version: "17"

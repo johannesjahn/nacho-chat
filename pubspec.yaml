@@ -38,7 +38,7 @@ dev_dependencies:
   flutter_lints: 6.0.0
   lint: 2.8.0
   build_runner: 2.7.1
-  json_serializable: 6.11.0
+  json_serializable: 6.11.1
   version_bmp: 1.2.3
 
 flutter:

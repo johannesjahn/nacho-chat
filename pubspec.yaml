@@ -27,7 +27,7 @@ dependencies:
   built_collection: 5.1.1
   flutter_localization: 0.3.3
   intl: 0.20.2
-  file_picker: 10.3.2
+  file_picker: 10.3.3
   package_info_plus: 8.3.1
   flutter_blurhash: 0.9.1
   time_machine: 0.9.17

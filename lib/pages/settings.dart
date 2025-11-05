@@ -90,7 +90,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 } else if (versionTapCount == 90) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text("Here is your egg: 🥚"),
+                      content: Text("Here is your egg: 🥚!"),
                       duration: Duration(seconds: 5),
                     ),
                   );

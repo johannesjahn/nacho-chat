@@ -86,5 +86,6 @@
     "participants": "Participants",
     "cancel": "Cancel",
     "submit": "Submit",
-    "title_can_not_be_empty": "Title can not be empty"
+    "title_can_not_be_empty": "Title can not be empty",
+    "about": "About"
 }

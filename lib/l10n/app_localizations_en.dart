@@ -173,4 +173,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get title_can_not_be_empty => 'Title can not be empty';
+
+  @override
+  String get about => 'About';
 }

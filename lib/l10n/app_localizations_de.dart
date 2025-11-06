@@ -175,4 +175,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get title_can_not_be_empty => 'Titel darf nicht leer sein';
+
+  @override
+  String get about => 'Info';
 }

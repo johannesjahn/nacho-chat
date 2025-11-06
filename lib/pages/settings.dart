@@ -121,6 +121,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: Text(l10n.about),
+              onTap: () {},
+            ),
           ],
         ),
       ),

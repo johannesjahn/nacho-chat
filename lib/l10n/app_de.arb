@@ -87,5 +87,6 @@
     "participants": "Teilnehmer",
     "cancel": "Abbrechen",
     "submit": "Absenden",
-    "title_can_not_be_empty": "Titel darf nicht leer sein"
+    "title_can_not_be_empty": "Titel darf nicht leer sein",
+    "about": "Info"
 }

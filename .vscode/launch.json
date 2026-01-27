@@ -5,6 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "attach nacho_chat (debug mode)",
+      "request": "attach",
+      "type": "dart"
+    },
+    {
       "name": "nacho_chat",
       "request": "launch",
       "type": "dart"

@@ -35,7 +35,7 @@ class UserService {
   }
 
   Future<void> uploadAvatar() async {
-    FilePickerResult? result = await FilePicker.pickFiles();
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
       var bytes = result.files.first.bytes;
@@ -47,8 +47,7 @@ class UserService {
         throw Exception("No bytes found");
       }
       await appService.api.getUserApi().usersControllerUploadAvatar(
-        file: MultipartFile.fromBytes(bytes, filename: result.files[0].name),
-      );
+          file: MultipartFile.fromBytes(bytes, filename: result.files[0].name));
     } else {
       // User canceled the picker
     }

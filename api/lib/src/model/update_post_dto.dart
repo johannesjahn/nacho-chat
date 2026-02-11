@@ -28,7 +28,7 @@ abstract class UpdatePostDTO implements Built<UpdatePostDTO, UpdatePostDTOBuilde
   /// The content type of a post
   @BuiltValueField(wireName: r'contentType')
   UpdatePostDTOContentTypeEnum get contentType;
-  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  AUDIO_URL,  };
 
   UpdatePostDTO._();
 
@@ -149,6 +149,9 @@ class UpdatePostDTOContentTypeEnum extends EnumClass {
   /// The content type of a post
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const UpdatePostDTOContentTypeEnum IMAGE_URL = _$updatePostDTOContentTypeEnum_IMAGE_URL;
+  /// The content type of a post
+  @BuiltValueEnumConst(wireName: r'AUDIO_URL')
+  static const UpdatePostDTOContentTypeEnum AUDIO_URL = _$updatePostDTOContentTypeEnum_AUDIO_URL;
 
   static Serializer<UpdatePostDTOContentTypeEnum> get serializer => _$updatePostDTOContentTypeEnumSerializer;
 

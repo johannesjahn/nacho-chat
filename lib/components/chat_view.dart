@@ -8,6 +8,7 @@ import 'package:openapi/openapi.dart';
 
 import '../service/app.dart';
 import 'image_message_container.dart';
+import 'audio_message_container.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -86,6 +87,17 @@ class _ChatViewState extends State<ChatView> {
                                         Size(width / 2.5, height / 3),
                                       ),
                                       child: ImageMessageContainer(
+                                        message: message,
+                                      ),
+                                    );
+                                  } else if (message.contentType ==
+                                      MessageResponseDTOContentTypeEnum
+                                          .AUDIO_URL) {
+                                    return ConstrainedBox(
+                                      constraints: BoxConstraints.loose(
+                                        Size(width / 2.5, double.infinity),
+                                      ),
+                                      child: AudioMessageContainer(
                                         message: message,
                                       ),
                                     );

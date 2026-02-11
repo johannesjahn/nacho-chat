@@ -45,7 +45,7 @@ final CreateCommentDTO createCommentDTO = ; // CreateCommentDTO |
 try {
     final response = api.postControllerCreateComment(createCommentDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerCreateComment: $e\n');
 }
 ```
@@ -88,7 +88,7 @@ final CreatePostDTO createPostDTO = ; // CreatePostDTO |
 try {
     final response = api.postControllerCreatePost(createPostDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerCreatePost: $e\n');
 }
 ```
@@ -131,7 +131,7 @@ final CreateReplyDTO createReplyDTO = ; // CreateReplyDTO |
 try {
     final response = api.postControllerCreateReply(createReplyDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerCreateReply: $e\n');
 }
 ```
@@ -173,7 +173,7 @@ final DeleteCommentDTO deleteCommentDTO = ; // DeleteCommentDTO |
 
 try {
     api.postControllerDeleteComment(deleteCommentDTO);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerDeleteComment: $e\n');
 }
 ```
@@ -215,7 +215,7 @@ final DeletePostDTO deletePostDTO = ; // DeletePostDTO |
 
 try {
     api.postControllerDeletePost(deletePostDTO);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerDeletePost: $e\n');
 }
 ```
@@ -257,7 +257,7 @@ final DeleteReplyDTO deleteReplyDTO = ; // DeleteReplyDTO |
 
 try {
     api.postControllerDeleteReply(deleteReplyDTO);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerDeleteReply: $e\n');
 }
 ```
@@ -300,7 +300,7 @@ final num postId = 8.14; // num |
 try {
     final response = api.postControllerGetComments(postId);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerGetComments: $e\n');
 }
 ```
@@ -342,7 +342,7 @@ final api = Openapi().getPostApi();
 try {
     final response = api.postControllerGetLikedPosts();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerGetLikedPosts: $e\n');
 }
 ```
@@ -382,7 +382,7 @@ final num postId = 8.14; // num |
 try {
     final response = api.postControllerGetPost(postId);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerGetPost: $e\n');
 }
 ```
@@ -424,7 +424,7 @@ final api = Openapi().getPostApi();
 try {
     final response = api.postControllerGetPosts();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerGetPosts: $e\n');
 }
 ```
@@ -464,7 +464,7 @@ final num commentId = 8.14; // num |
 try {
     final response = api.postControllerGetReplies(commentId);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerGetReplies: $e\n');
 }
 ```
@@ -506,7 +506,7 @@ final num commentId = 8.14; // num |
 
 try {
     api.postControllerLikeComment(commentId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerLikeComment: $e\n');
 }
 ```
@@ -548,7 +548,7 @@ final num postId = 8.14; // num |
 
 try {
     api.postControllerLikePost(postId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerLikePost: $e\n');
 }
 ```
@@ -590,7 +590,7 @@ final num replyId = 8.14; // num |
 
 try {
     api.postControllerLikeReply(replyId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerLikeReply: $e\n');
 }
 ```
@@ -633,7 +633,7 @@ final UpdateCommentDTO updateCommentDTO = ; // UpdateCommentDTO |
 try {
     final response = api.postControllerUpdateComment(updateCommentDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerUpdateComment: $e\n');
 }
 ```
@@ -676,7 +676,7 @@ final UpdatePostDTO updatePostDTO = ; // UpdatePostDTO |
 try {
     final response = api.postControllerUpdatePost(updatePostDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerUpdatePost: $e\n');
 }
 ```
@@ -719,7 +719,7 @@ final UpdateReplyDTO updateReplyDTO = ; // UpdateReplyDTO |
 try {
     final response = api.postControllerUpdateReply(updateReplyDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PostApi->postControllerUpdateReply: $e\n');
 }
 ```

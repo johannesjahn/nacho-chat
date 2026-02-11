@@ -28,7 +28,7 @@ abstract class CreateMessageDTO implements Built<CreateMessageDTO, CreateMessage
   /// The type of content
   @BuiltValueField(wireName: r'contentType')
   CreateMessageDTOContentTypeEnum get contentType;
-  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  AUDIO_URL,  };
 
   CreateMessageDTO._();
 
@@ -149,6 +149,9 @@ class CreateMessageDTOContentTypeEnum extends EnumClass {
   /// The type of content
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const CreateMessageDTOContentTypeEnum IMAGE_URL = _$createMessageDTOContentTypeEnum_IMAGE_URL;
+  /// The type of content
+  @BuiltValueEnumConst(wireName: r'AUDIO_URL')
+  static const CreateMessageDTOContentTypeEnum AUDIO_URL = _$createMessageDTOContentTypeEnum_AUDIO_URL;
 
   static Serializer<CreateMessageDTOContentTypeEnum> get serializer => _$createMessageDTOContentTypeEnumSerializer;
 

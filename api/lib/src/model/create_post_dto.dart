@@ -23,7 +23,7 @@ abstract class CreatePostDTO implements Built<CreatePostDTO, CreatePostDTOBuilde
   /// The content type of a post
   @BuiltValueField(wireName: r'contentType')
   CreatePostDTOContentTypeEnum get contentType;
-  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  AUDIO_URL,  };
 
   CreatePostDTO._();
 
@@ -132,6 +132,9 @@ class CreatePostDTOContentTypeEnum extends EnumClass {
   /// The content type of a post
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const CreatePostDTOContentTypeEnum IMAGE_URL = _$createPostDTOContentTypeEnum_IMAGE_URL;
+  /// The content type of a post
+  @BuiltValueEnumConst(wireName: r'AUDIO_URL')
+  static const CreatePostDTOContentTypeEnum AUDIO_URL = _$createPostDTOContentTypeEnum_AUDIO_URL;
 
   static Serializer<CreatePostDTOContentTypeEnum> get serializer => _$createPostDTOContentTypeEnumSerializer;
 

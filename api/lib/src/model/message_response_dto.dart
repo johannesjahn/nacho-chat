@@ -41,7 +41,7 @@ abstract class MessageResponseDTO implements Built<MessageResponseDTO, MessageRe
   /// The type of content
   @BuiltValueField(wireName: r'contentType')
   MessageResponseDTOContentTypeEnum get contentType;
-  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  AUDIO_URL,  };
 
   /// The author of the message
   @BuiltValueField(wireName: r'author')
@@ -218,6 +218,9 @@ class MessageResponseDTOContentTypeEnum extends EnumClass {
   /// The type of content
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const MessageResponseDTOContentTypeEnum IMAGE_URL = _$messageResponseDTOContentTypeEnum_IMAGE_URL;
+  /// The type of content
+  @BuiltValueEnumConst(wireName: r'AUDIO_URL')
+  static const MessageResponseDTOContentTypeEnum AUDIO_URL = _$messageResponseDTOContentTypeEnum_AUDIO_URL;
 
   static Serializer<MessageResponseDTOContentTypeEnum> get serializer => _$messageResponseDTOContentTypeEnumSerializer;
 

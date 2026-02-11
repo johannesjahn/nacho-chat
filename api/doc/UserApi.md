@@ -31,7 +31,7 @@ final num userId = 8.14; // num |
 
 try {
     api.usersControllerGetAvatar(userId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UserApi->usersControllerGetAvatar: $e\n');
 }
 ```
@@ -73,7 +73,7 @@ final api = Openapi().getUserApi();
 try {
     final response = api.usersControllerGetMe();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UserApi->usersControllerGetMe: $e\n');
 }
 ```
@@ -112,7 +112,7 @@ final api = Openapi().getUserApi();
 try {
     final response = api.usersControllerGetUsers();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UserApi->usersControllerGetUsers: $e\n');
 }
 ```
@@ -151,7 +151,7 @@ final MultipartFile file = BINARY_DATA_HERE; // MultipartFile |
 
 try {
     api.usersControllerUploadAvatar(file);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UserApi->usersControllerUploadAvatar: $e\n');
 }
 ```

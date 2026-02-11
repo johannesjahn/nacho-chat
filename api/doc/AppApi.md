@@ -29,7 +29,7 @@ final api = Openapi().getAppApi();
 try {
     final response = api.appControllerGetDebug();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AppApi->appControllerGetDebug: $e\n');
 }
 ```
@@ -68,7 +68,7 @@ final api = Openapi().getAppApi();
 try {
     final response = api.appControllerGetVersion();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AppApi->appControllerGetVersion: $e\n');
 }
 ```

@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**chatControllerCreateConversation**](ChatApi.md#chatcontrollercreateconversation) | **POST** /app/chat/create-conversation | 
 [**chatControllerGetConversations**](ChatApi.md#chatcontrollergetconversations) | **GET** /app/chat/get-conversations | 
 [**chatControllerGetMessages**](ChatApi.md#chatcontrollergetmessages) | **POST** /app/chat/get-messages | 
+[**chatControllerGetMessagesCount**](ChatApi.md#chatcontrollergetmessagescount) | **GET** /app/chat/get-messages-count | 
 [**chatControllerGetNumberOfUnreadMessages**](ChatApi.md#chatcontrollergetnumberofunreadmessages) | **GET** /app/chat/get-number-of-unread-messages | 
 [**chatControllerHasUnreadMessages**](ChatApi.md#chatcontrollerhasunreadmessages) | **GET** /app/chat/has-unread-messages | 
 [**chatControllerMarkConversationAsRead**](ChatApi.md#chatcontrollermarkconversationasread) | **PUT** /app/chat/mark-conversation-as-read | 
@@ -37,7 +38,7 @@ final CreateConversationRequestDTO createConversationRequestDTO = ; // CreateCon
 try {
     final response = api.chatControllerCreateConversation(createConversationRequestDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerCreateConversation: $e\n');
 }
 ```
@@ -79,7 +80,7 @@ final api = Openapi().getChatApi();
 try {
     final response = api.chatControllerGetConversations();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerGetConversations: $e\n');
 }
 ```
@@ -119,7 +120,7 @@ final GetMessagesDTO getMessagesDTO = ; // GetMessagesDTO |
 try {
     final response = api.chatControllerGetMessages(getMessagesDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerGetMessages: $e\n');
 }
 ```
@@ -145,6 +146,45 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **chatControllerGetMessagesCount**
+> MessagesCountResponseDTO chatControllerGetMessagesCount()
+
+
+
+Endpoint to get the number of messages sent by the authenticated user
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getChatApi();
+
+try {
+    final response = api.chatControllerGetMessagesCount();
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ChatApi->chatControllerGetMessagesCount: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**MessagesCountResponseDTO**](MessagesCountResponseDTO.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **chatControllerGetNumberOfUnreadMessages**
 > NumberOfUnreadMessagesResponseDTO chatControllerGetNumberOfUnreadMessages()
 
@@ -161,7 +201,7 @@ final api = Openapi().getChatApi();
 try {
     final response = api.chatControllerGetNumberOfUnreadMessages();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerGetNumberOfUnreadMessages: $e\n');
 }
 ```
@@ -200,7 +240,7 @@ final api = Openapi().getChatApi();
 try {
     final response = api.chatControllerHasUnreadMessages();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerHasUnreadMessages: $e\n');
 }
 ```
@@ -239,7 +279,7 @@ final MarkConversationAsReadDTO markConversationAsReadDTO = ; // MarkConversatio
 
 try {
     api.chatControllerMarkConversationAsRead(markConversationAsReadDTO);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerMarkConversationAsRead: $e\n');
 }
 ```
@@ -281,7 +321,7 @@ final MarkMessageAsReadDTO markMessageAsReadDTO = ; // MarkMessageAsReadDTO |
 
 try {
     api.chatControllerMarkMessageAsRead(markMessageAsReadDTO);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerMarkMessageAsRead: $e\n');
 }
 ```
@@ -324,7 +364,7 @@ final CreateMessageDTO createMessageDTO = ; // CreateMessageDTO |
 try {
     final response = api.chatControllerSendMessage(createMessageDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerSendMessage: $e\n');
 }
 ```
@@ -367,7 +407,7 @@ final SetConversationTitleRequestDTO setConversationTitleRequestDTO = ; // SetCo
 try {
     final response = api.chatControllerSetConversationTitle(setConversationTitleRequestDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ChatApi->chatControllerSetConversationTitle: $e\n');
 }
 ```

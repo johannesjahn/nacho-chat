@@ -33,6 +33,7 @@ import 'package:openapi/src/model/login_response_dto.dart';
 import 'package:openapi/src/model/mark_conversation_as_read_dto.dart';
 import 'package:openapi/src/model/mark_message_as_read_dto.dart';
 import 'package:openapi/src/model/message_response_dto.dart';
+import 'package:openapi/src/model/messages_count_response_dto.dart';
 import 'package:openapi/src/model/number_of_unread_messages_response_dto.dart';
 import 'package:openapi/src/model/post_response_dto.dart';
 import 'package:openapi/src/model/register_dto.dart';
@@ -66,6 +67,7 @@ part 'serializers.g.dart';
   MarkConversationAsReadDTO,
   MarkMessageAsReadDTO,
   MessageResponseDTO,
+  MessagesCountResponseDTO,
   NumberOfUnreadMessagesResponseDTO,
   PostResponseDTO,
   RegisterDTO,

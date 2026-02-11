@@ -45,7 +45,7 @@ abstract class PostResponseDTO implements Built<PostResponseDTO, PostResponseDTO
   /// The content type of a post
   @BuiltValueField(wireName: r'contentType')
   PostResponseDTOContentTypeEnum get contentType;
-  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  };
+  // enum contentTypeEnum {  TEXT,  IMAGE_URL,  AUDIO_URL,  };
 
   /// The author of a post
   @BuiltValueField(wireName: r'author')
@@ -273,6 +273,9 @@ class PostResponseDTOContentTypeEnum extends EnumClass {
   /// The content type of a post
   @BuiltValueEnumConst(wireName: r'IMAGE_URL')
   static const PostResponseDTOContentTypeEnum IMAGE_URL = _$postResponseDTOContentTypeEnum_IMAGE_URL;
+  /// The content type of a post
+  @BuiltValueEnumConst(wireName: r'AUDIO_URL')
+  static const PostResponseDTOContentTypeEnum AUDIO_URL = _$postResponseDTOContentTypeEnum_AUDIO_URL;
 
   static Serializer<PostResponseDTOContentTypeEnum> get serializer => _$postResponseDTOContentTypeEnumSerializer;
 

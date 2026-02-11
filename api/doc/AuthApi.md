@@ -31,7 +31,7 @@ final ChangePasswordDTO changePasswordDTO = ; // ChangePasswordDTO |
 try {
     final response = api.authControllerChangePassword(changePasswordDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AuthApi->authControllerChangePassword: $e\n');
 }
 ```
@@ -74,7 +74,7 @@ final LoginDTO loginDTO = ; // LoginDTO |
 try {
     final response = api.authControllerLogin(loginDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AuthApi->authControllerLogin: $e\n');
 }
 ```
@@ -117,7 +117,7 @@ final RegisterDTO registerDTO = ; // RegisterDTO |
 try {
     final response = api.authControllerRegister(registerDTO);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AuthApi->authControllerRegister: $e\n');
 }
 ```

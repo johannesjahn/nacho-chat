@@ -118,7 +118,7 @@ jobs:
           version=$(yq -r .version ./pubspec.yaml | cut -d'+' -f1)
           echo "version=$version" >> $GITHUB_ENV
       - name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile

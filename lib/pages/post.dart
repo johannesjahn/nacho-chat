@@ -142,18 +142,10 @@ class _PostDetailState extends State<PostDetail> {
                                                 );
                                                 textController.clear();
 
-                                                final commentsFetch =
-                                                    postService.getComments();
-                                                final postFetch =
-                                                    postService.getPosts();
-                                                final selectedPostRefresh =
-                                                    postService
-                                                        .refreshSelectedPost();
-
                                                 await Future.wait([
-                                                  commentsFetch,
-                                                  postFetch,
-                                                  selectedPostRefresh,
+                                                  postService.getComments(),
+                                                  postService
+                                                      .refreshSelectedPost(),
                                                 ]);
                                               } finally {
                                                 setState(() {

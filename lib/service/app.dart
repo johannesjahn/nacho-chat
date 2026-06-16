@@ -139,6 +139,10 @@ class AppService {
     _username = null;
     _accessToken = null;
     UserService.instance.me.value = null;
+    UserService.instance.userList = [];
+    UserService.instance.filteredUserList.value = [];
+    UserService.instance.resetFetchTimestamp();
+    PostService.instance.posts.value = [];
     ChatService.instance.currentChat.value = null;
     ChatService.instance.conversations = [];
     ChatService.instance.filteredConversations.value = [];

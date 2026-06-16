@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/serializer.dart';
 import 'package:flutter/material.dart';
 import 'package:openapi/openapi.dart';
 
@@ -14,12 +18,43 @@ class PostService {
   final comments = ValueNotifier<List<CommentResponseDTO>>([]);
   final selectedPost = ValueNotifier<PostResponseDTO?>(null);
 
+  static const _cacheKey = 'cached_posts';
+
+  void _loadCachedPosts() {
+    try {
+      final cached = appService.hive.get(_cacheKey);
+      if (cached != null && posts.value.isEmpty) {
+        final decoded = jsonDecode(cached);
+        final builtList = standardSerializers.deserialize(
+          decoded,
+          specifiedType: const FullType(BuiltList, [FullType(PostResponseDTO)]),
+        ) as BuiltList<PostResponseDTO>;
+        posts.value = builtList.toList();
+      }
+    } catch (_) {}
+  }
+
+  void _savePosts(List<PostResponseDTO> postList) {
+    try {
+      final builtList = BuiltList<PostResponseDTO>(postList);
+      final serialized = standardSerializers.serialize(
+        builtList,
+        specifiedType: const FullType(BuiltList, [FullType(PostResponseDTO)]),
+      );
+      appService.hive.put(_cacheKey, jsonEncode(serialized));
+    } catch (_) {}
+  }
+
   Future<List<PostResponseDTO>> getPosts() async {
+    _loadCachedPosts();
+
     final response = await appService.api.getPostApi().postControllerGetPosts();
 
-    posts.value = response.data?.toList() ?? [];
+    final fetchedPosts = response.data?.toList() ?? [];
+    posts.value = fetchedPosts;
+    _savePosts(fetchedPosts);
 
-    return response.data?.toList() ?? [];
+    return fetchedPosts;
   }
 
   Future<void> refreshSelectedPost() async {

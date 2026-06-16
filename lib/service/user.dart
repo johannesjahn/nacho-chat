@@ -35,7 +35,7 @@ class UserService {
   }
 
   Future<void> uploadAvatar() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result = await FilePicker.pickFiles();
 
     if (result != null) {
       var bytes = result.files.first.bytes;

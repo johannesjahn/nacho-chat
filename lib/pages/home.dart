@@ -20,7 +20,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _fabController;
+  late Animation<double> _fabScale;
+
   @override
   void initState() {
     super.initState();
@@ -29,6 +33,24 @@ class _HomePageState extends State<HomePage> {
     ChatService.instance.getConversations();
     PostService.instance.getPosts();
     ChatService.instance.getNumberOfUnreadMessages();
+
+    _fabController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _fabScale = CurvedAnimation(
+      parent: _fabController,
+      curve: Curves.elasticOut,
+    );
+    Future.delayed(const Duration(milliseconds: 400), () {
+      if (mounted) _fabController.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _fabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,7 +58,6 @@ class _HomePageState extends State<HomePage> {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      // version number
       appBar: AppBar(
         title: Text("${l10n.hello}, ${AppService.instance.username}!"),
         actions: [
@@ -92,16 +113,37 @@ class _HomePageState extends State<HomePage> {
         children: [
           ValueListenableBuilder<List<PostResponseDTO>>(
             valueListenable: PostService.instance.posts,
-            builder: (context, value, widget) => PostList(posts: value),
+            builder:
+                (context, value, child) => AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 500),
+                  switchInCurve: Curves.easeOut,
+                  transitionBuilder: (child, animation) => FadeTransition(
+                    opacity: animation,
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(0, 0.04),
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: child,
+                    ),
+                  ),
+                  child:
+                      value.isEmpty
+                          ? const SizedBox.shrink(key: ValueKey('empty'))
+                          : PostList(key: const ValueKey('posts'), posts: value),
+                ),
           ),
           const Positioned(bottom: 5, left: 5, child: VersionDisplay()),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).push(DefaultRoute(const CreatePostWidget()));
-        },
+      floatingActionButton: ScaleTransition(
+        scale: _fabScale,
+        child: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.of(context).push(DefaultRoute(const CreatePostWidget()));
+          },
+        ),
       ),
     );
   }

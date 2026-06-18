@@ -137,7 +137,11 @@ class ChatService {
     await appService.api.getChatApi().chatControllerMarkConversationAsRead(
         markConversationAsReadDTO: dto.build());
 
-    await getConversations();
+    await Future.wait([
+      getMessages(
+          conversationId: conversationId, markConversationAsRead: false),
+      getConversations(),
+    ]);
     getNumberOfUnreadMessages();
   }
 

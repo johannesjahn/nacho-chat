@@ -37,8 +37,8 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
 
     _shimmerController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2500),
-    )..repeat(reverse: true);
+      duration: const Duration(milliseconds: 4000),
+    )..repeat();
 
     _glowController = AnimationController(
       vsync: this,
@@ -54,10 +54,9 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
       CurvedAnimation(parent: _entranceController, curve: Curves.easeOutCubic),
     );
 
-    _shimmer = CurvedAnimation(
-      parent: _shimmerController,
-      curve: Curves.easeInOut,
-    );
+    // Linear so the gradient rotates at a constant speed; a full 2*pi turn
+    // returns to the identical gradient, giving a seamless continuous spin.
+    _shimmer = _shimmerController;
 
     _glow = CurvedAnimation(parent: _glowController, curve: Curves.easeInOut);
 

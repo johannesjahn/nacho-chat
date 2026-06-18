@@ -20,18 +20,23 @@ class _LoginPageState extends State<LoginPage>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 8),
+      duration: const Duration(seconds: 14),
     )..repeat();
 
     final rng = Random(42);
     _bubbles = List.generate(
-      10,
+      14,
       (i) => _Bubble(
         x: rng.nextDouble(),
         y: rng.nextDouble(),
-        radius: 15.0 + rng.nextDouble() * 80.0,
+        radius: 12.0 + rng.nextDouble() * 70.0,
         phase: rng.nextDouble() * 2 * pi,
-        speedFactor: 0.2 + rng.nextDouble() * 0.4,
+        // Integer frequencies guarantee the motion completes a whole number
+        // of cycles per loop, so it returns exactly to its start with no jump.
+        xFreq: 1 + rng.nextInt(2),
+        yFreq: 1 + rng.nextInt(2),
+        driftX: 0.04 + rng.nextDouble() * 0.05,
+        driftY: 0.05 + rng.nextDouble() * 0.06,
       ),
     );
   }
@@ -50,19 +55,17 @@ class _LoginPageState extends State<LoginPage>
         animation: _controller,
         builder: (context, child) {
           final t = _controller.value;
+          final angle = t * 2 * pi;
           return Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment(
-                  cos(t * 2 * pi) * 0.8,
-                  sin(t * 2 * pi) * 0.8,
-                ),
-                end: Alignment(
-                  -cos(t * 2 * pi) * 0.8,
-                  -sin(t * 2 * pi) * 0.8,
-                ),
+                // A full 2*pi rotation lands back on the starting orientation,
+                // so the gradient sweep loops without a seam.
+                begin: Alignment(cos(angle) * 0.8, sin(angle) * 0.8),
+                end: Alignment(-cos(angle) * 0.8, -sin(angle) * 0.8),
                 colors: [
                   colorScheme.primaryContainer,
+                  colorScheme.tertiaryContainer,
                   colorScheme.secondaryContainer,
                 ],
               ),
@@ -93,14 +96,20 @@ class _Bubble {
   final double y;
   final double radius;
   final double phase;
-  final double speedFactor;
+  final int xFreq;
+  final int yFreq;
+  final double driftX;
+  final double driftY;
 
   const _Bubble({
     required this.x,
     required this.y,
     required this.radius,
     required this.phase,
-    required this.speedFactor,
+    required this.xFreq,
+    required this.yFreq,
+    required this.driftX,
+    required this.driftY,
   });
 }
 
@@ -117,13 +126,22 @@ class _BubblePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..style = PaintingStyle.fill;
+    final angle = progress * 2 * pi;
+    final paint = Paint()
+      ..style = PaintingStyle.fill
+      // Soft blur turns the circles into gentle, glowing orbs.
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
     for (final bubble in bubbles) {
-      final t = progress * 2 * pi * bubble.speedFactor + bubble.phase;
-      final x = (bubble.x + sin(t) * 0.08) * size.width;
-      final y = (bubble.y + cos(t * 0.7) * 0.08) * size.height;
-      paint.color = color.withValues(alpha: 0.06 + sin(t).abs() * 0.04);
-      canvas.drawCircle(Offset(x, y), bubble.radius, paint);
+      // Every term is an integer multiple of `angle`, so at progress 0 and 1
+      // the position, size and opacity match exactly: a perfectly seamless loop.
+      final px = sin(angle * bubble.xFreq + bubble.phase);
+      final py = cos(angle * bubble.yFreq + bubble.phase);
+      final x = (bubble.x + px * bubble.driftX) * size.width;
+      final y = (bubble.y + py * bubble.driftY) * size.height;
+      final pulse = (px + 1) / 2; // 0..1
+      final radius = bubble.radius * (0.9 + pulse * 0.2);
+      paint.color = color.withValues(alpha: 0.04 + pulse * 0.06);
+      canvas.drawCircle(Offset(x, y), radius, paint);
     }
   }
 

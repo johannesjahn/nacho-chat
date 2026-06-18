@@ -13,10 +13,41 @@ class PostDetail extends StatefulWidget {
   State<PostDetail> createState() => _PostDetailState();
 }
 
-class _PostDetailState extends State<PostDetail> {
+class _PostDetailState extends State<PostDetail>
+    with SingleTickerProviderStateMixin {
   final postService = PostService.instance;
   final textController = TextEditingController();
   var isSubmitting = false;
+
+  late AnimationController _contentController;
+  late Animation<double> _contentFade;
+  late Animation<Offset> _commentsSlide;
+
+  @override
+  void initState() {
+    super.initState();
+    _contentController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 550),
+    );
+    _contentFade = CurvedAnimation(
+      parent: _contentController,
+      curve: Curves.easeOut,
+    );
+    _commentsSlide = Tween<Offset>(
+      begin: const Offset(0, 0.15),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: _contentController, curve: Curves.easeOutCubic),
+    );
+  }
+
+  @override
+  void dispose() {
+    _contentController.dispose();
+    textController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +61,15 @@ class _PostDetailState extends State<PostDetail> {
           if (post == null) {
             return const Center(child: CircularProgressIndicator());
           }
+
+          // Trigger the content animation the first time post data arrives
+          if (!_contentController.isAnimating &&
+              _contentController.value == 0) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) _contentController.forward();
+            });
+          }
+
           return SingleChildScrollView(
             child: SizedBox(
               width: width,
@@ -60,105 +100,128 @@ class _PostDetailState extends State<PostDetail> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      l10n.comments,
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                  ),
-                  ValueListenableBuilder<List<CommentResponseDTO>>(
-                    valueListenable: postService.comments,
-                    builder: (context, comments, child) {
-                      return CommentsList(width: width, comments: comments);
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      l10n.new_comment,
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                  ),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      minWidth: 300,
-                      maxWidth: 500,
-                    ),
-                    child: SizedBox(
-                      width: width * 0.5,
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Card(
-                          child: Padding(
+                  // Comments header + list + form slide in together
+                  FadeTransition(
+                    opacity: _contentFade,
+                    child: SlideTransition(
+                      position: _commentsSlide,
+                      child: Column(
+                        children: [
+                          Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                TextField(
-                                  controller: textController,
-                                  maxLines: 3,
-                                  minLines: 1,
-                                  maxLength: 100,
-                                  decoration: InputDecoration(
-                                    label: Text(l10n.type_a_comment),
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  child:
-                                      isSubmitting
-                                          ? const CircularProgressIndicator()
-                                          : ElevatedButton(
-                                            child: Text(l10n.submit),
-                                            onPressed: () async {
-                                              if (textController
-                                                  .value
-                                                  .text
-                                                  .isEmpty) {
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      l10n.cannot_send_empty_comment,
-                                                    ),
-                                                  ),
-                                                );
-                                                return;
-                                              }
-
-                                              try {
-                                                setState(() {
-                                                  isSubmitting = true;
-                                                });
-                                                await postService.createComment(
-                                                  postId:
-                                                      postService
-                                                          .selectedPost
-                                                          .value!
-                                                          .id,
-                                                  content:
-                                                      textController.value.text,
-                                                );
-                                                textController.clear();
-
-                                                await Future.wait([
-                                                  postService.getComments(),
-                                                  postService
-                                                      .refreshSelectedPost(),
-                                                ]);
-                                              } finally {
-                                                setState(() {
-                                                  isSubmitting = false;
-                                                });
-                                              }
-                                            },
-                                          ),
-                                ),
-                              ],
+                            child: Text(
+                              l10n.comments,
+                              style:
+                                  Theme.of(context).textTheme.headlineSmall,
                             ),
                           ),
-                        ),
+                          ValueListenableBuilder<List<CommentResponseDTO>>(
+                            valueListenable: postService.comments,
+                            builder: (context, comments, child) {
+                              return AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 300),
+                                child: CommentsList(
+                                  key: ValueKey(comments.length),
+                                  width: width,
+                                  comments: comments,
+                                ),
+                              );
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              l10n.new_comment,
+                              style:
+                                  Theme.of(context).textTheme.headlineSmall,
+                            ),
+                          ),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              minWidth: 300,
+                              maxWidth: 500,
+                            ),
+                            child: SizedBox(
+                              width: width * 0.5,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Card(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        TextField(
+                                          controller: textController,
+                                          maxLines: 3,
+                                          minLines: 1,
+                                          maxLength: 100,
+                                          decoration: InputDecoration(
+                                            label: Text(l10n.type_a_comment),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 10),
+                                          child:
+                                              isSubmitting
+                                                  ? const CircularProgressIndicator()
+                                                  : ElevatedButton(
+                                                    child: Text(l10n.submit),
+                                                    onPressed: () async {
+                                                      if (textController
+                                                          .value
+                                                          .text
+                                                          .isEmpty) {
+                                                        ScaffoldMessenger.of(
+                                                          context,
+                                                        ).showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              l10n.cannot_send_empty_comment,
+                                                            ),
+                                                          ),
+                                                        );
+                                                        return;
+                                                      }
+
+                                                      try {
+                                                        setState(() {
+                                                          isSubmitting = true;
+                                                        });
+                                                        await postService.createComment(
+                                                          postId:
+                                                              postService
+                                                                  .selectedPost
+                                                                  .value!
+                                                                  .id,
+                                                          content:
+                                                              textController
+                                                                  .value
+                                                                  .text,
+                                                        );
+                                                        textController.clear();
+
+                                                        await Future.wait([
+                                                          postService
+                                                              .getComments(),
+                                                          postService
+                                                              .refreshSelectedPost(),
+                                                        ]);
+                                                      } finally {
+                                                        setState(() {
+                                                          isSubmitting = false;
+                                                        });
+                                                      }
+                                                    },
+                                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

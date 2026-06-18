@@ -34,12 +34,14 @@ class _NachoAvatarState extends State<NachoAvatar> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (widget.users.length > 1) {
+    if (widget.users.length > 1) {
+      timer = Timer.periodic(const Duration(seconds: 5), (timer) {
         currentIndex = (currentIndex + 1) % widget.users.length;
         setState(() {});
-      }
-    });
+      });
+    } else {
+      timer = Timer(Duration.zero, () {});
+    }
   }
 
   @override
@@ -87,7 +89,7 @@ class _NachoAvatarState extends State<NachoAvatar> {
                 child: CircleAvatar(
                     radius: widget.radius,
                     backgroundColor: backgroundColor,
-                    backgroundImage: NetworkImage(Urls.avatar +
+                    backgroundImage: CachedNetworkImageProvider(Urls.avatar +
                         (widget.users[currentIndex].id.toString()) +
                         size +
                         NachoAvatar.profileHash)),

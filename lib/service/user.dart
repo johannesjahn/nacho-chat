@@ -19,13 +19,28 @@ class UserService {
   var userList = <UserResponseDTO>[];
   final filteredUserList = ValueNotifier<List<UserResponseDTO>>([]);
 
+  DateTime? _lastUserListFetch;
+
+  void resetFetchTimestamp() {
+    _lastUserListFetch = null;
+  }
+
   Future<void> getMe() async {
     final response = await appService.api.getUserApi().usersControllerGetMe();
 
     me.value = response.data!;
   }
 
-  Future<void> getUserList() async {
+  Future<void> getUserList({bool force = false}) async {
+    if (!force &&
+        userList.isNotEmpty &&
+        _lastUserListFetch != null &&
+        DateTime.now().difference(_lastUserListFetch!) <
+            const Duration(seconds: 60)) {
+      return;
+    }
+    _lastUserListFetch = DateTime.now();
+
     final response =
         await appService.api.getUserApi().usersControllerGetUsers();
 

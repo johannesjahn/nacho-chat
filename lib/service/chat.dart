@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
+import 'package:built_value/serializer.dart';
 import 'package:flutter/material.dart';
 import 'package:nacho_chat/service/app.dart';
 import 'package:openapi/openapi.dart';
@@ -20,12 +23,45 @@ class ChatService {
 
   final unreadCountNotifier = ValueNotifier(false);
 
+  static const _cacheKey = 'cached_conversations';
+
+  void _loadCachedConversations() {
+    try {
+      final cached = appService.hive.get(_cacheKey);
+      if (cached != null && conversations.isEmpty) {
+        final decoded = jsonDecode(cached);
+        final builtList = standardSerializers.deserialize(
+          decoded,
+          specifiedType:
+              const FullType(BuiltList, [FullType(ConversationResponseDTO)]),
+        ) as BuiltList<ConversationResponseDTO>;
+        conversations = builtList.toList();
+        filteredConversations.value = conversations;
+      }
+    } catch (_) {}
+  }
+
+  void _saveConversations(List<ConversationResponseDTO> list) {
+    try {
+      final builtList = BuiltList<ConversationResponseDTO>(list);
+      final serialized = standardSerializers.serialize(
+        builtList,
+        specifiedType:
+            const FullType(BuiltList, [FullType(ConversationResponseDTO)]),
+      );
+      appService.hive.put(_cacheKey, jsonEncode(serialized));
+    } catch (_) {}
+  }
+
   Future<void> getConversations() async {
+    _loadCachedConversations();
+
     final response =
         await appService.api.getChatApi().chatControllerGetConversations();
 
     conversations = response.data?.toList() ?? [];
     filteredConversations.value = conversations;
+    _saveConversations(conversations);
   }
 
   Future<void> createConversation({required List<num> partnerIds}) async {
@@ -101,12 +137,7 @@ class ChatService {
     await appService.api.getChatApi().chatControllerMarkConversationAsRead(
         markConversationAsReadDTO: dto.build());
 
-    await Future.wait([
-      getMessages(
-          conversationId: conversationId, markConversationAsRead: false),
-      getConversations(),
-    ]);
-
+    await getConversations();
     getNumberOfUnreadMessages();
   }
 

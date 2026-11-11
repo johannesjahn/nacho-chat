@@ -1,4 +1,4 @@
-FROM caddy:2.11.7
+FROM caddy:2.11.9
 
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY ./build/web /usr/share/caddy

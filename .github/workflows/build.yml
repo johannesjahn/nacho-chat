@@ -135,7 +135,10 @@ jobs:
             echo "EOF"
           } >> $GITHUB_ENV
       - name: Install yq
-        run: sudo apt update && sudo apt install -y yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
       - name: Extract version
         id: meta
         run: |
@@ -146,7 +149,6 @@ jobs:
           PAT: ${{ secrets.TARGET_REPO_PAT }}
           TARGET_REPO: johannesjahn/chat-api-helm
         run: |
-          sudo snap install yq --classic
           TARGET_BRANCH="chore/bump-nacho-chat-to-${{ env.version }}"
           git clone https://${{ github.actor }}:${{ env.PAT }}@github.com/${{ env.TARGET_REPO }}.git ${{ env.TARGET_REPO }}
           cd ${{ env.TARGET_REPO }}
